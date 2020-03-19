@@ -38,141 +38,147 @@
 <HEAD>
 <TITLE>Calendar</TITLE>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<style type="text/css">
+table, table th, table td{
+border: 1px solid blue;
+}
+#cal_nav{
+border: 1px solid red;
+}
+#cal_tab{
+border-collapse: collapse;
+}
+#cal_tab th, #cal_tab td{
+border: 1px solid black;
+}
+</style>
 </HEAD>
 <BODY>
-	<form name="calendarFrm" id="calendarFrm" action="" method="post">
-		<DIV id="content" style="width: 712px;">
+	<DIV id="cal_content">
+	
+		<!-- 날짜 네비게이션 시작 -->
+		<table id="cal_nav">
+			<tr>
+				<td align="center">
+					<!-- 이전해 -->
+					<a href="calendar.inc?year=<%=year - 1%>&month=<%=month%>" target="_self">
+						<b>&lt;&lt;</b>
+					</a> 
+<%
+if (month > 0) {
+%> 
+					<!-- 이전달 -->
+						<a href="calendar.inc?year=<%=year%>&month=<%=month - 1%>" target="_self">
+							<b>&lt;</b>
+					</a>
+<%
+} else {
+%> 
+						<b>&lt;</b>
+<%
+}
+%> 
+						&nbsp;&nbsp; <%=year%>년 <%=month + 1%>월 &nbsp;&nbsp;
+<%
+if (month < 11) {
+%>
+						 <!-- 다음달 -->
+						<a href="calendar.inc?year=<%=year%>&month=<%=month + 1%>" target="_self">
+						<b>&gt;</b>
+					</a> 
+<%
+} else {
+%> 
+						<b>&gt;</b>
+<%
+}
+%> 
+						<!-- 다음해 -->
+						<a href="calendar.inc?year=<%=year + 1%>&month=<%=month%>" target="_self"> 
+						<b>&gt;&gt;</b>
+					</a>
+				</td>
+			</tr>
+		</table>
+		<!-- 날짜 네비게이션 끝 -->
 		
-			<!--날짜 네비게이션  -->
-			<table>
-				<tr>
-					<td height="60">
-						<table width="100%">
-							<tr>
-								<td align="center">
-									<!-- 이전해 -->
-									<a href="calendar.inc?year=<%=year - 1%>&month=<%=month%>" target="_self">
-										<b>&lt;&lt;</b>
-									</a> 
- <%
- 	if (month > 0) {
- %> 
-									<!-- 이전달 -->
- 									<a href="calendar.inc?year=<%=year%>&month=<%=month - 1%>" target="_self">
- 										<b>&lt;</b>
-									</a>
- <%
- 	} else {
- %> 
- 									<b>&lt;</b>
- <%
- 	}
- %> 
- 									&nbsp;&nbsp; <%=year%>년 <%=month + 1%>월 &nbsp;&nbsp;
- <%
- 	if (month < 11) {
- %>
- 									 <!-- 다음달 -->
- 									<a href="calendar.inc?year=<%=year%>&month=<%=month + 1%>" target="_self">
-										<b>&gt;</b>
-									</a> 
- <%
- 	} else {
- %> 
- 									<b>&gt;</b>
- <%
- 	}
- %> 
- 									<!-- 다음해 -->
- 									<a href="calendar.inc?year=<%=year + 1%>&month=<%=month%>" target="_self"> 
-										<b>&gt;&gt;</b>
-									</a>
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-			</table>
-			<br>
-			<table>
-				<THEAD>
-					<TR>
-						<TD width='100px'>일</TD>
-						<TD width='100px'>월</TD>
-						<TD width='100px'>화</TD>
-						<TD width='100px'>수</TD>
-						<TD width='100px'>목</TD>
-						<TD width='100px'>금</TD>
-						<TD width='100px'>토</TD>
-					</TR>
-				</THEAD>
-				<TBODY>
-					<TR>
-						<%
-							//처음 빈공란 표시
-							for (int index = 1; index < start; index++) {
-								out.println("<TD >&nbsp;</TD>");
-								newLine++;
+		<br>
+		<table id="cal_tab">
+			<THEAD>
+				<TR>
+					<TD>일</TD>
+					<TD>월</TD>
+					<TD>화</TD>
+					<TD>수</TD>
+					<TD>목</TD>
+					<TD>금</TD>
+					<TD>토</TD>
+				</TR>
+			</THEAD>
+			<TBODY>
+				<TR>
+					<%
+						//처음 빈공란 표시
+						for (int index = 1; index < start; index++) {
+							out.println("<TD >&nbsp;</TD>");
+							newLine++;
+						}
+
+						for (int index = 1; index <= endDay; index++) {
+							String color = "";
+
+							if (newLine == 0) 
+								color = "RED";
+							else if (newLine == 6)
+								color = "#529dbc";
+							else 
+								color = "BLACK";
+
+							String sDate = Integer.toString(year);
+
+							sDate += Integer.toString(month + 1).length() == 1 ? "0" + Integer.toString(month + 1)
+									: Integer.toString(month + 1);
+							sDate += Integer.toString(index).length() == 1 ? "0" + Integer.toString(index)
+									: Integer.toString(index);
+
+							int iUseDate = Integer.parseInt(sDate);
+
+							String backColor = "#ffffff";
+							if (iUseDate == intToday) {
+								backColor = "#bfbfbf";
 							}
+							out.println("<TD bgcolor='" + backColor + "' nowrap>");
+					%>
+					<font color='<%=color%>'><%=index%>
+					</font>
 
-							for (int index = 1; index <= endDay; index++) {
-								String color = "";
-
-								if (newLine == 0) {
-									color = "RED";
-								} else if (newLine == 6) {
-									color = "#529dbc";
-								} else {
-									color = "BLACK";
-								}
-								;
-
-								String sUseDate = Integer.toString(year);
-
-								sUseDate += Integer.toString(month + 1).length() == 1 ? "0" + Integer.toString(month + 1)
-										: Integer.toString(month + 1);
-								sUseDate += Integer.toString(index).length() == 1 ? "0" + Integer.toString(index)
-										: Integer.toString(index);
-
-								int iUseDate = Integer.parseInt(sUseDate);
-
-								String backColor = "#EFEFEF";
-								if (iUseDate == intToday) {
-									backColor = "#c9c9c9";
-								}
-								out.println("<TD valign='top' align='left' height='92px' bgcolor='" + backColor + "' nowrap>");
-						%>
-						<font color='<%=color%>'> <%=index%>
-						</font>
-
-						<%
+					<%
 							out.println("<BR>");
-								out.println(iUseDate);
-								out.println("<BR>");
+							out.println(iUseDate);
 
-								//기능 제거	
-								out.println("</TD>");
-								newLine++;
+							//기능 제거	
+							out.println("</TD>");
+							newLine++;
 
-								if (newLine == 7) {
-									out.println("</TR>");
-									if (index <= endDay) {
-										out.println("<TR>");
-									}
-									newLine = 0;
+							if (newLine == 7) {
+								out.println("</TR>");
+								if (index <= endDay) {
+									out.println("<TR>");
 								}
+								newLine = 0;
 							}
-							//마지막 공란 LOOP
-							while (newLine > 0 && newLine < 7) {
-								out.println("<TD>&nbsp;</TD>");
-								newLine++;
-							}
-						%>
-					</TR>
+						}
+						
+						//마지막 공란 LOOP
+						while (newLine > 0 && newLine < 7) {
+							out.println("<TD>&nbsp;</TD>");
+							newLine++;
+						}
+					%>
+				</TR>
 
-				</TBODY>
-			</TABLE>
-		</DIV>
-	</form>
+			</TBODY>
+		</TABLE>
+	</DIV>
 </BODY>
 </HTML>
