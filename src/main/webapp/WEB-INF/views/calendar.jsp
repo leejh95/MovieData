@@ -18,6 +18,7 @@ border: 1px solid blue;
 border: 1px solid red;
 }
 #cal_tab{
+width: 1000px;
 border-collapse: collapse;
 }
 #cal_tab th, #cal_tab td{

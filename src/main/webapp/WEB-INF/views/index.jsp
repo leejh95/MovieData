@@ -5,13 +5,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+#all_wrap{
+width: 1000px;
+padding: 0;
+margin: auto;
+}
+</style>
 </head>
 <body>
 
-<div id="include_header"></div>
-<div id="include_calendar"></div>
-<div id="include_rank"></div>
-<div id="include_footer"></div>
+<div id="all_wrap">
+	<div id="include_header"></div>
+	<div id="include_calendar"></div>
+	<div id="include_rank"></div>
+	<div id="include_footer"></div>
+</div>
 
 <script src="resources/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
