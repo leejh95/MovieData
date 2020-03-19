@@ -19,15 +19,15 @@
 <body>
 	<a href="#"><img alt="메인으로" src="resources/images/boxOffice.png"/></a>
 	<div id="search_wrap">
-		<form action="search.inc" method="post">
+		<form action="search.inc" method="post" name="searchFrm">
 			<select name="type">
 				<option>선택하세요.</option>
 				<option value="0">영화이름</option>
 				<option value="1">감독이름</option>
 				<option value="2">개봉년도</option>
 			</select>
-			<input type="text" name="value" />
-			<input type="submit" value="호잇!"/>
+			<input type="text" name="searchValue" />
+			<input type="button" onclick="goSearch(this.form)" value="검색"/>
 		</form>
 	</div>
 </body>

@@ -66,7 +66,6 @@ public class SearchController {
 			vo.setNationAlt(e.getChildText("nationAlt"));
 			vo.setGenreAlt(e.getChildText("genreAlt"));
 			vo.setDirectorNm(e.getChild("directors").getChild("director").getChildText("peopleNm"));
-			vo.setCompanyNm(e.getChild("companys").getChild("company").getChildText("companyNm"));
 			
 			ar[i++] = vo;
 		}

@@ -38,6 +38,12 @@ margin: auto;
 	function goCal(year, month){
 		$("#include_calendar").load("calendar.inc?year="+year+"&month="+month);
 	}
+	
+	function goSearch(frm){
+		var type = frm.type.value;
+		var value = frm.searchValue.value;
+		$("#include_rank").load("search.inc?type="+type+"&value="+value);
+	}
 </script>
 </body>
 </html>
