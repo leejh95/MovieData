@@ -7,13 +7,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-<script src="js/jquery-3.4.1.min.js"></script>
+
+<div id="include_main_logo"></div>
+<div id="include_calendar"></div>
+<div id="include_rank"></div>
+<div id="include_footer"></div>
+
+<script src="resources/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#menu_bar").load("menu.jsp");
-		$("#left_menu").load("myPage_menu.jsp");
-		$("#right_content").load("myBoard.jsp");
-		$("#footer").load("footer.jsp");
+		//$("#include_main_logo").load("logo.inc");
+		$("#include_calendar").load("calendar.inc");
+		//$("#include_rank").load("rank.inc");
+		//$("#include_footer").load("footer.inc");
  	});
 </script>
 </body>
