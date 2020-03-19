@@ -71,13 +71,15 @@ public class ViewController {
 		List<Element> actor = actors.getChildren("actor");
 		vo.setActorNm1(actor.get(0).getChildText("peopleNm"));
 		vo.setActorNm2(actor.get(1).getChildText("peopleNm"));
-		vo.setActorNm3(actor.get(2).getChildText("peopleNm"));
+	//	if(!actor.get(2).getChildText("peopleNm").isEmpty())
+		//	vo.setActorNm3(actor.get(2).getChildText("peopleNm"));
 		//System.out.println(actor.get(0).getChildText("peopleNm"));
 		
 		//배우 3명의 배역
 		vo.setCast1(actor.get(0).getChildText("cast"));
 		vo.setCast2(actor.get(1).getChildText("cast"));
-		vo.setCast3(actor.get(2).getChildText("cast"));
+	//	if(!actor.get(2).getChildText("cast").isEmpty())
+		//	vo.setCast3(actor.get(2).getChildText("cast"));
 		
 		//관람등급
 		Element audits = movieInfo.getChild("audits");

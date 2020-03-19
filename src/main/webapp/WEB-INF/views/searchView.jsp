@@ -9,17 +9,14 @@
 <style type="text/css">
 
 #wrap{
-	width: 1500px;
-	position: absolute;
-	top: 25%;
-	left: 10%;
-
+	width: 800px;
+	margin: 0 auto;
 }
 
 .item{
 	float: left;
 	list-style: none;
-	width: 550px;
+	width: 400px;
 	margin-bottom: 50px;
 	
 }
@@ -30,9 +27,8 @@
 }
 
 .info2{
-	margin-left: 10px;
 	list-style: none;
-	display: inline-block;
+	margin-left: 10px;
 }
 
 .thumb{
@@ -41,6 +37,7 @@
 }
 
 .title{
+	display: inline-block;
 	font-size: 20px;
 	margin-left: 10px;
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -104,7 +105,7 @@
 				</tr>
 				<tr>
 					<td class="kategorie">배우 및 배역</td>
-					<td class="content">${vo.actorNm1 }(${vo.cast1 }) / ${vo.actorNm2 }(${vo.cast2 }) / ${vo.actorNm3 }(${vo.cast3 })</td>
+					<td class="content">${vo.actorNm1 }(${vo.cast1 }) / ${vo.actorNm2 }(${vo.cast2 })</td>
 				</tr>
 			</table>
 			<table>
