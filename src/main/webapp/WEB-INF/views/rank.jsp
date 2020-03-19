@@ -20,7 +20,7 @@
 .item{
 	float: left;
 	list-style: none;
-	width: 500px;
+	width: 550px;
 	margin-bottom: 50px;
 	
 }
