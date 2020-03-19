@@ -59,7 +59,7 @@
 	}
 	
 </style>
-	<jsp:include page="header.jsp"/>  
+	<%-- <jsp:include page="header.jsp"/>   --%>
 </head>
 <body>
 	<div id="wrap">
