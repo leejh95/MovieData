@@ -2,6 +2,8 @@ package com.test.movie;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import org.jdom2.Document;
@@ -16,7 +18,7 @@ import com.test.vo.RankVO;
 @Controller
 public class RankController {
 
-	@RequestMapping("/Rank.inc")
+	@RequestMapping("/rank.inc")
 	public ModelAndView rank(String dTime) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
@@ -26,8 +28,14 @@ public class RankController {
 		String dTime = formatter.format ( currentTime );
 		System.out.println ( dTime );
 		*/
+		if(dTime == null) {
+			Calendar todayCal = Calendar.getInstance();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyMMdd");
+			dTime = sdf.format(todayCal.getTime());
+		}
 		
-		URL url = new URL("http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.xml?key=ef9fe705049caa4b27ad344b76ad885b&targetDt="+dTime);
+		
+		URL url = new URL("http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.xml?key=ef9fe705049caa4b27ad344b76ad885b&targetDt=20200317");
 		
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		
@@ -47,14 +55,14 @@ public class RankController {
 		
 		RankVO[] ar = new RankVO[BO.size()];
 		
-		for(int i=0;i<BO.size();i++) {
+		for(int i=0; i<BO.size(); i++) {
 			RankVO rvo = new RankVO();
 			
 			rvo.setRank(BO.get(i).getChildText("rank"));
 			rvo.setMovieNm(BO.get(i).getChildText("movieNm"));
-			rvo.setOpenDt(BO.get(i).getChildText("OpenDt"));
+			rvo.setOpenDt(BO.get(i).getChildText("openDt"));
 			
-			Element mc = BO.get(i).getChild("movieCd");
+			String mc = BO.get(i).getChildText("movieCd");
 			URL url2 = new URL("http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.xml?key=ef9fe705049caa4b27ad344b76ad885b&movieCd="+mc);
 			
 			HttpURLConnection conn2 = (HttpURLConnection) url2.openConnection();
@@ -67,13 +75,13 @@ public class RankController {
 			Element root2 = doc2.getRootElement();
 			
 			Element MInfo = root2.getChild("movieInfo");
-			Element ga = MInfo.getChild("genres").getChild("genre").getChild("genreNm");
-			Element na = MInfo.getChild("nations").getChild("nation").getChild("nationNm");
-			Element di = MInfo.getChild("directors").getChild("director").getChild("peopleNm");
+			String ga = MInfo.getChild("genres").getChild("genre").getChildText("genreNm");
+			String na = MInfo.getChild("nations").getChild("nation").getChildText("nationNm");
+			String di = MInfo.getChild("directors").getChild("director").getChildText("peopleNm");
 			
-			rvo.setGenreAlt(ga.toString());
-			rvo.setNationAlt(na.toString());
-			rvo.setDirector(di.toString());
+			rvo.setGenreAlt(ga);
+			rvo.setNationAlt(na);
+			rvo.setDirector(di);
 			
 			ar[i] = rvo;
 			
