@@ -2,7 +2,15 @@ package com.test.vo;
 
 public class RankVO {
 	
-	private String rank, movieNm, openDt, genreAlt, nationAlt, director;
+	private String rank, movieNm, openDt, genreAlt, nationAlt, director, movieCd;
+
+	public String getMovieCd() {
+		return movieCd;
+	}
+
+	public void setMovieCd(String movieCd) {
+		this.movieCd = movieCd;
+	}
 
 	public String getRank() {
 		return rank;

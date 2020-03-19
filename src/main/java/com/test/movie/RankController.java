@@ -78,6 +78,7 @@ public class RankController {
 			String na = MInfo.getChild("nations").getChild("nation").getChildText("nationNm");
 			String di = MInfo.getChild("directors").getChild("director").getChildText("peopleNm");
 			
+			rvo.setMovieCd(mc);
 			rvo.setGenreAlt(ga);
 			rvo.setNationAlt(na);
 			rvo.setDirector(di);
