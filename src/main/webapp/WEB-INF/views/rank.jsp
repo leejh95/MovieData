@@ -11,16 +11,13 @@
 
 #wrap{
 	width: 1500px;
-	position: absolute;
-	top: 25%;
-	left: 10%;
 
 }
 
 .item{
 	float: left;
 	list-style: none;
-	width: 550px;
+	width: 500px;
 	margin-bottom: 50px;
 	
 }
@@ -52,10 +49,10 @@
 	<div id="wrap">
 			<c:forEach var="rvo" items="${ar }">
 					<li class="item">
-                    	<a href=""  style="height:274px;width:187px;" class="thumb" ><img src="resources/images/test.jpg" border="0" alt=""></a> 
+                    	<a href="view.inc"  style="height:274px;width:187px;" class="thumb" ><img src="resources/images/test.jpg" border="0" alt=""></a> 
                         <div class="cont">
                         	<strong class="title" title="${rvo.movieNm }">
-                        	<a href="#none" style="text-decoration: underline;">${rvo.movieNm }</a></strong>
+                        	<a href="view.inc" style="text-decoration: underline;">${rvo.movieNm }</a></strong>
                             <ul>
                             	<li class="info">${rvo.genreAlt }</li>
                             	<li class="info">｜	${rvo.nationAlt }</li>
