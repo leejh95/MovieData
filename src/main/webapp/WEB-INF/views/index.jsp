@@ -32,7 +32,7 @@ margin: auto;
  	});
 	
 	function goRank(dTime){
-		$("#include_rank").load("rank.inc?dTime"+dTime);
+		$("#include_rank").load("rank.inc?dTime="+dTime);
 	}
 	
 	function goCal(year, month){

@@ -47,7 +47,7 @@ border: 1px solid black;
 				<b>&lt;</b>
 			</c:if>
 			
-			&nbsp;&nbsp; ${year }년 ${month +1 }월 &nbsp;&nbsp;
+			<b>${year }년 ${month +1 }월</b>
 			
 			<c:if test="${month < 11 }">
 			<a href="javascript:goCal('${year }', '${month+1}')" target="_self">
