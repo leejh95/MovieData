@@ -54,7 +54,7 @@
                     	<a href=""  style="height:274px;width:187px;" class="thumb" ><img src="resources/images/test.jpg" border="0" alt=""></a> 
                         <div class="cont">
                         	<strong class="title" title="${vo.movieNm }">
-                        	<a href="#none" style="text-decoration: underline;">${vo.movieNm }</a></strong>
+                        	<a href="view.inc?movieCd=${vo.movieCd }" style="text-decoration: underline;">${vo.movieNm }</a></strong>
                             <ul>
                             	<li class="info">${vo.genreAlt }</li>
                             	<li class="info">｜	${vo.nationAlt }</li>

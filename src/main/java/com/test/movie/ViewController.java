@@ -22,8 +22,8 @@ public class ViewController {
 		ModelAndView mv = new ModelAndView();
 		ViewVO vo = new ViewVO();
 		
-		//URL url = new URL("http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.xml?key=597ea93394fe1b75e69c9cf07a1fc1de&movieCd="+movieCd);
-		URL url = new URL("http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.xml?key=597ea93394fe1b75e69c9cf07a1fc1de&movieCd=20124079");
+		URL url = new URL("http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.xml?key=597ea93394fe1b75e69c9cf07a1fc1de&movieCd="+movieCd);
+		//URL url = new URL("http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.xml?key=597ea93394fe1b75e69c9cf07a1fc1de&movieCd=20124079");
 		
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestProperty("Content-Type", "application/xml");
