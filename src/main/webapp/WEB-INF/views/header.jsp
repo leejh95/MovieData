@@ -12,6 +12,7 @@
 	}
 	#search_wrap {
 		padding-top: 15px; 
+		height: 79px;
 	}
 </style>
 </head>
