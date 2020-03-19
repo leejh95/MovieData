@@ -38,15 +38,63 @@ public class CalendarController {
 		
 		int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
 		
+		String msg = "";
+		
+		for (int index = 1; index < start; index++) {
+			msg += "<TD >&nbsp;</TD>";
+			newLine++;
+		}
+
+		for (int index = 1; index <= endDay; index++) {
+			String color = "";
+
+			if (newLine == 0) 
+				color = "RED";
+			else if (newLine == 6)
+				color = "#529dbc";
+			else 
+				color = "BLACK";
+
+			String sDate = Integer.toString(i_year);
+
+			sDate += Integer.toString(i_month + 1).length() == 1 ? "0" + Integer.toString(i_month + 1)
+					: Integer.toString(i_month + 1);
+			sDate += Integer.toString(index).length() == 1 ? "0" + Integer.toString(index)
+					: Integer.toString(index);
+
+			String backColor = "#ffffff";
+			
+			if (Integer.parseInt(sDate) == intToday) 
+				backColor = "#bfbfbf";
+			
+			msg += "<TD bgcolor='" + backColor + "'><a style='display:block; width:100%;' href='javascript:goRank("+sDate+")'>";
+			
+			msg += "<font color='<%=color%>'>" + index + "</font>";
+
+			//기능 제거	
+			msg += "</TD>";
+			newLine++;
+
+			if (newLine == 7) {
+				msg += "</TR>";
+				if (index <= endDay) {
+					msg += "<TR>";
+				}
+				newLine = 0;
+			}
+		}
+		
+		//마지막 공란 LOOP
+		while (newLine > 0 && newLine < 7) {
+			msg += "<TD>&nbsp;</TD>";
+			newLine++;
+		}
+
 		ModelAndView mv = new ModelAndView();
 		
 		mv.addObject("year", i_year);
 		mv.addObject("month", i_month);
-		mv.addObject("startDay", startDay);
-		mv.addObject("endDay", endDay);
-		mv.addObject("start", start);
-		mv.addObject("newLine", newLine);
-		mv.addObject("intToday", intToday);
+		mv.addObject("msg", msg);
 		
 		mv.setViewName("calendar");
 		
