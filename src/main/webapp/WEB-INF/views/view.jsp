@@ -6,27 +6,27 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+	
+	body{
+	}
 
 	#wrap{
 		width: 1000px;
 		height: 600px;
 		margin: 0 auto;
-		border: 1px solid black;
 	}
 	#left {
-		margin : 150px 60px;
-		width : 200px;
-		height: 280px;
+		margin : 180px 50px;
+		width : 181px;
+		height: 181px;
 		float: left;
-		border: 1px solid black;
 	}
 	
 	#right {
-		margin : 60px 60px 60px 10px;
+		margin : 60px 60px 60px 0;
 		width : 600px;
 		height: 450px;
 		float: left;
-		border: 1px solid black;
 	}
 
 	.kategorie {
@@ -48,7 +48,7 @@
 	}
 	#line{
 		border-bottom: 1px solid #585858;
-		border-left: 1px solid #585858;
+		border-left: 3px solid #585858;
 	}
 	
 	#line>td{
@@ -59,12 +59,12 @@
 	}
 	
 </style>
-	<jsp:include page="header.jsp"/>
+	<%-- <jsp:include page="header.jsp"/>   --%>
 </head>
 <body>
 	<div id="wrap">
 		<div id="left">
-			<p> 사진 놓을곳 </p>
+			<img alt="영화포스터" src="resources/images/michael.png"/>
 		</div>
 		<div id="right">
 			<table>

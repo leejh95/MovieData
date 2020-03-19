@@ -17,13 +17,17 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#include_header").load("header.inc");
-		//$("#include_calendar").load("calendar.inc");
+		$("#include_calendar").load("calendar.inc");
 		$("#include_rank").load("rank.inc");
 		//$("#include_footer").load("footer.inc");
  	});
 	
 	function goRank(dTime){
 		$("#include_rank").load("rank.inc?dTime"+dTime);
+	}
+	
+	function goCal(year, month){
+		$("#include_calendar").load("calendar.inc?year="+year+"&month="+month);
 	}
 </script>
 </body>
