@@ -34,7 +34,6 @@ public class RankController {
 			dTime = sdf.format(todayCal.getTime());
 		}
 		
-		
 		URL url = new URL("http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.xml?key=ef9fe705049caa4b27ad344b76ad885b&targetDt=20200317");
 		
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
