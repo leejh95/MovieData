@@ -10,14 +10,14 @@
 <style type="text/css">
 
 #wrap{
-	width: 1500px;
-
+	width: 800px;
+	margin: 0 auto;
 }
 
 .item{
 	float: left;
 	list-style: none;
-	width: 500px;
+	width: 400px;
 	margin-bottom: 50px;
 	
 }
@@ -28,9 +28,8 @@
 }
 
 .info2{
-	margin-left: 10px;
 	list-style: none;
-	display: inline-block;
+	margin-left: 10px;
 }
 
 .thumb{
@@ -39,6 +38,7 @@
 }
 
 .title{
+	display: inline-block;
 	font-size: 20px;
 	margin-left: 10px;
 }
@@ -57,8 +57,9 @@
                             	<li class="info">${rvo.genreAlt }</li>
                             	<li class="info">｜	${rvo.nationAlt }</li>
                             	<li class="info">｜	${rvo.director }</li>
+                            	<br/>
+                            	<li class="info2">개봉일 ${rvo.openDt }</li>
                             </ul>
-                            <span class="info2">개봉일 ${rvo.openDt }</span>
                         </div>
                      </li>
 			</c:forEach>
