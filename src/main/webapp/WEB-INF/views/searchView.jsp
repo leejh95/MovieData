@@ -6,22 +6,64 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+
+#wrap{
+	width: 1500px;
+	position: absolute;
+	top: 25%;
+	left: 10%;
+
+}
+
+.item{
+	float: left;
+	list-style: none;
+	width: 550px;
+	margin-bottom: 50px;
+	
+}
+.info{
+	float: left;
+	list-style: none;
+	margin-left: 10px;
+}
+
+.info2{
+	margin-left: 10px;
+	list-style: none;
+	display: inline-block;
+}
+
+.thumb{
+	display: inline-block;
+	float: left;
+}
+
+.title{
+	font-size: 20px;
+	margin-left: 10px;
+}
+
+</style>
 </head>
 <body>
 	<div id="wrap">
-		<table width="400px">
 			<c:forEach var="vo" items="${ar }">
-				<tr>
-					<td colspan="4">${vo.movieNm }</td>
-				</tr>
-				<tr>
-					<td rowspan="3">사진</td>
-					<td rowspan="3">${vo.prdtYear }</td>
-					<td rowspan="3">${vo.genreAlt }｜${vo.nationAlt }｜${vo.directorNm }</td>
-					<td rowspan="3">개봉일 ${vo.openDt }</td>
-				</tr>
+					<li class="item">
+                    	<a href=""  style="height:274px;width:187px;" class="thumb" ><img src="resources/images/test.jpg" border="0" alt=""></a> 
+                        <div class="cont">
+                        	<strong class="title" title="${vo.movieNm }">
+                        	<a href="#none" style="text-decoration: underline;">${vo.movieNm }</a></strong>
+                            <ul>
+                            	<li class="info">${vo.genreAlt }</li>
+                            	<li class="info">｜	${vo.nationAlt }</li>
+                            	<li class="info">｜	${vo.directorNm }</li>
+                            </ul>
+                            <span class="info2">개봉일 ${vo.openDt }</span>
+                        </div>
+                     </li>
 			</c:forEach>
-		</table>
 	</div>
 </body>
 </html>
