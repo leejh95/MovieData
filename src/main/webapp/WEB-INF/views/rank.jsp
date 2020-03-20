@@ -10,51 +10,82 @@
 <style type="text/css">
 
 #wrap{
-	width: 800px;
-	margin: 0 auto;
+	width: 1000px;
+	display: inline-block;
 }
 
 .item{
 	float: left;
 	list-style: none;
-	width: 400px;
-	margin-bottom: 50px;
+	width: 330px;
+	margin: 0 0 50px 0;
 	
 }
 
-.info2{
+.info{
 	list-style: none;
+	height: 20px;
 	margin-left: 10px;
+	float: left;
+	
 }
 
 .thumb{
 	display: inline-block;
-	float: left;
+	float: none;
+}
+
+img{
+	display: inline-block;
+	float: none;
 }
 
 .title{
 	display: inline-block;
+	float: none;
+	width: 300px;
 	font-size: 20px;
-	margin-left: 10px;
+	text-decoration: none;
 	color: black;
+}
+
+.opend{
+	margin: 0;
+	margin-right: 5px;
+	padding: 0;
+	background-color: gray;
+	border-radius: 3px;
+	color: white;
+	font-weight: bold;
+	width: 60px;
+	height: 20px;
+	line-height: 21px;
+	float: left;
 }
 
 </style>
 </head>
 <body>
-	<div id="wrap">
+			<div id="wrap">
 			<c:forEach var="rvo" items="${ar }">
 					<li class="item">
-                    	<a href="javascript:goView('${rvo.movieCd }')" style="height:274px;width:187px;" class="thumb" ><img src="resources/images/test.jpg" border="0" alt=""></a> 
+						<c:if test="${rvo.img ne null }">
+                    		<a href="javascript:goView('${rvo.movieCd }')" style="height:274px;width:187px;" class="thumb" ><img src="${rvo.img }" border="0" alt=""></a> 
+                        </c:if>
+                        <c:if test="${rvo.img eq null }">
+                    		<a href=""  style="height:300px;width:187px;" class="thumb" ><img src="resources/images/no-image-png-7.png" border="0" alt=""></a> 
+                    	</c:if>
                         <div class="cont">
-                        	<strong class="title" title="${rvo.movieNm }">
-                        	<a href="javascript:goView('${rvo.movieCd }')" style="text-decoration: underline;">${rvo.movieNm }</a></strong>
+                        	<strong title="${rvo.movieNm }">
+                        	<a class="title" href="javascript:goView('${rvo.movieCd }')">${rvo.movieNm }</a>
+                        	</strong>
                             <ul>
-                            	<li class="info2">개봉일 ${rvo.openDt }</li>
+                            	<li class="info"><pre class="opend"> 개봉일 </pre>${rvo.openDt }</li>
                             </ul>
                         </div>
-                     </li>
+                    </li>
+           
 			</c:forEach>
-	</div>
+			</div>
 </body>
 </html>
