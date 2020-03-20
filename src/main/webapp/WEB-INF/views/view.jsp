@@ -17,14 +17,16 @@
 		margin: 0 auto;
 	}
 	#left {
-		margin : 180px 50px;
+		margin-right: 100px;
+		margin-left: 20px;
+		margin-top: 50px;
 		float: left;
 		height:300px;
 		width:187px;
 	}
 	
 	#right {
-		margin : 140px 60px 60px 0;
+		margin-left:90px;
 		width : 600px;
 		height: 450px;
 		float: left;
@@ -66,10 +68,10 @@
 	<div id="view_wrap">
 		<div id="left">
 			<c:if test="${vo.image ne null }">
-           		<img src="${vo.image }" border="0" alt="">
+           		<img src="${vo.image }" border="0" alt="" width="250px" />
            	</c:if>
            	<c:if test="${vo.image eq null }">
-           		<img src="resources/images/no-image-png-7.png" border="0" alt="">
+           		<img src="resources/images/no-image-png-7.png" border="0" alt="" width="250px"/>
            	</c:if>
 		</div>
 		<div id="right">

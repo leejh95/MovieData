@@ -21,7 +21,8 @@ public class SearchController {
 	public ModelAndView search(String type, String value) throws Exception  {
 		ModelAndView mv = new ModelAndView();
 		int searchType = Integer.parseInt(type);
-		System.out.println(searchType+"/"+value);
+		
+		System.out.println(type + "/" + value);
 		
 		URL url = null;
 		
@@ -65,7 +66,9 @@ public class SearchController {
 			vo.setPrdtStatNm(e.getChildText("prdtStatNm"));
 			vo.setNationAlt(e.getChildText("nationAlt"));
 			vo.setGenreAlt(e.getChildText("genreAlt"));
-			vo.setDirectorNm(e.getChild("directors").getChild("director").getChildText("peopleNm"));
+			System.out.println("sadf");
+			//System.out.println(e.getChild("directors").getChild("director").getChildText("peopleNm"));
+			//vo.setDirectorNm(e.getChild("directors").getChild("director").getChildText("peopleNm"));
 			
 			try {
 				vo.setImage(getImg(e.getChildText("movieCd")));

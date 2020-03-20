@@ -54,12 +54,12 @@
 			<a href="#" id="home_bt"><img alt="메인으로" src="resources/images/logo (1).png"/></a>
 		</div>
 		<div id="search_wrap">
-			<form action="search.inc" method="post" name="searchFrm">
+			<form method="post" name="searchFrm" onsubmit="false">
 				<table id="search_table" align="center">
 					<tbody id="search_tbody">
 						<tr id="search_tr">
 							<td id="search_td1">
-								<select name="type" style="width:100px; height: 29px; border-width: 0;">
+								<select name="type" style="width:100px; height: 29px; border-width: 0;" id="select_type">
 									<option>선택하세요.</option>
 									<option value="0">영화이름</option>
 									<option value="1">감독이름</option>
@@ -67,10 +67,11 @@
 								</select>
 							</td>
 							<td id="search_td2">
-								<input type="text" name="searchValue" style=" height: 24px; border-width: 0;" />
+								<input type="text" name="searchValue" id="search_text" style=" height: 24px; border-width: 0;" />
+								<input type="text" name="values" style=" height: 0px; width: 0px; border-width: 0;" disabled="disabled" />
 							</td>
 							<td id="search_td3" >
-								<input type="button" id="a_search" onclick="goSearch(this.form)"  style="cursor:pointer"/>
+								<input type="button" id="a_search" onclick="goSearch()"  style="cursor:pointer"/>
 							</td>
 						</tr>
 					</tbody>
@@ -78,5 +79,17 @@
 			</form>
 		</div>
 	</div>
+	
+	<script src="resources/js/jquery-3.4.1.min.js"></script>
+	<script>
+		$(function(){
+			
+			$("#search_text").keydown(function(key) {
+				if (key.keyCode == 13) {
+					goSearch();
+				}
+			});
+		})
+	</script>
 </body>
 </html>

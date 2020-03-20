@@ -30,6 +30,8 @@ margin: auto;
 		$("#include_calendar").load("calendar.inc");
 		$("#include_rank").load("rank.inc");
 		//$("#include_footer").load("footer.inc");
+		
+		
  	});
 	
 	function goRank(dTime){
@@ -40,15 +42,20 @@ margin: auto;
 		$("#include_calendar").load("calendar.inc?year="+year+"&month="+month);
 	}
 	
-	function goSearch(frm){
-		var type = frm.type.value;
-		var value = frm.searchValue.value;
+	function goSearch(){
+		var type = document.getElementById("select_type").value;
+		var value = document.getElementById("search_text").value;
+		console.log(type);
+		console.log(value);
 		$("#include_rank").load("search.inc?type="+type+"&value="+value);
+		
+		return false;
 	}
 	
 	function goView(movieCd){
 		$("#include_rank").load("view.inc?movieCd="+movieCd);
 	}
+	
 	
 </script>
 </body>
