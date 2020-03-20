@@ -51,7 +51,7 @@
 <body id="search_body">
 	<div id="header_div">
 		<div id="logo_wrap">
-			<a href="#" id="home_bt"><img alt="메인으로" src="resources/images/logo (1).png"/></a>
+			<a href="index.inc" id="home_bt"><img alt="메인으로" src="resources/images/logo (1).png"/></a>
 		</div>
 		<div id="search_wrap">
 			<form method="post" name="searchFrm" onsubmit="false">
