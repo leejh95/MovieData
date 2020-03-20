@@ -68,13 +68,12 @@ public class CalendarController {
 					: Integer.toString(i_month + 1);
 			sDate += Integer.toString(index).length() == 1 ? "0" + Integer.toString(index)
 					: Integer.toString(index);
-
-			String backColor = "#ffffff";
 			
+			String isToday = "";
 			if (Integer.parseInt(sDate) == intToday) 
-				backColor = "#bfbfbf";
+				isToday = "today";
 			
-			msg += "<TD bgcolor='" + backColor + "'><a style='display:block; width:100%; color:"+ color +";' href='javascript:goRank("+sDate+")'>";
+			msg += "<TD id='" + isToday + "'><a style='display:block; width:100%; color:"+ color +";' href='javascript:goRank("+sDate+")'>";
 			
 			msg += index;
 
