@@ -107,10 +107,44 @@ public class ViewController {
 		List<Element> company = companys.getChildren("company");
 		vo.setCompanyNm(company.get(0).getChildText("companyNm"));
 		
+		
+		try {
+			vo.setImage(getImg(movieCd));
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 		mv.addObject("vo", vo);
 		mv.setViewName("view");
 		
 		return mv;
 	}
+	
+	private String getImg(String movieCd1) throws Exception {
+	      
+	      URL url = new URL("http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_xml2.jsp?collection=kmdb_new2&ServiceKey=RO60W567N4S9H6YV8E3R&detail=Y&codeNo="+movieCd1);
+	      
+	      HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+	      
+	      conn.setRequestProperty("Content-Type", "application/xml");
+	      
+	      conn.connect();
+	      
+	      SAXBuilder builder = new SAXBuilder();
+	      
+	      Document doc = builder.build(conn.getInputStream());
+	      
+	      Element root = doc.getRootElement();
+	      Element result = root.getChild("Result");
+	      Element row = result.getChild("Row");
+	      String posters = row.getChildText("posters");
+	      
+	      if(posters != null) {
+	         int i = posters.indexOf("|");
+	         posters = posters.substring(0, i);
+	      }
+
+	      return posters;
+	   }
 	
 }

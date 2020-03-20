@@ -18,13 +18,13 @@
 	}
 	#left {
 		margin : 180px 50px;
-		width : 181px;
-		height: 181px;
 		float: left;
+		height:300px;
+		width:187px;
 	}
 	
 	#right {
-		margin : 60px 60px 60px 0;
+		margin : 100px 60px 60px 0;
 		width : 600px;
 		height: 450px;
 		float: left;
@@ -65,7 +65,12 @@
 <body>
 	<div id="view_wrap">
 		<div id="left">
-			<img alt="영화포스터" src="resources/images/michael.png"/>
+			<c:if test="${vo.image ne null }">
+           		<img src="${vo.image }" border="0" alt="">
+           	</c:if>
+           	<c:if test="${vo.image eq null }">
+           		<img src="resources/images/no-image-png-7.png" border="0" alt="">
+           	</c:if>
 		</div>
 		<div id="right">
 			<table class="view_table">

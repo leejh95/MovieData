@@ -23,8 +23,16 @@ public class ViewVO {
 	
 	private String movieCd, movieNm, movieNmEn, showTm, prdtYear, openDt, prdtStatNm, typeNm, nationNm, genreNm, directorNm,
 					actorNm1, actorNm2, actorNm3, cast1, cast2, cast3, watchGradeNm,
-					companyNm;
+					companyNm, image;
 	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	private ActorVO[] actors;
 	
 
