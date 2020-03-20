@@ -22,7 +22,6 @@ margin: auto;
 	<div id="include_rank"></div>
 </div>
 <div id="include_footer"></div>
-<img alt="asdf" src="${img_src }">
 
 <script src="resources/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
