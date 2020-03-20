@@ -13,7 +13,7 @@
 
 	#view_wrap{
 		width: 1000px;
-		height: 600px;
+		height: 500px;
 		margin: 0 auto;
 	}
 	#left {

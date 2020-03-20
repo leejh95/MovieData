@@ -7,41 +7,59 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-
 #wrap{
-	width: 800px;
-	margin: 0 auto;
+	width: 1000px;
+	display: inline-block;
 }
 
 .item{
 	float: left;
 	list-style: none;
-	width: 400px;
-	margin-bottom: 50px;
+	width: 330px;
+	margin: 0 0 50px 0;
 	
 }
-.info{
-	float: left;
-	list-style: none;
-	margin-left: 10px;
-}
 
-.info2{
+.info{
 	list-style: none;
+	height: 20px;
 	margin-left: 10px;
+	float: left;
+	
 }
 
 .thumb{
 	display: inline-block;
-	float: left;
+	float: none;
+}
+
+img{
+	display: inline-block;
+	float: none;
 }
 
 .title{
 	display: inline-block;
+	float: none;
+	width: 300px;
 	font-size: 20px;
-	margin-left: 10px;
+	text-decoration: none;
+	color: black;
 }
 
+.opend{
+	margin: 0;
+	margin-right: 5px;
+	padding: 0;
+	background-color: gray;
+	border-radius: 3px;
+	color: white;
+	font-weight: bold;
+	width: 60px;
+	height: 20px;
+	line-height: 21px;
+	float: left;
+}
 </style>
 </head>
 <body>
