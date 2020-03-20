@@ -11,9 +11,6 @@
 <TITLE>Calendar</TITLE>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <style type="text/css">
-table, table th, table td{
-border: 1px solid blue;
-}
 #cal_nav{
 border: 1px solid red;
 

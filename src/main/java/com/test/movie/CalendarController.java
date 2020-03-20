@@ -1,8 +1,15 @@
 package com.test.movie;
 
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.input.SAXBuilder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -41,7 +48,7 @@ public class CalendarController {
 		String msg = "";
 		
 		for (int index = 1; index < start; index++) {
-			msg += "<TD >&nbsp;</TD>";
+			msg += "<Th>&nbsp;</Th>";
 			newLine++;
 		}
 
@@ -49,11 +56,11 @@ public class CalendarController {
 			String color = "";
 
 			if (newLine == 0) 
-				color = "RED";
+				color = "#fc7474";
 			else if (newLine == 6)
 				color = "#529dbc";
 			else 
-				color = "BLACK";
+				color = "#4b4b4b";
 
 			String sDate = Integer.toString(i_year);
 
@@ -67,12 +74,12 @@ public class CalendarController {
 			if (Integer.parseInt(sDate) == intToday) 
 				backColor = "#bfbfbf";
 			
-			msg += "<TD bgcolor='" + backColor + "'><a style='display:block; width:100%;' href='javascript:goRank("+sDate+")'>";
+			msg += "<TD bgcolor='" + backColor + "'><a style='display:block; width:100%; color:"+ color +";' href='javascript:goRank("+sDate+")'>";
 			
-			msg += "<font color='<%=color%>'>" + index + "</font>";
+			msg += index;
 
 			//기능 제거	
-			msg += "</TD>";
+			msg += "</a></TD>";
 			newLine++;
 
 			if (newLine == 7) {
@@ -86,7 +93,7 @@ public class CalendarController {
 		
 		//마지막 공란 LOOP
 		while (newLine > 0 && newLine < 7) {
-			msg += "<TD>&nbsp;</TD>";
+			msg += "<Th>&nbsp;</Th>";
 			newLine++;
 		}
 
@@ -100,4 +107,6 @@ public class CalendarController {
 		
 		return mv;
 	}
+
+	
 }
