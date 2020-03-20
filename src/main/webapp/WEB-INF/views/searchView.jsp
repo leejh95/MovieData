@@ -48,10 +48,15 @@
 	<div id="wrap">
 			<c:forEach var="vo" items="${ar }">
 					<li class="item">
-                    	<a href=""  style="height:274px;width:187px;" class="thumb" ><img src="resources/images/test.jpg" border="0" alt=""></a> 
+						<c:if test="${vo.image ne null }">
+                    		<a href=""  style="height:300px;width:187px;" class="thumb" ><img src="${vo.image }" border="0" alt=""></a> 
+                    	</c:if>
+                    	<c:if test="${vo.image eq null }">
+                    		<a href=""  style="height:300px;width:187px;" class="thumb" ><img src="resources/images/no-image-png-7.png" border="0" alt=""></a> 
+                    	</c:if>
                         <div class="cont">
                         	<strong class="title" title="${vo.movieNm }">
-                        	<a href="view.inc?movieCd=${vo.movieCd }" style="text-decoration: underline;">${vo.movieNm }</a></strong>
+                        	<a href="javascript:goView('${vo.movieCd }')" style="text-decoration: underline;">${vo.movieNm }</a></strong>
                             <ul>
                             	<li class="info">${vo.genreAlt }</li>
                             	<li class="info">｜	${vo.nationAlt }</li>
@@ -63,6 +68,6 @@
                         </div>
                      </li>
 			</c:forEach>
-	</div>
+	</div> 
 </body>
 </html>

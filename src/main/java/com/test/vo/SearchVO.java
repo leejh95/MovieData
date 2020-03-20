@@ -29,7 +29,18 @@ public class SearchVO {
 					repNationNm,
 					repGenreNm,
 					directorNm,
-					companyNm;
+					companyNm,
+					image;
+	
+	
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
 
 	public String getMovieCd() {
 		return movieCd;

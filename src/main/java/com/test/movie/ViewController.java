@@ -91,8 +91,6 @@ public class ViewController {
 		//vo.setActorNm3(actor.get(2).getChildText("peopleNm"));
 		//System.out.println(actor.get(0).getChildText("peopleNm"));
 		
-		
-		
 		//배우 3명의 배역
 	//	vo.setCast1(actor.get(0).getChildText("cast"));
 	//	vo.setCast2(actor.get(1).getChildText("cast"));

@@ -11,7 +11,7 @@
 	body{
 	}
 
-	#wrap{
+	#view_wrap{
 		width: 1000px;
 		height: 600px;
 		margin: 0 auto;
@@ -39,20 +39,20 @@
 	.content{
 		padding-left: 25px;
 	}
-	table{
+	.view_table{
 		margin: 40px auto;
 		border-collapse: collapse;
 	}
-	table tr {
+	.view_table tr {
 		padding-bottom: 10px;
 		height: 30px;
 	}
-	#line{
+	.line{
 		border-bottom: 1px solid #585858;
 		border-left: 3px solid #585858;
 	}
 	
-	#line>td{
+	.line>td{
 		padding-left: 5px;
 		font-size: 1.2em;
 		font-weight: 500;
@@ -60,20 +60,20 @@
 	}
 	
 </style>
-	<%-- <jsp:include page="header.jsp"/>   --%>
+	 <%-- <jsp:include page="header.jsp"/>  --%>   
 </head>
 <body>
-	<div id="wrap">
+	<div id="view_wrap">
 		<div id="left">
 			<img alt="영화포스터" src="resources/images/michael.png"/>
 		</div>
 		<div id="right">
-			<table>
+			<table class="view_table">
 				<colgroup>
 					<col width="120px"/>
 					<col width="400px"/>
 				</colgroup>
-				<tr id="line">
+				<tr class="line">
 					<td >개요</td>
 					<td ></td>
 				</tr>
@@ -90,12 +90,12 @@
 					<td class="content">${vo.prdtYear }년</td>
 				</tr>
 			</table>
-			<table>
+			<table class="view_table">
 				<colgroup>
 					<col width="120px"/>
 					<col width="400px"/>
 				</colgroup>
-				<tr id="line">
+				<tr class="line">
 					<td >만든사람들</td>
 					<td ></td>
 				</tr>
@@ -112,12 +112,12 @@
 					</td>
 				</tr>
 			</table>
-			<table>
+			<table class="view_table">
 				<colgroup>
 					<col width="120px"/>
 					<col width="400px"/>
 				</colgroup>
-				<tr id="line">
+				<tr class="line">
 					<td >영화사</td>
 					<td ></td>
 				</tr>
