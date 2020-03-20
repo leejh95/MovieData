@@ -1,5 +1,7 @@
 package com.test.vo;
 
+import java.util.List;
+
 public class ViewVO {
 /*
  	<movieCd>20124079</movieCd>
@@ -22,6 +24,17 @@ public class ViewVO {
 	private String movieCd, movieNm, movieNmEn, showTm, prdtYear, openDt, prdtStatNm, typeNm, nationNm, genreNm, directorNm,
 					actorNm1, actorNm2, actorNm3, cast1, cast2, cast3, watchGradeNm,
 					companyNm;
+	
+	private ActorVO[] actors;
+	
+
+	public ActorVO[] getActors() {
+		return actors;
+	}
+
+	public void setActors(ActorVO[] actors) {
+		this.actors = actors;
+	}
 
 	public String getCompanyNm() {
 		return companyNm;

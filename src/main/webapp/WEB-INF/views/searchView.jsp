@@ -56,8 +56,10 @@
                             	<li class="info">${vo.genreAlt }</li>
                             	<li class="info">｜	${vo.nationAlt }</li>
                             	<li class="info">｜	${vo.directorNm }</li>
+                            	<br/>
+                            	<li class="info2">개봉일 ${vo.openDt }</li>
                             </ul>
-                            <span class="info2">개봉일 ${vo.openDt }</span>
+                            
                         </div>
                      </li>
 			</c:forEach>

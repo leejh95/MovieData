@@ -105,7 +105,11 @@
 				</tr>
 				<tr>
 					<td class="kategorie">배우 및 배역</td>
-					<td class="content">${vo.actorNm1 }(${vo.cast1 }) / ${vo.actorNm2 }(${vo.cast2 })</td>
+					<td class="content">
+					<c:forEach var="avo" items="${vo.actors }">
+						${avo.actorNm }(${avo.castNm }) /
+					</c:forEach>
+					</td>
 				</tr>
 			</table>
 			<table>
