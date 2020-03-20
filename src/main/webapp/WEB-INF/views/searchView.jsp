@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+
 #wrap{
 	width: 1000px;
 	display: inline-block;
@@ -74,13 +75,13 @@ img{
 			<c:forEach var="vo" items="${ar }">
 					<li class="item">
 						<c:if test="${vo.image ne null }">
-                    		<a href=""  style="height:300px;width:187px;" class="thumb" ><img src="${vo.image }" border="0" alt=""></a> 
+                    		<a href="javascript:goView('${vo.movieCd }')"  style="height:300px;width:187px;" class="thumb" ><img src="${vo.image }" border="0" alt="" style="height:300px;width:187px;"></a> 
                     	</c:if>
                     	<c:if test="${vo.image eq null }">
-                    		<a href=""  style="height:300px;width:187px;" class="thumb" ><img src="resources/images/no-image-png-7.png" border="0" alt=""></a> 
+                    		<a href="javascript:goView('${vo.movieCd }')"  style="height:300px;width:187px;" class="thumb" ><img src="resources/images/no-image-png-7.png" border="0" alt=""  style="height:300px;width:187px;"></a> 
                     	</c:if>
                         <div class="cont">
-                        <strong title="${rvo.movieNm }">
+                       		 <strong title="${rvo.movieNm }">
                         	<a class="title" href="javascript:goView('${vo.movieCd }')">${vo.movieNm }</a>
                         	</strong>
                             <ul class="info">

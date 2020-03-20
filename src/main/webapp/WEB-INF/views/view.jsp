@@ -24,7 +24,7 @@
 	}
 	
 	#right {
-		margin : 100px 60px 60px 0;
+		margin : 140px 60px 60px 0;
 		width : 600px;
 		height: 450px;
 		float: left;
