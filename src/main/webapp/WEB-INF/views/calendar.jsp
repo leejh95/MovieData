@@ -16,13 +16,29 @@ border: 1px solid blue;
 }
 #cal_nav{
 border: 1px solid red;
+
+}
+#cal_nav *{
+text-decoration: none;
 }
 #cal_tab{
 width: 1000px;
 border-collapse: collapse;
 }
 #cal_tab th, #cal_tab td{
-border: 1px solid black;
+text-align: center;
+border: 1px solid white;
+background: #fafafa;
+}
+#cal_tab td:hover{
+background: #bbbbbb;
+}
+#cal_tab td:active{
+background: #ffffff;
+}
+#cal_tab *{
+margin: 0;
+text-decoration: none;
 }
 </style>
 </HEAD>
@@ -72,13 +88,13 @@ border: 1px solid black;
 		<table id="cal_tab">
 			<THEAD>
 				<TR>
-					<TD>일</TD>
-					<TD>월</TD>
-					<TD>화</TD>
-					<TD>수</TD>
-					<TD>목</TD>
-					<TD>금</TD>
-					<TD>토</TD>
+					<th style="color:#fc7474;">일</th>
+					<th>월</th>
+					<th>화</th>
+					<th>수</th>
+					<th>목</th>
+					<th>금</th>
+					<th style="color:#529dbc;">토</th>
 				</TR>
 			</THEAD>
 			<TBODY>

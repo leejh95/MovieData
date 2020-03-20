@@ -15,12 +15,13 @@ margin: auto;
 </head>
 <body>
 
+<div id="include_header"></div>
 <div id="all_wrap">
-	<div id="include_header"></div>
 	<div id="include_calendar"></div>
+	<br><br>
 	<div id="include_rank"></div>
-	<div id="include_footer"></div>
 </div>
+<div id="include_footer"></div>
 
 <script src="resources/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -44,6 +45,11 @@ margin: auto;
 		var value = frm.searchValue.value;
 		$("#include_rank").load("search.inc?type="+type+"&value="+value);
 	}
+	
+	function goView(movieCd){
+		$("#include_rank").load("view.inc?movieCd="+movieCd);
+	}
+	
 </script>
 </body>
 </html>
