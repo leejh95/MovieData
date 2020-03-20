@@ -17,7 +17,6 @@ width: 150px;
 height: 90px;
 position: relative;
 padding: 10px 0 10px 0;
-margin-bottom: 10px;
 float: right;
 }
 #cal_nav div *{
