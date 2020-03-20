@@ -23,9 +23,15 @@
 .info{
 	list-style: none;
 	height: 20px;
-	margin-left: 10px;
-	float: left;
-	
+	margin: 0;
+	margin-top: 5px;
+	padding: 0;
+	float: left;	
+}
+
+.info2{
+	margin: 0;
+	padding: 0;
 }
 
 .thumb{
@@ -60,6 +66,7 @@ img{
 	line-height: 21px;
 	float: left;
 }
+
 </style>
 </head>
 <body>
@@ -73,16 +80,12 @@ img{
                     		<a href=""  style="height:300px;width:187px;" class="thumb" ><img src="resources/images/no-image-png-7.png" border="0" alt=""></a> 
                     	</c:if>
                         <div class="cont">
-                        	<strong class="title" title="${vo.movieNm }">
-                        	<a href="javascript:goView('${vo.movieCd }')" style="text-decoration: underline;">${vo.movieNm }</a></strong>
-                            <ul>
-                            	<li class="info">${vo.genreAlt }</li>
-                            	<li class="info">｜	${vo.nationAlt }</li>
-                            	<li class="info">｜	${vo.directorNm }</li>
-                            	<br/>
-                            	<li class="info2">개봉일 ${vo.openDt }</li>
+                        <strong title="${rvo.movieNm }">
+                        	<a class="title" href="javascript:goView('${vo.movieCd }')">${vo.movieNm }</a>
+                        	</strong>
+                            <ul class="info">
+                            	<li class="info2"><pre class="opend"> 개봉일 </pre>${vo.openDt }</li>
                             </ul>
-                            
                         </div>
                      </li>
 			</c:forEach>
