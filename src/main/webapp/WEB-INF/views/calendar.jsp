@@ -12,20 +12,54 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <style type="text/css">
 #cal_nav{
-border: 1px solid red;
-
+background: #4b4b4b;
+width: 150px;
+height: 90px;
+position: relative;
+padding: 10px 0 10px 0;
+margin-bottom: 10px;
+float: right;
 }
-#cal_nav *{
+#cal_nav div *{
+margin: 0;
+display: inline-block;
+color: white;
+font-weight: bold;
 text-decoration: none;
+}
+#cal_nav_year{
+width: 120px;
+height: 30px;
+margin: auto;
+text-align: center;
+font-size: 18px;
+}
+#cal_nav_month{
+width: 120px;
+height: 30px;
+margin: auto;
+text-align: center;
+font-size: 30px;
 }
 #cal_tab{
 width: 1000px;
 border-collapse: collapse;
 }
+#cal_tab *{
+margin-left: 0;
+margin-right: 0;
+text-decoration: none;
+}
 #cal_tab th, #cal_tab td{
 text-align: center;
-border: 1px solid white;
-background: #fafafa;
+border-top: 1px solid #4b4b4b;
+margin-bottom: 10px;
+}
+#cal_tab th{
+height: 30px;
+}
+#cal_tab td{
+height: 45px;
 }
 #cal_tab td:hover{
 background: #bbbbbb;
@@ -33,9 +67,8 @@ background: #bbbbbb;
 #cal_tab td:active{
 background: #ffffff;
 }
-#cal_tab *{
-margin: 0;
-text-decoration: none;
+#today{
+background: #dddddd;
 }
 </style>
 </HEAD>
@@ -44,38 +77,63 @@ text-decoration: none;
 	
 		<!-- 날짜 네비게이션 시작 -->
 		<div id="cal_nav">
-			<!-- 이전해 -->
-			<a href="javascript:goCal('${year -1 }', '${month }')" target="_self">
-				<b>&lt;&lt;</b>
-			</a> 
+		
+			<div id="cal_nav_year">
+				<!-- 이전해 -->
+				<span>
+					<a href="javascript:goCal('${year -1 }', '${month }')" target="_self">
+						<img alt="left_year" src="resources/images/left_arrow.png" width="15px">
+					</a> 
+				</span>
+				
+				<span>
+					<a>${year }년</a>
+				</span>
+				
+				<span>
+					<!-- 다음해 -->
+					<a href="javascript:goCal('${year+1}', '${month}')" target="_self"> 
+						<img alt="right_year" src="resources/images/right_arrow.png" width="15px">
+					</a>
+				</span>
+			</DIV>
+			<br/>
+			<div id="cal_nav_month">
+				<!-- 이전달 -->
+				<span>
+					<c:if test="${month > 0 }">
+					<a href="javascript:goCal('${year }', '${month-1 }')" target="_self">
+						<img alt="left_month" src="resources/images/left_arrow.png" width="15px">
+					</a>
+					</c:if>
+					
+					<c:if test="${month eq 0 }">
+					<a>
+						<img alt="left_month" src="resources/images/left_arrow.png" width="15px">
+					</a>
+					</c:if>
+				</span>
+				
+				<span>
+					<a>${month +1 }월</a>
+				</span>
+				
+				<!-- 다음달 -->
+				<span>
+					<c:if test="${month < 11 }">
+					<a href="javascript:goCal('${year }', '${month+1}')" target="_self">
+						<img alt="right_month" src="resources/images/right_arrow.png" width="15px">
+					</a>
+					</c:if>
+					
+					<c:if test="${month eq 11 }">
+					<a>
+						<img alt=""right_month"" src="resources/images/right_arrow.png" width="15px">
+					</a>
+					</c:if>
+				</span>
+			</DIV>
 			
-			<!-- 이전달 -->
-			<c:if test="${month > 0 }">
-			<a href="javascript:goCal('${year }', '${month-1 }')" target="_self">
-				<b>&lt;</b>
-			</a>
-			</c:if>
-			
-			<c:if test="${month eq 0 }">
-				<b>&lt;</b>
-			</c:if>
-			
-			<b>${year }년 ${month +1 }월</b>
-			
-			<c:if test="${month < 11 }">
-			<a href="javascript:goCal('${year }', '${month+1}')" target="_self">
-				<b>&gt;</b>
-			</a>
-			</c:if>
-			
-			<c:if test="${month eq 11 }">
-				<b>&gt;</b>
-			</c:if>
-			
-			<!-- 다음해 -->
-			<a href="javascript:goCal('${year+1}', '${month}')" target="_self"> 
-				<b>&gt;&gt;</b>
-			</a>
 		</div>
 		<!-- 날짜 네비게이션 끝 -->
 		
