@@ -19,7 +19,6 @@
 	list-style: none;
 	width: 330px;
 	margin: 0 0 50px 0;
-	border: 1px solid orange;
 	
 }
 
@@ -27,9 +26,9 @@
 	list-style: none;
 	height: 20px;
 	margin: 0;
+	margin-top: 5px;
 	padding: 0;
-	float: left;
-	border: 1px solid black;	
+	float: left;	
 }
 
 .info2{
@@ -40,7 +39,6 @@
 .thumb{
 	display: inline-block;
 	float: none;
-	border: 1px solid red;
 }
 
 img{
@@ -55,7 +53,6 @@ img{
 	font-size: 20px;
 	text-decoration: none;
 	color: black;
-	border: 1px solid blue;
 }
 
 .opend{
