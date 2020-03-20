@@ -60,28 +60,7 @@ public class RankController {
 			rvo.setRank(BO.get(i).getChildText("rank"));
 			rvo.setMovieNm(BO.get(i).getChildText("movieNm"));
 			rvo.setOpenDt(BO.get(i).getChildText("openDt"));
-			
-			String mc = BO.get(i).getChildText("movieCd");
-			URL url2 = new URL("http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.xml?key=ef9fe705049caa4b27ad344b76ad885b&movieCd="+mc);
-			
-			HttpURLConnection conn2 = (HttpURLConnection) url2.openConnection();
-			conn2.setRequestProperty("Content-Type", "application/xml");
-			conn2.connect();
-			
-			SAXBuilder builder2 = new SAXBuilder();
-			
-			Document doc2 = builder2.build(conn2.getInputStream());
-			Element root2 = doc2.getRootElement();
-			
-			Element MInfo = root2.getChild("movieInfo");
-			String ga = MInfo.getChild("genres").getChild("genre").getChildText("genreNm");
-			String na = MInfo.getChild("nations").getChild("nation").getChildText("nationNm");
-			String di = MInfo.getChild("directors").getChild("director").getChildText("peopleNm");
-			
-			rvo.setMovieCd(mc);
-			rvo.setGenreAlt(ga);
-			rvo.setNationAlt(na);
-			rvo.setDirector(di);
+			rvo.setMovieCd(BO.get(i).getChildText("movieCd"));
 			
 			ar[i] = rvo;
 			

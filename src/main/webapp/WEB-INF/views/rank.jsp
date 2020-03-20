@@ -21,11 +21,6 @@
 	margin-bottom: 50px;
 	
 }
-.info{
-	float: left;
-	list-style: none;
-	margin-left: 10px;
-}
 
 .info2{
 	list-style: none;
@@ -41,6 +36,7 @@
 	display: inline-block;
 	font-size: 20px;
 	margin-left: 10px;
+	color: black;
 }
 
 </style>
@@ -49,15 +45,11 @@
 	<div id="wrap">
 			<c:forEach var="rvo" items="${ar }">
 					<li class="item">
-                    	<a href="view.inc?movieCd=${rvo.movieCd }"  style="height:274px;width:187px;" class="thumb" ><img src="resources/images/test.jpg" border="0" alt=""></a> 
+                    	<a href="javascript:goView('${rvo.movieCd }')" style="height:274px;width:187px;" class="thumb" ><img src="resources/images/test.jpg" border="0" alt=""></a> 
                         <div class="cont">
                         	<strong class="title" title="${rvo.movieNm }">
-                        	<a href="view.inc?movieCd=${rvo.movieCd }" style="text-decoration: underline;">${rvo.movieNm }</a></strong>
+                        	<a href="javascript:goView('${rvo.movieCd }')" style="text-decoration: underline;">${rvo.movieNm }</a></strong>
                             <ul>
-                            	<li class="info">${rvo.genreAlt }</li>
-                            	<li class="info">｜	${rvo.nationAlt }</li>
-                            	<li class="info">｜	${rvo.director }</li>
-                            	<br/>
                             	<li class="info2">개봉일 ${rvo.openDt }</li>
                             </ul>
                         </div>
