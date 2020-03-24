@@ -8,6 +8,7 @@ import java.util.List;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,8 +16,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.test.vo.ActorVO;
 import com.test.vo.ViewVO;
 
+import mybatis.dao.MovieDAO;
+import mybatis.vo.MovieCommentVO;
+
 @Controller
 public class ViewController {
+	
+	@Autowired
+	private MovieDAO m_dao;
 
 	@RequestMapping("/view.inc")
 	public ModelAndView view(String movieCd) throws Exception {
@@ -54,18 +61,21 @@ public class ViewController {
 		//국가
 		Element nations = movieInfo.getChild("nations");
 		List<Element> nation = nations.getChildren("nation");
-		vo.setNationNm(nation.get(0).getChildText("nationNm"));
+		if(nation.size() >0)	
+			vo.setNationNm(nation.get(0).getChildText("nationNm"));
 		//System.out.println(nation.get(0).getChildText("nationNm"));
 		
 		//장르
 		Element genres = movieInfo.getChild("genres");
 		List<Element> genre = genres.getChildren("genre");
-		vo.setGenreNm(genre.get(0).getChildText("genreNm"));
+		if(genre.size() >0)	
+			vo.setGenreNm(genre.get(0).getChildText("genreNm"));
 		
 		//감독
 		Element directors = movieInfo.getChild("directors");
 		List<Element> director = directors.getChildren("director");
-		vo.setDirectorNm(director.get(0).getChildText("peopleNm"));
+		if(director.size() >0)
+			vo.setDirectorNm(director.get(0).getChildText("peopleNm"));
 		
 		//배우 3명 까지만
 		Element actors = movieInfo.getChild("actors");
@@ -100,12 +110,14 @@ public class ViewController {
 		//관람등급
 		Element audits = movieInfo.getChild("audits");
 		List<Element> audit = audits.getChildren("audit");
-		vo.setWatchGradeNm(audit.get(0).getChildText("watchGradeNm"));
+		if(audit.size() > 0)
+			vo.setWatchGradeNm(audit.get(0).getChildText("watchGradeNm"));
 		
 		//제작사
 		Element companys = movieInfo.getChild("companys");
 		List<Element> company = companys.getChildren("company");
-		vo.setCompanyNm(company.get(0).getChildText("companyNm"));
+		if(company.size() >0)
+			vo.setCompanyNm(company.get(0).getChildText("companyNm"));
 		
 		
 		try {
@@ -114,7 +126,14 @@ public class ViewController {
 			// TODO: handle exception
 		}
 		
+		
+		MovieCommentVO[] mcar = m_dao.getCommList(movieCd);
+		if(mcar != null)
+			vo.setComms(mcar);
+		//System.out.println(mcar.length);
+		
 		mv.addObject("vo", vo);
+		mv.addObject("movieCd", movieCd);
 		mv.setViewName("view");
 		
 		return mv;

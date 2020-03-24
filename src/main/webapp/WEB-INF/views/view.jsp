@@ -1,3 +1,4 @@
+<%@page import="mybatis.vo.MovieMemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -6,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <style type="text/css">
 	
 	body{
@@ -13,7 +15,7 @@
 
 	#view_wrap{
 		width: 1000px;
-		height: 500px;
+		height: 1500px;
 		margin: 0 auto;
 	}
 	#left {
@@ -60,7 +62,16 @@
 		font-weight: 500;
 		font-style: italic;
 	}
-	
+	#commTable{
+		border-collapse: collapse;
+		width: 1000px;
+		
+	}
+	#commTable tr{
+		border-top: 1px solid black;
+		height: 20px;
+		margin-bottom: 5px;
+	}
 </style>
 	 <%-- <jsp:include page="header.jsp"/>  --%>   
 </head>
@@ -134,6 +145,70 @@
 				</tr>
 			</table>
 		</div>
+<% 
+	  	Object obj = session.getAttribute("memVO");
+		MovieMemberVO mvo = null;
+	
+	  	if(obj != null) {
+	  		mvo = (MovieMemberVO)obj;  		
+%>
+		<div id="comment">
+			<form action="commSave.inc" method="post">
+				<textarea rows="3" cols="120" name="content" id="content"></textarea>
+				<input type="hidden" name="m_idx" id="m_idx" value="<%=mvo.getM_idx() %>">
+				<%-- <input type="hidden" name="m_idx" id="m_idx" value="1"> --%>
+				<input type="hidden" name="movieCd" id="movieCd" value="${movieCd }">
+				<input type="button" value="저장" onclick="commSave(this.form)"/>
+			</form>
+		</div>
+<%
+  	}
+%>		
+		<div id="commentList">
+			<table id="commTable">
+				<c:forEach var="cvo" items="${vo.comms }">
+				<tr>
+					<td style="width: 70px">
+						${cvo.mvo.id }
+					</td>
+					<td class="comment">
+						${cvo.content } 
+					</td>
+				</tr>
+				</c:forEach>
+			</table>
+		</div>
 	</div>
+<script src="resources/js/jquery-3.4.1.min.js"></script>	
+<script>
+function commSave(frm) {
+	var content = $("#content").val();
+	var m_idx = $("#m_idx").val();
+	var movieCd = $("#movieCd").val();
+	var param = "content="+encodeURIComponent(content)+
+	"&m_idx="+encodeURIComponent(m_idx)+
+	"&movieCd="+encodeURIComponent(movieCd);
+	
+	$.ajax({
+		url: "commSave.inc",
+		type: "post",
+		data: param,
+		dataType: "json"
+	}).done(function(data){
+		
+		if(data.chk){
+			alert("댓글달기 성공");
+			location.href = "view.inc?movieCd=${movieCd}";
+		}else{
+			alert("댓글달기 실패");
+		}
+	}).fail(function(err){
+		
+	});
+	
+	
+}
+    
+</script>	
 </body>
 </html>

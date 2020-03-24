@@ -1,3 +1,4 @@
+<%@page import="mybatis.vo.MovieMemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,15 +15,32 @@
 	<div id="header_div">
 		<nav class="main-navigation">
         <div id='logobt' class="navbar-header animated fadeInUp">
-        	<div style="display:inline-block; width: 800px;">
+        	<div style="display:inline-block; width: 600px;">
             	<a href="index.inc" id="home_bt"><img alt="메인으로" src="resources/images/logo (1).png"/></a>
             </div>
-            <div style="display:inline-block; width: 150px;">
+<% 
+	  	Object obj = session.getAttribute("memVO");
+		MovieMemberVO mvo = null;
+	
+	  	if(obj != null) {
+	  		mvo = (MovieMemberVO)obj;  		
+%>
+			<div style="display:inline-block; width: 200px;">
+		          <button type="button" class="btn btn-default btn-sm btn3d " >마이페이지</button>
+		          <button type="button" class="btn btn-default btn-sm btn3d " >로그아웃</button>
+	        </div>
+<%
+  	}else{
+%>		
+            <div style="display:inline-block; width: 200px;">
 		          <button type="button" class="btn btn-default btn-sm btn3d " >로그인</button>
 		          <button type="button" class="btn btn-default btn-sm btn3d">회원가입</button>
 	        </div>
+<%
+  	}
+%>			        
         </div>
-        <div id="search_wrap">
+        <div id="search_wrap" class="navbar-header animated fadeInUp">
 			<form method="post" name="searchFrm" onsubmit="false">
 				<table id="search_table" align="center">
 					<tbody id="search_tbody">
@@ -40,24 +58,27 @@
 								<input type="text" name="values" style=" height: 0px; width: 0px; border-width: 0;" disabled="disabled" />
 							</td>
 							<td id="search_td3" >
-								<input type="button" id="a_search" onclick="goSearch()"  style="cursor:pointer"/>
+								<input type="button" class="btn btn-default btn-sm btn3d" value="검색" onclick="goSearch()" style="cursor:pointer"/>
+								<span class=" glyphicon glyphicon-search"></span>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 			</form>
 		</div>
-        <ul class="nav-list">
-            <li class="nav-list-item">
-                <a href="#" class="nav-link">일일</a>
-            </li>
-            <li class="nav-list-item">
-                <a href="#" class="nav-link">주간</a>
-            </li>
-            <li class="nav-list-item">
-                <a href="#" class="nav-link">개봉</a>
-            </li>
-        </ul>
+		<div>
+	        <ul class="nav-list">
+	            <li class="nav-list-item">
+	                <a href="#" class="nav-link">일일</a>
+	            </li>
+	            <li class="nav-list-item">
+	                <a href="#" class="nav-link">주간</a>
+	            </li>
+	            <li class="nav-list-item">
+	                <a href="#" class="nav-link">개봉</a>
+	            </li>
+	        </ul>
+        </div>
     </nav>
 	</div>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>

@@ -2,6 +2,8 @@ package com.test.vo;
 
 import java.util.List;
 
+import mybatis.vo.MovieCommentVO;
+
 public class ViewVO {
 /*
  	<movieCd>20124079</movieCd>
@@ -25,6 +27,19 @@ public class ViewVO {
 					actorNm1, actorNm2, actorNm3, cast1, cast2, cast3, watchGradeNm,
 					companyNm, image;
 	
+	private ActorVO[] actors;
+	private MovieCommentVO[] comms;
+	
+	
+	
+	public MovieCommentVO[] getComms() {
+		return comms;
+	}
+
+	public void setComms(MovieCommentVO[] comms) {
+		this.comms = comms;
+	}
+
 	public String getImage() {
 		return image;
 	}
@@ -32,9 +47,6 @@ public class ViewVO {
 	public void setImage(String image) {
 		this.image = image;
 	}
-
-	private ActorVO[] actors;
-	
 
 	public ActorVO[] getActors() {
 		return actors;
