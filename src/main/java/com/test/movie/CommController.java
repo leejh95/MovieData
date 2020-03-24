@@ -36,8 +36,10 @@ public class CommController {
 		
 		boolean chk = m_dao.writeComment(vo);
 		
-		map.put("chk", chk);
+		MovieCommentVO[] mar = m_dao.getCommList(vo.getMovieCd());
 		
+		map.put("chk", chk);
+		map.put("mar", mar);
 		return map;
 	}
 	
