@@ -1,7 +1,9 @@
+<%@page import="mybatis.vo.MovieCommentVO"%>
 <%@page import="mybatis.vo.MovieMemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,7 +70,7 @@
 		
 	}
 	#commTable tr{
-		border-top: 1px solid black;
+		border-bottom: 1px solid black;
 		height: 20px;
 		margin-bottom: 5px;
 	}
@@ -145,25 +147,25 @@
 				</tr>
 			</table>
 		</div>
-<%-- 
+<%
 	  	Object obj = session.getAttribute("memVO");
 		MovieMemberVO mvo = null;
 	
 	  	if(obj != null) {
 	  		mvo = (MovieMemberVO)obj;  		
---%>
+%>
 		<div id="comment">
 			<form action="commSave.inc" method="post">
 				<textarea rows="3" cols="120" name="content" id="content"></textarea>
-				<%--<input type="hidden" name="m_idx" id="m_idx" value="<%=mvo.getM_idx() %>">--%>
-				 <input type="hidden" name="m_idx" id="m_idx" value="1"> 
+				<input type="hidden" name="m_idx" id="m_idx" value="<%=mvo.getM_idx() %>">
+				<%-- <input type="hidden" name="m_idx" id="m_idx" value="1"> --%>
 				<input type="hidden" name="movieCd" id="movieCd" value="${movieCd }">
 				<input type="button" value="저장" onclick="commSave(this.form)"/>
 			</form>
 		</div>
-<%--
+<%
   	}
---%>		
+%>
 		<div id="commentList">
 			<table id="commTable">
 				<tbody>
@@ -175,8 +177,15 @@
 						<td class="comment">
 							${cvo.content } 
 						</td>
+						
+						<c:if test="${cvo.m_idx eq sessionScope.memVO.m_idx}">
+						<td>
+							<input type="button" value="삭제"/>
+						</td>
+						</c:if>
 					</tr>
 					</c:forEach>
+					
 				</tbody>	
 			</table>
 		</div>
@@ -207,7 +216,11 @@
 						code += data.mar[i].mvo.id;
 						code += "</td><td>";
 						code += data.mar[i].content;
-						code += "</td></tr>";
+						code += "</td>";
+						if(data.mar[i].m_idx == m_idx){
+							code += "<td><input type=\"button\" value=\"삭제\"/></td>"
+						}
+						code += "</tr>";
 					}
 					//위에서 작업된 html코드를 tbody에 html로 적용한다.
 					$("#commTable tbody").html(code);
