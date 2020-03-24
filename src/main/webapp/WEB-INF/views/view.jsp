@@ -145,69 +145,84 @@
 				</tr>
 			</table>
 		</div>
-<% 
+<%-- 
 	  	Object obj = session.getAttribute("memVO");
 		MovieMemberVO mvo = null;
 	
 	  	if(obj != null) {
 	  		mvo = (MovieMemberVO)obj;  		
-%>
+--%>
 		<div id="comment">
 			<form action="commSave.inc" method="post">
 				<textarea rows="3" cols="120" name="content" id="content"></textarea>
-				<input type="hidden" name="m_idx" id="m_idx" value="<%=mvo.getM_idx() %>">
-				<%-- <input type="hidden" name="m_idx" id="m_idx" value="1"> --%>
+				<%--<input type="hidden" name="m_idx" id="m_idx" value="<%=mvo.getM_idx() %>">--%>
+				 <input type="hidden" name="m_idx" id="m_idx" value="1"> 
 				<input type="hidden" name="movieCd" id="movieCd" value="${movieCd }">
 				<input type="button" value="저장" onclick="commSave(this.form)"/>
 			</form>
 		</div>
-<%
+<%--
   	}
-%>		
+--%>		
 		<div id="commentList">
 			<table id="commTable">
-				<c:forEach var="cvo" items="${vo.comms }">
-				<tr>
-					<td style="width: 70px">
-						${cvo.mvo.id }
-					</td>
-					<td class="comment">
-						${cvo.content } 
-					</td>
-				</tr>
-				</c:forEach>
+				<tbody>
+					<c:forEach var="cvo" items="${vo.comms }">
+					<tr>
+						<td style="width: 70px">
+							${cvo.mvo.id }
+						</td>
+						<td class="comment">
+							${cvo.content } 
+						</td>
+					</tr>
+					</c:forEach>
+				</tbody>	
 			</table>
 		</div>
 	</div>
 <script src="resources/js/jquery-3.4.1.min.js"></script>	
 <script>
-function commSave(frm) {
-	var content = $("#content").val();
-	var m_idx = $("#m_idx").val();
-	var movieCd = $("#movieCd").val();
-	var param = "content="+encodeURIComponent(content)+
-	"&m_idx="+encodeURIComponent(m_idx)+
-	"&movieCd="+encodeURIComponent(movieCd);
-	
-	$.ajax({
-		url: "commSave.inc",
-		type: "post",
-		data: param,
-		dataType: "json"
-	}).done(function(data){
+	function commSave(frm) {
+		var content = $("#content").val();
+		var m_idx = $("#m_idx").val();
+		var movieCd = $("#movieCd").val();
+		var param = "content="+encodeURIComponent(content)+
+		"&m_idx="+encodeURIComponent(m_idx)+
+		"&movieCd="+encodeURIComponent(movieCd);
 		
-		if(data.chk){
-			alert("댓글달기 성공");
-			location.href = "view.inc?movieCd=${movieCd}";
-		}else{
-			alert("댓글달기 실패");
-		}
-	}).fail(function(err){
+		$.ajax({
+			url: "commSave.inc",
+			type: "post",
+			data: param,
+			dataType: "json"
+		}).done(function(data){
+			
+			if(data.chk){
+				alert("댓글달기 성공");
+				if(data.mar != undefined){
+					var code = "";
+					for(var i = 0; i<data.mar.length; i++){
+						code += "<tr><td style='width: 70px'>";
+						code += data.mar[i].mvo.id;
+						code += "</td><td>";
+						code += data.mar[i].content;
+						code += "</td></tr>";
+					}
+					//위에서 작업된 html코드를 tbody에 html로 적용한다.
+					$("#commTable tbody").html(code);
+				}
+			}else{
+				alert("댓글달기 실패");
+			}
+			
+			$("#content").val("");	
+		}).fail(function(err){
+			
+		});
 		
-	});
-	
-	
-}
+		
+	}
     
 </script>	
 </body>
