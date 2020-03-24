@@ -5,55 +5,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-	#header_div{
-		width: 1000px;
-		margin: auto;
-	}
-
-	#search_wrap {
-		padding-top: 20px; 
-		padding-bottom: 20px;
-		height: 100px;
-	}
-	#logo_wrap{
-		float: left;
-		padding-top: 20px; 
-		padding-bottom: 20px;
-		height: 100px;
-		position: absolute; 
-	}
-	#search_table {
-		border-bottom: 1px solid black;
-		margin-top: 20px;
-	}
-	#search_tbody{
-	}
-	#search_td1, #search_td2, #search_td3{
-		padding: 10px 0;
-		margin: 0;
-		display: inline-block;
-	}
-	#a_search{
-		background-image: url("resources/images/searchImg.png") ;
-		background-repeat: no-repeat;
-		width: 35px;
-		height: 35px;
-		border: 0;
-		outline: 0;
-		background-color: transparent;
-	}
-	#home_bt{
-	}
-
-</style>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="resources/css/header.css" rel="stylesheet">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body id="search_body">
 	<div id="header_div">
-		<div id="logo_wrap">
-			<a href="index.inc" id="home_bt"><img alt="메인으로" src="resources/images/logo (1).png"/></a>
-		</div>
-		<div id="search_wrap">
+		<nav class="main-navigation">
+        <div id='logobt' class="navbar-header animated fadeInUp">
+        	<div style="display:inline-block; width: 800px;">
+            	<a href="index.inc" id="home_bt"><img alt="메인으로" src="resources/images/logo (1).png"/></a>
+            </div>
+            <div style="display:inline-block; width: 150px;">
+		          <button type="button" class="btn btn-default btn-sm btn3d " >로그인</button>
+		          <button type="button" class="btn btn-default btn-sm btn3d">회원가입</button>
+	        </div>
+        </div>
+        <div id="search_wrap">
 			<form method="post" name="searchFrm" onsubmit="false">
 				<table id="search_table" align="center">
 					<tbody id="search_tbody">
@@ -78,8 +47,19 @@
 				</table>
 			</form>
 		</div>
+        <ul class="nav-list">
+            <li class="nav-list-item">
+                <a href="#" class="nav-link">일일</a>
+            </li>
+            <li class="nav-list-item">
+                <a href="#" class="nav-link">주간</a>
+            </li>
+            <li class="nav-list-item">
+                <a href="#" class="nav-link">개봉</a>
+            </li>
+        </ul>
+    </nav>
 	</div>
-	
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script>
 		$(function(){
