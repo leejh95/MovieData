@@ -17,7 +17,7 @@ margin: auto;
 
 <div id="include_header"></div>
 <div id="all_wrap">
-	<div id="include_calendar"></div>
+	<div id="include_cal"></div>
 	<br><br>
 	<div id="include_rank"></div>
 </div>
@@ -27,9 +27,10 @@ margin: auto;
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#include_header").load("header.inc");
-		$("#include_calendar").load("calendar.inc");
-		$("#include_rank").load("rank.inc");
-		//$("#include_footer").load("footer.inc");
+		//$("#include_cal").load("calendar.inc");
+		//$("#include_rank").load("rank.inc");
+		$("#include_footer").load("footer.inc");
+		
 		
 		
  	});
