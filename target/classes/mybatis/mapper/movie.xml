@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="movie">
+
+	<!-- 회원 로그인 -->
+	<select id="sign_in" resultType="mybatis.vo.MovieMemberVO" parameterType="java.util.Map">
+		select * from Movie_Mem where id = #{id} and pw = #{pw} and status = 0
+	</select>
+
+	<!-- 회원 가입 -->
+	<insert id="sign_up" parameterType="mybatis.vo.MovieMemberVO">
+		insert into Movie_Mem(m_idx, id, pw, name, email, phone, reg_date, status)
+		values(Movie_Mem_seq.nextval, #{id}, #{pw}, #{name}, #{email}, #{phone}, sysdate, 0)
+	</insert>
+	
+	<!-- 댓글 쓰기  -->
+	<insert id="writeComment" parameterType="mybatis.vo.MovieCommentVO">
+		insert into Movie_Comm(c_idx, content, write_date, ip, status, movieCd, m_idx) 
+		values(Movie_Comm_seq.nextval, #{content}, sysdate, #{ip}, 0, #{movieCd}, #{m_idx})
+	</insert>
+	
+	<!-- 하나의 게시물에 대한 댓글 모음 -->
+	<!-- 시작 -->
+	<select id="commList" resultMap="map1" parameterType="String">
+		select * from Movie_Comm where movieCd = #{movieCd} and status = 0 order by c_idx asc
+	</select>
+	
+	<resultMap type="mybatis.vo.MovieCommentVO" id="map1">
+		<result column="m_idx" property="m_idx"/>
+		<association property="mvo" javaType="mybatis.vo.MovieMemberVO" select="commList_getMvo" column="m_idx"/>
+	</resultMap>
+	
+	<select id="commList_getMvo" resultType="mybatis.vo.MovieMemberVO" parameterType="String">
+		select * from Movie_Mem where m_idx = #{m_idx} 
+	</select>
+	<!-- 끝 -->
+	
+	<!-- 회원정보 보기 -->
+	<!-- 시작 -->
+	<select id="getMember" resultMap="map2" parameterType="String">
+		select * from Movie_Mem where m_idx = #{m_idx} 
+	</select>
+	
+	<resultMap type="mybatis.vo.MovieMemberVO" id="map2">
+		<id column="m_idx" property="m_idx"/>
+		<collection property="c_list" ofType="mybatis.vo.MovieCommentVO" select="getMember_commList" column="m_idx"/>
+	</resultMap>
+	
+	<select id="getMember_commList" resultType="mybatis.vo.MovieCommentVO" parameterType="String">
+		select * from Movie_Comm where m_idx = #{m_idx} and status = 0 order by c_idx asc
+	</select>
+	<!-- 끝 -->
+	
+	<!-- 회원 가입시 아이디 일치 -->
+	<select id="searchID" resultType="String" parameterType="String">
+		select id from Movie_Mem where id = #{id}
+	</select>
+	
+	<!-- 회원 정보 수정 -->
+	<update id="updateMember" parameterType="mybatis.vo.MovieMemberVO">
+		update Movie_Mem
+		<set>
+			<trim suffixOverrides=",">
+				<if test="pw != null">
+					pw = #{pw},
+				</if>
+				<if test="name != null">
+					name = #{name},
+				</if>
+				<if test="email != null">
+					email = #{email},
+				</if>
+				<if test="phone != null">
+					phone = #{phone},
+				</if>
+			</trim>
+		</set>
+		where m_idx = #{m_idx}
+	</update>
+	
+	<!-- 회원 탈퇴 -->
+	<update id="delMember" parameterType="java.util.Map">
+		update Movie_Mem set status = 1 where m_idx = #{m_idx} and pw = #{pw}
+	</update>
+	
+	<!-- 댓글 삭제 -->
+	<update id="delComment" parameterType="String">
+		update Movie_Comm set status = 1 where c_idx = #{c_idx}
+	</update>
+	
+	<!-- 댓글 수정 -->
+	<update id="updateComment" parameterType="mybatis.vo.MovieCommentVO">
+		update Movie_Comm 
+		set content = #{content}, write_date = sysdate, ip = #{ip}
+		where c_idx = #{c_idx} 
+	</update>
+	
+</mapper>
