@@ -22,7 +22,7 @@ public class SearchController {
 		ModelAndView mv = new ModelAndView();
 		int searchType = Integer.parseInt(type);
 		
-		System.out.println(type + "/" + value);
+		//System.out.println(type + "/" + value);
 		
 		URL url = null;
 		
@@ -66,7 +66,7 @@ public class SearchController {
 			vo.setPrdtStatNm(e.getChildText("prdtStatNm"));
 			vo.setNationAlt(e.getChildText("nationAlt"));
 			vo.setGenreAlt(e.getChildText("genreAlt"));
-			System.out.println("sadf");
+			//System.out.println("sadf");
 			//System.out.println(e.getChild("directors").getChild("director").getChildText("peopleNm"));
 			//vo.setDirectorNm(e.getChild("directors").getChild("director").getChildText("peopleNm"));
 			

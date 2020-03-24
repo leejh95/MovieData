@@ -147,25 +147,19 @@
 				</tr>
 			</table>
 		</div>
-<%
-	  	Object obj = session.getAttribute("memVO");
-		MovieMemberVO mvo = null;
-	
-	  	if(obj != null) {
-	  		mvo = (MovieMemberVO)obj;  		
-%>
+
+		<c:if test="${sessionScope.memVO ne null}">
 		<div id="comment">
 			<form action="commSave.inc" method="post">
 				<textarea rows="3" cols="120" name="content" id="content"></textarea>
-				<input type="hidden" name="m_idx" id="m_idx" value="<%=mvo.getM_idx() %>">
+				<input type="hidden" name="m_idx" id="m_idx" value="${sessionScope.memVO.m_idx }">
 				<%-- <input type="hidden" name="m_idx" id="m_idx" value="1"> --%>
 				<input type="hidden" name="movieCd" id="movieCd" value="${movieCd }">
 				<input type="button" value="저장" onclick="commSave(this.form)"/>
 			</form>
 		</div>
-<%
-  	}
-%>
+		</c:if>
+
 		<div id="commentList">
 			<table id="commTable">
 				<tbody>
