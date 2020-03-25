@@ -57,7 +57,7 @@
     <div class="col-md-8">
       <section>     
        <hr>
-       <form class="form-horizontal" method="post" name="updatePW" id="updatePW">
+       <form class="form-horizontal" method="post" name="updatePw" id="updatePw">
        
         <div class="form-group">
           <label class="control-label col-sm-3">새로운 비밀번호 <span class="text-danger">*</span></label>
@@ -155,7 +155,9 @@
 			frm.pw2.focus();
 			return
 		}
-		if(!frm.pw.value.equals(frm.pw2.value)){
+		if(!(frm.pw.value==frm.pw2.value)){
+			console.log(frm.pw.value);
+			console.log(frm.pw2.value);
 			alert("두 비밀번호가 일치하지 않습니다!");
 			frm.pw2.focus();
 			return
@@ -200,6 +202,9 @@
 			var pw = frm.pw.value;
 			var m_idx = document.getElementById("m_idx").value;
 			
+			console.log(pw);
+			console.log(m_idx);
+			
 			$.ajax({
 				url : "delete_member.inc",
 				type : "post",
@@ -207,10 +212,10 @@
 					"&m_idx="+encodeURIComponent(m_idx),
 				dataType: "json"
 			}).done(function(data) {
-				if(data.chk)
+				if(data.chk == "1")
 					location.href = "index.inc";
 				else
-					alert("비밀번호 변경실패!!");
+					alert("비밀번호가 일치하지 않습니다.");
 			}).fail(function(err) {
 				console.log(err);
 			});

@@ -1,8 +1,13 @@
 package com.test.movie;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import mybatis.dao.MovieDAO;
@@ -27,21 +32,46 @@ public class ProfileController {
 		return mv;
 	}
 	
-	@RequestMapping("/edit_profile.inc")
-	public ModelAndView editProfile(MovieMemberVO vo) {
+	@RequestMapping(value="/edit_profile.inc", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> editProfile(MovieMemberVO vo) {
 		boolean chk = m_dao.updateMember(vo);
-		ModelAndView mv = new ModelAndView();
-		return mv;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("chk", chk);
+		map.put("vo",vo);
+	
+		return map;
 	}
 	
-	@RequestMapping("/edit_pw.inc")
-	public ModelAndView editPW(String pw) {
-		ModelAndView mv = new ModelAndView();
-		return mv;
+	@RequestMapping(value="/edit_pw.inc", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> editPW(MovieMemberVO vo) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		boolean chk = m_dao.updateMember(vo);
+		
+		map.put("chk", chk);
+		map.put("vo", vo);
+		
+		return map;
+	
 	}
 	
-	@RequestMapping("/delete_member.inc")
-	public String deleteMem() {
-		return "index.inc";
+	@ResponseBody
+	@RequestMapping(value="/delete_member.inc", method = RequestMethod.POST)
+	public Map<String, String> deleteMem(String m_idx, String pw) {
+		String chk = "0";
+		Map<String, String> map = new HashMap<String, String>();
+		
+		if(m_dao.deleteMember(m_idx, pw)) {
+			chk = "1";
+		} 
+		
+		map.put("chk", chk);
+		
+		return map;
 	}
 }
