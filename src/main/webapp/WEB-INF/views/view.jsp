@@ -230,9 +230,16 @@
 						<td class="comment">
 							${cvo.content } 
 						</td>
+						<c:if test="${cvo.rate ne null}">
 						<td>
 							평점 ${cvo.rate } 점
 						</td>
+						</c:if>
+						<c:if test="${cvo.rate eq null}">
+						<td>
+							평가하지 않았습니다.
+						</td>
+						</c:if>
 						<c:if test="${cvo.m_idx eq sessionScope.memVO.m_idx}">
 						<td>
 							<input type="button" value="삭제" onclick="commDel('${cvo.c_idx}')"/>
@@ -257,6 +264,17 @@
 		var m_idx = $("#m_idx").val();
 		var movieCd = $("#movieCd").val();
 		var rate = $('input[name="rate"]:checked').val();
+		
+		if(rate == null){
+			alert("평가를 매겨주세요");
+			return;
+		}
+		
+		if(content.length < 1){
+			alert("내용을 매겨주세요");
+			return;
+		}
+		
 		var param = "content="+encodeURIComponent(content)+
 		"&m_idx="+encodeURIComponent(m_idx)+
 		"&movieCd="+encodeURIComponent(movieCd)+
@@ -279,9 +297,13 @@
 						code += "</td><td>";
 						code += data.mar[i].content;
 						code += "</td>";
-						code += "<td>평점 ";
-						code += data.mar[i].rate;
-						code += " 점</td>";
+						if(data.mar[i].rate != null){
+							code += "<td>평점 ";
+							code += data.mar[i].rate;
+							code += " 점</td>";
+						}else{
+							code += "<td>평가하지 않았습니다. </td>";
+						}
 						if(data.mar[i].m_idx == m_idx){
 							code += "<td><input type=\"button\" value=\"삭제\" onclick=\"commDel("+data.mar[i].c_idx+")\"/></td>";
 						}else
@@ -323,9 +345,13 @@
 						code += "</td><td>";
 						code += data.mar[i].content;
 						code += "</td>";
-						code += "<td>평점 ";
-						code += data.mar[i].rate;
-						code += " 점</td>";
+						if(data.mar[i].rate != null){
+							code += "<td>평점 ";
+							code += data.mar[i].rate;
+							code += " 점</td>";
+						}else{
+							code += "<td>평가하지 않았습니다. </td>";
+						}
 						if(data.mar[i].m_idx == m_idx){
 							code += "<td><input type=\"button\" value=\"삭제\" onclick=\"commDel("+data.mar[i].c_idx+")\"/></td>";
 						}else
