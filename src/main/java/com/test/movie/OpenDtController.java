@@ -13,12 +13,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.test.vo.RankVO;
+import com.test.vo.OpenDtVO;
 
 @Controller
-public class RankController {
+public class OpenDtController {
 
-	@RequestMapping("/rank.inc")
+	@RequestMapping("/opendt.inc")
 	public ModelAndView rank(String dTime) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
@@ -28,13 +28,14 @@ public class RankController {
 		String dTime = formatter.format ( currentTime );
 		System.out.println ( dTime );
 		*/
+		
 		if(dTime == null) {
 			Calendar todayCal = Calendar.getInstance();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyMMdd");
 			dTime = sdf.format(todayCal.getTime());
 		}
 		
-		URL url = new URL("http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.xml?key=ef9fe705049caa4b27ad344b76ad885b&targetDt="+dTime);
+		URL url = new URL("http://http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.xml?key=ef9fe705049caa4b27ad344b76ad885b");
 		
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		
@@ -48,33 +49,35 @@ public class RankController {
 		
 		Element root = doc.getRootElement();
 		
-		Element BOList = root.getChild("dailyBoxOfficeList");
+		Element m_list = root.getChild("movieList");
 		
-		List<Element> BO = BOList.getChildren("dailyBoxOffice");
+		List<Element> mvi = m_list.getChildren("movie");
 		
-		RankVO[] ar = new RankVO[BO.size()];
+		OpenDtVO[] ar = new OpenDtVO[mvi.size()];
 		
-		for(int i=0; i<BO.size(); i++) {
-			RankVO rvo = new RankVO();
+		for(Element e : mvi) {
+			int i=0;
+			String odt = e.getChildText("openDt");
+			OpenDtVO ovo = new OpenDtVO();
+			if(dTime.equals(odt)) {
+				
+				ovo.setOpenDt(e.getChildText("openDt"));
+				ovo.setMovieNm(e.getChildText("movieNm"));
+				ovo.setMovieCd(e.getChildText("movieCd"));
 			
-			rvo.setRank(BO.get(i).getChildText("rank"));
-			rvo.setMovieNm(BO.get(i).getChildText("movieNm"));
-			rvo.setOpenDt(BO.get(i).getChildText("openDt"));
-			rvo.setMovieCd(BO.get(i).getChildText("movieCd"));
-			try {
-				rvo.setImg(getImg(BO.get(i).getChildText("movieCd")));
-			} catch (Exception e) {
-				// TODO: handle exception
+				try {
+					ovo.setImg(getImg(e.getChildText("movieCd")));
+				} catch (Exception ee) {
+					// TODO: handle exception
+				}
+				
+				ar[i++] = ovo;
 			}
-			
-			
-			ar[i] = rvo;
-			
 			
 		}
 		
 		mv.addObject("ar", ar);
-		mv.setViewName("rank");
+		mv.setViewName("opendt");
 		
 		return mv;
 	}

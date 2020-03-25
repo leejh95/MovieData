@@ -1,8 +1,8 @@
 package com.test.vo;
 
-public class RankVO {
+public class OpenDtVO {
 	
-	private String rank, movieNm, openDt, movieCd, img;
+	private String movieNm, openDt, movieCd, img;
 
 	public String getImg() {
 		return img;
@@ -18,14 +18,6 @@ public class RankVO {
 
 	public void setMovieCd(String movieCd) {
 		this.movieCd = movieCd;
-	}
-
-	public String getRank() {
-		return rank;
-	}
-
-	public void setRank(String rank) {
-		this.rank = rank;
 	}
 
 	public String getMovieNm() {

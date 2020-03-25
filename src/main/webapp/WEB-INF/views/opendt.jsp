@@ -85,9 +85,11 @@ img{
                         	<strong title="${rvo.movieNm }">
                         	<a class="title" href="javascript:goView('${rvo.movieCd }')">${rvo.movieNm }</a>
                         	</strong>
+                        	<!-- 
                             <ul class="info">
                             	<li class="info2"><pre class="opend"> 개봉일 </pre>${rvo.openDt }</li>
                             </ul>
+                             -->
                         </div>
                     </li>
            
