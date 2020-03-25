@@ -35,7 +35,7 @@ public class OpenDtController {
 			dTime = sdf.format(todayCal.getTime());
 		}
 		
-		URL url = new URL("http://http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.xml?key=ef9fe705049caa4b27ad344b76ad885b");
+		URL url = new URL("http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.xml?key=ef9fe705049caa4b27ad344b76ad885b");
 		
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		

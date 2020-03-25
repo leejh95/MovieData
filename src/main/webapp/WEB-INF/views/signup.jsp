@@ -19,7 +19,7 @@
 					</h1>
 					<hr>
 					<form class="form-horizontal" method="post" name="signup"
-						id="signup" enctype="multipart/form-data" action="signUpForm.inc">
+						id="signup" action="signUpForm.inc">
 						
 						<div class="form-group">
 							<label class="control-label col-sm-3">ID <span
@@ -85,7 +85,7 @@
 						</div>
 						<div class="form-group">
 							<div class="col-xs-offset-3 col-xs-10">
-								<input name="Submit" type="button" value="가입" disabled="disabled" id="submit"
+								<input type="button" value="가입" disabled="disabled" id="btn_submit"
 									class="btn btn-primary" onclick="signUp(this.form)">
 							</div>
 						</div>
@@ -116,18 +116,18 @@
 					}).done(function(data) {
 						if(data.chk){
 							$("#id_span").html("<font color='red'>이미 사용중인 아이디입니다.</font>");
-							$("#submit").attr("disabled", "disabled");
+							$("#btn_submit").attr("disabled", "disabled");
 						}else{
 							$("#id_span").html("<font color='green'>사용하실 수 있는 아이디입니다.</font>");
 							if(pw.length > 3 && pw.length < 21)
-								$("#submit").removeAttr("disabled");
+								$("#btn_submit").removeAttr("disabled");
 						}
 					}).fail(function(err) {
 						console.log(err);
 					});
 				}else{
 					$("#id_span").html("");
-					$("#submit").attr("disabled", "disabled");
+					$("#btn_submit").attr("disabled", "disabled");
 				}
 			
 			});
@@ -139,10 +139,10 @@
 				
 				if(pw.length > 3 && pw.length < 21 && id.length > 0){
 					if($("#id_span>font").attr("color") == "green")
-						$("#submit").removeAttr("disabled");
+						$("#btn_submit").removeAttr("disabled");
 				}else{
 					$("#pw_span").html("");
-					$("#submit").attr("disabled", "disabled");
+					$("#btn_submit").attr("disabled", "disabled");
 				}
 			
 			});
@@ -184,8 +184,9 @@
 			}
 			
 			var b = confirm("가입하시겠습니까?");
-			if(b)
-				document.signup.submit();
+			if(b){
+				frm.submit();
+			}
 		}
 		
 		function checkNum(e) {

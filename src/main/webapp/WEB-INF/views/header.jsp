@@ -21,14 +21,15 @@
             </div>
 		<c:if test="${sessionScope.memVO ne null}">
 			<div style="display:inline-block; width: 200px;">
-		          <button type="button" class="btn btn-default btn-sm btn3d " onclick="location.href='profile.inc'">마이페이지</button>
-		          <button type="button" class="btn btn-default btn-sm btn3d " >로그아웃</button>
+				  <span>${sessionScope.memVO.name }님 환영합니다!</span>
+		          <button type="button" class="btn btn-default btn-sm btn3d " onclick="location.href='profile.inc?m_idx=${sessionScope.memVO.m_idx}'">마이페이지</button>
+		          <button type="button" class="btn btn-default btn-sm btn3d " onclick="location.href='signout.inc'" >로그아웃</button>
 	        </div>
 		</c:if>	
 		<c:if test="${sessionScope.memVO eq null}">
             <div style="display:inline-block; width: 200px;">
 		          <button type="button" class="btn btn-default btn-sm btn3d" onclick="location.href='signIn.inc'">로그인</button>
-		          <button type="button" class="btn btn-default btn-sm btn3d" onclick="location.href=''">회원가입</button>
+		          <button type="button" class="btn btn-default btn-sm btn3d" onclick="location.href='signUp.inc'">회원가입</button>
 	        </div>
 		</c:if>	
         </div>
@@ -67,7 +68,7 @@
 	                <a href="#" class="nav-link">주간</a>
 	            </li>
 	            <li class="nav-list-item">
-	                <a href="#" class="nav-link">개봉</a>
+	                <a href="javascript:goOpendt()" class="nav-link">개봉</a>
 	            </li>
 	        </ul>
         </div>

@@ -17,9 +17,7 @@ margin: auto;
 
 <div id="include_header"></div>
 <div id="all_wrap">
-	<div id="include_cal"></div>
-	<br><br>
-	<div id="include_rank"></div>
+	<div id="include_center"></div>
 </div>
 <div id="include_footer"></div>
 
@@ -27,34 +25,27 @@ margin: auto;
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#include_header").load("header.inc");
-		//$("#include_cal").load("calendar.inc");
-		//$("#include_rank").load("rank.inc");
 		$("#include_footer").load("footer.inc");
-		
-		
+		//$("#include_center").load(" .inc");
 		
  	});
-	
-	function goRank(dTime){
-		$("#include_rank").load("rank.inc?dTime="+dTime);
-	}
-	
-	function goCal(year, month){
-		$("#include_calendar").load("calendar.inc?year="+year+"&month="+month);
-	}
 	
 	function goSearch(){
 		var type = document.getElementById("select_type").value;
 		var value = document.getElementById("search_text").value;
 		console.log(type);
 		console.log(value);
-		$("#include_rank").load("search.inc?type="+type+"&value="+value);
+		$("#include_center").load("search.inc?type="+type+"&value="+value);
 		
 		return false;
 	}
 	
 	function goView(movieCd){
-		$("#include_rank").load("view.inc?movieCd="+movieCd);
+		$("#include_center").load("view.inc?movieCd="+movieCd);
+	}
+	
+	function goOpendt(){
+		$("#include_center").load("opendt.inc");
 	}
 	
 	
