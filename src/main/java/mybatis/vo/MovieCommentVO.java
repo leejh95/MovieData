@@ -2,9 +2,17 @@ package mybatis.vo;
 
 public class MovieCommentVO {
 
-	private String c_idx, content, write_date, ip, status, movieCd,	m_idx;
+	private String c_idx, content, write_date, ip, status, movieCd,	m_idx, rate;
 	
 	private MovieMemberVO mvo;
+	
+	public String getRate() {
+		return rate;
+	}
+
+	public void setRate(String rate) {
+		this.rate = rate;
+	}
 
 	public String getC_idx() {
 		return c_idx;
