@@ -43,4 +43,18 @@ public class CommController {
 		return map;
 	}
 	
+	@RequestMapping(value = "/commDel.inc", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> commDel(String c_idx, String movieCd) {
+		Map<String, Object> map = new HashMap<String, Object>(); 
+	
+		boolean chk = m_dao.deleteComment(c_idx);
+		
+		MovieCommentVO[] mar = m_dao.getCommList(movieCd);
+		
+		map.put("chk", chk);
+		map.put("mar", mar);
+		return map;
+	}
+	
 }

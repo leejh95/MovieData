@@ -9,7 +9,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style type="text/css">
 	
 	body{
@@ -74,6 +76,44 @@
 		height: 20px;
 		margin-bottom: 5px;
 	}
+	
+	.rate {
+	    float: left;
+	    height: 46px;
+	    padding: 0 10px;
+	}
+	.rate:not(:checked) > input {
+	    position:absolute;
+	    top:-9999px;
+	}
+	.rate:not(:checked) > label {
+	    float:right;
+	    width:1em;
+	    overflow:hidden;
+	    white-space:nowrap;
+	    cursor:pointer;
+	    font-size:30px;
+	    color:#ccc;
+	}
+	.rate:not(:checked) > label:before {
+	    content: '★ ';
+	}
+	.rate > input:checked ~ label {
+	    color: #ffc700;    
+	}
+	.rate:not(:checked) > label:hover,
+	.rate:not(:checked) > label:hover ~ label {
+	    color: #deb217;  
+	}
+	.rate > input:checked + label:hover,
+	.rate > input:checked + label:hover ~ label,
+	.rate > input:checked ~ label:hover,
+	.rate > input:checked ~ label:hover ~ label,
+	.rate > label:hover ~ input:checked ~ label {
+	    color: #c59b08;
+	}
+
+/* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
 </style>
 	 <%-- <jsp:include page="header.jsp"/>  --%>   
 </head>
@@ -148,9 +188,21 @@
 			</table>
 		</div>
 
-		<c:if test="${sessionScope.memVO ne null}">
+		<<c:if test="${sessionScope.memVO ne null}"> 
 		<div id="comment">
 			<form action="commSave.inc" method="post">
+				<div class="rate">
+				    <input type="radio" id="star5" name="rate" value="5" />
+				    <label for="star5" title="text">5 stars</label>
+				    <input type="radio" id="star4" name="rate" value="4" />
+				    <label for="star4" title="text">4 stars</label>
+				    <input type="radio" id="star3" name="rate" value="3" />
+				    <label for="star3" title="text">3 stars</label>
+				    <input type="radio" id="star2" name="rate" value="2" />
+				    <label for="star2" title="text">2 stars</label>
+				    <input type="radio" id="star1" name="rate" value="1" />
+				    <label for="star1" title="text">1 star</label>
+				</div>
 				<textarea rows="3" cols="120" name="content" id="content"></textarea>
 				<input type="hidden" name="m_idx" id="m_idx" value="${sessionScope.memVO.m_idx }">
 				<%-- <input type="hidden" name="m_idx" id="m_idx" value="1"> --%>
@@ -158,7 +210,7 @@
 				<input type="button" value="저장" onclick="commSave(this.form)"/>
 			</form>
 		</div>
-		</c:if>
+		</c:if> 
 
 		<div id="commentList">
 			<table id="commTable">
@@ -171,12 +223,19 @@
 						<td class="comment">
 							${cvo.content } 
 						</td>
-						
+						<td>
+							평점 ${cvo.rate } 점
+						</td>
 						<c:if test="${cvo.m_idx eq sessionScope.memVO.m_idx}">
 						<td>
-							<input type="button" value="삭제"/>
+							<input type="button" value="삭제" onclick="commDel('${cvo.c_idx}')"/>
 						</td>
 						</c:if>
+						<c:if test="${cvo.m_idx ne sessionScope.memVO.m_idx}">
+						<td>
+							
+						</td>
+						 </c:if>
 					</tr>
 					</c:forEach>
 					
@@ -190,9 +249,11 @@
 		var content = $("#content").val();
 		var m_idx = $("#m_idx").val();
 		var movieCd = $("#movieCd").val();
+		var rate = $('input[name="rate"]:checked').val();
 		var param = "content="+encodeURIComponent(content)+
 		"&m_idx="+encodeURIComponent(m_idx)+
-		"&movieCd="+encodeURIComponent(movieCd);
+		"&movieCd="+encodeURIComponent(movieCd)+
+		"&rate="+encodeURIComponent(rate);
 		
 		$.ajax({
 			url: "commSave.inc",
@@ -211,9 +272,13 @@
 						code += "</td><td>";
 						code += data.mar[i].content;
 						code += "</td>";
+						code += "<td>평점 ";
+						code += data.mar[i].rate;
+						code += " 점</td>";
 						if(data.mar[i].m_idx == m_idx){
-							code += "<td><input type=\"button\" value=\"삭제\"/></td>"
-						}
+							code += "<td><input type=\"button\" value=\"삭제\" onclick=\"commDel("+data.mar[i].c_idx+")\"/></td>";
+						}else
+							code += "<td></td>"
 						code += "</tr>";
 					}
 					//위에서 작업된 html코드를 tbody에 html로 적용한다.
@@ -227,10 +292,50 @@
 		}).fail(function(err){
 			
 		});
-		
-		
 	}
     
+	function commDel(c_idx) {
+		var movieCd = $("#movieCd").val();
+		var param = "c_idx="+encodeURIComponent(c_idx)+
+		"&movieCd="+encodeURIComponent(movieCd);
+		
+		$.ajax({
+			url: "commDel.inc",
+			type: "post",
+			data: param,
+			dataType: "json"
+		}).done(function(data){
+			
+			if(data.chk){
+				alert("삭제 성공");
+				if(data.mar != undefined){
+					var code = "";
+					for(var i = 0; i<data.mar.length; i++){
+						code += "<tr><td style='width: 70px'>";
+						code += data.mar[i].mvo.id;
+						code += "</td><td>";
+						code += data.mar[i].content;
+						code += "</td>";
+						code += "<td>평점 ";
+						code += data.mar[i].rate;
+						code += " 점</td>";
+						if(data.mar[i].m_idx == m_idx){
+							code += "<td><input type=\"button\" value=\"삭제\" onclick=\"commDel("+data.mar[i].c_idx+")\"/></td>";
+						}else
+							code += "<td></td>"
+						code += "</tr>";
+					}
+					//위에서 작업된 html코드를 tbody에 html로 적용한다.
+					$("#commTable tbody").html(code);
+				}
+			}else{
+				alert("삭제 실패");
+			}
+			
+		}).fail(function(err){
+			
+		});
+	}
 </script>	
 </body>
 </html>

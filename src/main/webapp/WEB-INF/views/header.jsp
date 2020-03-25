@@ -1,6 +1,7 @@
 <%@page import="mybatis.vo.MovieMemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,27 +19,18 @@
         	<div style="display:inline-block; width: 600px;">
             	<a href="index.inc" id="home_bt"><img alt="메인으로" src="resources/images/logo (1).png"/></a>
             </div>
-<% 
-	  	Object obj = session.getAttribute("memVO");
-		MovieMemberVO mvo = null;
-	
-	  	if(obj != null) {
-	  		mvo = (MovieMemberVO)obj;  		
-%>
+		<c:if test="${sessionScope.memVO ne null}">
 			<div style="display:inline-block; width: 200px;">
-		          <button type="button" class="btn btn-default btn-sm btn3d " >마이페이지</button>
+		          <button type="button" class="btn btn-default btn-sm btn3d " onclick="location.href='profile.inc'">마이페이지</button>
 		          <button type="button" class="btn btn-default btn-sm btn3d " >로그아웃</button>
 	        </div>
-<%
-  	}else{
-%>		
+		</c:if>	
+		<c:if test="${sessionScope.memVO eq null}">
             <div style="display:inline-block; width: 200px;">
-		          <button type="button" class="btn btn-default btn-sm btn3d " >로그인</button>
-		          <button type="button" class="btn btn-default btn-sm btn3d">회원가입</button>
+		          <button type="button" class="btn btn-default btn-sm btn3d" onclick="location.href='signIn.inc'">로그인</button>
+		          <button type="button" class="btn btn-default btn-sm btn3d" onclick="location.href=''">회원가입</button>
 	        </div>
-<%
-  	}
-%>			        
+		</c:if>	
         </div>
         <div id="search_wrap" class="navbar-header animated fadeInUp">
 			<form method="post" name="searchFrm" onsubmit="false">
