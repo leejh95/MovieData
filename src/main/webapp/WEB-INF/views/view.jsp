@@ -221,7 +221,7 @@
 								없다 댓글
 							</td>
 						</tr>
-					</c:if>
+					</c:if> 
 					<c:forEach var="cvo" items="${vo.comms }">
 					<tr>
 						<td style="width: 70px">
