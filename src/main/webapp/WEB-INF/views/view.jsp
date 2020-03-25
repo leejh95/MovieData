@@ -188,7 +188,7 @@
 			</table>
 		</div>
 
-		<<c:if test="${sessionScope.memVO ne null}"> 
+		<c:if test="${sessionScope.memVO ne null}"> 
 		<div id="comment">
 			<form action="commSave.inc" method="post">
 				<div class="rate">
@@ -215,6 +215,13 @@
 		<div id="commentList">
 			<table id="commTable">
 				<tbody>
+					<c:if test="${vo.comms eq null }">
+						<tr>
+							<td>
+								없다 댓글
+							</td>
+						</tr>
+					</c:if>
 					<c:forEach var="cvo" items="${vo.comms }">
 					<tr>
 						<td style="width: 70px">
