@@ -76,12 +76,7 @@ img{
 			<c:forEach var="vo" items="${ar }">
 			<c:if test="${vo.nationAlt eq '한국' }">
 					<li class="item">
-						<c:if test="${vo.image ne null }">
                     		<a href="javascript:goView('${vo.movieCd }')"  style="height:300px;width:187px;" class="thumb" ><img src="${vo.image }" border="0" alt="" style="height:300px;width:187px;"></a> 
-                    	</c:if>
-                    	<c:if test="${vo.image eq null }">
-                    		<a href="javascript:goView('${vo.movieCd }')"  style="height:300px;width:187px;" class="thumb" ><img src="resources/images/no-image-png-7.png" border="0" alt=""  style="height:300px;width:187px;"></a> 
-                    	</c:if>
                         <div class="cont">
                        		 <strong title="${rvo.movieNm }">
                         	<a class="title" href="javascript:goView('${vo.movieCd }')">${vo.movieNm }</a>

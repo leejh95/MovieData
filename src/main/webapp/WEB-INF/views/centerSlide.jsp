@@ -21,8 +21,8 @@
 </style>
 </head>
 <body>
-	<div class="container" style="max-width: 100%; padding: 0 50px;">
-		<div class="row" >
+	<div class="container" style="max-width: 100%; padding: 0 50px; position: relative;">
+		<div class="row">
 		<h1>오늘의 박스오피스</h1>
 			<div class="MultiCarousel" data-items="1,3,5,5" data-slide="1" id="MultiCarousel"  data-interval="1000">
 	            <div class="MultiCarousel-inner">

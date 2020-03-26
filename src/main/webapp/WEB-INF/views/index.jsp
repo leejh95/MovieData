@@ -8,6 +8,7 @@
 <style type="text/css">
 	#include_center{
 		width: 100%;
+		margin-top: 50px;
 	}
 	#include_header{
 	}
@@ -15,9 +16,9 @@
 </head>
 <body bgcolor="#343434">
 
-<div id="include_header"></div>
+<div id="include_header" ></div>
 
-<div id="include_center"></div>
+<div id="include_center" ></div>
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 <div id="include_footer"></div>
 
@@ -47,7 +48,6 @@
 	function goOpendt(){
 		$("#include_center").load("opendt.inc");
 	}
-	
 	
 </script>
 </body>

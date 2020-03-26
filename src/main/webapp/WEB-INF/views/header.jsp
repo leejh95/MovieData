@@ -13,10 +13,10 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body id="search_body">
-	<div id="header_div">
-		<nav class="main-navigation">
+	<div id="header_div" style="width: 100%;">
+		<nav class="main-navigation" >
         <div id='logobt' class="navbar-header animated fadeInUp">
-        	<div style="display:inline-block; width: 600px;">
+        	<div style="display:inline-block; width: 790px;">
             	<a href="index.inc" id="home_bt"><img alt="메인으로" src="resources/images/logo (1).png"/></a>
             </div>
 		<c:if test="${sessionScope.memVO ne null}">
@@ -33,7 +33,7 @@
 	        </div>
 		</c:if>	
         </div>
-        <div id="search_wrap" class="navbar-header animated fadeInUp">
+        <div id="search_wrap" class="navbar-header animated fadeInUp" style="">
 			<form method="post" name="searchFrm" onsubmit="false">
 				<table id="search_table" align="center">
 					<tbody id="search_tbody">
@@ -59,7 +59,7 @@
 				</table>
 			</form>
 		</div>
-		<div>
+		<div style="background-color: #dedede; width: 100%;">
 	        <ul class="nav-list">
 	            <li class="nav-list-item">
 	                <a href="#" class="nav-link">일일</a>
@@ -69,6 +69,9 @@
 	            </li>
 	            <li class="nav-list-item">
 	                <a href="javascript:goOpendt()" class="nav-link">개봉</a>
+	            </li>
+	            <li class="nav-list-item">
+	                <a href="javascript:goOpendt()" class="nav-link">고객센터</a>
 	            </li>
 	        </ul>
         </div>
@@ -83,7 +86,9 @@
 					goSearch();
 				}
 			});
+			
 		})
+		
 	</script>
 </body>
 </html>

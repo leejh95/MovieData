@@ -1,10 +1,13 @@
 @charset "UTF-8";
 	#header_div{
-		width: 1000px;
 		margin: auto;
 	}
 	#search_body{
-		background-color: #343434;
+	
+	}
+	#logobt{
+		width: 1000px;
+		margin: 0 auto;
 	}
 	#search_wrap {
 		padding-bottom: 20px;
