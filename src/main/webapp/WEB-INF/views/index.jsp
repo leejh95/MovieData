@@ -16,9 +16,11 @@ margin: auto;
 <body>
 
 <div id="include_header"></div>
+
 <div id="all_wrap">
 	<div id="include_center"></div>
 </div>
+<br>
 <div id="include_footer"></div>
 
 <script src="resources/js/jquery-3.4.1.min.js"></script>
