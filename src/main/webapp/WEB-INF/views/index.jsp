@@ -6,21 +6,19 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-#all_wrap{
-width: 1000px;
-padding: 0;
-margin: auto;
-}
+	#include_center{
+		width: 100%;
+	}
+	#include_header{
+	}
 </style>
 </head>
-<body>
+<body bgcolor="#343434">
 
 <div id="include_header"></div>
 
-<div id="all_wrap">
-	<div id="include_center"></div>
-</div>
-<br>
+<div id="include_center"></div>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 <div id="include_footer"></div>
 
 <script src="resources/js/jquery-3.4.1.min.js"></script>

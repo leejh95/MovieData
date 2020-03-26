@@ -3,7 +3,9 @@
 		width: 1000px;
 		margin: auto;
 	}
-
+	#search_body{
+		background-color: #343434;
+	}
 	#search_wrap {
 		padding-bottom: 20px;
 		height: 100px;
@@ -37,12 +39,6 @@
 	}
 		#home_bt{
 		}
-	
-        body {
-            margin: 0;
-            padding: 0;
-        }
-
         a.navbar-brand {
             float: left;
             height: 50px;

@@ -17,6 +17,7 @@
 }
 .foot_guide{
 	width: 600px;
+	height:100px;
 	margin: auto;
 	list-style: none;
 	margin-bottom: 10px;

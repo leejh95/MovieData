@@ -10,7 +10,7 @@
 
 #wrap{
 	width: 1000px;
-	display: inline-block;
+	margin: auto;
 }
 
 .item{
