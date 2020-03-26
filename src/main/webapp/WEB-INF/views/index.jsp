@@ -6,19 +6,82 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	#include_center{
-		width: 100%;
-		margin-top: 50px;
-	}
-	#include_header{
-	}
+#include_center{
+	width: 100%;
+	margin-top: 50px;
+}
+#include_header{
+}
+
+.tab_ul{
+  list-style:none;
+  margin: 0; 
+}
+
+.tabmenu{ 
+  max-width:1000px; 
+  height:200px;
+  margin: 0 auto; 
+  padding: 0;
+  position:relative; 
+}
+.tabmenu ul li{
+  display:  inline-block;
+  width:33.33%; 
+  float:left;  
+  text-align:center; 
+  background :#f9f9f9;
+}
+.tabmenu ul li a{
+  display:block;
+  line-height:45px;
+  height:60px;
+  text-decoration:none; 
+  color: #000;
+}
+.tabCon{
+  display:none; 
+  width: 960px;
+  text-align:left; 
+  position:absolute; 
+  left:40px; top:60px; 
+  box-sizing: border-box; 
+  border : 1px solid #ff0000;
+}
+.btnCon:target  {
+  background : #ccc;
+}
+.btnCon:target .tabCon{
+  display: block;
+}
 </style>
 </head>
 <body bgcolor="#343434">
 
 <div id="include_header" ></div>
 
-<div id="include_center" ></div>
+<div id="include_center" >
+	<div id="include_calendar" ></div>
+		<div class="tabmenu">
+			<ul class="tab_ul">
+				<li id="tab1" class="btnCon"><a class="btn first" href="#tab1">일간 박스오피스</a>
+					<div class="tabCon">
+						<div id="include_daily_rank" >fdsafsafdasf</div>
+					</div>
+				</li>
+				<li id="tab2" class="btnCon"><a class="btn" href="#tab2">주간 박스오피스</a>
+					<div class="tabCon">
+						<div id="include_weekly_rank" >dsafdsaf</div>
+					</div>
+				</li>
+				<li id="tab3" class="btnCon"><a class="btn" href="#tab3">개봉예정일</a>
+					<div class="tabCon">
+						<div id="include_opendt" >fdsfadf</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 <div id="include_footer"></div>
 
@@ -26,7 +89,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#include_header").load("header.inc");
-		$("#include_center").load("centerSlide.inc");
+		//$("#include_center").load("centerSlide.inc");
 		$("#include_footer").load("footer.inc");
 		
  	});
@@ -47,6 +110,13 @@
 	
 	function goOpendt(){
 		$("#include_center").load("opendt.inc");
+	}
+	
+	function goBoxOffice(){
+		$("#include_calendar").load("calendar.inc");
+		//$("#include_").load(".inc");
+		$("#include_weekly_rank").load("weekly_rank.inc");
+		$("#include_opendt").load("opendt.inc");
 	}
 	
 </script>
