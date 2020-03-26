@@ -22,15 +22,15 @@ import com.test.vo.DailyVO;
 public class DailyRankController {
 
 	@RequestMapping("/dailyRank.inc")
-	public ModelAndView center() throws Exception {
+	public ModelAndView center(String dTime) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		
-		Date dDate = new Date();
-		dDate = new Date(dDate.getTime()+(1000*60*60*24*-1));
-		SimpleDateFormat dSdf = new SimpleDateFormat("yyyyMMdd", Locale.KOREA);
-		String yesterday = dSdf.format(dDate);
-		//System.out.println(yesterday);
-		URL url = new URL("http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.xml?key=597ea93394fe1b75e69c9cf07a1fc1de&targetDt="+yesterday+"&repNationCd=K");
+		if(dTime == null) {
+			Date dDate = new Date();
+			dDate = new Date(dDate.getTime()+(1000*60*60*24*-1));
+			SimpleDateFormat dSdf = new SimpleDateFormat("yyyyMMdd", Locale.KOREA);
+			dTime = dSdf.format(dDate);
+		}
+		URL url = new URL("http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.xml?key=597ea93394fe1b75e69c9cf07a1fc1de&targetDt="+dTime+"&repNationCd=K");
 		
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		

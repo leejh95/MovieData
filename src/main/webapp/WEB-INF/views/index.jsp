@@ -19,13 +19,16 @@
 }
 
 .tabmenu{ 
-  max-width:1000px; 
+  max-width:1500px; 
   height:200px;
   margin: 0 auto; 
   padding: 0;
   position:relative; 
 }
-.tabmenu ul li{
+#tab1{
+left:0;
+}
+.tabmenu>ul>li{
   display:  inline-block;
   width:33.33%; 
   float:left;  
@@ -41,11 +44,12 @@
 }
 .tabCon{
   display:none; 
-  width: 960px;
+  width: 1460px;
   text-align:left; 
   position:absolute; 
   left:40px; top:60px; 
   box-sizing: border-box; 
+  padding: 50px;
   border : 1px solid #ff0000;
 }
 .btnCon:target  {
@@ -60,28 +64,7 @@
 
 <div id="include_header" ></div>
 
-<div id="include_center" >
-	<div id="include_calendar" ></div>
-		<div class="tabmenu">
-			<ul class="tab_ul">
-				<li id="tab1" class="btnCon"><a class="btn first" href="#tab1">일간 박스오피스</a>
-					<div class="tabCon">
-						<div id="include_daily_rank" >fdsafsafdasf</div>
-					</div>
-				</li>
-				<li id="tab2" class="btnCon"><a class="btn" href="#tab2">주간 박스오피스</a>
-					<div class="tabCon">
-						<div id="include_weekly_rank" >dsafdsaf</div>
-					</div>
-				</li>
-				<li id="tab3" class="btnCon"><a class="btn" href="#tab3">개봉예정일</a>
-					<div class="tabCon">
-						<div id="include_opendt" >fdsfadf</div>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</div>
+<div id="include_center" ></div>
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 <div id="include_footer"></div>
 
@@ -89,7 +72,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#include_header").load("header.inc");
-		//$("#include_center").load("centerSlide.inc");
+		$("#include_center").load("centerSlide.inc");
 		$("#include_footer").load("footer.inc");
 		
  	});
@@ -113,10 +96,33 @@
 	}
 	
 	function goBoxOffice(){
+		var msg = "<div id='include_calendar' ></div><br><br>";
+		msg += "<div class='tabmenu'><ul class='tab_ul'>";
+		msg += "<li id='tab1' class='btnCon'>";
+		msg += "<a class='btn first' href='#tab1'>일간 박스오피스</a>";
+		msg += "<div class='tabCon'><div id='include_daily_rank' ></div></div></li>";
+		msg += "<li id='tab2' class='btnCon'>";
+		msg += "<a class='btn' href='#tab2'>주간 박스오피스</a>";
+		msg += "<div class='tabCon'><div id='include_weekly_rank' ></div></div></li>";
+		msg += "<li id='tab3' class='btnCon'><a class='btn' href='#tab3'>개봉예정일</a>";
+		msg += "<div class='tabCon'><div id='include_opendt' ></div></div></li>";
+		msg += "</ul></div>";
+		$("#include_center").html(msg);
 		$("#include_calendar").load("calendar.inc");
-		//$("#include_").load(".inc");
+		$("#include_daily_rank").load("dailyRank.inc");
 		$("#include_weekly_rank").load("weekly_rank.inc");
 		$("#include_opendt").load("opendt.inc");
+	}
+	
+	function goCal(year, month){
+		$("#include_calendar").load("calendar.inc?year="+year+"&month="+month);
+	}
+	
+	function goDate(sDate){
+		console.log(sDate);
+		$("#include_daily_rank").load("dailyRank.inc?dTime="+sDate);
+		$("#include_weekly_rank").load("weekly_rank.inc?dTime="+sDate);
+		$("#include_opendt").load("opendt.inc?dTime="+sDate);
 	}
 	
 </script>

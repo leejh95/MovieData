@@ -11,10 +11,14 @@
 <TITLE>Calendar</TITLE>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <style type="text/css">
+#cal_content{
+width: 1000px;
+margin: auto;
+}
 #cal_nav{
 background: #4b4b4b;
 width: 150px;
-height: 90px;
+height: 120px;
 position: relative;
 padding: 10px 0 10px 0;
 float: right;

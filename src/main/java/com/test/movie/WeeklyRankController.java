@@ -2,6 +2,8 @@ package com.test.movie;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -81,7 +83,7 @@ public class WeeklyRankController {
 			wvo.setMovieCd(e.getChildText("movieCd"));
 		
 			try {
-				wvo.setImage(getImg(e.getChildText("movieCd")));
+				wvo.setImage(getPost(e.getChildText("movieNm")));
 			} catch (Exception ee) {
 				ee.printStackTrace();
 			}
@@ -96,6 +98,7 @@ public class WeeklyRankController {
 		return mv;
 	}
 	
+	/*
 	private String getImg(String movieCd1) throws Exception {
 	      
 	      URL url = new URL("http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_xml2.jsp?collection=kmdb_new2&ServiceKey=RO60W567N4S9H6YV8E3R&detail=Y&codeNo="+movieCd1);
@@ -122,4 +125,39 @@ public class WeeklyRankController {
 
 	      return posters;
 	}
+	*/
+	
+	public String getPost(String movieNm) throws Exception{
+        // 영화 포스터 가져오기
+        //System.out.println(movieNm);
+        
+          String clientID="UssVhdtzaSQlNhAr5bke"; //네이버 개발자 센터에서 발급받은 clientID입력
+          String clientSecret = "6bwpOT_Ese";        //네이버 개발자 센터에서 발급받은 clientSecret입력
+          
+          String mv_name = URLEncoder.encode(movieNm, "UTF-8");
+          URL url = new URL("https://openapi.naver.com/v1/search/movie.xml?query="+mv_name);
+          
+          URLConnection urlConn = url.openConnection(); //openConnection 해당 요청에 대해서 쓸 수 있는 connection 객체 
+          
+          urlConn.setRequestProperty("X-Naver-Client-ID", clientID);
+          urlConn.setRequestProperty("X-Naver-Client-Secret", clientSecret);
+          
+          SAXBuilder builder = new SAXBuilder();
+          Document doc = builder.build(urlConn.getInputStream());
+ 
+          Element root = doc.getRootElement();
+          Element channel = root.getChild("channel");
+
+        List<Element> item = channel.getChildren("item");
+        String image_s = null;
+        if(item.size() != 0) {
+           image_s = item.get(0).getChildText("image");         
+        }else {
+           image_s = "http://www.kobis.or.kr/kobis/web/comm/images/main/noimage.png";
+        }
+        
+        //System.out.println("썸네일 : " + image_s);
+          
+          return image_s;
+     }
 }

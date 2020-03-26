@@ -73,7 +73,7 @@ public class CalendarController {
 			if (Integer.parseInt(sDate) == intToday) 
 				isToday = "today";
 			
-			msg += "<TD id='" + isToday + "'><a style='display:block; width:100%; color:"+ color +";' href='javascript:goRank("+sDate+")'>";
+			msg += "<TD id='" + isToday + "'><a style='display:block; width:100%; color:"+ color +";' href='javascript:goDate("+sDate+")'>";
 			
 			msg += index;
 
