@@ -21,7 +21,7 @@ import com.test.vo.DailyVO;
 @Controller
 public class DailyRankController {
 
-	@RequestMapping("/dailyrank.inc")
+	@RequestMapping("/dailyRank.inc")
 	public ModelAndView center() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
@@ -71,7 +71,7 @@ public class DailyRankController {
 		
 		
 		mv.addObject("dar", dar);
-		mv.setViewName("centerSlide");
+		mv.setViewName("dailyRank");
 		
 		return mv;
 	}
