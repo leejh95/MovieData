@@ -72,7 +72,9 @@ img{
 </head>
 <body>
 	<div id="wrap">
+		
 			<c:forEach var="vo" items="${ar }">
+			<c:if test="${vo.nationAlt eq '한국' }">
 					<li class="item">
 						<c:if test="${vo.image ne null }">
                     		<a href="javascript:goView('${vo.movieCd }')"  style="height:300px;width:187px;" class="thumb" ><img src="${vo.image }" border="0" alt="" style="height:300px;width:187px;"></a> 
@@ -89,6 +91,7 @@ img{
                             </ul>
                         </div>
                      </li>
+            </c:if>         
 			</c:forEach>
 	</div> 
 </body>
