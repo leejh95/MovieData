@@ -61,17 +61,12 @@
 		</div>
 		<div style="background-color: #dedede; width: 100%;">
 	        <ul class="nav-list">
+	            
 	            <li class="nav-list-item">
-	                <a href="#" class="nav-link">일일</a>
+	                <a href="javascript:goBoxOffice()" class="nav-link">박스오피스</a>
 	            </li>
 	            <li class="nav-list-item">
-	                <a href="#" class="nav-link">주간</a>
-	            </li>
-	            <li class="nav-list-item">
-	                <a href="javascript:goOpendt()" class="nav-link">개봉</a>
-	            </li>
-	            <li class="nav-list-item">
-	                <a href="javascript:goOpendt()" class="nav-link">고객센터</a>
+	                <a href="javascript:" class="nav-link">고객센터</a>
 	            </li>
 	        </ul>
         </div>
