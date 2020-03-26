@@ -25,8 +25,8 @@ margin: auto;
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#include_header").load("header.inc");
+		$("#include_center").load("centerSlide.inc");
 		$("#include_footer").load("footer.inc");
-		//$("#include_center").load(" .inc");
 		
  	});
 	
