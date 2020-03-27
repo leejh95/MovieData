@@ -73,7 +73,7 @@
 						<c:if test="${sessionScope.memVO eq null}">
          					<a href="#" data-toggle="tooltip" data-placement="bottom" title="google"><i class="fa fa-google" aria-hidden="true"></i></a>
                             <a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                            <a href="signIn.inc" data-toggle="tooltip" data-placement="bottom" title="Linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                            <a href="signIn.inc" data-toggle="tooltip" data-placement="bottom" title="Login"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
 						</c:if>	
                         </div>
                     </div>
