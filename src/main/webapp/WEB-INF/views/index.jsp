@@ -80,7 +80,7 @@
 	
 	function goSearch(){
 		var type = document.getElementById("select_type").value;
-		var value = document.getElementById("search_text").value;
+		var value = document.getElementById("search").value;
 		console.log(type);
 		console.log(value);
 		$("#include_center").load("search.inc?type="+type+"&value="+value);

@@ -36,4 +36,10 @@ public class HomeController {
 		return "rank";
 	}
 	
+	@RequestMapping("/test.inc")
+	public String test1() {
+		return "test";
+		
+	}
+	
 }
