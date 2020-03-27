@@ -7,9 +7,8 @@
 <title>foot</title>
 <style type="text/css">
 .footer_area{
-	height: 500px;
+	height: 260px;
 	margin: 0;
-	margin-top: 50px;
 	padding-top: 70px;
 	padding-bottom: 70px;
 	background-color: #d9d9d9;

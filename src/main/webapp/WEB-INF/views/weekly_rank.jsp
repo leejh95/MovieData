@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,10 +9,8 @@
 <title>Insert title here</title>
 <style type="text/css">
 
-#wrap{
+#week_wrap{
 	width: 1000px;
-	margin: auto;
-	display: inline-block;
 }
 
 .item{
@@ -71,26 +71,23 @@ img{
 </style>
 </head>
 <body>
-	<div id="wrap">
-		<c:forEach var="vo" items="${ar }">
-			<li class="item">
-				<c:if test="${vo.image ne null }">
-					<a href="javascript:goView('${vo.movieCd }')" style="height: 300px; width: 187px;" class="thumb">
-						<img src="${vo.image }" border="0" alt="" style="height: 300px; width: 187px;" />
-					</a>
-				</c:if> 
-				<c:if test="${vo.image eq null }">
-					<a href="javascript:goView('${vo.movieCd }')" style="height: 300px; width: 187px;" class="thumb">
-						<img src="resources/images/no-image-png-7.png" border="0" alt="" style="height: 300px; width: 187px;" />
-					</a>
-				</c:if>
-				<div class="cont">
-					<strong title="${vo.movieNm }">
-						<a class="title" href="javascript:goView('${vo.movieCd }')">${vo.movieNm }</a>
-					</strong>
-				</div>
-			</li>
-		</c:forEach>
-	</div>
+	<div id="week_wrap">
+			<c:forEach var="vo" items="${ar }">
+					<li class="item">
+                    		<a href="javascript:goView('${vo.movieCd }')"  style="height:300px;width:187px;" class="thumb" ><img src="${vo.image }" border="0" alt="" style="height:300px;width:187px;"></a> 
+                        <div class="cont">
+                       		 <strong title="${rvo.movieNm }">
+                        	<a class="title" href="javascript:goView('${vo.movieCd }')">${vo.rank}위 ${vo.movieNm }</a>
+                        	</strong>
+                            <ul class="info">
+                            	<li class="info2"><pre class="opend"> 개봉일 </pre>${vo.openDt }</li>
+                            </ul>
+                        </div>
+                     </li>
+			</c:forEach>
+			<c:if test="${fn:length(ar)} ">
+				해당 날짜에 박스오피스 정보가 없습니다.
+			</c:if>
+	</div> 
 </body>
 </html>

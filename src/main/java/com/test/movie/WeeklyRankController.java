@@ -91,7 +91,6 @@ public class WeeklyRankController {
 			ar[i++] = wvo;
 			
 		}
-		
 		mv.addObject("ar", ar);
 		mv.setViewName("weekly_rank");
 		

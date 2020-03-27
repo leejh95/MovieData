@@ -111,7 +111,7 @@ background: #dddddd;
 					</c:if>
 					
 					<c:if test="${month eq 0 }">
-					<a>
+					<a href="javascript:goCal('${year-1 }', '11')" target="_self">
 						<img alt="left_month" src="resources/images/left_arrow.png" width="15px">
 					</a>
 					</c:if>
@@ -130,8 +130,8 @@ background: #dddddd;
 					</c:if>
 					
 					<c:if test="${month eq 11 }">
-					<a>
-						<img alt=""right_month"" src="resources/images/right_arrow.png" width="15px">
+					<a href="javascript:goCal('${year+1 }', '0')" target="_self">
+						<img alt="right_month" src="resources/images/right_arrow.png" width="15px">
 					</a>
 					</c:if>
 				</span>
