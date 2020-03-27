@@ -12,6 +12,7 @@
 #wrap{
 	width: 1000px;
 	display: inline-block;
+	margin: 0 auto;
 }
 
 .item{
@@ -73,21 +74,21 @@ img{
 </head>
 <body>
 			<div id="wrap">
-			<c:forEach var="rvo" items="${ar }">
+			<c:forEach var="ovo" items="${ar }">
 					<li class="item">
-						<c:if test="${rvo.img ne null }">
-                    		<a href="javascript:goView('${rvo.movieCd }')" style="height:300px;width:187px;" class="thumb" ><img src="${rvo.img }" border="0" alt="" style="height:300px;width:187px;"/></a> 
+						<c:if test="${ovo.img ne null }">
+                    		<a href="javascript:goView('${ovo.movieCd }')" style="height:300px;width:187px;" class="thumb" ><img src="${ovo.img }" border="0" alt="" style="height:300px;width:187px;"/></a> 
                         </c:if>
-                        <c:if test="${rvo.img eq null }">
-                    		<a href="javascript:goView('${rvo.movieCd }')" style="height:300px;width:187px;" class="thumb" ><img src="resources/images/no-image-png-7.png" border="0" alt="" style="height:300px;width:187px;"/></a> 
+                        <c:if test="${ovo.img eq null }">
+                    		<a href="javascript:goView('${ovo.movieCd }')" style="height:300px;width:187px;" class="thumb" ><img src="resources/images/no-image-png-7.png" border="0" alt="" style="height:300px;width:187px;"/></a> 
                     	</c:if>
                         <div class="cont">
-                        	<strong title="${rvo.movieNm }">
-                        	<a class="title" href="javascript:goView('${rvo.movieCd }')">${rvo.movieNm }</a>
+                        	<strong title="${ovo.movieNm }">
+                        	<a class="title" href="javascript:goView('${ovo.movieCd }')">${ovo.movieNm }</a>
                         	</strong>
                         	<!-- 
                             <ul class="info">
-                            	<li class="info2"><pre class="opend"> 개봉일 </pre>${rvo.openDt }</li>
+                            	<li class="info2"><pre class="opend"> 개봉일 </pre>${ovo.openDt }</li>
                             </ul>
                              -->
                         </div>
