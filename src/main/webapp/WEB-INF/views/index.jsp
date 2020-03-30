@@ -96,6 +96,7 @@
 	
 	function goContact(){
 		$("#include_center").load("contact.inc");
+		$("#include_center").css("height", "1200px");
 	}
 	
 	function goBoxOffice(){

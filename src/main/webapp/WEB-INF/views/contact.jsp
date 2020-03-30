@@ -22,10 +22,6 @@
 		width: 1100px;
 		margin: 0 auto;
 	}
-	
-	.container{
-		margin-top: 50px;
-	}
 </style>
 </head>
 <body>
