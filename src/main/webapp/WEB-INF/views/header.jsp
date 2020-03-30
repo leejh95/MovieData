@@ -14,6 +14,7 @@
     <link rel="icon" href="resources/img/core-img/favicon.ico">
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 </head>
 <body>
     <!--  
@@ -64,13 +65,13 @@
                         <div class="top-social-area">
                         <c:if test="${sessionScope.memVO ne null}">
 							  <span>${sessionScope.memVO.name }님 환영합니다!</span>
-					          <button type="button" class="btn btn-default btn-sm btn3d " onclick="location.href='profile.inc?m_idx=${sessionScope.memVO.m_idx}'">마이페이지</button>
-					          <button type="button" class="btn btn-default btn-sm btn3d " onclick="location.href='signout.inc'" >로그아웃</button>
+					          <a href="javascript:goMypage()" data-toggle="tooltip" data-placement="bottom" title="MyPage"><i class="fas fa-user-circle" ></i></a>
+					          <a href="javascript:location.href='signout.inc'" data-toggle="tooltip" data-placement="bottom" title="SignOut"><i class="fas fa-sign-out-alt"></i></a>
 						</c:if>	
 						<c:if test="${sessionScope.memVO eq null}">
          					<a href="#" data-toggle="tooltip" data-placement="bottom" title="google"><i class="fa fa-google" aria-hidden="true"></i></a>
                             <a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                            <a href="signIn.inc" data-toggle="tooltip" data-placement="bottom" title="Login"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                            <a href="javascript:goSignin()" data-toggle="tooltip" data-placement="bottom" title="Login"><i class="fas fa-sign-in-alt"></i></a>
 						</c:if>	
                         </div>
                     </div>

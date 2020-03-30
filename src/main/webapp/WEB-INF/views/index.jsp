@@ -99,6 +99,17 @@
 		$("#include_center").css("height", "1200px");
 	}
 	
+	function goMypage(){
+		$("#include_center").load("profile.inc");
+		$("#include_center").css("height", "1200px");
+	}
+	
+	function goSignin() {
+		$("#include_center").load("signIn.inc");
+		$("#include_center").css("height", "1200px");
+		
+	}
+	
 	function goBoxOffice(){
 		
 		var msg = "<div id='include_calendar' ></div><br><br>";
