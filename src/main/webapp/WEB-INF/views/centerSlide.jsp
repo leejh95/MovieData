@@ -15,12 +15,12 @@
     <link rel="stylesheet" href="resources/style.css">
 </head>
 <body>
-	<div class="hero-area" >
+	<div class="hero-area">
         <!-- Hero Slides Area -->
-        <div class="hero-slides owl-carousel">
+        <div class="hero-slides owl-carousel"  style="width: 1400px; margin: 10px auto">
             <!-- Single Slide -->
             <c:forEach var="vo" items="${dar }">
-            <div class="single-hero-slide bg-img" style="background-image: url(${vo.image }); width: 400px; margin:70px auto;" >
+            <div class="single-hero-slide bg-img" style="background-image: url(${vo.image }); width: 300px; height:500px; margin:70px auto;" >
                 <div class="container h-100">
                     <div class="row h-100 align-items-center">
                         <div class="col-12">

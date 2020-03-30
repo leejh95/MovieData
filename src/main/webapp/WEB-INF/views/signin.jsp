@@ -50,6 +50,9 @@
 			                        	&nbsp;&nbsp;<font color="#ff6363">ID 또는 비밀번호가 맞지 않습니다.</font>
 			                        </c:if>
                                 </div>
+                                <div class="col-12">
+                                	<a href="${apiURL }"><img width="120" height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
+                                </div>
                             </div>
                         </form>
                     </div>
