@@ -4,10 +4,26 @@ import java.util.List;
 
 public class MovieMemberVO {
 
-	private String m_idx, id, pw, name, email, phone, reg_date, status;
+	private String m_idx, id, pw, name, email, phone, reg_date, status, sns_id, sns_type;
 	
 	private List<MovieCommentVO> c_list;
+	
+	public String getSns_type() {
+		return sns_type;
+	}
+	
+	public void setSns_type(String sns_type) {
+		this.sns_type = sns_type;
+	}
 
+	public String getSns_id() {
+		return sns_id;
+	}
+	
+	public void setSns_id(String sns_id) {
+		this.sns_id = sns_id;
+	}
+	
 	public String getM_idx() {
 		return m_idx;
 	}

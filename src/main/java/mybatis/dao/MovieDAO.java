@@ -32,6 +32,17 @@ public class MovieDAO {
 		return vo;
 	}
 	
+	// 네이버 로그인
+		public MovieMemberVO signInNaver(String sns_id, String sns_type) {
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("sns_id", sns_id);
+			map.put("sns_type", sns_type);
+			
+			MovieMemberVO vo = ss.selectOne("movie.sign_in_naver", map);
+			
+			return vo;
+		}
+	
 	// 회원 가입
 	public boolean signUp(MovieMemberVO vo) {
 		boolean chk = false;

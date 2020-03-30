@@ -8,11 +8,16 @@
 	<select id="sign_in" resultType="mybatis.vo.MovieMemberVO" parameterType="java.util.Map">
 		select * from Movie_Mem where id = #{id} and pw = #{pw} and status = 0
 	</select>
+	
+	<!-- 네이버 로그인 -->
+	<select id="sign_in_naver" resultType="mybatis.vo.MovieMemberVO" parameterType="java.util.Map">
+		select * from Movie_Mem where sns_id = #{sns_id} and sns_type = #{sns_type} and status = 0
+	</select>
 
 	<!-- 회원 가입 -->
 	<insert id="sign_up" parameterType="mybatis.vo.MovieMemberVO">
-		insert into Movie_Mem(m_idx, id, pw, name, email, phone, reg_date, status)
-		values(Movie_Mem_seq.nextval, #{id}, #{pw}, #{name}, #{email}, #{phone}, sysdate, 0)
+		insert into Movie_Mem(m_idx, id, pw, name, email, phone, reg_date, status, sns_id, sns_type)
+		values(Movie_Mem_seq.nextval, #{id}, #{pw}, #{name}, #{email}, #{phone}, sysdate, 0, #{sns_id}, #{sns_type})
 	</insert>
 	
 	<!-- 댓글 쓰기  -->
