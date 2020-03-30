@@ -18,7 +18,7 @@ margin: auto;
 #cal_nav{
 background: #4b4b4b;
 width: 150px;
-height: 120px;
+height: 90px;
 position: relative;
 padding: 10px 0 10px 0;
 float: right;
@@ -63,6 +63,7 @@ height: 30px;
 }
 #cal_tab td{
 height: 45px;
+line-height: 45px;
 }
 #cal_tab td:hover{
 background: #bbbbbb;
@@ -100,7 +101,6 @@ background: #dddddd;
 					</a>
 				</span>
 			</DIV>
-			<br/>
 			<div id="cal_nav_month">
 				<!-- 이전달 -->
 				<span>

@@ -1,93 +1,61 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="description" content="">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Insert title here</title>
-<style type="text/css">
-
-#week_wrap{
-	width: 1000px;
-}
-
-.item{
-	float: left;
-	list-style: none;
-	width: 330px;
-	margin: 0 0 50px 0;
-	
-}
-
-.info{
-	list-style: none;
-	height: 20px;
-	margin: 0;
-	margin-top: 5px;
-	padding: 0;
-	float: left;	
-}
-
-.info2{
-	margin: 0;
-	padding: 0;
-}
-
-.thumb{
-	display: inline-block;
-	float: none;
-}
-
-img{
-	display: inline-block;
-	float: none;
-}
-
-.title{
-	display: inline-block;
-	float: none;
-	width: 300px;
-	font-size: 20px;
-	text-decoration: none;
-	color: black;
-}
-
-.opend{
-	margin: 0;
-	margin-right: 5px;
-	padding: 0;
-	background-color: gray;
-	border-radius: 3px;
-	color: white;
-	font-weight: bold;
-	width: 60px;
-	height: 20px;
-	line-height: 21px;
-	float: left;
-}
-
-</style>
+    <!-- Favicon -->
+    <link rel="icon" href="resources/img/core-img/favicon.ico">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="resources/style.css">
 </head>
 <body>
-	<div id="week_wrap">
-			<c:forEach var="vo" items="${ar }">
-					<li class="item">
-                    		<a href="javascript:goView('${vo.movieCd }')"  style="height:300px;width:187px;" class="thumb" ><img src="${vo.image }" border="0" alt="" style="height:300px;width:187px;"></a> 
-                        <div class="cont">
-                       		 <strong title="${rvo.movieNm }">
-                        	<a class="title" href="javascript:goView('${vo.movieCd }')">${vo.rank}위 ${vo.movieNm }</a>
-                        	</strong>
-                            <ul class="info">
-                            	<li class="info2"><pre class="opend"> 개봉일 </pre>${vo.openDt }</li>
-                            </ul>
+    <div class="blog-wrapper section-padding-100 clearfix">
+        <div class="container">
+            <div class="row align-items-end">
+                <!-- Single Blog Area -->
+                <c:forEach var="vo" items="${ar }">
+                <div class="col-12 col-lg-4">
+                    <div class="single-blog-area clearfix mb-100">
+                        <!-- Blog Content -->
+                        <div class="single-blog-content" style="text-align:center;">
+                        	<h4><a href="javascript:goView('${vo.movieCd }')" class="post-headline" >${vo.rank}위</a></h4>
+                            <a href="javascript:goView('${vo.movieCd }')" style="height: 300px; width: 187px; margin: 0 auto;" class="thumb">
+                            	<img src="${vo.image }" border="0" alt="" style="height: 300px; width: 187px;">
+                           	</a>
+                           	<h5><a href="javascript:goView('${vo.movieCd }')" class="post-headline">${vo.movieNm }</a></h5>
+                           	<h5>개봉일 ${vo.openDt }</a></h5>
                         </div>
-                     </li>
-			</c:forEach>
-			<c:if test="${fn:length(ar)} ">
-				해당 날짜에 박스오피스 정보가 없습니다.
-			</c:if>
-	</div> 
+                    </div>
+                </div>
+                </c:forEach>
+                <c:if test="${empty ar }">
+                <div class="col-12 col-lg-30">
+                    <div class="single-blog-area clearfix mb-100">
+                        <!-- Blog Content -->
+                        <div class="single-blog-content" style="text-align:center;">
+                        	<h4>현재 날짜에 박스오피스 정보가 없습니다.</h4>
+                        </div>
+                    </div>
+                </div>
+                </c:if>
+            </div>
+    </div>
+    </div>
+	<script src="resources/js/jquery-3.4.1.min.js"></script>
+	<script src="resources/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="resources/js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="resources/js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="resources/js/plugins.js"></script>
+    <!-- Active js -->
+    <script src="resources/js/active.js"></script>
 </body>
 </html>

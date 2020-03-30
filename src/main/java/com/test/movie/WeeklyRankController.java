@@ -36,6 +36,7 @@ public class WeeklyRankController {
 		if(dTime == null) {
 			SimpleDateFormat formatter = new SimpleDateFormat ( "yyyyMMdd", Locale.KOREA );
 			Date currentTime = new Date ();
+			currentTime = new Date(currentTime.getTime()+(1000*60*60*24*-1));
 			dTime = formatter.format ( currentTime );
 		}
 		
@@ -59,25 +60,12 @@ public class WeeklyRankController {
 		
 		WeeklyRankVO[] ar = new WeeklyRankVO[weekly.size()];
 		
+		int i=0;
 		for(Element e : weekly) {
-			int i=0;
+			
 			WeeklyRankVO wvo = new WeeklyRankVO();
 			
-			wvo.setAudiAcc(e.getChildText("audiAcc"));
-			wvo.setAudiChange(e.getChildText("audiChange"));
-			wvo.setAudiCnt(e.getChildText("audiCnt"));
-			wvo.setAudiInten(e.getChildText("audiInten"));
 			wvo.setRank(e.getChildText("rank"));
-			wvo.setRankInten(e.getChildText("rankInten"));
-			wvo.setRankOldAndNew(e.getChildText("rankOldAndNew"));
-			wvo.setRnum(e.getChildText("rnum"));
-			wvo.setSalesAcc(e.getChildText("salesAcc"));
-			wvo.setSalesAmt(e.getChildText("salesAmt"));
-			wvo.setSalesChange(e.getChildText("salesChange"));
-			wvo.setSalesInten(e.getChildText("salesInten"));
-			wvo.setSalesShare(e.getChildText("salesShare"));
-			wvo.setScrnCnt(e.getChildText("scrnCnt"));
-			wvo.setShowCnt(e.getChildText("showCnt"));
 			wvo.setOpenDt(e.getChildText("openDt"));
 			wvo.setMovieNm(e.getChildText("movieNm"));
 			wvo.setMovieCd(e.getChildText("movieCd"));
@@ -91,6 +79,7 @@ public class WeeklyRankController {
 			ar[i++] = wvo;
 			
 		}
+		
 		mv.addObject("ar", ar);
 		mv.setViewName("weekly_rank");
 		
