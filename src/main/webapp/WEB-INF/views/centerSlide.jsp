@@ -5,41 +5,48 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="description" content="">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Insert title here</title>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<style type="text/css">
-	.MultiCarousel { float: left; overflow: hidden; padding: 15px; width: 100%; position:relative; }
-    .MultiCarousel .MultiCarousel-inner { transition: 1s ease all; float: left; }
-    .MultiCarousel .MultiCarousel-inner .item { float: left; }
-    .MultiCarousel .MultiCarousel-inner .item > div { text-align: center; margin:90px; background:#f1f1f1; color:#666; height: 500px; width: 300px;}
-    .MultiCarousel .leftLst, .MultiCarousel .rightLst { position:absolute; border-radius:50%;top:calc(50% - 20px); }
-    .MultiCarousel .leftLst { left:0; }
-    .MultiCarousel .rightLst { right:0; }
-    .MultiCarousel .leftLst.over, .MultiCarousel .rightLst.over { pointer-events: none; background:#ccc; }
-</style>
+    <!-- Favicon -->
+    <link rel="icon" href="resources/img/core-img/favicon.ico">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="resources/style.css">
 </head>
 <body>
-	<div class="container" style="max-width: 100%; padding: 0 50px; position: relative;">
-		<div class="row">
-		<h1>오늘의 박스오피스</h1>
-			<div class="MultiCarousel" data-items="1,3,5,5" data-slide="1" id="MultiCarousel"  data-interval="1000">
-	            <div class="MultiCarousel-inner">
-	            <c:forEach var="vo" items="${dar }">
-	                <div class="item">
-	                    <div class="pad15">
-                    		<a href="javascript:goView('${vo.movieCd }')"  style="height:500px; width:300px;" ><img src="${vo.image }" border="0" alt="" style="height:500px;width:300px;"></a> 
-	                    	<p>${vo.rank}위 ${vo.movieNm }</p>
-	                    </div>
-	                </div>
-	            </c:forEach>    
-	            </div>
-	            <button class="btn btn-primary leftLst"><</button>
-	            <button class="btn btn-primary rightLst">></button>
-	        </div>
-		</div>
-	</div>
+	<div class="hero-area">
+        <!-- Hero Slides Area -->
+        <div class="hero-slides owl-carousel">
+            <!-- Single Slide -->
+            <c:forEach var="vo" items="${dar }">
+            <div class="single-hero-slide bg-img" style="background-image: url(${vo.image }); width: 400px; margin:70px auto;" >
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12">
+                            <div class="slide-content text-center">
+                                <div class="post-tag">
+                                    <a href="avascript:goView('${vo.movieCd }')" data-animation="fadeInUp">${vo.rank}위</a>
+                                </div>
+                                <h2 data-animation="fadeInUp" data-delay="250ms"><a href="avascript:goView('${vo.movieCd }')">${vo.movieNm }</a></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </c:forEach>  
+        </div>
+    </div>
+	<script src="resources/js/jquery-3.4.1.min.js"></script>
+	<script src="resources/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="resources/js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="resources/js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="resources/js/plugins.js"></script>
+    <!-- Active js -->
+    <script src="resources/js/active.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
     var itemsMainDiv = ('.MultiCarousel');

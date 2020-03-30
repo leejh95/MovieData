@@ -14,7 +14,6 @@
     <link rel="icon" href="resources/img/core-img/favicon.ico">
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/style.css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
     <!--  
@@ -86,7 +85,7 @@
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
-                        <a href="index.inc" class="original-logo"><img src="resources/img/core-img/logo.png" alt=""></a>
+                        <a href="index.inc" class="original-logo"><img src="resources/images/logo (1).png" alt=""></a>
                     </div>
                 </div>
             </div>
@@ -148,7 +147,7 @@
     </header>
  
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
-	    <script src="resources/js/jquery/jquery-2.2.4.min.js"></script>
+	<script src="resources/js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
     <script src="resources/js/popper.min.js"></script>
     <!-- Bootstrap js -->

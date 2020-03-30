@@ -252,7 +252,6 @@
 						 </c:if>
 					</tr>
 					</c:forEach>
-					
 				</tbody>	
 			</table>
 		</div>
@@ -325,6 +324,7 @@
     
 	function commDel(c_idx) {
 		var movieCd = $("#movieCd").val();
+		var m_idx = $("#m_idx").val();
 		var param = "c_idx="+encodeURIComponent(c_idx)+
 		"&movieCd="+encodeURIComponent(movieCd);
 		
