@@ -93,6 +93,10 @@
 		$("#include_center").load("opendt.inc");
 	}
 	
+	function goContact(){
+		$("#include_center").load("contact.inc");
+	}
+	
 	function goBoxOffice(){
 		
 		var msg = "<div id='include_calendar' ></div><br><br>";

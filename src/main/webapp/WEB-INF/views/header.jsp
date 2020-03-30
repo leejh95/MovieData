@@ -120,7 +120,7 @@
                                    
                                     <li><a href="javascript:goBoxOffice()">박스오피스</a></li>
                                    
-                                    <li><a href="contact.html">Contact</a></li>
+                                    <li><a href="javascript:goContact()">Contact</a></li>
                                 </ul>
 
                                 <!-- Search Form  -->

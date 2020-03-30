@@ -8,10 +8,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="description" content="">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Insert title here</title>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Favicon -->
+    <link rel="icon" href="resources/img/core-img/favicon.ico">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="resources/style.css">
 <style type="text/css">
 	
 	body{
@@ -256,7 +260,16 @@
 			</table>
 		</div>
 	</div>
-<script src="resources/js/jquery-3.4.1.min.js"></script>	
+	<script src="resources/js/jquery-3.4.1.min.js"></script>
+	<script src="resources/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="resources/js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="resources/js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="resources/js/plugins.js"></script>
+    <!-- Active js -->
+    <script src="resources/js/active.js"></script>
 <script>
 	function commSave(frm) {
 		var content = $("#content").val();
