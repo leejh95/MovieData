@@ -5,40 +5,46 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="description" content="">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Insert title here</title>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<link href="resources/css/bootstrap.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<style type="text/css">
-
-
-</style>
+    <!-- Favicon -->
+    <link rel="icon" href="resources/img/core-img/favicon.ico">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="resources/style.css">
 </head>
 <body>
-
-		<div class='row'>
-			<div class='col-lg-4 col-md-6 col-sm-12 p-3'>
-				<c:forEach var="vo" items="${dar }">
-						<div class='card-body'>
-							<li class="item"><a
-								href="javascript:goView('${vo.movieCd }')"
-								style="height: 300px; width: 187px;" class="thumb"><img
-									src="${vo.image }" border="0" alt=""
-									style="height: 300px; width: 187px;"></a>
-								<div class="cont">
-									<strong title="${rvo.movieNm }"> <a class="title"
-										href="javascript:goView('${vo.movieCd }')">${vo.rank}위
-											${vo.movieNm }</a>
-									</strong>
-									<ul class="info">
-										<li class="info2"><pre class="opend"> 개봉일 </pre>${vo.openDt }</li>
-									</ul>
-								</div></li>
-						</div>
-				</c:forEach>
-			</div>
-		</div>
-
+    <div class="blog-wrapper section-padding-100 clearfix">
+        <div class="container">
+            <div class="row align-items-end">
+                <!-- Single Blog Area -->
+                <c:forEach var="vo" items="${dar }">
+                  <div class="col-12 col-lg-4">
+                    <div class="single-blog-area clearfix mb-100">
+                        <!-- Blog Content -->
+                        <div class="single-blog-content" style="text-align:center;">
+                        	<h4><a href="javascript:goView('${vo.movieCd }')" class="post-headline" >${vo.rank}위</a></h4>
+                            <a href="javascript:goView('${vo.movieCd }')" style="height: 300px; width: 187px; margin: 0 auto;" class="thumb">
+                            	<img src="${vo.image }" border="0" alt="" style="height: 300px; width: 187px;">
+                           	</a>
+                           	<h5><a href="javascript:goView('${vo.movieCd }')" class="post-headline">${vo.movieNm }</a></h5>
+                           	<h5>개봉일 ${vo.openDt }</a></h5>
+                        </div>
+                    </div>
+                </div>
+                </c:forEach>
+            </div>
+    </div>
+	<script src="resources/js/jquery-3.4.1.min.js"></script>
+	<script src="resources/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="resources/js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="resources/js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="resources/js/plugins.js"></script>
+    <!-- Active js -->
+    <script src="resources/js/active.js"></script>
 </body>
 </html>

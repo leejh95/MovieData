@@ -10,10 +10,8 @@
 	width: 100%;
 	height: 800px;
 	margin-top: 50px;
-	border: 1px solid red;
 }
 #include_footer{
-	border: 1px solid blue;
 }
 #include_header{
 }
@@ -46,14 +44,13 @@
 .tabCon{
   display:none; 
   width: 1000px;
-  height: 1800px;
   text-align:left; 
   position:absolute; 
   top:60px; 
   left:0;
-  box-sizing: border-box; 
-  border : 1px solid #ff0000;
-  border: 1px solid blue;
+  box-sizing: border-box;
+  border-right: 1px solid #dedede;
+  border-left:  1px solid #dedede;
 }
 .btnCon:target  {
   background : #ccc;
@@ -109,7 +106,7 @@
 		msg += "<li id='tab3' class='btnCon'><a class='btn' href='#tab3'>개봉예정일</a>";
 		msg += "<div class='tabCon'><div id='include_opendt' ></div></div></li>";
 		msg += "</ul></div>";
-		$("#include_center").css("height", "2400px");
+		$("#include_center").css("height", "3000px");
 		$("#include_center").html(msg);
 		$("#include_calendar").load("calendar.inc");
 		$("#include_daily_rank").load("dailyRank.inc");
