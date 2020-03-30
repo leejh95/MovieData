@@ -7,18 +7,16 @@
 <meta name="description" content="">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Insert title here</title>
     <!-- Favicon -->
     <link rel="icon" href="resources/img/core-img/favicon.ico">
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/style.css">
+<title>Insert title here</title>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <style>
 	.kmap{
 		width: 100%;
-		height: 100%;
 	}
 	.kmap2{
 		width: 1100px;
@@ -151,13 +149,17 @@
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a079f1d5c767f5ae2c08726bfaeb62d9"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a079f1d5c767f5ae2c08726bfaeb62d9&libraries=LIBRARY"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a079f1d5c767f5ae2c08726bfaeb62d9&libraries=drawing"></script>
-   <script src="resources/js/jquery/jquery-2.2.4.min.js"></script>
-    <!-- Popper js -->
+	<script src="resources/js/jquery-3.4.1.min.js"></script>
+	<script src="resources/js/jquery/jquery-2.2.4.min.js"></script>
+	<!-- Popper js -->
     <script src="resources/js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="resources/js/bootstrap.min.js"></script>
     <!-- Plugins js -->
     <script src="resources/js/plugins.js"></script>
     <!-- Active js -->
     <script src="resources/js/active.js"></script>
+	
 <script>
 	$(document).ready(function() {
 	    $('[id^=detail-]').hide();
