@@ -34,7 +34,14 @@ public class SignUpController {
 	}
 	
 	@RequestMapping("/signUpForm.inc")
-	public String signUpForm(MovieMemberVO vo) {
+	public String signUpForm(String id, String pw, String name, String email, String[] phone) {
+		String ph = phone[0] + "-" + phone[1] + "-" + phone[2];
+		MovieMemberVO vo = new MovieMemberVO();
+		vo.setId(id);
+		vo.setPw(pw);
+		vo.setName(name);
+		vo.setEmail(email);
+		vo.setPhone(ph);
 		boolean chk = m_dao.signUp(vo);
 		return "index";
 	}

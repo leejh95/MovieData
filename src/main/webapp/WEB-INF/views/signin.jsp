@@ -3,66 +3,75 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
+	<meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+   	<!-- Favicon -->
+    <link rel="icon" href="resources/img/core-img/favicon.ico">
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
-
-    <link rel="stylesheet" href="css/style.css">
-
-    <link rel="icon" href="Favicon.png">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="resources/style.css">
     <title>로그인</title>
 </head>
 <body>
-	<main class="login-form">
-		<div class="cotainer">
-			<div class="row justify-content-center">
-				<div class="col-md-8">
-					<div class="card">
-
-						<div class="card-header">Login</div>
-
-						<div class="card-body">
-							<form action="signInForm.inc" method="post">
-								<div class="form-group row">
-									<label for="email_address"
-										class="col-md-4 col-form-label text-md-right">ID</label>
-									<div class="col-md-6">
-										<input type="text" id="id" class="form-control" name="id"
-											required autofocus>
-									</div>
-								</div>
-
-								<div class="form-group row">
-									<label for="password"
-										class="col-md-4 col-form-label text-md-right">Password</label>
-									<div class="col-md-6">
-										<input type="password" id="pw" class="form-control" name="pw"
-											required>
-									</div>
-								</div>
-								
-								<div class="col-md-6 offset-md-4">
-									<c:if test="${isFailed}">
-										<font color="red">아이디 또는 비밀번호가 올바르지 않습니다.</font><br><br>
-									</c:if>
-									<button type="submit" class="btn btn-primary">로그인</button>
-								</div>
-							</form>
-						</div>
-						
-					</div>
-				</div>
-			</div>
-		</div>
-	</main>
+	<!-- ##### Contact Area Start ##### -->
+    <section class="contact-area section-padding-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <!-- Contact Form Area -->
+                <div class="col-12 col-md-10 col-lg-9">
+                    <div class="contact-form">
+                        <h5>Sign in</h5>
+                        <!-- Contact Form -->
+                        <form action="signInForm.inc" method="post">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="group">
+                                        <input type="text" name="id" id="id" required>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>ID</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="group">
+                                        <input type="password" name="pw" id="pw" required>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>Password</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn original-btn">로그인</button>
+			                        <c:if test="${isFailed }">
+			                        	<br/><br/>
+			                        	&nbsp;&nbsp;<font color="#ff6363">ID 또는 비밀번호가 맞지 않습니다.</font>
+			                        </c:if>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Contact Area End ##### -->
+	
+	<!-- jQuery (Necessary for All JavaScript Plugins) -->
+    <script src="resources/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="resources/js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="resources/js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="resources/js/plugins.js"></script>
+    <!-- Active js -->
+    <script src="resources/js/active.js"></script>
+    <!-- Google Map js -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwuyLRa1uKNtbgx6xAJVmWy-zADgegA2s"></script>
+    <script src="resources/js/map-active.js"></script>
 
 </body>
 </html>
