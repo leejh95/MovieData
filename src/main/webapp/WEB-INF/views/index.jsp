@@ -99,8 +99,8 @@
 		$("#include_center").css("height", "1200px");
 	}
 	
-	function goMypage(){
-		$("#include_center").load("profile.inc");
+	function goMypage(m_idx){
+		$("#include_center").load("profile.inc?m_idx="+m_idx);
 		$("#include_center").css("height", "1200px");
 	}
 	

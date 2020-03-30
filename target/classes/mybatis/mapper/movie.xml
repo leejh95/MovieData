@@ -16,8 +16,8 @@
 
 	<!-- 회원 가입 -->
 	<insert id="sign_up" parameterType="mybatis.vo.MovieMemberVO">
-		insert into Movie_Mem(m_idx, id, pw, name, email, phone, reg_date, status, sns_id, sns_type)
-		values(Movie_Mem_seq.nextval, #{id}, #{pw}, #{name}, #{email}, #{phone}, sysdate, 0, #{sns_id}, #{sns_type})
+		insert into Movie_Mem(m_idx <if test="id != null">, id</if> <if test="pw != null">, pw</if>, name, email <if test="phone != null">, phone</if>, reg_date, status <if test="sns_id != null">, sns_id</if> <if test="sns_type != null">, sns_type</if>)
+		values(Movie_Mem_seq.nextval <if test="id != null">, #{id}</if> <if test="pw != null">, #{pw}</if>, #{name}, #{email} <if test="phone != null">, #{phone}</if>, sysdate, 0 <if test="sns_id != null">, #{sns_id}</if> <if test="sns_type != null">, #{sns_type}</if>)
 	</insert>
 	
 	<!-- 댓글 쓰기  -->

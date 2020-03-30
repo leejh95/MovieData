@@ -65,7 +65,7 @@
                         <div class="top-social-area">
                         <c:if test="${sessionScope.memVO ne null}">
 							  <span>${sessionScope.memVO.name }님 환영합니다!</span>
-					          <a href="javascript:goMypage()" data-toggle="tooltip" data-placement="bottom" title="MyPage"><i class="fas fa-user-circle" ></i></a>
+					          <a href="javascript:goMypage('${sessionScope.memVO.m_idx }')" data-toggle="tooltip" data-placement="bottom" title="MyPage"><i class="fas fa-user-circle" ></i></a>
 					          <a href="javascript:location.href='signout.inc'" data-toggle="tooltip" data-placement="bottom" title="SignOut"><i class="fas fa-sign-out-alt"></i></a>
 						</c:if>	
 						<c:if test="${sessionScope.memVO eq null}">

@@ -11,14 +11,25 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import mybatis.dao.MovieDAO;
+import mybatis.vo.MovieMemberVO;
 
 @Controller
 public class NaverLoginContlloer {
 
+	@Autowired
+	MovieDAO m_dao;
+	
+	@Autowired
+	HttpSession session;
 	
 	@RequestMapping("/naver.inc")
 	public String naver() {
@@ -84,7 +95,21 @@ public class NaverLoginContlloer {
 		        	String id = (String) response.get("id");
 		        	String email = (String) response.get("email");
 		        	
+		        	MovieMemberVO vo = m_dao.signInNaver(id, "naver");
 		        	
+		        	if(vo != null) {
+		        		//이미 방문하여 DB에 남아있는경우
+		        		session.setAttribute("memVO", vo);
+		        	}else {
+		        		// 처음온 경우
+		        		vo = new MovieMemberVO();
+		        		vo.setEmail(email);
+		        		vo.setName(name);
+		        		vo.setSns_id(id);
+		        		vo.setSns_type("naver"); 
+		        		m_dao.signUp(vo);
+		        		session.setAttribute("memVO", vo);
+		        	}
 		        	//System.out.println(response);
 		        }
 		        
