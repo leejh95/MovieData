@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="resources/style.css">
 </head>
 <body>
-	<div class="hero-area">
+	<div class="hero-area"  style="background-image: url('resources/images/movie-296751_1280.png'); background-repeat: no-repeat; background-size: 100% 100%; ">
         <!-- Hero Slides Area -->
         <div class="hero-slides owl-carousel">
             <!-- Single Slide -->
