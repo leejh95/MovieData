@@ -101,7 +101,9 @@
         </tr>
     </table>
     </div>
-    </c:forEach> 
+    </c:forEach>
+    <div id="chart_div" style="width: 1000px; margin: 50px auto; padding: 5px;"></div>
+     
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script src="resources/js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
@@ -112,8 +114,22 @@
     <script src="resources/js/plugins.js"></script>
     <!-- Active js -->
     <script src="resources/js/active.js"></script>
+    <script src="//www.amcharts.com/lib/4/core.js"></script>
+	<script src="//www.amcharts.com/lib/4/charts.js"></script>
+	<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
+	
+	$.ajax({
+        url: "http://192.168.0.117:5000/dailyGraph.inc?dTime=${yesterday}",
+        type: 'post',
+        dataType: "json"
+     }).done(function(data){
+        //console.log("확인")
+        viewChart(data);
+     });
+	
+	
     var itemsMainDiv = ('.MultiCarousel');
     var itemsDiv = ('.MultiCarousel-inner');
     var itemWidth = "";
@@ -219,6 +235,43 @@ $(document).ready(function () {
     }
 
 });
+
+	function viewChart(json_data){
+		
+		//$("#chart_div").text(json_data);
+		//에니메이트
+		am4core.useTheme(am4themes_animated);
+		
+		var chart = am4core.create("chart_div", am4charts.XYChart);	
+		
+		chart.data = json_data;
+		
+		// x축 만들기
+		var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+		categoryAxis.dataFields.category = "movieNm";
+		categoryAxis.renderer.labels.template.fontSize = 15;
+		categoryAxis.renderer.minGridDistance = 5;
+		
+		// y축 만들기
+		var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+		
+		// Series 만들기
+		var series = chart.series.push(new am4charts.ColumnSeries());			
+		series.dataFields.valueY = "audiCnt";
+		series.dataFields.categoryX = "movieNm";
+		
+		series.columns.template.tooltipText = "[bold]{valueY}[/]";
+		series.columns.template.fill = am4core.color("#6e6eff");
+		series.columns.template.fillOpacity = 0.7;
+		series.columns.template.stroke = am4core.color("#ff0000");
+		
+		var columnTemplate = series.columns.template;
+		columnTemplate.strokeWidth = 2;
+		columnTemplate.strokeOpacity = 0.7;
+		columnTemplate.width = 80;
+		//----추가 컨트롤
+         chart.legend = new am4charts.Legend();
+	}
 </script>
 </body>
 </html>

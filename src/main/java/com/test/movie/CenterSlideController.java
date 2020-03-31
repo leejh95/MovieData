@@ -84,7 +84,7 @@ public class CenterSlideController {
 		
 		String date = year+"년 "+month+"월 "+day+"일";
 				
-		
+		mv.addObject("yesterday", yesterday);
 		mv.addObject("date", date);
 		mv.addObject("dar", dar);
 		mv.setViewName("centerSlide");
