@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +18,7 @@
    <input type="hidden" id="m_idx" value="${vo.m_idx }">
     <div class="col-md-8">
       <section>     
-        <h1 class="entry-title"><span>${vo.id }님의 프로필</span> </h1>
+        <h1 class="entry-title"><span>${vo.name }님의 프로필</span> </h1>
         <hr>
        <form class="form-horizontal" method="post" name="update" id="update">
        
@@ -52,8 +54,10 @@
           </div>
         </div>
       </form>
+      </section>
     </div>
-    
+
+	 <c:if test="${vo.sns_id eq null }">
     <div class="col-md-8">
       <section>     
        <hr>
@@ -85,8 +89,9 @@
           </div>
         </div>
       </form>
+      </section>
     </div>
-    
+    </c:if>
     <div class="col-md-8">
       <section>     
        <hr>
@@ -108,6 +113,7 @@
           </div>
         </div>
       </form>
+      </section>
     </div>
 </div>
 </div>
