@@ -18,8 +18,11 @@
     <div class="blog-wrapper section-padding-100 clearfix">
         <div class="container">
             <div class="row align-items-end">
-                <!-- Single Blog Area -->
+            	<div class="col-12 col-lg-12">
+            		<h3>${dTime.substring(0,4 }년 ${dTime.substring(4,6)}월 ${dTime.substring(6)}일</h3>
+            	</div>
                 <c:forEach var="vo" items="${ar }">
+                <!-- Single Blog Area -->
                 <div class="col-12 col-lg-4">
                     <div class="single-blog-area clearfix mb-100">
                         <!-- Blog Content -->

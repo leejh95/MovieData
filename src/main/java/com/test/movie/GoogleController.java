@@ -19,24 +19,26 @@ public class GoogleController {
 	@Autowired
 	HttpSession session;
 
-	@RequestMapping("google.inc")
+	@RequestMapping("/google.inc")
 	public String signin() {
 		
 		return "google";
 	}
 	
-	@RequestMapping("googlelogin.inc")
+	@RequestMapping("/googlelogin.inc")
 	public String googlelogin(MovieMemberVO mvo) {
 		
-		ModelAndView mv = new ModelAndView();
+		System.out.println("fdsafdsa");
 		
 		MovieMemberVO vo = m_dao.signInNaver(mvo.getSns_id(), mvo.getSns_type());
+		
 		if(vo != null) {
     		//이미 방문하여 DB에 남아있는경우
     		session.setAttribute("memVO", vo);
     	}else {
     		// 처음온 경우
     		m_dao.signUp(mvo);
+    		vo = m_dao.signInNaver(mvo.getSns_id(), mvo.getSns_type());
     		session.setAttribute("memVO", vo);
     	}
 

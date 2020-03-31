@@ -80,6 +80,7 @@ public class WeeklyRankController {
 			
 		}
 		
+		mv.addObject("dTime", dTime);
 		mv.addObject("ar", ar);
 		mv.setViewName("weekly_rank");
 		

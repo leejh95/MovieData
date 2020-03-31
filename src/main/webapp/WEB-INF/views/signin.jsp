@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <head>
+    <meta name = "google-signin-client_id"content = "887841589622-j1dblm1i54bkud8gji6a2nm4dv6k778f.apps.googleusercontent.com">
 	<meta charset="UTF-8">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,10 +11,22 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
    	<!-- Favicon -->
     <link rel="icon" href="resources/img/core-img/favicon.ico">
+	<link rel="stylesheet" href="css/style.css">
 
+    <link rel="icon" href="Favicon.png">
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/style.css">
     <title>로그인</title>
+    
+    <!-- Required meta tags -->
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    
 </head>
 <body>
 	<!-- ##### Contact Area Start ##### -->
@@ -50,11 +63,22 @@
 			                        	&nbsp;&nbsp;<font color="#ff6363">ID 또는 비밀번호가 맞지 않습니다.</font>
 			                        </c:if>
                                 </div>
-                                <div class="col-12">
-                                	<a href="${apiURL }"><img width="120" height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
-                                </div>
+                                
+                                
+                                
+								
                             </div>
                         </form>
+                        <div class="col-12">
+                           	<a href="${apiURL }"><img width="120" height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
+                        </div>
+                        <form action="googlelogin.inc" method="post" name="googleform" id="googleform">
+							<div class="g-signin2" data-onsuccess="onSignIn"></div>
+							<input type="hidden" name="name" id="name"/>
+							<input type="hidden" name="email" id="email"/>
+							<input type="hidden" name="sns_id" id="sns_id"/>
+							<input type="hidden" name="sns_type" id="sns_type"/>
+						</form>
                     </div>
                 </div>
             </div>
@@ -63,7 +87,7 @@
     <!-- ##### Contact Area End ##### -->
 	
 	<!-- jQuery (Necessary for All JavaScript Plugins) -->
-    <script src="resources/js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="resources/js/jquery-3.4.1.min.js"></script>
     <!-- Popper js -->
     <script src="resources/js/popper.min.js"></script>
     <!-- Bootstrap js -->
@@ -75,6 +99,23 @@
     <!-- Google Map js -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwuyLRa1uKNtbgx6xAJVmWy-zADgegA2s"></script>
     <script src="resources/js/map-active.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script type="text/javascript">
+	    function onSignIn(googleUser) {
+			  var profile = googleUser.getBasicProfile();
+			  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+			  console.log('Name: ' + profile.getName());
+			  console.log('Image URL: ' + profile.getImageUrl());
+			  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+			  
+			  $("#sns_id").val(profile.getId());
+			  $("#name").val(profile.getName());
+			  $("#email").val(profile.getEmail());
+			  $("#sns_type").val("google");
+			  
+			  googleform.submit();
+		}
+    </script>
 
 </body>
 </html>

@@ -259,6 +259,8 @@
 				</tbody>	
 			</table>
 		</div>
+		<br><br><br><br>
+		<div id="chart_div"></div>
 	</div>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script src="resources/js/jquery/jquery-2.2.4.min.js"></script>
@@ -270,7 +272,67 @@
     <script src="resources/js/plugins.js"></script>
     <!-- Active js -->
     <script src="resources/js/active.js"></script>
+    <script src="//www.amcharts.com/lib/4/core.js"></script>
+	<script src="//www.amcharts.com/lib/4/charts.js"></script>
+	<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 <script>
+	$(function(){
+		
+		$.ajax({
+			url: "http://192.168.0.117:5000/audiAcc?movieCd=20200329",
+			type: 'post',
+			dataType: "json"
+		}).done(function(data){
+			viewChart(data);
+		});
+		
+	});
+	
+	function viewChart(json_data){
+		
+		$("#chart_div").text(json_data);
+		
+		/*
+		
+		am4core.useTheme(am4themes_animated);
+		
+		var chart = am4core.create(
+				"chart_div", am4charts.XYChart);
+		
+		chart.data = json_data;
+		
+		// x축 만들기
+		var categoryAxis = 
+		chart.xAxes.push(new am4charts.CategoryAxis());
+		categoryAxis.dataFields.category = "city";
+		
+		categoryAxis.renderer.labels.template.fontSize = 12;
+		categoryAxis.renderer.minGridDistance = 30;
+		
+		// y축 만들기
+		var valueAxis = 
+		chart.yAxes.push(new am4charts.ValueAxis());
+		
+		//Series 만들기
+		var series = chart.series.push(
+				new am4charts.ColumnSeries());
+		series.dataFields.categoryX = "city";
+		series.dataFields.valueY = "counts";
+		
+		series.columns.template.tooltipText = 
+			"[bold]{valueY}[/]";
+		series.columns.template.fill = 
+			am4core.color('#6e6eff');
+		series.columns.template.fillOpacity = 0.7;
+		series.columns.template.stroke = 
+			am4core.color('#ff0000');
+		
+		var columnTemplate = series.columns.template;
+		columnTemplate.strokeWidth = 1;
+		columnTemplate.strokeOpacity = .7
+		*/
+	}
+
 	function commSave(frm) {
 		var content = $("#content").val();
 		var m_idx = $("#m_idx").val();
