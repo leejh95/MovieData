@@ -97,7 +97,7 @@ public class NaverLoginContlloer {
 		        	
 		        	MovieMemberVO vo = m_dao.signInNaver(id, "naver");
 		        	
-		        	if(vo != null) {
+		        	if(vo != null) { 
 		        		//이미 방문하여 DB에 남아있는경우
 		        		session.setAttribute("memVO", vo);
 		        	}else {
