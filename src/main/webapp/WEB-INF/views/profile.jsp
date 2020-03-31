@@ -57,12 +57,12 @@
       </section>
     </div>
 
-	 <c:if test="${vo.sns_id eq null }">
+	 
     <div class="col-md-8">
       <section>     
+      <c:if test="${vo.sns_id eq null }">
        <hr>
        <form class="form-horizontal" method="post" name="updatePw" id="updatePw">
-       
         <div class="form-group">
           <label class="control-label col-sm-3">새로운 비밀번호 <span class="text-danger">*</span></label>
           <div class="col-md-5 col-sm-8">
@@ -82,16 +82,18 @@
            </div>   
           </div>
         </div>
-        
         <div class="form-group">
           <div class="col-xs-offset-3 col-xs-10">
             <input type="button" value="변경하기" onclick="updatePW(this.form)" class="btn btn-primary">
           </div>
         </div>
+        </c:if>
+        <c:if test="${vo.sns_id ne null }">
+        </c:if>
       </form>
       </section>
     </div>
-    </c:if>
+    
     <div class="col-md-8">
       <section>     
        <hr>
