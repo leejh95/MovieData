@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -59,9 +60,13 @@ public class CenterSlideController {
 			vo.setMovieNm(e.getChildText("movieNm"));
 			vo.setOpenDt(e.getChildText("openDt"));
 			vo.setRankInten(e.getChildText("rankInten"));
-			vo.setSalesAcc(e.getChildText("salesAcc"));
 			vo.setAudiAcc(e.getChildText("audiAcc"));
 			
+			DecimalFormat fm = new DecimalFormat("###,###,###,###");
+			Double dbdb = Double.parseDouble(e.getChildText("salesAcc"));
+			String ch = fm.format(dbdb);
+			//System.out.println(ch);
+			vo.setSalesAcc(ch);
 			//String ddd = e.getChildText("openDt").substring(0, 4);
 			
 			try {
@@ -73,7 +78,14 @@ public class CenterSlideController {
 			dar[i++] = vo;
 		}
 		
+		String year = yesterday.substring(0, 4);
+		String month = yesterday.substring(4, 6);
+		String day = yesterday.substring(6, 8);
 		
+		String date = year+"년 "+month+"월 "+day+"일";
+				
+		
+		mv.addObject("date", date);
 		mv.addObject("dar", dar);
 		mv.setViewName("centerSlide");
 		

@@ -37,12 +37,12 @@
             </c:forEach>  
         </div>
     </div>
-    <h4 style="text-align: center">DailyBoxOffice</h4>
+    <h4 style="text-align: center">DailyBoxOffice (${date })</h4>
     <table style="width: 1000px; height:50px; margin: 0 auto; padding: 5px;">
     	<colgroup>
     		<col width="50px;" />
     		<col width="*;" />
-    		<col width="130px;" />
+    		<col width="180px;" />
     		<col width="130px;" />
     		<col width="130px;" />
     	</colgroup>
@@ -60,34 +60,42 @@
     	<colgroup>
     		<col width="50px;" />
     		<col width="*;" />
-    		<col width="130px;" />
+    		<col width="180px;" />
     		<col width="130px;" />
     		<col width="130px;" />
     	</colgroup>
     	<tr >
     		<td style="padding: 0; height:50px;">
-		        <div class="author-thumbnail" style="padding: 0; height:50px;">
+		        <div class="author-thumbnail" style="padding: 0; height:50px; margin: 10px auto;">
 		            ${rvo.rank}위
 		        </div>
 		    </td>
 		    <td style="padding: 0; height:50px;">    
-		        <div class="author-info" style="padding: 0; height:50px;">
+		        <div class="author-info" style="padding: 0; height:50px; margin: 10px auto;">
 		            <h4><a href="javascript:goView('${vo.movieCd }')" class="author-name">${rvo.movieNm }</a></h4>
 		        </div>
 		    </td>
 		    <td style="padding: 0; height:50px; text-align: center;">
-		        <div class="author-info" style="padding: 0; height:50px;">
-		            <span class="author-role">${rvo.salesAcc }원</span>
+		        <div class="author-info" style="padding: 0; height:50px; margin: 10px auto;">
+		            <span class="author-role" style="height:50px;">${rvo.salesAcc }원</span>
+		        </div>
+		    </td>    
+		    <td style="padding: 0; height:50px; text-align: center;">    
+		        <div class="author-info" style="padding: 0; height:50px; margin: 10px auto;">
+		            <span class="author-role" >${rvo.audiAcc }명</span>
 		        </div>
 		    </td>    
 		    <td style="padding: 0; height:50px; text-align: center;">    
 		        <div class="author-info" style="padding: 0; height:50px;">
-		            <span class="author-role">${rvo.audiAcc }명</span>
-		        </div>
-		    </td>    
-		    <td style="padding: 0; height:50px; text-align: center;">    
-		        <div class="author-info" style="padding: 0; height:50px;">
-		            <span class="author-role">${rvo.rankInten }</span>
+		        <c:if test="${rvo.rankInten > 0}">
+		            <span class="author-role" style="color:blue; margin: 10px auto;">↑${rvo.rankInten }</span>
+		        </c:if>
+		        <c:if test="${rvo.rankInten < 0}">
+		            <span class="author-role" style="color:red; margin: 10px auto;">↓${rvo.rankInten }</span>
+		        </c:if>
+		        <c:if test="${rvo.rankInten eq 0}">
+		            <span class="author-role" style="color:black; margin: 10px auto;">-</span>
+		        </c:if>
 		        </div>
 		    </td>    
         </tr>
