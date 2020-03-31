@@ -25,9 +25,39 @@ public class DailyVO {
 					movieCd,
 					movieNm,
 					openDt,
-					image;
+					image,
+					rankInten,
+					salesAcc,
+					audiAcc;
+	 
+	 
+	 
 
 	 
+	public String getRankInten() {
+		return rankInten;
+	}
+
+	public void setRankInten(String rankInten) {
+		this.rankInten = rankInten;
+	}
+
+	public String getSalesAcc() {
+		return salesAcc;
+	}
+
+	public void setSalesAcc(String salesAcc) {
+		this.salesAcc = salesAcc;
+	}
+
+	public String getAudiAcc() {
+		return audiAcc;
+	}
+
+	public void setAudiAcc(String audiAcc) {
+		this.audiAcc = audiAcc;
+	}
+
 	public String getImage() {
 		return image;
 	}

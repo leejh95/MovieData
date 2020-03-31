@@ -26,9 +26,9 @@
                         <div class="col-12">
                             <div class="slide-content text-center">
                                 <div class="post-tag">
-                                    <a href="avascript:goView('${vo.movieCd }')" data-animation="fadeInUp">${vo.rank}위</a>
+                                    <a href="javascript:goView('${vo.movieCd }')" data-animation="fadeInUp">${vo.rank}위</a>
                                 </div>
-                                <h2 data-animation="fadeInUp" data-delay="250ms"><a href="avascript:goView('${vo.movieCd }')">${vo.movieNm }</a></h2>
+                                <h2 data-animation="fadeInUp" data-delay="250ms"><a href="javascript:goView('${vo.movieCd }')">${vo.movieNm }</a></h2>
                             </div>
                         </div>
                     </div>
@@ -37,6 +37,63 @@
             </c:forEach>  
         </div>
     </div>
+    <h4 style="text-align: center">DailyBoxOffice</h4>
+    <table style="width: 1000px; height:50px; margin: 0 auto; padding: 5px;">
+    	<colgroup>
+    		<col width="50px;" />
+    		<col width="*;" />
+    		<col width="130px;" />
+    		<col width="130px;" />
+    		<col width="130px;" />
+    	</colgroup>
+    	<tr style="text-align: center">
+    		<td style="padding: 0; height:50px;">순위</td>
+    		<td style="padding: 0; height:50px;">제목</td>
+    		<td style="padding: 0; height:50px;">매출액</td>
+    		<td style="padding: 0; height:50px;">관객수</td>
+    		<td style="padding: 0; height:50px;">증감률</td>
+    	</tr>
+    </table>
+    <c:forEach var="rvo" items="${dar }">
+    <div class="blog-post-author mt-100 d-flex" style="width: 1000px; height:50px; margin: 0 auto; padding: 5px;">
+    <table style="width: 1000px; height:50px;">
+    	<colgroup>
+    		<col width="50px;" />
+    		<col width="*;" />
+    		<col width="130px;" />
+    		<col width="130px;" />
+    		<col width="130px;" />
+    	</colgroup>
+    	<tr >
+    		<td style="padding: 0; height:50px;">
+		        <div class="author-thumbnail" style="padding: 0; height:50px;">
+		            ${rvo.rank}위
+		        </div>
+		    </td>
+		    <td style="padding: 0; height:50px;">    
+		        <div class="author-info" style="padding: 0; height:50px;">
+		            <h4><a href="javascript:goView('${vo.movieCd }')" class="author-name">${rvo.movieNm }</a></h4>
+		        </div>
+		    </td>
+		    <td style="padding: 0; height:50px; text-align: center;">
+		        <div class="author-info" style="padding: 0; height:50px;">
+		            <span class="author-role">${rvo.salesAcc }원</span>
+		        </div>
+		    </td>    
+		    <td style="padding: 0; height:50px; text-align: center;">    
+		        <div class="author-info" style="padding: 0; height:50px;">
+		            <span class="author-role">${rvo.audiAcc }명</span>
+		        </div>
+		    </td>    
+		    <td style="padding: 0; height:50px; text-align: center;">    
+		        <div class="author-info" style="padding: 0; height:50px;">
+		            <span class="author-role">${rvo.rankInten }</span>
+		        </div>
+		    </td>    
+        </tr>
+    </table>
+    </div>
+    </c:forEach> 
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script src="resources/js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->

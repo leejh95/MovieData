@@ -58,6 +58,9 @@ public class CenterSlideController {
 			vo.setMovieCd(e.getChildText("movieCd"));
 			vo.setMovieNm(e.getChildText("movieNm"));
 			vo.setOpenDt(e.getChildText("openDt"));
+			vo.setRankInten(e.getChildText("rankInten"));
+			vo.setSalesAcc(e.getChildText("salesAcc"));
+			vo.setAudiAcc(e.getChildText("audiAcc"));
 			
 			//String ddd = e.getChildText("openDt").substring(0, 4);
 			

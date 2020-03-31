@@ -9,7 +9,7 @@
 <style type="text/css">
 #include_center{
 	width: 100%;
-	height: 800px;
+	height: 1500px;
 	margin-top: 50px;
 }
 #include_footer{
@@ -30,7 +30,7 @@
 }
 .tabmenu>ul>li{
   display:  inline-block;
-  width:333px; 
+  width:499px; 
   float:left;  
   text-align:center; 
   background :#f9f9f9;
@@ -110,6 +110,11 @@
 		
 	}
 	
+	function goSignup(){
+		$("#include_center").load("signUp.inc");
+		$("#include_center").css("height", "1200px");
+	}
+	
 	function goBoxOffice(){
 		
 		var msg = "<div id='include_calendar' ></div><br><br>";
@@ -120,15 +125,12 @@
 		msg += "<li id='tab2' class='btnCon'>";
 		msg += "<a class='btn' href='#tab2'>주간 박스오피스</a>";
 		msg += "<div class='tabCon'><div id='include_weekly_rank' ></div></div></li>";
-		msg += "<li id='tab3' class='btnCon'><a class='btn' href='#tab3'>개봉예정일</a>";
-		msg += "<div class='tabCon'><div id='include_opendt' ></div></div></li>";
 		msg += "</ul></div>";
 		$("#include_center").css("height", "3000px");
 		$("#include_center").html(msg);
 		$("#include_calendar").load("calendar.inc");
 		$("#include_daily_rank").load("dailyRank.inc");
 		$("#include_weekly_rank").load("weekly_rank.inc");
-		$("#include_opendt").load("opendt.inc");
 		location.href = "#tab1";
 	}
 	

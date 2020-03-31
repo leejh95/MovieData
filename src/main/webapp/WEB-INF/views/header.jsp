@@ -52,11 +52,6 @@
                     <div class="col-12 col-sm-8">
                         <div class="breaking-news-area">
                             <div id="breakingNewsTicker" class="ticker">
-                                <ul>
-                                    <li><a href="#">나비보벳따우~</a></li>
-                                    <li><a href="#">뽀보베띠~</a></li>
-                                    <li><a href="#">빠삐베호~</a></li>
-                                </ul>
                             </div>
                         </div>
                     </div>
@@ -69,9 +64,8 @@
 					          <a href="javascript:location.href='signout.inc'" data-toggle="tooltip" data-placement="bottom" title="SignOut"><i class="fas fa-sign-out-alt"></i></a>
 						</c:if>	
 						<c:if test="${sessionScope.memVO eq null}">
-         					<a href="#" data-toggle="tooltip" data-placement="bottom" title="google"><i class="fa fa-google" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                             <a href="javascript:goSignin()" data-toggle="tooltip" data-placement="bottom" title="Login"><i class="fas fa-sign-in-alt"></i></a>
+                            <a href="javascript:goSignup()" data-toggle="tooltip" data-placement="bottom" title="Registry"><i class="fas fa-registered"></i></a>
 						</c:if>	
                         </div>
                     </div>
@@ -120,6 +114,12 @@
                                     <li><a href="index.inc">Home</a></li>
                                    
                                     <li><a href="javascript:goBoxOffice()">박스오피스</a></li>
+                                    <li><a href="#">게시판</a>
+                                        <ul class="dropdown">
+                                            <li><a href="#">자유게시판</a></li>
+                                            <li><a href="#">리뷰게시판</a></li>
+                                        </ul>
+                                    </li>
                                    
                                     <li><a href="javascript:goContact()">Contact</a></li>
                                 </ul>
