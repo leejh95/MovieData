@@ -69,6 +69,9 @@
 <div id="include_footer"></div>
 
 <script src="resources/js/jquery-3.4.1.min.js"></script>
+<script src="//www.amcharts.com/lib/4/core.js"></script>
+<script src="//www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#include_header").load("header.inc");
@@ -126,7 +129,7 @@
 		msg += "<a class='btn' href='#tab2'>주간 박스오피스</a>";
 		msg += "<div class='tabCon'><div id='include_weekly_rank' ></div></div></li>";
 		msg += "</ul></div>";
-		$("#include_center").css("height", "3000px");
+		$("#include_center").css("height", "4500px");
 		$("#include_center").html(msg);
 		$("#include_calendar").load("calendar.inc");
 		$("#include_daily_rank").load("dailyRank.inc");

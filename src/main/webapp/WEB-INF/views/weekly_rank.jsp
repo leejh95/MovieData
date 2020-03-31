@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,8 +19,9 @@
     <div class="blog-wrapper section-padding-100 clearfix">
         <div class="container">
             <div class="row align-items-end">
-            	<div class="col-12 col-lg-12">
-            		<h3>${dTime.substring(0,4 }년 ${dTime.substring(4,6)}월 ${dTime.substring(6)}일</h3>
+            	<div class="col-12 col-lg-12" align="center">
+            		<h3>${dTime.substring(0,4) }년 ${dTime.substring(4,6)}월 ${dTime.substring(6)}일</h3>
+            		<br>
             	</div>
                 <c:forEach var="vo" items="${ar }">
                 <!-- Single Blog Area -->

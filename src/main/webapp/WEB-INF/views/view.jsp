@@ -279,10 +279,11 @@
 	$(function(){
 		
 		$.ajax({
-			url: "http://192.168.0.117:5000/audiAcc?movieCd=20200329",
+			url: "http://192.168.0.117:5000/viewGraph.inc?dTime=",
 			type: 'post',
 			dataType: "json"
 		}).done(function(data){
+			console.log("확인")
 			viewChart(data);
 		});
 		

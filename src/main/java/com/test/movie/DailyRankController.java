@@ -69,7 +69,7 @@ public class DailyRankController {
 			dar[i++] = vo;
 		}
 		
-		
+		mv.addObject("dTime", dTime);
 		mv.addObject("dar", dar);
 		mv.setViewName("dailyRank");
 		
