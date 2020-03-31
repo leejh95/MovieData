@@ -101,19 +101,26 @@
     <script src="resources/js/map-active.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script type="text/javascript">
-	    function onSignIn(googleUser) {
-			  var profile = googleUser.getBasicProfile();
-			  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-			  console.log('Name: ' + profile.getName());
-			  console.log('Image URL: ' + profile.getImageUrl());
-			  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-			  
-			  $("#sns_id").val(profile.getId());
-			  $("#name").val(profile.getName());
-			  $("#email").val(profile.getEmail());
-			  $("#sns_type").val("google");
-			  
-			  googleform.submit();
+	    var isButtonClicked = false;
+		document.querySelector('.g-signin2').addEventListener('click', function(){
+			isButtonClicked = true;
+		});
+		function onSignIn(googleUser) {
+			if(isButtonClicked){
+		
+		  var profile = googleUser.getBasicProfile();
+		  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+		  console.log('Name: ' + profile.getName());
+		  console.log('Image URL: ' + profile.getImageUrl());
+		  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+		  
+		  $("#sns_id").val(profile.getId());
+		  $("#name").val(profile.getName());
+		  $("#email").val(profile.getEmail());
+		  $("#sns_type").val("google");
+		  
+		  $("#googleform").submit();
+			}
 		}
     </script>
 
