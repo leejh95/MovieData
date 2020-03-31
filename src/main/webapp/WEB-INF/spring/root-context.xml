@@ -38,7 +38,7 @@
 	<bean id="ss" class="org.mybatis.spring.SqlSessionTemplate">
 		<!-- 기본생성자가 없으며 생성될때 반드시 SqlSessionFactoryBean이 인자로 들어가야 한다. -->
 		<constructor-arg ref="factory" index="0"/>
-	</bean>
+	</bean> 
 	
 	<bean id="movieDao" class="mybatis.dao.MovieDAO"/>
 </beans>

@@ -108,6 +108,9 @@ public class NaverLoginContlloer {
 		        		vo.setSns_id(id);
 		        		vo.setSns_type("naver"); 
 		        		m_dao.signUp(vo);
+		        		
+		        		vo = m_dao.signInNaver(id, "naver");
+		        		
 		        		session.setAttribute("memVO", vo);
 		        	}
 		        	//System.out.println(response);
