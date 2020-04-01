@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="resources/style.css">
 </head>
 <body>
-    <div class="blog-wrapper section-padding-100 clearfix" style="margin: 0 auto; width: 1000px;">
+    <div class="blog-wrapper section-padding-100 clearfix" style="width: 1000px; margin:0 auto;">
         <div class="container" >
             <div class="row align-items-end">
             	<div class="col-12 col-lg-12" align="center">

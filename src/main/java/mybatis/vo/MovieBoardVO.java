@@ -19,6 +19,15 @@ public class MovieBoardVO {
 				m_idx;
 	
 	private List<MovieCommentVO> c_list;
+	private MovieMemberVO mvo;
+	
+	public MovieMemberVO getMvo() {
+		return mvo;
+	}
+	
+	public void setMvo(MovieMemberVO mvo) {
+		this.mvo = mvo;
+	}
 
 	public String getB_idx() {
 		return b_idx;

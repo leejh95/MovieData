@@ -17,7 +17,7 @@
 #include_header{
 }
 .tab_ul{
-  width: 2000px;
+  width: 100%;
   list-style:none;
   margin: 0 auto; 
   padding: 0;
@@ -31,6 +31,7 @@
 .tabmenu>ul>li{
   display:  inline-block;
   width:499px; 
+  margin: 
   float:left;  
   text-align:center; 
   background :#f9f9f9;
@@ -44,7 +45,7 @@
 }
 .tabCon{
   display:none; 
-  width: 2000px;
+  width: 100%;
   text-align:left; 
   position:absolute; 
   top:60px; 
