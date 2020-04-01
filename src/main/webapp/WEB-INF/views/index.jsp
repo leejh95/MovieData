@@ -64,8 +64,9 @@
 <body bgcolor="#343434">
 
 <div id="include_header" ></div>
-
 <div id="include_center" ></div>
+<div id="include_line" style="width: 100%
+; height: 5px; background-color: #424242; margin: 0 auto; padding:0;"></div>
 <div id="include_footer"></div>
 
 <script src="resources/js/jquery-3.4.1.min.js"></script>

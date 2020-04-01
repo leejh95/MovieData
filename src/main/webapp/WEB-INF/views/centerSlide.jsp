@@ -15,9 +15,9 @@
     <link rel="stylesheet" href="resources/style.css">
 </head>
 <body>
-	<div class="hero-area" style="width: 100%; margin: 10px auto; background-color: black;">
+	<div class="hero-area" style="width: 100%; margin: 0 auto; background-color: #151515;">
         <!-- Hero Slides Area -->
-        <div class="hero-slides owl-carousel"  style="width: 1400px; margin: 10px auto;">
+        <div class="hero-slides owl-carousel"  style="width: 1400px; margin: 0 auto;">
             <!-- Single Slide -->
             <c:forEach var="vo" items="${dar }">
             <div class="single-hero-slide bg-img" style="background-image: url(${vo.image }); width: 300px; height:500px; margin:70px auto;" >
@@ -37,8 +37,10 @@
             </c:forEach>  
         </div>
     </div>
-    <h4 style="text-align: center">DailyBoxOffice (${date })</h4>
-    <table style="width: 1000px; height:50px; margin: 0 auto; padding: 5px;">
+    <div id="include_line" style="width: 100%; height: 5px; margin: 0; padding:0;"></div>
+    <div style="bmargin-bottom: 10px;">
+    <h4 style="text-align: center; margin-top: 10px; ">DailyBoxOffice (${date })</h4>
+    <table style="width: 1000px; height:50px; margin: 0 auto; padding: 5px; border-top: 1px solid white;">
     	<colgroup>
     		<col width="50px;" />
     		<col width="*;" />
@@ -55,7 +57,7 @@
     	</tr>
     </table>
     <c:forEach var="rvo" items="${dar }">
-    <div class="blog-post-author mt-100 d-flex" style="width: 1000px; height:50px; margin: 0 auto; padding: 5px;">
+    <div class="blog-post-author mt-100 d-flex" style="width: 1000px; height:50px; margin: 0 auto; padding: 5px; ">
     <table style="width: 1000px; height:50px;">
     	<colgroup>
     		<col width="50px;" />
@@ -71,8 +73,8 @@
 		        </div>
 		    </td>
 		    <td style="padding: 0; height:50px;">    
-		        <div class="author-info" style="padding: 0; height:50px; margin: 10px auto;">
-		            <h4><a href="javascript:goView('${vo.movieCd }')" class="author-name">${rvo.movieNm }</a></h4>
+		        <div class="author-info" style="padding: 0; height:50px; margin: 10px auto; ">
+		            <h4><a href="javascript:goView('${vo.movieCd }')" class="author-name" >${rvo.movieNm }</a></h4>
 		        </div>
 		    </td>
 		    <td style="padding: 0; height:50px; text-align: center;">
@@ -102,7 +104,9 @@
     </table>
     </div>
     </c:forEach>
-    <div id="chart_div" style="width: 1600px; height:500px; margin: 50px auto; padding: 5px;"></div>
+    </div>
+    <div id="include_line" style="width: 100%; height: 5px; background-color: #424242; margin: 0; padding:0;"></div>
+    <div id="chart_div" style="width: 1600px; height:500px; margin: 50px auto; padding: 5px; color:white;"></div>
      
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script src="resources/js/jquery/jquery-2.2.4.min.js"></script>
@@ -140,9 +144,6 @@ $(document).ready(function () {
     });
 
     ResCarouselSize();
-
-
-
 
     $(window).resize(function () {
         ResCarouselSize();

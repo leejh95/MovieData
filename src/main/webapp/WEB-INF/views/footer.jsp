@@ -4,69 +4,82 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>foot</title>
-<style type="text/css">
-.footer_area{
-	height: 260px;
-	margin: 0;
-	padding-top: 70px;
-	padding-bottom: 70px;
-	background-color: #d9d9d9;
-	border-color: none;
-}
-.foot_guide{
-	width: 600px;
-	height:100px;
-	margin: auto;
-	list-style: none;
-	margin-bottom: 10px;
-	padding: 0;
-	text-align: center;
-}
-.foot_guide li{
-	display: inline-block;
-}
-.foot_guide li a{
-	text-decoration: none;
-	color: #333030;
-	font-size: 0.8em;
-	font-weight: bold;
-}
-.foot_guide li a:hover{
-	color: #2b90d9;
-}
-.address{
-	width: 600px;
-	margin: auto;
-	margin-bottom: 5px;
-	font-size: 0.8em;
-	font-style: normal;
-	text-align: center;
-	color: #8b8687;
-}
-.copyright{
-	width: 600px;
-	margin: auto;
-	color: #333030;
-	font-size: 0.8em;
-	text-align: center;
-}
-</style>
+<meta name="description" content="">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Insert title here</title>
+    <!-- Favicon -->
+    <link rel="icon" href="resources/img/core-img/favicon.ico">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="resources/style.css">
 </head>
 <body>
-	<div class="footer_area">
-		<ul class="foot_guide">
-			<li><a href="">개인정보취급방침</a></li>
-			<li>|</li>
-			<li><a href="">웹회원 이용약관</a></li>
-			<li>|</li>
-			<li><a href="">책임한계와 법적고지</a></li>
-			<li>|</li>
-			<li><a href="">이메일 무단수집 거부</a></li>
-		</ul>
-		<address class="address">서울시 중구 을지로 가 번지 대표이사: asdf <br/>고객상담: 국번없이 114 혹은
-			02-1234-1234 (평일 09:00~17:00)</address>
-		<p class="copyright">Copyright (c) 2020 asdf</p>
-	</div>
+<!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                   
+                    <!-- Footer Nav Area -->
+                    <div class="classy-nav-container breakpoint-off">
+                        <!-- Classy Menu -->
+                        <nav class="classy-navbar justify-content-center">
+
+                            <!-- Navbar Toggler -->
+                            <div class="classy-navbar-toggler">
+                                <span class="navbarToggler"><span></span><span></span><span></span></span>
+                            </div>
+
+                            <!-- Menu -->
+                            <div class="classy-menu">
+
+                                <!-- close btn -->
+                                <div class="classycloseIcon">
+                                    <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                                </div>
+
+                                <!-- Nav Start -->
+                                <div class="classynav">
+                                    <ul>
+                                        <li><a href="#">여기</a></li>
+                                        <li><a href="#">뭐라고</a></li>
+                                        <li><a href="#">써둘까</a></li>
+                                        <li><a href="#">얘들아?</a></li>
+                                        <li><a href="#">의견좀</a></li>
+                                        <li><a href="#">주세요 ㅎㅎ</a></li>
+                                    </ul>
+                                </div>
+                                <!-- Nav End -->
+                            </div>
+                        </nav>
+                    </div>
+                    
+                    <!-- Footer Social Area -->
+                    <div class="footer-social-area mt-30">
+                        <a href="https://www.facebook.com/" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="https://twitter.com/?lang=ko" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        <a href="https://www.instagram.com/?hl=ko" data-toggle="tooltip" data-placement="top" title="Instargram"><i class="fab fa-instagram"></i></i></a>
+                        <a href="https://www.google.co.kr/" data-toggle="tooltip" data-placement="top" title="Google"><i class="fab fa-google"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;2020 All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
+    </footer>
+	
+	<script src="resources/js/jquery-3.4.1.min.js"></script>
+	<script src="resources/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="resources/js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="resources/js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="resources/js/plugins.js"></script>
+    <!-- Active js -->
+    <script src="resources/js/active.js"></script>
 </body>
 </html>
