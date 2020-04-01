@@ -139,6 +139,15 @@ public class MovieDAO {
 		
 		return chk;
 	}
+	
+	//영화 별점 평균
+	public String rateAvg(String movieCd) {
+		String avg = null;
+		
+		avg = ss.selectOne("movie.rateAvg", movieCd);
+		
+		return avg;
+	}
 
 }
 

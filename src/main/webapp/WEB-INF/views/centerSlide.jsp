@@ -91,7 +91,7 @@
 		            <span class="author-role" style="color:blue; margin: 10px auto;">↑${rvo.rankInten }</span>
 		        </c:if>
 		        <c:if test="${rvo.rankInten < 0}">
-		            <span class="author-role" style="color:red; margin: 10px auto;">↓${rvo.rankInten }</span>
+		            <span class="author-role" style="color:red; margin: 10px auto;">↓${rvo.rankInten * -1 }</span>
 		        </c:if>
 		        <c:if test="${rvo.rankInten eq 0}">
 		            <span class="author-role" style="color:black; margin: 10px auto;">-</span>

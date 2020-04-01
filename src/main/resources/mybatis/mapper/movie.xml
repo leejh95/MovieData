@@ -9,7 +9,7 @@
 		select * from Movie_Mem where id = #{id} and pw = #{pw} and status = 0
 	</select>
 	
-	<!-- 네이버 로그인 -->
+	<!-- sns 로그인 -->
 	<select id="sign_in_naver" resultType="mybatis.vo.MovieMemberVO" parameterType="java.util.Map">
 		select * from Movie_Mem where sns_id = #{sns_id} and sns_type = #{sns_type} and status = 0
 	</select>
@@ -20,13 +20,24 @@
 		values(Movie_Mem_seq.nextval <if test="id != null">, #{id}</if> <if test="pw != null">, #{pw}</if>, #{name}, #{email} <if test="phone != null">, #{phone}</if>, sysdate, 0 <if test="sns_id != null">, #{sns_id}</if> <if test="sns_type != null">, #{sns_type}</if>)
 	</insert>
 	
+	<!-- 페이징 기법에 사용될 전체 게시물의 수를 반환하는 기능 -->
+	<select id="totalCount" resultType="int" parameterType="String">
+		select count(*) from movie_board where category = #{category} and status = 0 or status = 2
+	</select>
+	
+	<!-- 게시물 쓰기 -->
+	<insert id="writeBoard" parameterType="mybatis.vo.MovieBoardVO">
+		insert into movie_board(b_idx, subject, content, file_name, ori_name, write_date, ip, hit, ref, step, sunbun, status, category, m_idx)
+		values(movie_board_seq.nextval, #{subject}, #{content}, #{file_name}, #{ori_name}, sysdate, #{ip}, 0, movie_board_ref.nextval, 0, 0, 0, #{category}, #{m_idx})
+	</insert>
+	
 	<!-- 댓글 쓰기  -->
 	<insert id="writeComment" parameterType="mybatis.vo.MovieCommentVO">
 		insert into Movie_Comm(c_idx, content, write_date, ip, status, movieCd, m_idx, rate) 
 		values(Movie_Comm_seq.nextval, #{content}, sysdate, #{ip}, 0, #{movieCd}, #{m_idx}, #{rate})
 	</insert>
 	
-	<!-- 하나의 게시물에 대한 댓글 모음 -->
+	<!-- 하나의 영화 포스트에 대한 댓글 모음 -->
 	<!-- 시작 -->
 	<select id="commList" resultMap="map1" parameterType="String">
 		select * from Movie_Comm where movieCd = #{movieCd} and status = 0 order by c_idx asc
@@ -55,6 +66,25 @@
 	
 	<select id="getMember_commList" resultType="mybatis.vo.MovieCommentVO" parameterType="String">
 		select * from Movie_Comm where m_idx = #{m_idx} and status = 0 order by c_idx asc
+	</select>
+	<!-- 끝 -->
+	
+	<!-- 해당 페이지마다 보여질 게시물 목록 -->
+	<!-- 시작 -->
+	<select id="getBoardList" resultMap="map3" parameterType="java.util.Map">
+		select * from(
+			select rownum as r_num, a.* from
+			(select * from movie_board where category = #{category} and status = 0 or status = 2 order by ref desc, sunbun asc) a
+		) where r_num between #{begin} and #{end}
+	</select>
+	
+	<resultMap type="mybatis.vo.MovieBoardVO" id="map3">
+		<id column="b_idx" property="b_idx"/>
+		<collection property="c_list" ofType="mybatis.vo.MovieCommentVO" select="getBoard_commList" column="b_idx"/>
+	</resultMap>
+	
+	<select id="getBoard_commList" resultMap="map1" parameterType="String">
+		select * from Movie_Comm where b_idx = #{b_idx} and status = 0 order by c_idx asc
 	</select>
 	<!-- 끝 -->
 	
@@ -101,5 +131,12 @@
 		set content = #{content}, write_date = sysdate, ip = #{ip}, rate = #{rate}
 		where c_idx = #{c_idx} 
 	</update>
+	
+	<!-- 영화 별점 평균 -->
+	<select id="rateAvg" parameterType="String" resultType="String">
+		Select AVG(RATE)
+		From MOVIE_COMM
+		Where MOVIECD = #{movieCd}
+	</select>
 	
 </mapper>

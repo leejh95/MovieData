@@ -4,9 +4,17 @@ import java.util.List;
 
 public class MovieMemberVO {
 
-	private String m_idx, id, pw, name, email, phone, reg_date, status, sns_id, sns_type;
+	private String m_idx, id, pw, name, email, phone, reg_date, status, sns_id, sns_type, rateAvg;
 	
 	private List<MovieCommentVO> c_list;
+	
+	public String getRateAvg() {
+		return rateAvg;
+	}
+	
+	public void setRateAvg(String rateAvg) {
+		this.rateAvg = rateAvg;
+	}
 	
 	public String getSns_type() {
 		return sns_type;
