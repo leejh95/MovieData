@@ -39,7 +39,7 @@
     </div>
     <div id="include_line" style="width: 100%; height: 5px; margin: 0; padding:0;"></div>
     <div style="bmargin-bottom: 10px;">
-    <h4 style="text-align: center; margin-top: 10px; ">DailyBoxOffice (${date })</h4>
+    <h4 style="text-align: center; margin-top: 200px; ">DailyBoxOffice (${date })</h4>
     <table style="width: 1000px; height:50px; margin: 0 auto; padding: 5px; border-top: 1px solid white;">
     	<colgroup>
     		<col width="50px;" />

@@ -52,7 +52,9 @@
     	</div>
     </div>
     
-    <div id="chart_div" style="width: 1600px; height:500px; margin: 0 auto; padding: 5px;"></div>
+    <c:if test="${dTime < cDate }">
+    	<div id="chart_div" style="width: 1600px; height:500px; margin: 0 auto; padding: 5px;"></div>
+	</c:if>
 	
 	<!-- Popper js -->
     <script src="resources/js/popper.min.js"></script>

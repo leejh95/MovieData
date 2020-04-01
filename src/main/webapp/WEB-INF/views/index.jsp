@@ -28,10 +28,13 @@
   margin: 0 auto; 
   padding: 0;
 }
-.tabmenu>ul>li{
+#div_li{
+  width: 1000px;
+  margin: 0 auto;
+}
+.tabmenu>ul li{
   display:  inline-block;
   width:499px; 
-  margin: 
   float:left;  
   text-align:center; 
   background :#f9f9f9;
@@ -122,14 +125,16 @@
 		
 		var msg = "<div id='include_calendar' ></div><br><br>";
 		msg += "<div class='tabmenu'><ul class='tab_ul'>";
+		msg += "<div id='div_li'>"
 		msg += "<li id='tab1' class='btnCon'>";
 		msg += "<a class='btn first' href='#tab1'>일간 박스오피스</a>";
 		msg += "<div class='tabCon'><div id='include_daily_rank' ></div></div></li>";
 		msg += "<li id='tab2' class='btnCon'>";
 		msg += "<a class='btn' href='#tab2'>주간 박스오피스</a>";
 		msg += "<div class='tabCon'><div id='include_weekly_rank' ></div></div></li>";
+		msg += "</div>"
 		msg += "</ul></div>";
-		$("#include_center").css("height", "4500px");
+		$("#include_center").css("height", "3900px");
 		$("#include_center").html(msg);
 		$("#include_calendar").load("calendar.inc");
 		$("#include_daily_rank").load("dailyRank.inc");

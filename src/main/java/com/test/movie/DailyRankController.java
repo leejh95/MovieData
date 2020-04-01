@@ -69,6 +69,13 @@ public class DailyRankController {
 			dar[i++] = vo;
 		}
 		
+		String cDate = null;
+		Date dDate = new Date();
+		dDate = new Date(dDate.getTime());
+		SimpleDateFormat dSdf = new SimpleDateFormat("yyyyMMdd", Locale.KOREA);
+		cDate = dSdf.format(dDate);
+		
+		mv.addObject("cDate", cDate);
 		mv.addObject("dTime", dTime);
 		mv.addObject("dar", dar);
 		mv.setViewName("dailyRank");
