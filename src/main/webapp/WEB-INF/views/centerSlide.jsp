@@ -240,9 +240,7 @@ $(document).ready(function () {
 		
 		var chart = am4core.create(
 				"chart_div", am4charts.XYChart);
-		
-		
-		
+
 		chart.data = data;
 		
 		// x축 만들기

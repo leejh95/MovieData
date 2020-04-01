@@ -15,8 +15,8 @@
     <link rel="stylesheet" href="resources/style.css">
 </head>
 <body>
-    <div class="blog-wrapper section-padding-100 clearfix">
-        <div class="container">
+    <div class="blog-wrapper section-padding-100 clearfix" style="margin: 0 auto; width: 1000px;">
+        <div class="container" >
             <div class="row align-items-end">
             	<div class="col-12 col-lg-12" align="center">
             		<h3>${dTime.substring(0,4) }년 ${dTime.substring(4,6)}월 ${dTime.substring(6)}일</h3>
@@ -52,7 +52,7 @@
     	</div>
     </div>
     
-    <div id="chart_div" style="width: 1600px; height:500px; margin: 50px auto; padding: 5px; position:relative; left:50px;"></div>
+    <div id="chart_div" style="width: 1600px; height:500px; margin: 0 auto; padding: 5px;"></div>
 	
 	<!-- Popper js -->
     <script src="resources/js/popper.min.js"></script>
@@ -62,7 +62,6 @@
     <script src="resources/js/plugins.js"></script>
     <!-- Active js -->
     <script src="resources/js/active.js"></script>
-    <script src="resources/js/jquery-3.4.1.min.js"></script>
     
     <script>
     $(function(){

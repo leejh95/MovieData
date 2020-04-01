@@ -17,7 +17,7 @@
 #include_header{
 }
 .tab_ul{
-  width: 1000px;
+  width: 2000px;
   list-style:none;
   margin: 0 auto; 
   padding: 0;
@@ -44,14 +44,12 @@
 }
 .tabCon{
   display:none; 
-  width: 1000px;
+  width: 2000px;
   text-align:left; 
   position:absolute; 
   top:60px; 
   left:0;
   box-sizing: border-box;
-  border-right: 1px solid #dedede;
-  border-left:  1px solid #dedede;
 }
 .btnCon:target  {
   background : #ccc;
