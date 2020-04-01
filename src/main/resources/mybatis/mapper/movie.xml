@@ -37,7 +37,7 @@
 	</update>
 	
 	<!-- 답변 쓰기 기능 -->
-	<insert id="writeAnswer" parameterType="mybatis.vo.BbsVO">
+	<insert id="writeAnswer" parameterType="mybatis.vo.MovieBoardVO">
 		INSERT INTO movie_board(b_idx, subject, content, file_name, ori_name, write_date, ip, hit, ref, step, sunbun, status, category, m_idx) 
 		values(movie_board_seq.NEXTVAL, #{subject}, #{content}, #{file_name}, #{ori_name}, sysdate, #{ip}, 0, #{ref}, #{step}, #{sunbun}, 0, #{category}, #{m_idx})
 	</insert>
@@ -105,7 +105,7 @@
 	</select>
 	
 	<!-- 게시물 수정 -->
-	<update id="editPost" parameterType="mybatis.vo.BoardVO">
+	<update id="editPost" parameterType="mybatis.vo.MovieBoardVO">
 		update movie_board
 		<set>
 			write_date = sysdate,
