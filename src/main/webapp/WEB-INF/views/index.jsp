@@ -9,7 +9,7 @@
 <style type="text/css">
 #include_center{
 	width: 100%;
-	height: 1500px;
+	height: 2000px;
 	margin-top: 50px;
 }
 #include_footer{
