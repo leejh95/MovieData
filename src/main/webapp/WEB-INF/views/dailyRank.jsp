@@ -55,8 +55,9 @@
                 </div>
                 </c:if>
             </div>
+    	</div>
     </div>
-    </div>
+    
     <div id="chart_div"></div>
 	
 	<!-- Popper js -->
