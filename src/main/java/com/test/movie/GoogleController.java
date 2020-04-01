@@ -30,7 +30,7 @@ public class GoogleController {
 		
 		System.out.println("fdsafdsa");
 		
-		MovieMemberVO vo = m_dao.signInNaver(mvo.getSns_id(), mvo.getSns_type());
+		MovieMemberVO vo = m_dao.signInSns(mvo.getSns_id(), mvo.getSns_type());
 		
 		if(vo != null) {
     		//이미 방문하여 DB에 남아있는경우
@@ -38,7 +38,7 @@ public class GoogleController {
     	}else {
     		// 처음온 경우
     		m_dao.signUp(mvo);
-    		vo = m_dao.signInNaver(mvo.getSns_id(), mvo.getSns_type());
+    		vo = m_dao.signInSns(mvo.getSns_id(), mvo.getSns_type());
     		session.setAttribute("memVO", vo);
     	}
 

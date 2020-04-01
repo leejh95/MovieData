@@ -30,7 +30,14 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="resources/js/jquery-3.4.1.min.js"></script>
 <script>
-function onSignIn(googleUser) {
+
+	var isButtonClicked = false;
+	document.querySelector('.g-signin2').addEventListener('click', function(){
+		isButtonClicked = true;
+	});
+	function onSignIn(googleUser) {
+		if(isButtonClicked){
+	
 	  var profile = googleUser.getBasicProfile();
 	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
 	  console.log('Name: ' + profile.getName());
@@ -43,6 +50,7 @@ function onSignIn(googleUser) {
 	  $("#sns_type").val("google");
 	  
 	  $("#googleform").submit();
+		}
 	}
 	
 
