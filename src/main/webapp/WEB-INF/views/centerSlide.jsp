@@ -15,9 +15,9 @@
     <link rel="stylesheet" href="resources/style.css">
 </head>
 <body>
-	<div class="hero-area">
+	<div class="hero-area" style="width: 100%; margin: 10px auto; background-color: black;">
         <!-- Hero Slides Area -->
-        <div class="hero-slides owl-carousel"  style="width: 1400px; margin: 10px auto">
+        <div class="hero-slides owl-carousel"  style="width: 1400px; margin: 10px auto;">
             <!-- Single Slide -->
             <c:forEach var="vo" items="${dar }">
             <div class="single-hero-slide bg-img" style="background-image: url(${vo.image }); width: 300px; height:500px; margin:70px auto;" >
@@ -295,11 +295,9 @@ $(document).ready(function () {
 		
 		series.columns.template.tooltipText = 
 			"[bold]{valueY}[/]";
-		series.columns.template.fill = 
-			am4core.color('#6e6eff');
+		series.columns.template.fill = am4core.color('#0489B1');
 		series.columns.template.fillOpacity = 0.7;
-		series.columns.template.stroke = 
-			am4core.color('#ff0000');
+		series.columns.template.stroke = am4core.color('black');
 		
 		var columnTemplate = series.columns.template;
 		columnTemplate.strokeWidth = 1;
