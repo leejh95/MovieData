@@ -10,7 +10,7 @@
 	</select>
 	
 	<!-- sns 로그인 -->
-	<select id="sign_in_naver" resultType="mybatis.vo.MovieMemberVO" parameterType="java.util.Map">
+	<select id="sign_in_sns" resultType="mybatis.vo.MovieMemberVO" parameterType="java.util.Map">
 		select * from Movie_Mem where sns_id = #{sns_id} and sns_type = #{sns_type} and status = 0
 	</select>
 
@@ -25,13 +25,24 @@
 		select count(*) from movie_board where category = #{category} and status = 0 or status = 2
 	</select>
 	
-	<!-- 게시물 쓰기 -->
+	<!-- 원글 쓰기 기능 -->
 	<insert id="writeBoard" parameterType="mybatis.vo.MovieBoardVO">
 		insert into movie_board(b_idx, subject, content, file_name, ori_name, write_date, ip, hit, ref, step, sunbun, status, category, m_idx)
 		values(movie_board_seq.nextval, #{subject}, #{content}, #{file_name}, #{ori_name}, sysdate, #{ip}, 0, movie_board_ref.nextval, 0, 0, 0, #{category}, #{m_idx})
 	</insert>
 	
-	<!-- 댓글 쓰기  -->
+	<!-- 답변 쓰기시 먼저 sunbun을 1씩 증가하는 기능 (참조글의 ref값이 같고, 참조글의 sunbun값 보다 더 큰 게시물들의 sunbun값을 1씩 증가) -->
+	<update id="updateSunbun" parameterType="java.util.Map">
+		update movie_board set sunbun = sunbun + 1 where ref = #{ref} and sunbun &gt; #{sunbun}
+	</update>
+	
+	<!-- 답변 쓰기 기능 -->
+	<insert id="writeAnswer" parameterType="mybatis.vo.BbsVO">
+		INSERT INTO movie_board(b_idx, subject, content, file_name, ori_name, write_date, ip, hit, ref, step, sunbun, status, category, m_idx) 
+		values(movie_board_seq.NEXTVAL, #{subject}, #{content}, #{file_name}, #{ori_name}, sysdate, #{ip}, 0, #{ref}, #{step}, #{sunbun}, 0, #{category}, #{m_idx})
+	</insert>
+	
+	<!-- 댓글 쓰기 기능 -->
 	<insert id="writeComment" parameterType="mybatis.vo.MovieCommentVO">
 		insert into Movie_Comm(c_idx, content, write_date, ip, status, movieCd, m_idx, rate) 
 		values(Movie_Comm_seq.nextval, #{content}, sysdate, #{ip}, 0, #{movieCd}, #{m_idx}, #{rate})
@@ -88,6 +99,55 @@
 	</select>
 	<!-- 끝 -->
 	
+	<!-- 게시물 하나 보기 -->
+	<select id="getBoard" parameterType="String" resultMap="map3">
+		select * from movie_board where b_idx = #{b_idx}
+	</select>
+	
+	<!-- 게시물 수정 -->
+	<update id="editPost" parameterType="mybatis.vo.BoardVO">
+		update movie_board
+		<set>
+			write_date = sysdate,
+			<trim suffixOverrides=",">
+				<if test="subject != null">
+					subject = #{subject},
+				</if>
+				<if test="file_name != null">
+					file_name = #{file_name},
+				</if>
+				<if test="ori_name != null">
+					ori_name = #{ori_name},
+				</if>
+				<if test="content != null">
+					content = #{content},
+				</if>
+				<if test="ip != null">
+					ip = #{ip},
+				</if>
+				<if test="category != null">
+					category = #{category},
+				</if>
+			</trim>
+		</set>
+		where b_idx = #{b_idx}
+	</update>
+	
+	<!-- 원글 삭제 기능 -->
+	<update id="delBoard" parameterType="String">
+		update movie_board set status = 1 where b_idx = #{b_idx}
+	</update>
+	
+	<!-- 답글이거나 답글이 달린 경우 삭제 기능 -->
+	<update id="delBoard2" parameterType="java.util.Map">
+		update movie_board set status = 2 where b_idx = #{b_idx}
+	</update>
+	
+	<!-- 답글이 달렸는지 알 수 있는 개수를 반환하는 기능 -->
+	<select id="getRefCount" parameterType="String" resultType="int">
+		select count(*) from movie_board where ref = #{ref}
+	</select>
+	
 	<!-- 회원 가입시 아이디 일치 -->
 	<select id="searchID" resultType="String" parameterType="String">
 		select id from Movie_Mem where id = #{id}
@@ -128,7 +188,20 @@
 	<!-- 댓글 수정 -->
 	<update id="updateComment" parameterType="mybatis.vo.MovieCommentVO">
 		update Movie_Comm 
-		set content = #{content}, write_date = sysdate, ip = #{ip}, rate = #{rate}
+		<set>
+			write_date = sysdate,
+			<trim suffixOverrides=",">
+				<if test="content != null">
+					content = #{content},
+				</if>
+				<if test="ip != null">
+					ip = #{ip},
+				</if>
+				<if test="rate != null">
+					rate = #{rate}
+				</if>
+			</trim>
+		</set>
 		where c_idx = #{c_idx} 
 	</update>
 	
