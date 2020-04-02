@@ -57,6 +57,8 @@ public class DailyRankController {
 			vo.setMovieCd(e.getChildText("movieCd"));
 			vo.setMovieNm(e.getChildText("movieNm"));
 			vo.setOpenDt(e.getChildText("openDt"));
+			vo.setRankInten(e.getChildText("rankInten"));
+			vo.setRankOldAndNew(e.getChildText("rankOldAndNew"));
 			
 			//String ddd = e.getChildText("openDt").substring(0, 4);
 			

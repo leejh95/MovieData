@@ -69,6 +69,8 @@ public class WeeklyRankController {
 			wvo.setOpenDt(e.getChildText("openDt"));
 			wvo.setMovieNm(e.getChildText("movieNm"));
 			wvo.setMovieCd(e.getChildText("movieCd"));
+			wvo.setRankInten(e.getChildText("rankInten"));
+			wvo.setRankOldAndNew(e.getChildText("rankOldAndNew"));
 		
 			try {
 				wvo.setImage(getPost(e.getChildText("movieNm")));

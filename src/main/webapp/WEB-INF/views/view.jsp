@@ -260,10 +260,8 @@
 			</table>
 		</div>
 		<br><br><br><br>
-		<div id="chart_div"></div>
+		<div id="view_audi_chart_div"></div>
 	</div>
-	<script src="resources/js/jquery-3.4.1.min.js"></script>
-	<script src="resources/js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
     <script src="resources/js/popper.min.js"></script>
     <!-- Bootstrap js -->
@@ -284,14 +282,14 @@
 			dataType: "json"
 		}).done(function(data){
 			console.log("확인")
-			viewChart(data);
+			viewAudiChart(data);
 		});
 		
 	});
 	
-	function viewChart(json_data){
+	function viewAudiChart(json_data){
 		
-		$("#chart_div").text(json_data);
+		$("#view_audi_chart_div").text(json_data);
 		
 		/*
 		

@@ -60,13 +60,16 @@ public class CenterSlideController {
 			vo.setMovieNm(e.getChildText("movieNm"));
 			vo.setOpenDt(e.getChildText("openDt"));
 			vo.setRankInten(e.getChildText("rankInten"));
-			vo.setAudiAcc(e.getChildText("audiAcc"));
+			vo.setRankOldAndNew(e.getChildText("rankOldAndNew"));
 			
 			DecimalFormat fm = new DecimalFormat("###,###,###,###");
 			Double dbdb = Double.parseDouble(e.getChildText("salesAcc"));
+			Double dbdb2 = Double.parseDouble(e.getChildText("audiAcc"));
 			String ch = fm.format(dbdb);
+			String ch2 = fm.format(dbdb2);
 			//System.out.println(ch);
 			vo.setSalesAcc(ch);
+			vo.setAudiAcc(ch2);
 			//String ddd = e.getChildText("openDt").substring(0, 4);
 			
 			try {

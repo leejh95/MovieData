@@ -28,11 +28,18 @@ public class DailyVO {
 					image,
 					rankInten,
 					salesAcc,
-					audiAcc;
+					audiAcc,
+	 				rankOldAndNew;
 	 
 	 
 	 
-
+	public String getRankOldAndNew() {
+		return rankOldAndNew;
+	}
+	
+	public void setRankOldAndNew(String rankOldAndNew) {
+		this.rankOldAndNew = rankOldAndNew;
+	}
 	 
 	public String getRankInten() {
 		return rankInten;

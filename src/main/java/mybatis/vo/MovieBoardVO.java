@@ -2,6 +2,8 @@ package mybatis.vo;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class MovieBoardVO {
 	private String b_idx,
 				subject,
@@ -18,9 +20,28 @@ public class MovieBoardVO {
 				category,
 				m_idx;
 	
+	private MultipartFile upload; //첨부파일
+	private int nowPage;
+	
 	private List<MovieCommentVO> c_list;
 	private MovieMemberVO mvo;
 	
+	public MultipartFile getUpload() {
+		return upload;
+	}
+
+	public void setUpload(MultipartFile upload) {
+		this.upload = upload;
+	}
+
+	public int getNowPage() {
+		return nowPage;
+	}
+
+	public void setNowPage(int nowPage) {
+		this.nowPage = nowPage;
+	}
+
 	public MovieMemberVO getMvo() {
 		return mvo;
 	}

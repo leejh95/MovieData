@@ -13,6 +13,11 @@
     <link rel="icon" href="resources/img/core-img/favicon.ico">
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/style.css">
+    <style type="text/css">
+    #list_tr:hover{
+    	background-color: #ededed;
+    }
+    </style>
 </head>
 <body>
 	<div class="hero-area" style="width: 100%; margin: 0 auto; background-color: #151515;">
@@ -55,7 +60,7 @@
     </table>
     <!-- 컨텐츠 구분선 끝 -->
     
-    <table style="width: 1000px; height:50px; margin: 0 auto; padding: 5px; border-top: 1px solid white;">
+    <table style="width: 1000px; height:50px; margin: 0 auto; padding: 5px;">
     	<colgroup>
     		<col width="50px;" />
     		<col width="*;" />
@@ -63,62 +68,55 @@
     		<col width="130px;" />
     		<col width="130px;" />
     	</colgroup>
-    	<tr style="text-align: center">
-    		<td style="padding: 0; height:50px;">순위</td>
-    		<td style="padding: 0; height:50px;">제목</td>
-    		<td style="padding: 0; height:50px;">매출액</td>
-    		<td style="padding: 0; height:50px;">관객수</td>
-    		<td style="padding: 0; height:50px;">증감률</td>
+    	<tr style="text-align: center; height:50px; color:#2d2d2d; font-size:18px; font-weight: bold; border-bottom: 2px solid #2d2d2d;">
+    		<td>순위</td>
+    		<td>제목</td>
+    		<td>매출액</td>
+    		<td>관객수</td>
+    		<td>증감률</td>
     	</tr>
-    </table>
-    <c:forEach var="rvo" items="${dar }">
-    <div class="blog-post-author mt-100 d-flex" style="width: 1000px; height:50px; margin: 0 auto; padding: 5px; ">
-    <table style="width: 1000px; height:50px;">
-    	<colgroup>
-    		<col width="50px;" />
-    		<col width="*;" />
-    		<col width="180px;" />
-    		<col width="130px;" />
-    		<col width="130px;" />
-    	</colgroup>
-    	<tr >
-    		<td style="padding: 0; height:50px;">
-		        <div class="author-thumbnail" style="padding: 0; height:50px; margin: 10px auto;">
-		            ${rvo.rank}위
-		        </div>
-		    </td>
-		    <td style="padding: 0; height:50px;">    
-		        <div class="author-info" style="padding: 0; height:50px; margin: 10px auto; ">
-		            <h4><a href="javascript:goView('${vo.movieCd }')" class="author-name" >${rvo.movieNm }</a></h4>
-		        </div>
-		    </td>
-		    <td style="padding: 0; height:50px; text-align: center;">
-		        <div class="author-info" style="padding: 0; height:50px; margin: 10px auto;">
-		            <span class="author-role" style="height:50px;">${rvo.salesAcc }원</span>
-		        </div>
-		    </td>    
-		    <td style="padding: 0; height:50px; text-align: center;">    
-		        <div class="author-info" style="padding: 0; height:50px; margin: 10px auto;">
-		            <span class="author-role" >${rvo.audiAcc }명</span>
-		        </div>
-		    </td>    
-		    <td style="padding: 0; height:50px; text-align: center;">    
-		        <div class="author-info" style="padding: 0; height:50px;">
-		        <c:if test="${rvo.rankInten > 0}">
-		            <span class="author-role" style="color:blue; margin: 10px auto;">↑${rvo.rankInten }</span>
-		        </c:if>
-		        <c:if test="${rvo.rankInten < 0}">
-		            <span class="author-role" style="color:red; margin: 10px auto;">↓${rvo.rankInten * -1 }</span>
-		        </c:if>
-		        <c:if test="${rvo.rankInten eq 0}">
-		            <span class="author-role" style="color:black; margin: 10px auto;">-</span>
-		        </c:if>
-		        </div>
-		    </td>    
-        </tr>
-    </table>
-    </div>
-    </c:forEach>
+    	
+    	<c:forEach var="rvo" items="${dar }">
+	    	<tr style="border-bottom:1px solid #b2b2b2; height:45px;" id="list_tr">
+	    		<td style="padding: 5px;  text-align: center;">
+			        <div class="author-thumbnail">
+			            ${rvo.rank}위
+			        </div>
+			    </td>
+			    <td style="padding: 5px;">    
+			        <div class="author-info">
+			            <a href="javascript:goView('${vo.movieCd }')" style="font-size: 18px; font-weight: bold;">${rvo.movieNm }</a>
+			        </div>
+			    </td>
+			    <td style="padding: 5px; text-align: center;">
+			        <div class="author-info">
+			            <span class="author-role" style="height:50px;">${rvo.salesAcc }원</span>
+			        </div>
+			    </td>    
+			    <td style="padding: 5px; text-align: center;">    
+			        <div class="author-info">
+			            <span class="author-role" >${rvo.audiAcc }명</span>
+			        </div>
+			    </td>    
+			    <td style="padding: 5px; text-align: center;">    
+			        <div class="author-info">
+			        <c:if test="${rvo.rankOldAndNew eq 'NEW'}">
+			            <span class="author-role" style="margin: 10px auto;"><img src="resources/images/new_icon.png" width="40px"></span>
+			        </c:if>
+			        <c:if test="${rvo.rankOldAndNew ne 'NEW' && rvo.rankInten > 0}">
+			            <span class="author-role" style="color:#ff6666; font-weight:bold; margin: 10px auto;">↑${rvo.rankInten }</span>
+			        </c:if>
+			        <c:if test="${rvo.rankOldAndNew ne 'NEW' && rvo.rankInten < 0}">
+			            <span class="author-role" style="color:#6666ff; font-weight:bold; margin: 10px auto;">↓${rvo.rankInten * -1 }</span>
+			        </c:if>
+			        <c:if test="${rvo.rankOldAndNew ne 'NEW' && rvo.rankInten eq 0}">
+			            <span class="author-role" style="color:#2d2d2d; font-weight:bold; margin: 10px auto;">-</span>
+			        </c:if>
+			        </div>
+			    </td>    
+	        </tr>
+    	</c:forEach>
+	</table>
     </div>
     
     <!-- 컨텐츠 구분선 -->

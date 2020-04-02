@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,12 @@
     <link rel="icon" href="resources/img/core-img/favicon.ico">
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/style.css">
+    <style type="text/css">
+    #box_card:hover{
+    background-color: #ededed;
+    cursor: pointer;
+    }
+    </style>
 </head>
 <body>
     <div class="blog-wrapper section-padding-100 clearfix">
@@ -38,17 +45,36 @@
 			    </table>
 			    <!-- 컨텐츠 구분선 끝 -->
                 <c:forEach var="vo" items="${ar }">
-                <!-- Single Blog Area -->
+               <!-- Single Blog Area -->
                 <div class="col-12 col-lg-4">
-                    <div class="single-blog-area clearfix mb-100">
+                    <div class="single-blog-area clearfix mb-100" id="box_card" onclick="goView('${vo.movieCd }')">
                         <!-- Blog Content -->
                         <div class="single-blog-content" style="text-align:center;">
-                        	<h4><a href="javascript:goView('${vo.movieCd }')" class="post-headline" >${vo.rank}위</a></h4>
-                            <a href="javascript:goView('${vo.movieCd }')" style="height: 300px; width: 187px; margin: 0 auto;" class="thumb">
+                        	<h4><a class="post-headline" >${vo.rank}위</a></h4>
+                            <a style="height: 300px; width: 187px; margin: 0 auto;" class="thumb">
                             	<img src="${vo.image }" border="0" alt="" style="height: 300px; width: 187px;">
                            	</a>
-                           	<h5><a href="javascript:goView('${vo.movieCd }')" class="post-headline">${vo.movieNm }</a></h5>
-                           	<h5>개봉일 ${vo.openDt }</a></h5>
+                           	<h5><a class="post-headline">${vo.movieNm }</a></h5>
+                           	<c:if test="${fn:length(vo.openDt) <= 9 }">
+                           		<h5>개봉일 정보 없음</h5>
+                           	</c:if>
+                           	<c:if test="${fn:length(vo.openDt) > 9  }">
+                           		<h5>개봉일 ${vo.openDt.substring(0,4) }년 ${vo.openDt.substring(5,7)}월 ${vo.openDt.substring(8)}일</h5>                           		
+                           	</c:if>
+                           	<div class="author-info">
+					        <c:if test="${vo.rankOldAndNew eq 'NEW'}">
+					            <span class="author-role" style="margin: 10px auto;"><img src="resources/images/new_icon.png" width="40px"></span>
+					        </c:if>
+					        <c:if test="${vo.rankOldAndNew ne 'NEW' && vo.rankInten > 0}">
+					            <span class="author-role" style="color:#ff6666; font-weight:bold; margin: 10px auto;">↑${vo.rankInten }</span>
+					        </c:if>
+					        <c:if test="${vo.rankOldAndNew ne 'NEW' && vo.rankInten < 0}">
+					            <span class="author-role" style="color:#6666ff; font-weight:bold; margin: 10px auto;">↓${vo.rankInten * -1 }</span>
+					        </c:if>
+					        <c:if test="${vo.rankOldAndNew ne 'NEW' && vo.rankInten eq 0}">
+					            <span class="author-role" style="color:#2d2d2d; font-weight:bold; margin: 10px auto;">-</span>
+					        </c:if>
+					        </div>
                         </div>
                     </div>
                 </div>
@@ -231,7 +257,7 @@
 		
 	});
 	
-	function viewChart(data){
+	function audiChart(data){
 		
 		am4core.useTheme(am4themes_animated);
 		
@@ -325,8 +351,8 @@
 		valueAxis.title.text = "누적 매출액";
 		
 		var axisBreak = valueAxis.axisBreaks.create();
-		axisBreak.startValue = 1550000;
-		axisBreak.endValue = 16000000;
+		axisBreak.startValue = 15000000000;
+		axisBreak.endValue = 100000000000;
 		axisBreak.breakSize = 0.005;
 		
 		// make break expand on hover
