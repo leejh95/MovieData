@@ -95,7 +95,7 @@ public class NaverLoginContlloer {
 		        	String id = (String) response.get("id");
 		        	String email = (String) response.get("email");
 		        	
-		        	MovieMemberVO vo = m_dao.signInNaver(id, "naver");
+		        	MovieMemberVO vo = m_dao.signInSns(id, "naver");
 		        	
 		        	if(vo != null) { 
 		        		//이미 방문하여 DB에 남아있는경우
@@ -109,7 +109,7 @@ public class NaverLoginContlloer {
 		        		vo.setSns_type("naver"); 
 		        		m_dao.signUp(vo);
 		        		
-		        		vo = m_dao.signInNaver(id, "naver");
+		        		vo = m_dao.signInSns(id, "naver");
 		        		
 		        		session.setAttribute("memVO", vo);
 		        	}

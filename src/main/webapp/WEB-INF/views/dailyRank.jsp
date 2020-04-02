@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="resources/style.css">
 </head>
 <body>
-    <div class="blog-wrapper section-padding-100 clearfix" style="width: 1000px; margin:0 auto;">
+    <div class="blog-wrapper section-padding-100 clearfix">
         <div class="container" >
             <div class="row align-items-end">
             	<div class="col-12 col-lg-12" align="center">
@@ -52,9 +52,9 @@
     	</div>
     </div>
     
-    <c:if test="${dTime < cDate }">
-    	<div id="chart_div" style="width: 1600px; height:500px; margin: 0 auto; padding: 5px;"></div>
-	</c:if>
+    
+    <div id="chart_div" style="width: 1600px; height:500px; margin: 0 auto; padding: 5px;"></div>
+	
 	
 	<!-- Popper js -->
     <script src="resources/js/popper.min.js"></script>
@@ -73,7 +73,11 @@
 			type: 'post',
 			dataType: "json"
 		}).done(function(data){
-			viewChart(data);
+			if(data.length > 0){
+				viewChart(data);
+			}else{
+				$("#chart_div").css("display", "none");
+			}
 		});
 		
 		var itemsMainDiv = ('.MultiCarousel');

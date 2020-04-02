@@ -80,6 +80,13 @@ public class WeeklyRankController {
 			
 		}
 		
+		String cDate = null;
+		Date dDate = new Date();
+		dDate = new Date(dDate.getTime());
+		SimpleDateFormat dSdf = new SimpleDateFormat("yyyyMMdd", Locale.KOREA);
+		cDate = dSdf.format(dDate);
+		
+		mv.addObject("cDate", cDate);
 		mv.addObject("dTime", dTime);
 		mv.addObject("ar", ar);
 		mv.setViewName("weekly_rank");

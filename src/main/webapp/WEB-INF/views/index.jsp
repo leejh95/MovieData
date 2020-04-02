@@ -85,8 +85,6 @@
 	function goSearch(){
 		var type = document.getElementById("select_type").value;
 		var value = document.getElementById("search").value;
-		console.log(type);
-		console.log(value);
 		$("#include_center").load("search.inc?type="+type+"&value="+value);
 		
 		return false;
@@ -147,7 +145,6 @@
 	}
 	
 	function goDate(sDate){
-		console.log(sDate);
 		$("#include_daily_rank").load("dailyRank.inc?dTime="+sDate);
 		$("#include_weekly_rank").load("weekly_rank.inc?dTime="+sDate);
 		$("#include_opendt").load("opendt.inc?dTime="+sDate);
