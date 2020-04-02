@@ -89,8 +89,8 @@
 		return false;
 	}
 	
-	function goView(movieCd){
-		$("#include_center").load("view.inc?movieCd="+movieCd);
+	function goView(movieCd, dTime){
+		$("#include_center").load("view.inc?movieCd="+movieCd+"&dTime="+dTime);
 	}
 	
 	function goOpendt(){
@@ -146,7 +146,11 @@
 	function goDate(sDate){
 		$("#include_daily_rank").load("dailyRank.inc?dTime="+sDate);
 		$("#include_weekly_rank").load("weekly_rank.inc?dTime="+sDate);
-		$("#include_opendt").load("opendt.inc?dTime="+sDate);
+	}
+	
+	function goBoard(category){
+		$("#include_center").css("height", "900px");
+		$("#include_center").load("list.inc?category="+category);
 	}
 	
 </script>

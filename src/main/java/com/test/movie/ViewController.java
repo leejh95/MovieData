@@ -28,7 +28,7 @@ public class ViewController {
 	private MovieDAO m_dao;
 
 	@RequestMapping("/view.inc")
-	public ModelAndView view(String movieCd) throws Exception {
+	public ModelAndView view(String movieCd, String dTime) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		ViewVO vo = new ViewVO();
 		
@@ -136,6 +136,7 @@ public class ViewController {
 		
 		mv.addObject("vo", vo);
 		mv.addObject("movieCd", movieCd);
+		mv.addObject("dTime", dTime);
 		mv.setViewName("view");
 		
 		return mv;

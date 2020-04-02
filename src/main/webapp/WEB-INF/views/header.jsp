@@ -116,8 +116,8 @@
                                     <li><a href="javascript:goBoxOffice()">박스오피스</a></li>
                                     <li><a href="#">게시판</a>
                                         <ul class="dropdown">
-                                            <li><a href="#">자유게시판</a></li>
-                                            <li><a href="#">리뷰게시판</a></li>
+                                            <li><a href="javascript:goBoard('free')">자유게시판</a></li>
+                                            <li><a href="javascript:goBoard('review')">리뷰게시판</a></li>
                                         </ul>
                                     </li>
                                    

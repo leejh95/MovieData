@@ -47,7 +47,7 @@
                 <c:forEach var="vo" items="${ar }">
                <!-- Single Blog Area -->
                 <div class="col-12 col-lg-4">
-                    <div class="single-blog-area clearfix mb-100" id="box_card" onclick="goView('${vo.movieCd }')">
+                    <div class="single-blog-area clearfix mb-100" id="box_card" onclick="goView('${vo.movieCd }', '${dTime }')">
                         <!-- Blog Content -->
                         <div class="single-blog-content" style="text-align:center;">
                         	<h4><a class="post-headline" >${vo.rank}위</a></h4>
