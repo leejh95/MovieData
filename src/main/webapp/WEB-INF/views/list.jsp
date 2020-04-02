@@ -136,7 +136,7 @@
     <div class="method">
     <!-- 글쓰기 버튼 -->
     <div class="btn-toolbar">
-    	<button class="btn" onClick="javascript:location.href='writeForm.inc?nowPage=${nowPage}'">글쓰기</button>
+    	<button class="btn" onClick="javascript:location.href='writeForm.inc?nowPage=${nowPage}&category=${category }'">글쓰기</button>
 	</div>
     
         <div class="row margin-0 list-header hidden-sm hidden-xs">

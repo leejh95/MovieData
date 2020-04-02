@@ -1,3 +1,4 @@
+<%@page import="mybatis.vo.MovieMemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
@@ -22,6 +23,13 @@
     <link rel="stylesheet" href="resources/css/summernote-lite.css"/>
 </head>
 <body>
+<%
+ Object obj = session.getAttribute("memVO");
+MovieMemberVO vo = null;
+if(obj != null){
+	vo = (MovieMemberVO)obj;
+}
+%>
 <!-- ##### Contact Area Start ##### -->
     <section class="contact-area section-padding-100">
         <div class="container">
@@ -32,8 +40,8 @@
                         <h5>게시글 작성</h5>
                         <!-- Contact Form -->
                         <form action="write.inc" method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="category" value="${vo.category }"/>
-                        <input type="hidden" name="m_idx" value="${vo.m_idx }"/>
+                        <input type="hidden" name="category" value="${param.category }"/>
+                        <input type="hidden" name="m_idx" value="<%=vo.getM_idx() %>"/>
                             <div class="row">
                                 <div class="col-12 col-md-6">
                                     <div class="group">

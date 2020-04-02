@@ -75,6 +75,7 @@ public class WriteController {
 			vo.setOri_name("");
 		}
 		vo.setIp(request.getRemoteAddr());
+		
 		m_dao.writeBoard(vo);
 		
 		mv.addObject("nowPage", vo.getNowPage());
