@@ -273,8 +273,8 @@ public class MovieDAO {
 	// 조회 수 올리는 기능 - 인자로 받은 b_idx의 게시물 hit를 증가하는 기능
 	public boolean hit(String b_idx) {
 		boolean chk = false;
-			
-		int cnt = ss.update("bbs.hit", b_idx);
+
+		int cnt = ss.update("movie.hit", b_idx);
 		
 		if(cnt > 0) 
 			chk = true;
