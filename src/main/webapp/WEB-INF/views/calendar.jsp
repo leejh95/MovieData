@@ -77,8 +77,28 @@ background: #dddddd;
 </style>
 </HEAD>
 <BODY>
+	<!-- 컨텐츠 구분선 -->
+    <table style="width:1100px; margin:100px auto;">
+    	<colgroup>
+    		<col width="*"/>
+    		<col width="460px"/>
+    		<col width="*"/>
+    	</colgroup>
+    	<tr>
+    		<td style="border-bottom:1px solid #b2b2b2; height:13px"></td>
+    		<td rowspan="2" align="center">
+    		<h3><font color="#2d2d2d">
+    		일간 주간 박스오피스 순위 목록
+    		</font></h3>
+    		</td>
+    		<td style="border-bottom:1px solid #b2b2b2"></td>
+    	</tr>
+    	<tr><td></td><td></td></tr>
+    </table>
+    <!-- 컨텐츠 구분선 끝 -->
+    
 	<DIV id="cal_content">
-	
+	    
 		<!-- 날짜 네비게이션 시작 -->
 		<div id="cal_nav">
 		

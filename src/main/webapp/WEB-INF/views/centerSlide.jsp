@@ -37,9 +37,24 @@
             </c:forEach>  
         </div>
     </div>
-    <div id="include_line" style="width: 100%; height: 5px; margin: 0; padding:0;"></div>
-    <div style="bmargin-bottom: 10px;">
-    <h4 style="text-align: center; margin-top: 200px; ">DailyBoxOffice (${date })</h4>
+    <div style="bmargin-bottom: 10px; margin-top: 150px;">
+    
+    <!-- 컨텐츠 구분선 -->
+    <table style="width:1100px; margin:20px auto;">
+    	<colgroup>
+    		<col width="*"/>
+    		<col width="570px"/>
+    		<col width="*"/>
+    	</colgroup>
+    	<tr>
+    		<td style="border-bottom:1px solid #b2b2b2; height:13px"></td>
+    		<td rowspan="2" align="center"><h3><font color="#2d2d2d">일별 박스오피스 순위 (${date })</font></h3></td>
+    		<td style="border-bottom:1px solid #b2b2b2"></td>
+    	</tr>
+    	<tr><td></td><td></td></tr>
+    </table>
+    <!-- 컨텐츠 구분선 끝 -->
+    
     <table style="width: 1000px; height:50px; margin: 0 auto; padding: 5px; border-top: 1px solid white;">
     	<colgroup>
     		<col width="50px;" />
@@ -105,12 +120,26 @@
     </div>
     </c:forEach>
     </div>
-    <div id="include_line" style="width: 100%; height: 5px; background-color: #424242; margin: 0; padding:0;"></div>
+    
+    <!-- 컨텐츠 구분선 -->
+    <table style="width:1600px; margin:200px auto 20px auto;">
+    	<colgroup>
+    		<col width="*"/>
+    		<col width="610px"/>
+    		<col width="*"/>
+    	</colgroup>
+    	<tr>
+    		<td style="border-bottom:1px solid #b2b2b2; height:13px"></td>
+    		<td rowspan="2" align="center"><h3><font color="#2d2d2d">1위부터 10위 누적관객수 (${date })</font></h3></td>
+    		<td style="border-bottom:1px solid #b2b2b2"></td>
+    	</tr>
+    	<tr><td></td><td></td></tr>
+    </table>
+    <!-- 컨텐츠 구분선 끝 -->
+    
     <div id="chart_div" style="width: 1600px; height:500px; margin: 50px auto; padding: 5px; color:white;"></div>
      
-	<script src="resources/js/jquery-3.4.1.min.js"></script>
-	<script src="resources/js/jquery/jquery-2.2.4.min.js"></script>
-    <!-- Popper js -->
+	<!-- Popper js -->
     <script src="resources/js/popper.min.js"></script>
     <!-- Bootstrap js -->
     <script src="resources/js/bootstrap.min.js"></script>

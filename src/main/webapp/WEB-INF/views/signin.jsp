@@ -11,7 +11,6 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
    	<!-- Favicon -->
     <link rel="icon" href="resources/img/core-img/favicon.ico">
-	<link rel="stylesheet" href="css/style.css">
 
     <link rel="icon" href="Favicon.png">
     <!-- Style CSS -->
@@ -86,9 +85,7 @@
     </section>
     <!-- ##### Contact Area End ##### -->
 	
-	<!-- jQuery (Necessary for All JavaScript Plugins) -->
-    <script src="resources/js/jquery-3.4.1.min.js"></script>
-    <!-- Popper js -->
+	<!-- Popper js -->
     <script src="resources/js/popper.min.js"></script>
     <!-- Bootstrap js -->
     <script src="resources/js/bootstrap.min.js"></script>

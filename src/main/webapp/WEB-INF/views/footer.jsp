@@ -15,6 +15,7 @@
 </head>
 <body>
 <!-- ##### Footer Area Start ##### -->
+<div style="width: 100%; height: 1px; background-color: #d2d2d2"></div>
     <footer class="footer-area text-center">
         <div class="container">
             <div class="row">
@@ -71,9 +72,7 @@ Copyright &copy;2020 All rights reserved | This template is made with <i class="
 
     </footer>
 	
-	<script src="resources/js/jquery-3.4.1.min.js"></script>
-	<script src="resources/js/jquery/jquery-2.2.4.min.js"></script>
-    <!-- Popper js -->
+	<!-- Popper js -->
     <script src="resources/js/popper.min.js"></script>
     <!-- Bootstrap js -->
     <script src="resources/js/bootstrap.min.js"></script>

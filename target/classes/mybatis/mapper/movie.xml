@@ -214,4 +214,9 @@
 		Where MOVIECD = #{movieCd}
 	</select>
 	
+	<!-- 조회수를 올려주는 기능 -->
+	<update id="hit" parameterType="String">
+		update movie_board set hit = hit+1 where b_idx = #{b_idx}
+	</update>
+	
 </mapper>

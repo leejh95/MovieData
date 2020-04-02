@@ -6,10 +6,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a079f1d5c767f5ae2c08726bfaeb62d9"></script>
+
 <style type="text/css">
 #include_center{
 	width: 100%;
-	height: 2000px;
+	height: 2300px;
 	margin-top: 50px;
 }
 #include_footer{
@@ -37,7 +38,7 @@
   width:499px; 
   float:left;  
   text-align:center; 
-  background :#f9f9f9;
+  background :#f1f1f1;
 }
 .tabmenu ul li a{
   display:block;
@@ -67,8 +68,6 @@
 
 <div id="include_header" ></div>
 <div id="include_center" ></div>
-<div id="include_line" style="width: 100%
-; height: 5px; background-color: #424242; margin: 0 auto; padding:0;"></div>
 <div id="include_footer"></div>
 
 <script src="resources/js/jquery-3.4.1.min.js"></script>
@@ -132,7 +131,7 @@
 		msg += "<div class='tabCon'><div id='include_weekly_rank' ></div></div></li>";
 		msg += "</div>"
 		msg += "</ul></div>";
-		$("#include_center").css("height", "3900px");
+		$("#include_center").css("height", "5000px");
 		$("#include_center").html(msg);
 		$("#include_calendar").load("calendar.inc");
 		$("#include_daily_rank").load("dailyRank.inc");

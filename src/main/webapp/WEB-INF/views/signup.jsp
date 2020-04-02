@@ -95,9 +95,7 @@
     </section>
     <!-- ##### Contact Area End ##### -->
 	
-	<!-- jQuery (Necessary for All JavaScript Plugins) -->
-    <script src="resources/js/jquery/jquery-2.2.4.min.js"></script>
-    <!-- Popper js -->
+	<!-- Popper js -->
     <script src="resources/js/popper.min.js"></script>
     <!-- Bootstrap js -->
     <script src="resources/js/bootstrap.min.js"></script>
@@ -108,7 +106,6 @@
     <!-- Google Map js -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwuyLRa1uKNtbgx6xAJVmWy-zADgegA2s"></script>
     <script src="resources/js/map-active.js"></script>
-	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript">
 	
 		$(function() {

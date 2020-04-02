@@ -18,10 +18,25 @@
     <div class="blog-wrapper section-padding-100 clearfix">
         <div class="container" >
             <div class="row align-items-end">
-            	<div class="col-12 col-lg-12" align="center">
-            		<h3>${dTime.substring(0,4) }년 ${dTime.substring(4,6)}월 ${dTime.substring(6)}일</h3>
-            		<br>
-            	</div>
+            	<!-- 컨텐츠 구분선 -->
+			    <table style="width:1100px; margin:100px auto;">
+			    	<colgroup>
+			    		<col width="*"/>
+			    		<col width="350px"/>
+			    		<col width="*"/>
+			    	</colgroup>
+			    	<tr>
+			    		<td style="border-bottom:1px solid #b2b2b2; height:13px"></td>
+			    		<td rowspan="2" align="center">
+			    		<h3><font color="#2d2d2d">
+			    		${dTime.substring(0,4) }년 ${dTime.substring(4,6)}월 ${dTime.substring(6)}일
+			    		</font></h3>
+			    		</td>
+			    		<td style="border-bottom:1px solid #b2b2b2"></td>
+			    	</tr>
+			    	<tr><td></td><td></td></tr>
+			    </table>
+			    <!-- 컨텐츠 구분선 끝 -->
                 <c:forEach var="vo" items="${dar }">
                 <!-- Single Blog Area -->
                   <div class="col-12 col-lg-4">
@@ -52,8 +67,41 @@
     	</div>
     </div>
     
+    <!-- 컨텐츠 구분선 -->
+    <table style="width:1600px; margin:50px auto;">
+    	<colgroup>
+    		<col width="*"/>
+    		<col width="270px"/>
+    		<col width="*"/>
+    	</colgroup>
+    	<tr>
+    		<td style="border-bottom:1px solid #b2b2b2; height:13px"></td>
+    		<td rowspan="2" align="center"><h3><font color="#2d2d2d">누적관객수</font></h3></td>
+    		<td style="border-bottom:1px solid #b2b2b2"></td>
+    	</tr>
+    	<tr><td></td><td></td></tr>
+    </table>
+    <!-- 컨텐츠 구분선 끝 -->
     
-    <div id="chart_div" style="width: 1600px; height:500px; margin: 0 auto; padding: 5px;"></div>
+    <div id="daily_audi_chart_div" style="width: 1600px; height:500px; margin: 0 auto; padding: 5px;"></div>
+    
+    <!-- 컨텐츠 구분선 -->
+    <table style="width:1600px; margin:200px auto 50px auto;">
+    	<colgroup>
+    		<col width="*"/>
+    		<col width="270px"/>
+    		<col width="*"/>
+    	</colgroup>
+    	<tr>
+    		<td style="border-bottom:1px solid #b2b2b2; height:13px"></td>
+    		<td rowspan="2" align="center"><h3><font color="#2d2d2d">누적매출액</font></h3></td>
+    		<td style="border-bottom:1px solid #b2b2b2"></td>
+    	</tr>
+    	<tr><td></td><td></td></tr>
+    </table>
+    <!-- 컨텐츠 구분선 끝 -->
+    
+    <div id="daily_sales_chart_div" style="width: 1600px; height:500px; margin: 0 auto; padding: 5px;"></div>
 	
 	
 	<!-- Popper js -->
@@ -73,11 +121,12 @@
 			type: 'post',
 			dataType: "json"
 		}).done(function(data){
-			if(data.length > 0){
-				viewChart(data);
-			}else{
-				$("#chart_div").css("display", "none");
+			$("#daily_audi_chart_div").css("display", "");
+			if(data.length <= 0){
+				$("#daily_audi_chart_div").css("display", "none");
 			}
+			audiChart(data);
+			salesChart(data);
 		});
 		
 		var itemsMainDiv = ('.MultiCarousel');
@@ -183,12 +232,12 @@
 		
 	});
 	
-	function viewChart(data){
+	function audiChart(data){
 		
 		am4core.useTheme(am4themes_animated);
 		
 		var chart = am4core.create(
-				"chart_div", am4charts.XYChart);
+				"daily_audi_chart_div", am4charts.XYChart);
 		
 		
 		
@@ -242,6 +291,75 @@
 				new am4charts.ColumnSeries());
 		series.dataFields.categoryX = "movieNm";
 		series.dataFields.valueY = "audiAcc";
+		
+		series.columns.template.tooltipText = 
+			"[bold]{valueY}[/]";
+		series.columns.template.fill = am4core.color('#0489B1');
+		series.columns.template.fillOpacity = 0.7;
+		series.columns.template.stroke = am4core.color('black');
+		
+		var columnTemplate = series.columns.template;
+		columnTemplate.strokeWidth = 1;
+		columnTemplate.strokeOpacity = 0.7;
+	}
+	
+	function salesChart(data){
+		
+		am4core.useTheme(am4themes_animated);
+		
+		var chart = am4core.create(
+				"daily_sales_chart_div", am4charts.XYChart);
+		
+		chart.data = data;
+		
+		// x축 만들기
+		var categoryAxis = 
+		chart.xAxes.push(new am4charts.CategoryAxis());
+		categoryAxis.dataFields.category = "movieNm";
+		
+		categoryAxis.renderer.labels.template.fontSize = 12;
+		categoryAxis.renderer.minGridDistance = 30;
+		
+		// y축 만들기
+		var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+		valueAxis.renderer.minGridDistance = 10;
+		valueAxis.title.text = "누적 매출액";
+		
+		var axisBreak = valueAxis.axisBreaks.create();
+		axisBreak.startValue = 15000000000;
+		axisBreak.endValue = 16000000000;
+		axisBreak.breakSize = 0.005;
+		
+		// make break expand on hover
+		var hoverState = axisBreak.states.create("hover");
+		hoverState.properties.breakSize = 1;
+		hoverState.properties.opacity = 0.1;
+		hoverState.transitionDuration = 1500;
+
+		axisBreak.defaultState.transitionDuration = 1000;
+		
+		// this is exactly the same, but with events
+		axisBreak.events.on("over", () => { 
+		  axisBreak.animate(
+		    [{ property: "breakSize", to: 1 }, { property: "opacity", to: 0.1 }],
+		    1500,
+		    am4core.ease.sinOut
+		  );
+		});
+		axisBreak.events.on("out", () => {
+		  axisBreak.animate(
+		    [{ property: "breakSize", to: 0.005 }, { property: "opacity", to: 1 }],
+		    1000,
+		    am4core.ease.quadOut
+		  );
+		});
+		
+		
+		//Series 만들기
+		var series = chart.series.push(
+				new am4charts.ColumnSeries());
+		series.dataFields.categoryX = "movieNm";
+		series.dataFields.valueY = "salesAcc";
 		
 		series.columns.template.tooltipText = 
 			"[bold]{valueY}[/]";
