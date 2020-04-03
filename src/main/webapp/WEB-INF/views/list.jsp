@@ -174,7 +174,7 @@
 								삭제된 게시글
 							</c:if>
 							<c:if test="${vo.status == 0 }">
-								<a href="boardview.inc?b_idx=${vo.b_idx }&nowPage=${nowPage}">${vo.subject }</a>
+								<a href="javascript:goBoardView('${vo.b_idx }', '${nowPage}')">${vo.subject }</a>
 							</c:if>
 	                    	</div>
 	                    </div>

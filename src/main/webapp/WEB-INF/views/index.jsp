@@ -153,6 +153,11 @@
 		$("#include_center").load("list.inc?category="+category);
 	}
 	
+	function goBoardView(b_idx, nowPage){
+		$("#include_center").css("height", "900px");
+		$("#include_center").load("boardview.inc?b_idx="+b_idx+"&nowPage="+nowPage);
+	}
+	
 </script>
 </body>
 </html>

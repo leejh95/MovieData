@@ -55,40 +55,56 @@
                     <div class="comment_area clearfix mt-70">
                         <h5 class="title">Comments</h5>
 
-                        <ol>
+                        <ol id="commOl">
                             <!-- Single Comment Area -->
-                            <li class="single_comment_area">
+                            <c:if test="${vo.c_list eq null }">
+                            	<li class="single_comment_area">
                                 <!-- Comment Content -->
                                 <div class="comment-content d-flex">
                                     <!-- Comment Meta -->
                                     <div class="comment-meta">
-                                        <p class="post-date">작성일</p>
-                                        <p>작성자</p>
-                                        <p>댓글내용</p>
+                                        <p>댓글이 없습니다.</p>
                                     </div>
                                 </div>
                             </li>
+                            </c:if>
+                            <c:forEach var="cvo" items="${vo.c_list }">
+	                            <li class="single_comment_area">
+	                                <!-- Comment Content -->
+	                                <div class="comment-content d-flex">
+	                                    <!-- Comment Meta -->
+	                                    <div class="comment-meta">
+	                                        <p class="post-date">작성일 : ${cvo.write_date }</p>
+	                                        <p>작성자 : ${cvo.mvo.id }</p>
+	                                        <p>댓글내용 : ${cvo.content }</p>
+	                                    </div>
+	                                </div>
+	                            </li>
+	                       </c:forEach>     
                         </ol>
                     </div>
-
-                    <div class="post-a-comment-area mt-70">
-                        <!-- Reply Form -->
-                        <form action="#" method="post">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="group">
-                                        <textarea name="message" id="message" required></textarea>
-                                        <span class="highlight"></span>
-                                        <span class="bar"></span>
-                                        <label>댓글</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <button type="submit" class="btn original-btn">등록</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+					<c:if test="${sessionScope.memVO ne null}"> 
+	                    <div class="post-a-comment-area mt-70">
+	                        <!-- Reply Form -->
+	                        <form action="#" method="post">
+	                            <div class="row">
+	                                <div class="col-12">
+	                                    <div class="group">
+	                                        <textarea name="content" id="content" required></textarea>
+	                                        <span class="highlight"></span>
+	                                        <span class="bar"></span>
+	                                        <label>댓글</label>
+	                                        <input type="hidden" name="m_idx" id="m_idx" value="${sessionScope.memVO.m_idx }">
+	                                        <input type="hidden" name="b_idx" id="b_idx" value="${vo.b_idx }">
+	                                    </div>
+	                                </div>
+	                                <div class="col-12">
+	                                    <button onclick="commSave()" class="btn original-btn">등록</button>
+	                                </div>
+	                            </div>
+	                        </form>
+	                    </div>
+                    </c:if>
                 </div>
             </div>
         </div>
@@ -104,5 +120,62 @@
     <script src="resources/js/plugins.js"></script>
     <!-- Active js -->
     <script src="resources/js/active.js"></script>
+    
+    <script>
+    	function commSave(){
+    		var content = $("#content").val();
+    		var m_idx = $("#m_idx").val();
+    		var b_idx = $("#b_idx").val();
+    		console.log(content);
+    		
+    		var param = "content="+encodeURIComponent(content)+
+    		"&m_idx="+encodeURIComponent(m_idx)+
+    		"&b_idx="+encodeURIComponent(b_idx);
+    		
+    		$.ajax({
+    			url: "commSave.inc",
+    			type: "post",
+    			data: param,
+    			dataType: "json"
+    		}).done(function(data){
+    			
+    			if(data.chk){
+    				alert("댓글달기 성공");
+    				if(data.mar != undefined){
+    					var code = "";
+    					for(var i = 0; i<data.mar.length; i++){
+    						code += "<li class='single_comment_area'>";
+    						code += "<div class='comment-content d-flex'>";
+    						code += "<div class='comment-meta'>";
+    						code += "<p class='post-date'>작성일 :"; 
+    						code += data.mar[i].write_date; 
+    						code += "</p>"; 
+    						code += "<p>작성자 :"; 
+    						code += data.mar[i].mvo.id; 
+    						code += "</p>"; 
+    						code += "<p>댓글내용 :"; 
+    						code += data.mar[i].content;
+    						code += "</p>"; 
+    						if(data.mar[i].m_idx == m_idx){
+    							code += "<p><input type=\"button\" value=\"삭제\" onclick=\"commDel("+data.mar[i].c_idx+")\"/></p>";
+    						}else
+    							code += "<p></p>"
+    						
+    						code += "</div></div></li>"; 
+    					}
+    					//위에서 작업된 html코드를 tbody에 html로 적용한다.
+    					$("#commOl").html(code);
+    				}
+    			}else{
+    				alert("댓글달기 실패");
+    			}
+    			
+    			$("#content").val("");	
+    		}).fail(function(err){
+    			
+    		});
+    	}
+    
+    </script>
 </body>
 </html>

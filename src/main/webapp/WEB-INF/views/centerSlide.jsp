@@ -85,7 +85,7 @@
 			    </td>
 			    <td style="padding: 5px;">    
 			        <div class="author-info">
-			            <a href="javascript:goView('${vo.movieCd }')" style="font-size: 18px; font-weight: bold;">${rvo.movieNm }</a>
+			            <a href="javascript:goView('${rvo.movieCd }')" style="font-size: 18px; font-weight: bold;">${rvo.movieNm }</a>
 			        </div>
 			    </td>
 			    <td style="padding: 5px; text-align: center;">
