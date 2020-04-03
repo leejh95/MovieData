@@ -133,7 +133,7 @@
     		"&b_idx="+encodeURIComponent(b_idx);
     		
     		$.ajax({
-    			url: "commSave.inc",
+    			url: "boardCommSave.inc",
     			type: "post",
     			data: param,
     			dataType: "json"

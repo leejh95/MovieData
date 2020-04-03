@@ -281,6 +281,18 @@ public class MovieDAO {
 			
 		return chk;
 	}
+	
+	public MovieCommentVO[] getBoardCommList(String b_idx) {
+		List<MovieCommentVO> list = ss.selectList("movie.getBoard_commList", b_idx);
+		MovieCommentVO[] ar = null;
+		
+		if(!list.isEmpty()) {
+			ar = new MovieCommentVO[list.size()];
+			list.toArray(ar);
+		}
+			
+		return ar;
+	}
 }
 
 

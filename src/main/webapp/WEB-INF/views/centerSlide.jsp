@@ -33,7 +33,7 @@
                                 <div class="post-tag">
                                     <a href="javascript:goView('${vo.movieCd }')" data-animation="fadeInUp">${vo.rank}위</a>
                                 </div>
-                                <h2 data-animation="fadeInUp" data-delay="250ms"><a href="javascript:goView('${vo.movieCd }')">${vo.movieNm }</a></h2>
+                                <h2 data-animation="fadeInUp" data-delay="250ms"><a href="javascript:goView('${vo.movieCd }','${yesterday}' )">${vo.movieNm }</a></h2>
                             </div>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
 			    </td>
 			    <td style="padding: 5px;">    
 			        <div class="author-info">
-			            <a href="javascript:goView('${rvo.movieCd }')" style="font-size: 18px; font-weight: bold;">${rvo.movieNm }</a>
+			            <a href="javascript:goView('${rvo.movieCd }','${yesterday }')" style="font-size: 18px; font-weight: bold;">${rvo.movieNm }</a>
 			        </div>
 			    </td>
 			    <td style="padding: 5px; text-align: center;">

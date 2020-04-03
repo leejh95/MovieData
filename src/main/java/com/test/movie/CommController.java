@@ -26,7 +26,7 @@ public class CommController {
 	
 	@RequestMapping(value = "/commSave.inc", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> commSave(MovieCommentVO vo) {
+	public Map<String, Object> postCommSave(MovieCommentVO vo) {
 		Map<String, Object> map = new HashMap<String, Object>(); 
 		//System.out.println(vo.getContent());
 		//System.out.println(vo.getM_idx());
@@ -37,6 +37,25 @@ public class CommController {
 		boolean chk = m_dao.writeComment(vo);
 		
 		MovieCommentVO[] mar = m_dao.getCommList(vo.getMovieCd());
+		
+		map.put("chk", chk);
+		map.put("mar", mar);
+		return map;
+	}
+	
+	@RequestMapping(value = "/boardCommSave.inc", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> boardCommSave(MovieCommentVO vo) {
+		Map<String, Object> map = new HashMap<String, Object>(); 
+		//System.out.println(vo.getContent());
+		//System.out.println(vo.getM_idx());
+		//System.out.println(vo.getMovieCd());
+		
+		vo.setIp(requset.getRemoteAddr());
+		
+		boolean chk = m_dao.writeComment(vo);
+		
+		MovieCommentVO[] mar = m_dao.getBoardCommList(vo.getB_idx());
 		
 		map.put("chk", chk);
 		map.put("mar", mar);

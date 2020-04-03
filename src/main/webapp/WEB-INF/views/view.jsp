@@ -454,7 +454,7 @@
 		
 		// y축 만들기
 		var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-		valueAxis.renderer.minGridDistance = 10;
+		valueAxis.renderer.minGridDistance = 30;
 		valueAxis.title.text = "관객수";
 		
 		var axisBreak = valueAxis.axisBreaks.create();
@@ -524,7 +524,7 @@
 		
 		// y축 만들기
 		var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-		valueAxis.renderer.minGridDistance = 10;
+		valueAxis.renderer.minGridDistance = 30;
 		valueAxis.title.text = "매출액";
 		
 		var axisBreak = valueAxis.axisBreaks.create();
