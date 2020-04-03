@@ -25,22 +25,7 @@
     </div>
 	-->
     <!-- Subscribe Modal -->
-    <div class="subscribe-newsletter-area">
-        <div class="modal fade" id="subsModal" tabindex="-1" role="dialog" aria-labelledby="subsModal" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <div class="modal-body">
-                        <h5 class="title">Subscribe to my newsletter</h5>
-                        <form action="#" class="newsletterForm" method="post">
-                            <input type="email" name="email" id="subscribesForm2" placeholder="Your e-mail here">
-                            <button type="submit" class="btn original-btn">Subscribe</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
     <!-- ##### Header Area Start ##### -->
     <header class="header-area">
@@ -92,9 +77,7 @@
                     <nav class="classy-navbar justify-content-between">
 
                         <!-- Subscribe btn -->
-                        <div class="subscribe-btn">
-                            <a href="#" class="btn subscribe-btn" data-toggle="modal" data-target="#subsModal">Subscribe</a>
-                        </div>
+                        
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -102,7 +85,7 @@
                         </div>
 
                         <!-- Menu -->
-                        <div class="classy-menu" id="originalNav">
+                        <div class="classy-menu" id="originalNav" style="float:right; display: inline-block;">
                             <!-- close btn -->
                             <div class="classycloseIcon">
                                 <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
@@ -124,8 +107,8 @@
                                     <li><a href="javascript:goContact()">Contact</a></li>
                                 </ul>
 
-                                <!-- Search Form  -->
-                                <div id="search-wrapper">
+                    		<!-- Search Form  -->
+                                <div id="search-wrapper" style="float:right;">
                                     	<select name="type" style="width:100px; height: 29px; border-width: 0;" id="select_type">
 											<option>선택하세요.</option>
 											<option value="0">영화이름</option>
@@ -136,8 +119,10 @@
                                         <div id="close-icon"></div>
                                         <input class="d-none" type="submit" value="">
                                 </div>
+                                
                             </div>
                             <!-- Nav End -->
+                            
                         </div>
                     </nav>
                 </div>
@@ -145,7 +130,7 @@
         </div>
     </header>
  
-	<script src="resources/js/jquery-3.4.1.min.js"></script>
+	
 	<script src="resources/js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
     <script src="resources/js/popper.min.js"></script>

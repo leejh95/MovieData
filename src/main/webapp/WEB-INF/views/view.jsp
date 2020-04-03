@@ -198,7 +198,7 @@
 	</div>
 	
 	<!-- 컨텐츠 구분선 -->
-    <table style="width:1100px; margin:0 auto;">
+    <table style="width:1100px; margin:100px auto;">
     	<colgroup>
     		<col width="*"/>
     		<col width="270px"/>
@@ -206,33 +206,15 @@
     	</colgroup>
     	<tr>
     		<td style="border-bottom:1px solid #b2b2b2; height:13px"></td>
-    		<td rowspan="2" align="center"><h3><font color="#2d2d2d">누적관객수</font></h3></td>
+    		<td rowspan="2" align="center"><h3><font color="#2d2d2d">관객수 매출액 통계</font></h3></td>
     		<td style="border-bottom:1px solid #b2b2b2"></td>
     	</tr>
     	<tr><td></td><td></td></tr>
     </table>
     <!-- 컨텐츠 구분선 끝 -->
 	
-	<div id="view_audi_chart_div" style="width: 1000px; height:500px; margin: 0 auto; padding: 5px;"></div>
+	<div id="view_audi_chart_div" style="width: 1000px; height:550px; margin: 0 auto; padding: 5px;"></div>
 		
-	<!-- 컨텐츠 구분선 -->
-    <table style="width:1100px; margin:100px auto 50px auto;">
-    	<colgroup>
-    		<col width="*"/>
-    		<col width="270px"/>
-    		<col width="*"/>
-    	</colgroup>
-    	<tr>
-    		<td style="border-bottom:1px solid #b2b2b2; height:13px"></td>
-    		<td rowspan="2" align="center"><h3><font color="#2d2d2d">누적매출액</font></h3></td>
-    		<td style="border-bottom:1px solid #b2b2b2"></td>
-    	</tr>
-    	<tr><td></td><td></td></tr>
-    </table>
-    <!-- 컨텐츠 구분선 끝 -->
-		
-	<div id="view_sales_chart_div" style="width: 1000px; height:500px; margin: 0 auto; padding: 5px;"></div>
-	
 	<div id="comment_div">
 		<c:if test="${sessionScope.memVO ne null}"> 
 		<div id="comment">
@@ -327,7 +309,6 @@
 				$("#view_sales_chart_div").css("display", "none");
 			}
 			viewAudiChart(data);
-			viewSalesChart(data);
 		});
 		
 		var itemsMainDiv = ('.MultiCarousel');
@@ -440,138 +421,120 @@
 		var chart = am4core.create(
 				"view_audi_chart_div", am4charts.XYChart);
 		
+		//chart.data = data;
 		
-		
-		chart.data = data;
-		
-		// x축 만들기
-		var categoryAxis = 
-		chart.xAxes.push(new am4charts.CategoryAxis());
-		categoryAxis.dataFields.category = "dTime";
-		
-		categoryAxis.renderer.labels.template.fontSize = 12;
-		categoryAxis.renderer.minGridDistance = 30;
-		
-		// y축 만들기
-		var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-		valueAxis.renderer.minGridDistance = 30;
-		valueAxis.title.text = "관객수";
-		
-		var axisBreak = valueAxis.axisBreaks.create();
-		axisBreak.startValue = 1550000;
-		axisBreak.endValue = 16000000;
-		axisBreak.breakSize = 0.005;
-		
-		// make break expand on hover
-		var hoverState = axisBreak.states.create("hover");
-		hoverState.properties.breakSize = 1;
-		hoverState.properties.opacity = 0.1;
-		hoverState.transitionDuration = 1500;
+		// Increase contrast by taking evey second color
+		chart.colors.step = 2;
 
-		axisBreak.defaultState.transitionDuration = 1000;
-		
-		// this is exactly the same, but with events
-		axisBreak.events.on("over", () => { 
-		  axisBreak.animate(
-		    [{ property: "breakSize", to: 1 }, { property: "opacity", to: 0.1 }],
-		    1500,
-		    am4core.ease.sinOut
-		  );
-		});
-		axisBreak.events.on("out", () => {
-		  axisBreak.animate(
-		    [{ property: "breakSize", to: 0.005 }, { property: "opacity", to: 1 }],
-		    1000,
-		    am4core.ease.quadOut
-		  );
-		});
-		
-		
-		//Series 만들기
-		var series = chart.series.push(
-				new am4charts.ColumnSeries());
-		series.dataFields.categoryX = "dTime";
-		series.dataFields.valueY = "audiAcc";
-		
-		series.columns.template.tooltipText = 
-			"[bold]{valueY}[/]";
-		series.columns.template.fill = am4core.color('#0489B1');
-		series.columns.template.fillOpacity = 0.7;
-		series.columns.template.stroke = am4core.color('black');
-		
-		var columnTemplate = series.columns.template;
-		columnTemplate.strokeWidth = 1;
-		columnTemplate.strokeOpacity = 0.7;
-		
-	}
-	
-	function viewSalesChart(data){
-		
-		am4core.useTheme(am4themes_animated);
-		
-		var chart = am4core.create(
-				"view_sales_chart_div", am4charts.XYChart);
-		
+		// Add data
 		chart.data = data;
-		
-		// x축 만들기
-		var categoryAxis = 
-		chart.xAxes.push(new am4charts.CategoryAxis());
-		categoryAxis.dataFields.category = "dTime";
-		
-		categoryAxis.renderer.labels.template.fontSize = 12;
-		categoryAxis.renderer.minGridDistance = 30;
-		
-		// y축 만들기
-		var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-		valueAxis.renderer.minGridDistance = 30;
-		valueAxis.title.text = "매출액";
-		
-		var axisBreak = valueAxis.axisBreaks.create();
-		axisBreak.startValue = 15000000000;
-		axisBreak.endValue = 100000000000;
-		axisBreak.breakSize = 0.005;
-		
-		// make break expand on hover
-		var hoverState = axisBreak.states.create("hover");
-		hoverState.properties.breakSize = 1;
-		hoverState.properties.opacity = 0.1;
-		hoverState.transitionDuration = 1500;
 
-		axisBreak.defaultState.transitionDuration = 1000;
-		
-		// this is exactly the same, but with events
-		axisBreak.events.on("over", () => { 
-		  axisBreak.animate(
-		    [{ property: "breakSize", to: 1 }, { property: "opacity", to: 0.1 }],
-		    1500,
-		    am4core.ease.sinOut
-		  );
-		});
-		axisBreak.events.on("out", () => {
-		  axisBreak.animate(
-		    [{ property: "breakSize", to: 0.005 }, { property: "opacity", to: 1 }],
-		    1000,
-		    am4core.ease.quadOut
-		  );
-		});
-		
-		
-		//Series 만들기
-		var series = chart.series.push(
-				new am4charts.ColumnSeries());
-		series.dataFields.categoryX = "dTime";
-		series.dataFields.valueY = "salesAcc";
-		
-		series.columns.template.tooltipText = 
-			"[bold]{valueY}[/]";
-		series.columns.template.fill = am4core.color('#0489B1');
-		series.columns.template.fillOpacity = 0.7;
-		series.columns.template.stroke = am4core.color('black');
-		
-		var columnTemplate = series.columns.template;
-		columnTemplate.strokeWidth = 1;
-		columnTemplate.strokeOpacity = 0.7;
+		// Create axes
+		var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+		dateAxis.renderer.minGridDistance = 50;
+
+		// Create series
+		function createAxisAndSeries(field, name, opposite, bullet) {
+		  var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+		  if(chart.yAxes.indexOf(valueAxis) != 0){
+		  	valueAxis.syncWithAxis = chart.yAxes.getIndex(0);
+		  }
+		  
+		  var series = chart.series.push(new am4charts.LineSeries());
+		  series.dataFields.valueY = field;
+		  series.dataFields.dateX = "dTime";
+		  series.strokeWidth = 2;
+		  series.yAxis = valueAxis;
+		  series.name = name;
+		  series.tooltipText = "{name}: [bold]{valueY}[/]";
+		  series.tensionX = 0.8;
+		  series.showOnInit = true;
+		  
+		  var interfaceColors = new am4core.InterfaceColorSet();
+		  
+		  switch(bullet) {
+		    case "triangle":
+		      var bullet = series.bullets.push(new am4charts.Bullet());
+		      bullet.width = 12;
+		      bullet.height = 12;
+		      bullet.horizontalCenter = "middle";
+		      bullet.verticalCenter = "middle";
+		      
+		      var triangle = bullet.createChild(am4core.Triangle);
+		      triangle.stroke = interfaceColors.getFor("background");
+		      triangle.strokeWidth = 2;
+		      triangle.direction = "top";
+		      triangle.width = 12;
+		      triangle.height = 12;
+		      break;
+		    case "rectangle":
+		      var bullet = series.bullets.push(new am4charts.Bullet());
+		      bullet.width = 10;
+		      bullet.height = 10;
+		      bullet.horizontalCenter = "middle";
+		      bullet.verticalCenter = "middle";
+		      
+		      var rectangle = bullet.createChild(am4core.Rectangle);
+		      rectangle.stroke = interfaceColors.getFor("background");
+		      rectangle.strokeWidth = 2;
+		      rectangle.width = 10;
+		      rectangle.height = 10;
+		      break;
+		    default:
+		      var bullet = series.bullets.push(new am4charts.CircleBullet());
+		      bullet.circle.stroke = interfaceColors.getFor("background");
+		      bullet.circle.strokeWidth = 2;
+		      break;
+		  }
+		  
+		  valueAxis.renderer.line.strokeOpacity = 1;
+		  valueAxis.renderer.line.strokeWidth = 2;
+		  valueAxis.renderer.line.stroke = series.stroke;
+		  valueAxis.renderer.labels.template.fill = series.stroke;
+		  valueAxis.renderer.opposite = opposite;
+		}
+
+		createAxisAndSeries("audiAcc", "관객수", false, "circle");
+		createAxisAndSeries("salesAcc", "매출액", true, "triangle");
+
+		// Add legend
+		chart.legend = new am4charts.Legend();
+
+		// Add cursor
+		chart.cursor = new am4charts.XYCursor();
+
+		// generate some random data, quite different range
+		function generateChartData() {
+		  var chartData = [];
+		  var firstDate = new Date();
+		  firstDate.setDate(firstDate.getDate() - 100);
+		  firstDate.setHours(0, 0, 0, 0);
+
+		  var visits = 1600;
+		  var hits = 2900;
+		  var views = 8700;
+
+		  for (var i = 0; i < 15; i++) {
+		    // we create date objects here. In your data, you can have date strings
+		    // and then set format of your dates using chart.dataDateFormat property,
+		    // however when possible, use date objects, as this will speed up chart rendering.
+		    var newDate = new Date(firstDate);
+		    newDate.setDate(newDate.getDate() + i);
+
+		    visits += Math.round((Math.random()<0.5?1:-1)*Math.random()*10);
+		    hits += Math.round((Math.random()<0.5?1:-1)*Math.random()*10);
+		    views += Math.round((Math.random()<0.5?1:-1)*Math.random()*10);
+
+		    chartData.push({
+		      date: newDate,
+		      visits: visits,
+		      hits: hits,
+		      views: views
+		    });
+		  }
+		  return chartData;
+		}
+
 		
 	}
 
