@@ -10,7 +10,7 @@
 <style type="text/css">
 #include_center{
 	width: 100%;
-	height: 2300px;
+	
 	margin-top: 50px;
 }
 #include_footer{
@@ -154,7 +154,7 @@
 	}
 	
 	function goBoardView(b_idx, nowPage){
-		$("#include_center").css("height", "900px");
+		$("#include_center").css("height", "1500px");
 		$("#include_center").load("boardview.inc?b_idx="+b_idx+"&nowPage="+nowPage);
 	}
 	

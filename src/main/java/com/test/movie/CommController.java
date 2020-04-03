@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.ModelAndView; 
 
 import mybatis.dao.MovieDAO;
 import mybatis.vo.MovieCommentVO;
@@ -28,9 +28,10 @@ public class CommController {
 	@ResponseBody
 	public Map<String, Object> postCommSave(MovieCommentVO vo) {
 		Map<String, Object> map = new HashMap<String, Object>(); 
-		//System.out.println(vo.getContent());
-		//System.out.println(vo.getM_idx());
-		//System.out.println(vo.getMovieCd());
+		System.out.println(vo.getContent());
+		System.out.println(vo.getM_idx());
+		System.out.println(vo.getMovieCd());
+		System.out.println(vo.getRate());
 		
 		vo.setIp(requset.getRemoteAddr());
 		

@@ -250,7 +250,7 @@
 				    <label for="star1" title="text">1 star</label>
 				</div>
 				<textarea rows="3" cols="120" name="content" id="content"></textarea>
-				<input type="hidden" name="m_idx" id="m_idx" value="${sessionScope.memVO.name }">
+				<input type="hidden" name="m_idx" id="m_idx" value="${sessionScope.memVO.m_idx }">
 				<%-- <input type="hidden" name="m_idx" id="m_idx" value="1"> --%>
 				<input type="hidden" name="movieCd" id="movieCd" value="${movieCd }">
 				<input type="button" value="저장" onclick="commSave(this.form)"/>
@@ -271,7 +271,7 @@
 					<c:forEach var="cvo" items="${vo.comms }">
 					<tr>
 						<td style="width: 70px">
-							${cvo.mvo.id }
+							${cvo.mvo.name }
 						</td>
 						<td class="comment">
 							${cvo.content } 
@@ -609,8 +609,8 @@
 					var code = "";
 					for(var i = 0; i<data.mar.length; i++){
 						code += "<tr><td style='width: 70px'>";
-						code += data.mar[i].mvo.id;
-						code += "</td><td>";
+						code += data.mar[i].mvo.name;
+						code += "</td><td class='comment'>";
 						code += data.mar[i].content;
 						code += "</td>";
 						if(data.mar[i].rate != null){
@@ -658,8 +658,8 @@
 					var code = "";
 					for(var i = 0; i<data.mar.length; i++){
 						code += "<tr><td style='width: 70px'>";
-						code += data.mar[i].mvo.id;
-						code += "</td><td>";
+						code += data.mar[i].mvo.name;
+						code += "</td><td class='comment'>";
 						code += data.mar[i].content;
 						code += "</td>";
 						if(data.mar[i].rate != null){

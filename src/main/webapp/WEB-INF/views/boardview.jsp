@@ -86,11 +86,10 @@
 					<c:if test="${sessionScope.memVO ne null}"> 
 	                    <div class="post-a-comment-area mt-70">
 	                        <!-- Reply Form -->
-	                        <form action="#" method="post">
 	                            <div class="row">
 	                                <div class="col-12">
 	                                    <div class="group">
-	                                        <textarea name="content" id="content" required></textarea>
+	                                        <textarea name="message" id="message" required></textarea>
 	                                        <span class="highlight"></span>
 	                                        <span class="bar"></span>
 	                                        <label>댓글</label>
@@ -102,7 +101,6 @@
 	                                    <button onclick="commSave()" class="btn original-btn">등록</button>
 	                                </div>
 	                            </div>
-	                        </form>
 	                    </div>
                     </c:if>
                 </div>
@@ -111,7 +109,6 @@
     </div>
     <!-- ##### Single Blog Area End ##### -->
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
-    <script src="resources/js/jquery/jquery-3.4.1.min.js"></script>
 	<!-- Popper js -->
     <script src="resources/js/popper.min.js"></script>
     <!-- Bootstrap js -->
@@ -123,7 +120,7 @@
     
     <script>
     	function commSave(){
-    		var content = $("#content").val();
+    		var content = $("#message").val();
     		var m_idx = $("#m_idx").val();
     		var b_idx = $("#b_idx").val();
     		console.log(content);
@@ -170,7 +167,7 @@
     				alert("댓글달기 실패");
     			}
     			
-    			$("#content").val("");	
+    			$("#message").val("");	
     		}).fail(function(err){
     			
     		});
