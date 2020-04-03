@@ -67,6 +67,9 @@ public class WriteController {
 		
 		if(mf != null && mf.getSize()>0) {
 			String path = application.getRealPath(uploadPath);
+			File f = new File(path);
+			if(f.exists())
+				f.mkdir();
 			vo.setFile_name(FileRenameUtil.CheckFileName(path, mf.getOriginalFilename()));
 			vo.setOri_name(mf.getOriginalFilename());
 			mf.transferTo(new File(path, vo.getFile_name()));
@@ -79,7 +82,7 @@ public class WriteController {
 		m_dao.writeBoard(vo);
 		
 		mv.addObject("nowPage", vo.getNowPage());
-		mv.setViewName("redirect:/list.inc");
+		mv.setViewName("redirect:/list.inc?category="+vo.getCategory());
 		
 		return mv;
 	}

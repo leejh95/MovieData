@@ -150,11 +150,13 @@
 			dataType: "json"
 		}).done(function(data){
 			$("#daily_audi_chart_div").css("display", "");
+			$("#daily_sales_chart_div").css("display", "");
 			if(data.length <= 0){
 				$("#daily_audi_chart_div").css("display", "none");
+				$("#daily_sales_chart_div").css("display", "none");
 			}
-			audiChart(data);
-			salesChart(data);
+			dailyAudiChart(data);
+			dailySalesChart(data);
 		});
 		
 		var itemsMainDiv = ('.MultiCarousel');
@@ -260,7 +262,7 @@
 		
 	});
 	
-	function audiChart(data){
+	function dailyAudiChart(data){
 		
 		am4core.useTheme(am4themes_animated);
 		
@@ -331,7 +333,7 @@
 		columnTemplate.strokeOpacity = 0.7;
 	}
 	
-	function salesChart(data){
+	function dailySalesChart(data){
 		
 		am4core.useTheme(am4themes_animated);
 		
