@@ -135,10 +135,11 @@
 
     <div class="method">
     <!-- 글쓰기 버튼 -->
+    <c:if test="${sessionScope.memVO ne null}"> 
     <div class="btn-toolbar">
     	<button class="btn" onClick="javascript:location.href='writeForm.inc?nowPage=${nowPage}&category=${category }'">글쓰기</button>
 	</div>
-    
+    </c:if>
         <div class="row margin-0 list-header hidden-sm hidden-xs">
             <div class="col-md-2"><div class="header">No</div></div>
             <div class="col-md-4"><div class="header">제목</div></div>

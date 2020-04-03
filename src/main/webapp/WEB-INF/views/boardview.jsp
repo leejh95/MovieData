@@ -50,6 +50,13 @@
                             <p>${vo.content }</p>
                         </div>
                     </div>
+                    <c:if test="${sessionScope.memVO.m_idx eq vo.m_idx}">
+                    	<div class="single-blog-content">
+                    		<input type="button" value="삭제" onclick="javascript:goDel()"/>
+                    		<input type="button" value="수정"/>
+                    		<input type="button" value="목록" onclick="javascript:goBoard('${vo.category}', '${nowPage }')"/>
+                        </div>
+                    </c:if>
                     <hr/>
                     <!-- Comment Area Start -->
                     <div class="comment_area clearfix mt-70">
