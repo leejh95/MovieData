@@ -84,46 +84,15 @@
 		height: 20px;
 		margin-bottom: 5px;
 	}
-	
-	.rate {
-	    float: left;
-	    height: 46px;
-	    padding: 0 10px;
-	}
-	.rate:not(:checked) > input {
-	    position:absolute;
-	    top:-9999px;
-	}
-	.rate:not(:checked) > label {
-	    float:right;
-	    width:1em;
-	    overflow:hidden;
-	    white-space:nowrap;
-	    cursor:pointer;
-	    font-size:30px;
-	    color:#ccc;
-	}
-	.rate:not(:checked) > label:before {
-	    content: '★ ';
-	}
-	.rate > input:checked ~ label {
-	    color: #ffc700;    
-	}
-	.rate:not(:checked) > label:hover,
-	.rate:not(:checked) > label:hover ~ label {
-	    color: #deb217;  
-	}
-	.rate > input:checked + label:hover,
-	.rate > input:checked + label:hover ~ label,
-	.rate > input:checked ~ label:hover,
-	.rate > input:checked ~ label:hover ~ label,
-	.rate > label:hover ~ input:checked ~ label {
-	    color: #c59b08;
-	}
-
+	.star-rating{position: relative;}
+	.star-rating,.star-rating span{width:152px; height:28px; overflow:hidden; background:url(resources/images/star.png)no-repeat; }
+	.star-rating span{background-position:left bottom; line-height:0; vertical-align:top; position: absolute; top: 0px; left: 0px;}
+	.star-rating div{width:10%; height:28px; position: absolute; top: 0px; left: 0px;}
+	.star-rating div:hover{cursor: pointer;}
 /* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
 </style>
 	 <%-- <jsp:include page="header.jsp"/>  --%>   
+	 
 </head>
 <body>
 	<div id="view_wrap">
@@ -217,27 +186,37 @@
 		
 	<div id="comment_div">
 		<c:if test="${sessionScope.memVO ne null}"> 
-		<div id="comment">
-			<form action="commSave.inc" method="post">
-				<div class="rate">
-				    <input type="radio" id="star5" name="rate" value="5" />
-				    <label for="star5" title="text">5 stars</label>
-				    <input type="radio" id="star4" name="rate" value="4" />
-				    <label for="star4" title="text">4 stars</label>
-				    <input type="radio" id="star3" name="rate" value="3" />
-				    <label for="star3" title="text">3 stars</label>
-				    <input type="radio" id="star2" name="rate" value="2" />
-				    <label for="star2" title="text">2 stars</label>
-				    <input type="radio" id="star1" name="rate" value="1" />
-				    <label for="star1" title="text">1 star</label>
-				</div>
-				<textarea rows="3" cols="120" name="content" id="content"></textarea>
-				<input type="hidden" name="m_idx" id="m_idx" value="${sessionScope.memVO.m_idx }">
-				<%-- <input type="hidden" name="m_idx" id="m_idx" value="1"> --%>
-				<input type="hidden" name="movieCd" id="movieCd" value="${movieCd }">
-				<input type="button" value="저장" onclick="commSave(this.form)"/>
-			</form>
-		</div>
+			<div id="comment">
+				<h4>내 평점 등록하기</h4>
+				<hr>
+				<form action="commSave.inc" method="post">
+					<input type="hidden" name="m_idx" id="m_idx" value="${sessionScope.memVO.m_idx }">
+					<%-- <input type="hidden" name="m_idx" id="m_idx" value="1"> --%>
+					<input type="hidden" name="movieCd" id="movieCd" value="${movieCd }">
+					<textarea rows="3" cols="120" name="content" id="content" placeholder="내용을 입력해주세요..."></textarea>
+					<div class="wrap-star">
+	    				<div class='star-rating' width="200px" height="40px" style="float: left;">
+	        				<span style ="width:0px;"></span>
+	        				<div onclick="rate(1)" onmouseover="changeStars(1)" onmouseout="resetStars()"></div>
+	        				<div style="left:10%;" onclick="rate(2)" onmouseover="changeStars(2)" onmouseout="resetStars()"></div>
+	        				<div style="left:20%;" onclick="rate(3)" onmouseover="changeStars(3)" onmouseout="resetStars()"></div>
+	        				<div style="left:30%;" onclick="rate(4)" onmouseover="changeStars(4)" onmouseout="resetStars()"></div>
+	        				<div style="left:40%;" onclick="rate(5)" onmouseover="changeStars(5)" onmouseout="resetStars()"></div>
+	        				<div style="left:50%;" onclick="rate(6)" onmouseover="changeStars(6)" onmouseout="resetStars()"></div>
+	        				<div style="left:60%;" onclick="rate(7)" onmouseover="changeStars(7)" onmouseout="resetStars()"></div>
+	        				<div style="left:70%;" onclick="rate(8)" onmouseover="changeStars(8)" onmouseout="resetStars()"></div>
+	        				<div style="left:80%;" onclick="rate(9)" onmouseover="changeStars(9)" onmouseout="resetStars()"></div>
+	        				<div style="left:90%;" onclick="rate(10)" onmouseover="changeStars(10)" onmouseout="resetStars()"></div>
+					    </div>
+					    <div id="star-label" style="float: left; margin-left: 10px; padding: 5px;"><h6>0</h6></div>
+					    <br><br>
+					    <h5>나의 평가 : <b id="star-value">0</b>점</h5>
+					    <br>
+					</div>
+					<button type="button" class="btn original-btn" onclick="commSave(this.form)">등록하기</button>
+				</form>
+				<hr>
+			</div><br><br>
 		</c:if> 
 
 		<div id="commentList">
@@ -246,7 +225,7 @@
 					<c:if test="${vo.comms eq null }">
 						<tr>
 							<td>
-								없다 댓글
+								이 영화는 아직 평가가 없습니다...
 							</td>
 						</tr>
 					</c:if> 
@@ -648,6 +627,112 @@
 		}).fail(function(err){
 			
 		});
+	}
+	
+	function rate(val){
+		if(val == 1){
+			$(".star-rating span").css("width", "10%");
+			$("#star-value").text("1");
+		}else if(val == 2){
+			$(".star-rating span").css("width", "20%");
+			$("#star-value").text("2");
+		}else if(val == 3){
+			$(".star-rating span").css("width", "30%");
+			$("#star-value").text("3");
+		}else if(val == 4){
+			$(".star-rating span").css("width", "40%");
+			$("#star-value").text("4");
+		}else if(val == 5){
+			$(".star-rating span").css("width", "50%");
+			$("#star-value").text("5");
+		}else if(val == 6){
+			$(".star-rating span").css("width", "60%");
+			$("#star-value").text("6");
+		}else if(val == 7){
+			$(".star-rating span").css("width", "70%");
+			$("#star-value").text("7");
+		}else if(val == 8){
+			$(".star-rating span").css("width", "80%");
+			$("#star-value").text("8");
+		}else if(val == 9){
+			$(".star-rating span").css("width", "90%");
+			$("#star-value").text("9");
+		}else if(val == 10){
+			$(".star-rating span").css("width", "100%");
+			$("#star-value").text("10");
+		}
+	}
+	
+	function changeStars(val){
+		if(val == 1){
+			$(".star-rating span").css("width", "10%");
+			$("#star-label").text("1");
+		}else if(val == 2){
+			$(".star-rating span").css("width", "20%");
+			$("#star-label").text("2");
+		}else if(val == 3){
+			$(".star-rating span").css("width", "30%");
+			$("#star-label").text("3");
+		}else if(val == 4){
+			$(".star-rating span").css("width", "40%");
+			$("#star-label").text("4");
+		}else if(val == 5){
+			$(".star-rating span").css("width", "50%");
+			$("#star-label").text("5");
+		}else if(val == 6){
+			$(".star-rating span").css("width", "60%");
+			$("#star-label").text("6");
+		}else if(val == 7){
+			$(".star-rating span").css("width", "70%");
+			$("#star-label").text("7");
+		}else if(val == 8){
+			$(".star-rating span").css("width", "80%");
+			$("#star-label").text("8");
+		}else if(val == 9){
+			$(".star-rating span").css("width", "90%");
+			$("#star-label").text("9");
+		}else if(val == 10){
+			$(".star-rating span").css("width", "100%");
+			$("#star-label").text("10");
+		}
+	}
+	
+	function resetStars(){
+		var val = $("#star-value").text();
+		if(val == 0){
+			$(".star-rating span").css("width", "0%");
+			$("#star-label").text("0");
+		}else if(val == 1){
+			$(".star-rating span").css("width", "10%");
+			$("#star-label").text("1");
+		}else if(val == 2){
+			$(".star-rating span").css("width", "20%");
+			$("#star-label").text("2");
+		}else if(val == 3){
+			$(".star-rating span").css("width", "30%");
+			$("#star-label").text("3");
+		}else if(val == 4){
+			$(".star-rating span").css("width", "40%");
+			$("#star-label").text("4");
+		}else if(val == 5){
+			$(".star-rating span").css("width", "50%");
+			$("#star-label").text("5");
+		}else if(val == 6){
+			$(".star-rating span").css("width", "60%");
+			$("#star-label").text("6");
+		}else if(val == 7){
+			$(".star-rating span").css("width", "70%");
+			$("#star-label").text("7");
+		}else if(val == 8){
+			$(".star-rating span").css("width", "80%");
+			$("#star-label").text("8");
+		}else if(val == 9){
+			$(".star-rating span").css("width", "90%");
+			$("#star-label").text("9");
+		}else if(val == 10){
+			$(".star-rating span").css("width", "100%");
+			$("#star-label").text("10");
+		}
 	}
 </script>	
 </body>
