@@ -66,6 +66,9 @@
 </head>
 <body bgcolor="#343434">
 
+<input type="hidden" value="${chk }" id="chk"/>
+<input type="hidden" value="${category }" id="category"/>
+
 <div id="include_header" ></div>
 <div id="include_center" ></div>
 <div id="include_footer"></div>
@@ -76,9 +79,23 @@
 <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#include_header").load("header.inc");
-		$("#include_center").load("centerSlide.inc"); 
-		$("#include_footer").load("footer.inc");
+		
+		var chk = $("#chk").val();
+		var category = $("#category").val();
+
+		if(!chk || chk == ""){
+			$("#include_header").load("header.inc");
+			$("#include_center").load("centerSlide.inc"); 
+			$("#include_footer").load("footer.inc");
+		}
+				//console.log(chk);
+		if(chk){
+			//console.log(chk);
+			$("#include_header").load("header.inc");
+			goBoard(category);
+			$("#include_footer").load("footer.inc");
+		}
+			 
  	});
 	
 	function goSearch(){
@@ -150,6 +167,9 @@
 	function goWrite(nowPage, category){
 		$("#include_center").load("writeForm.inc?nowPage="+nowPage+"&category="+category);
 	}
+	
+
+
 	
 </script>
 </body>

@@ -33,38 +33,38 @@ if(obj != null){
 <!-- ##### Contact Area Start ##### -->
     <section class="contact-area section-padding-100">
         <div class="container">
-            <div class="row justify-content-center">
+            <div class="row justify-content-center" style="box-shadow: 0px 5px 5px 1px gray;">
                 <!-- Contact Form Area -->
                 <div class="col-12 col-md-10 col-lg-9">
-                    <div class="contact-form">
+                    <div class="contact-form" >
                         <h5>게시글 작성</h5>
                         <!-- Contact Form -->
                         <form action="write.inc" method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="category" value="${param.category }"/>
-                        <input type="hidden" name="m_idx" value="<%=vo.getM_idx() %>"/>
-                            <div class="row">
-                                <div class="col-12 col-md-6">
-                                    <div class="group">
-                                        <input type="text" name="subject" id="subject" required>
-                                        <span class="highlight"></span>
-                                        <span class="bar"></span>
-                                        <label>제목</label>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="group">
-                                        <input type="file" name="upload" id="upload">
-                                        <span class="highlight"></span>
-                                        <span class="bar"></span>
-                                    </div>
-                                </div>
-                                <div>
-                                <textarea name="content" id="content" style="margin-left:20px;"></textarea>
-                                </div>
-                                <div class="col-12">
-                                    <button type="submit" class="btn original-btn" style="margin-top:10px;">등록</button>
-                                </div>
-                            </div>
+	                        <input type="hidden" name="category" value="${param.category }"/>
+	                        <input type="hidden" name="m_idx" value="<%=vo.getM_idx() %>"/>
+	                            <div class="row">
+	                                <div class="col-12 col-md-6">
+	                                    <div class="group">
+	                                        <input type="text" name="subject" id="subject" required>
+	                                        <span class="highlight"></span>
+	                                        <span class="bar"></span>
+	                                        <label>제목</label>
+	                                    </div>
+	                                </div>
+	                                <div class="col-12 col-md-6">
+	                                    <div class="group">
+	                                        <input type="file" name="upload" id="upload">
+	                                        <span class="highlight"></span>
+	                                        <span class="bar"></span>
+	                                    </div>
+	                                </div>
+	                                <div>
+	                                <textarea name="content" id="content" style="margin-left:20px;"></textarea>
+	                                </div>
+	                                <div class="col-12">
+	                                    <button type="submit" class="btn original-btn" style="margin-top:10px; margin-bottom: 20px;">등록</button>
+	                                </div>
+	                            </div>
                         </form>
                     </div>
                 </div>
@@ -89,8 +89,22 @@ if(obj != null){
     $(function(){
 		$("#content").summernote({
 			height: 300,
-			width: 700,
+			width: 850,
 			lang: "ko-KR",
+			  toolbar: [
+                  // [groupName, [list of button]]
+                  ['Font Style', ['fontname']],
+                  ['style', ['bold', 'italic', 'underline']],
+                  ['font', ['strikethrough']],
+                  ['fontsize', ['fontsize']],
+                  ['color', ['color']],
+                  ['para', ['paragraph']],
+                  ['height', ['height']],
+                  ['Insert', ['picture']],
+                  ['Insert', ['link']],
+                  ['Misc', ['fullscreen']]
+              ],
+
 			callbacks:{
 				onImageUpload: function(files, editor){
 					for(var i=0; i<files.length; i++){
@@ -119,7 +133,7 @@ if(obj != null){
 			data: frm
 			
 		}).done(function(data){
-			console.log("asdsadsadasdsdasadsd:" + data.url);
+			//console.log("asdsadsadasdsdasadsd:" + data.url);
 			$("#content").summernote("editor.insertImage", data.url);
 		}).fail(function(err){
 			console.log(err);

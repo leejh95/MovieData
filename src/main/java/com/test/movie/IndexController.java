@@ -19,4 +19,18 @@ public class IndexController {
 		return "index";
 	}
 	
+	@RequestMapping("/goListIndex.inc")
+	public ModelAndView goList(String category) {
+		ModelAndView mv = new ModelAndView();
+		boolean chk = false;
+		
+		if(category != null)
+			chk = true;
+		
+		mv.addObject("category", category);
+		mv.addObject("chk", chk);
+		mv.setViewName("index");
+		return mv;
+	}
+	
 }
