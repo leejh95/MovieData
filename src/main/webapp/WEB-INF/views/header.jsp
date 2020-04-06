@@ -51,6 +51,9 @@
 						<c:if test="${sessionScope.memVO eq null}">
                             <a href="javascript:location.href='signIn.inc'" data-toggle="tooltip" data-placement="bottom" title="Login"><i class="fas fa-sign-in-alt"></i></a>
                             <a href="javascript:location.href='signUp.inc'" data-toggle="tooltip" data-placement="bottom" title="Registry"><i class="fas fa-registered"></i></a>
+						</c:if>
+						<c:if test="${sessionScope.memVO ne null and sessionScope.memVO.status eq 2}">
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Admin"><i class="fas fa-sign-in-alt"></i></a>
 						</c:if>	
                         </div>
                     </div>
@@ -63,7 +66,7 @@
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
-                        <a href="index.inc" class="original-logo"><img src="resources/images/logo (1).png" alt=""></a>
+                        <a href="index.inc" class="original-logo"><img src="resources/images/boxoffice (1).png" alt=""></a>
                     </div>
                 </div>
             </div>
