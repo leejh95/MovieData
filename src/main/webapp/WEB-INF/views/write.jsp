@@ -53,7 +53,7 @@ if(obj != null){
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="group">
-                                        <input type="file" name="upload" id="upload" required>
+                                        <input type="file" name="upload" id="upload">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                     </div>

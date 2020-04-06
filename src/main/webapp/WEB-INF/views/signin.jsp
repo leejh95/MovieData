@@ -172,6 +172,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwuyLRa1uKNtbgx6xAJVmWy-zADgegA2s"></script>
     <script src="resources/js/map-active.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="resources/js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript">
 	    var isButtonClicked = false;
 		document.querySelector('.g-signin2').addEventListener('click', function(){

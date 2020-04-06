@@ -107,17 +107,6 @@
 		$("#include_center").css("height", "1200px");
 	}
 	
-	function goSignin() {
-		$("#include_center").load("signIn.inc");
-		$("#include_center").css("height", "1200px");
-		
-	}
-	
-	function goSignup(){
-		$("#include_center").load("signUp.inc");
-		$("#include_center").css("height", "1200px");
-	}
-	
 	function goBoxOffice(){
 		
 		var msg = "<div id='include_calendar' ></div><br><br>";
@@ -156,6 +145,10 @@
 	function goBoardView(b_idx, nowPage){
 		$("#include_center").css("height", "1500px");
 		$("#include_center").load("boardview.inc?b_idx="+b_idx+"&nowPage="+nowPage);
+	}
+	
+	function goWrite(nowPage, category){
+		$("#include_center").load("writeForm.inc?nowPage="+nowPage+"&category="+category);
 	}
 	
 </script>

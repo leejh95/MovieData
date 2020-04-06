@@ -33,6 +33,17 @@ public class SignUpController {
 		return map;
 	}
 	
+	@RequestMapping("/signUpKeyEmail.inc")
+	@ResponseBody
+	public Map<String, Object> signUpKeyEmail(String email){
+		boolean chk = m_dao.isExistID(email);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("chk", chk);
+		
+		return map;
+	}
+	
 	@RequestMapping("/signUpForm.inc")
 	public String signUpForm(String id, String pw, String name, String email, String[] phone) {
 		String ph = phone[0] + "-" + phone[1] + "-" + phone[2];

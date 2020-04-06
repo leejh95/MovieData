@@ -49,8 +49,8 @@
 					          <a href="javascript:location.href='signout.inc'" data-toggle="tooltip" data-placement="bottom" title="SignOut"><i class="fas fa-sign-out-alt"></i></a>
 						</c:if>	
 						<c:if test="${sessionScope.memVO eq null}">
-                            <a href="javascript:goSignin()" data-toggle="tooltip" data-placement="bottom" title="Login"><i class="fas fa-sign-in-alt"></i></a>
-                            <a href="javascript:goSignup()" data-toggle="tooltip" data-placement="bottom" title="Registry"><i class="fas fa-registered"></i></a>
+                            <a href="javascript:location.href='signIn.inc'" data-toggle="tooltip" data-placement="bottom" title="Login"><i class="fas fa-sign-in-alt"></i></a>
+                            <a href="javascript:location.href='signUp.inc'" data-toggle="tooltip" data-placement="bottom" title="Registry"><i class="fas fa-registered"></i></a>
 						</c:if>	
                         </div>
                     </div>

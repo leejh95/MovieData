@@ -18,8 +18,8 @@
 
 
 	<!-- ##### Contact Area Start ##### -->
-    <section class="contact-area section-padding-100">
-        <div class="container">
+    <section class="contact-area section-padding-100" style="background-color: #ededed;">
+        <div class="container" style="background-color: white; padding: 100px; box-shadow: 0px 5px 5px 1px gray;">
             <div class="row justify-content-center">
                 <!-- Contact Form Area -->
                 <div class="col-12 col-md-10 col-lg-9">
@@ -55,7 +55,7 @@
                                 <div class="col-12">
                                     <div class="group">
                                     	<br>
-                                        <input type="email" name="email">
+                                        <input type="email" name="email" id="signup_email">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                         <label id="label_email">Email <font></font></label>
@@ -86,6 +86,11 @@
                                 <div class="col-12">
                                     <button type="button" class="btn original-btn" onclick="signUp(this.form)">회원가입</button>
                                 </div>
+                                
+                                <br><br><br><br>
+								<div align="center">
+                        			<a href="index.inc" style="color: #2f2f2f; font-weight: bold; margin: 10px;">홈으로가기</a>
+                        		</div>
                             </div>
                         </form>
                     </div>
@@ -94,6 +99,64 @@
         </div>
     </section>
     <!-- ##### Contact Area End ##### -->
+    
+    <!-- ##### Footer Area Start ##### -->
+	<div style="width: 100%; height: 1px; background-color: #d2d2d2"></div>
+    <footer class="footer-area text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                   
+                    <!-- Footer Nav Area -->
+                    <div class="classy-nav-container breakpoint-off">
+                        <!-- Classy Menu -->
+                        <nav class="classy-navbar justify-content-center">
+
+                            <!-- Navbar Toggler -->
+                            <div class="classy-navbar-toggler">
+                                <span class="navbarToggler"><span></span><span></span><span></span></span>
+                            </div>
+
+                            <!-- Menu -->
+                            <div class="classy-menu">
+
+                                <!-- close btn -->
+                                <div class="classycloseIcon">
+                                    <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                                </div>
+
+                                <!-- Nav Start -->
+                                <div class="classynav">
+                                    <ul>
+                                        <li><a href="#">여기</a></li>
+                                        <li><a href="#">뭐라고</a></li>
+                                        <li><a href="#">써둘까</a></li>
+                                        <li><a href="#">얘들아?</a></li>
+                                        <li><a href="#">의견좀</a></li>
+                                        <li><a href="#">주세요 ㅎㅎ</a></li>
+                                    </ul>
+                                </div>
+                                <!-- Nav End -->
+                            </div>
+                        </nav>
+                    </div>
+                    
+                    <!-- Footer Social Area -->
+                    <div class="footer-social-area mt-30">
+                        <a href="https://www.facebook.com/" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="https://twitter.com/?lang=ko" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        <a href="https://www.instagram.com/?hl=ko" data-toggle="tooltip" data-placement="top" title="Instargram"><i class="fab fa-instagram"></i></i></a>
+                        <a href="https://www.google.co.kr/" data-toggle="tooltip" data-placement="top" title="Google"><i class="fab fa-google"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+   	<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+	Copyright &copy;2020 All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+	<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
+    </footer>
 	
 	<!-- Popper js -->
     <script src="resources/js/popper.min.js"></script>
@@ -106,6 +169,7 @@
     <!-- Google Map js -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwuyLRa1uKNtbgx6xAJVmWy-zADgegA2s"></script>
     <script src="resources/js/map-active.js"></script>
+    <script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript">
 	
 		$(function() {
@@ -162,6 +226,37 @@
 				if (name.length > 0) 
 					$("#label_name").html("Name * <font></font>");
 				
+			});
+			
+			$("#signup_email").keyup(function(key) {
+
+				var email = $("#signup_email").val().trim();
+
+				if (email.length > 0) {
+
+					var param = "email=" + encodeURIComponent(id);
+
+					$.ajax({
+						url : "signUpKey.inc",
+						type : "post",
+						data : param,
+						dataType : "json"
+						
+					}).done(function(data) {
+						if (data.chk) {
+							$("#label_id").html("ID * <font color='#ff5656'>이미 사용중인 아이디입니다.</font>");
+						} else {
+							$("#label_id").html("ID * <font color='green'>사용하실 수 있는 아이디입니다.</font>");
+						}
+						
+					}).fail(function(err) {
+							console.log(err);
+					});
+					
+				} else {
+					$("#label_id").html("ID * <font></font>");
+				}
+
 			});
 		});
 
