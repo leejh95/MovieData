@@ -174,7 +174,13 @@
 								삭제된 게시글
 							</c:if>
 							<c:if test="${vo.status == 0 }">
-								<a href="javascript:goBoardView('${vo.b_idx }', '${nowPage}')">${vo.subject }</a>
+								<a href="javascript:goBoardView('${vo.b_idx }', '${nowPage}')">${vo.subject }
+								<c:if test="${vo.category == 'review' }">
+									<c:if test="${fn:length(vo.c_list) >0 }">
+										[ ${fn:length(vo.c_list) } ]
+									</c:if>
+								</c:if>
+								</a>
 							</c:if>
 	                    	</div>
 	                    </div>
