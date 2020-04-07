@@ -143,9 +143,16 @@
 	            <div class="col-md-2">
 	                <div class="cell">
 	                    <div class="type">
+	                    <c:if test="${vo.id eq null}">
+	                        <div class="propertyname">
+	                        	${vo.email }
+	                    	</div>
+	                    </c:if>
+	                    <c:if test="${vo.id ne null}">
 	                        <div class="propertyname">
 	                        	${vo.id }
 	                    	</div>
+	                    </c:if>		
 	                    </div>
 	                </div>
 	            </div>
@@ -172,7 +179,7 @@
 	                </c:if>
 	                <c:if test="${vo.status eq 1 && vo.sns_id eq null}">
 	                    <div class="description">
-	                        <input type="button" value="복구" />
+	                        <input type="button" value="복구" onclick="memRestore('${vo.m_idx }')"/>
 	                    </div>
 	                </c:if>      
 	                </div>

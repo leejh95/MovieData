@@ -1,8 +1,13 @@
 package com.test.movie;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.test.util.Paging;
@@ -56,5 +61,20 @@ public class AdminController {
 		
 		mv.setViewName("memList");
 		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/restore_member.inc", method = RequestMethod.POST)
+	public Map<String, String> deleteMem(String m_idx) {
+		String chk = "0";
+		Map<String, String> map = new HashMap<String, String>();
+		
+		if(m_dao.restoreMember(m_idx)) {
+			chk = "1";
+		} 
+		
+		map.put("chk", chk);
+		
+		return map;
 	}
 }

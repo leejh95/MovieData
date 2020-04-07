@@ -30,7 +30,7 @@
                 </h5>
                 <ul class="nav nav-pills nav-stacked" style="display: inline-block; width: 250px;">
                     <li class="active"><a href="index.inc">Home</a></li>
-                    <li><a href="javascript:memList()">List</a></li>
+                    <li><a href="javascript:memList('1')">List</a></li>
                     <li><a href="#">mijung</a></li>
                 </ul>
             </div>
@@ -117,13 +117,26 @@
     	  
    	 })
 
-    function memList(){
-    	$("#adcon_div").load("memList.inc");
+    function memList(nowPage){
+    	$("#adcon_div").load("memList.inc?nowPage="+nowPage);
     }
     function memStop(m_idx, pw){
     	var param = "m_idx="+encodeURIComponent(m_idx)+"&pw="+encodeURIComponent(pw);
     	$.ajax({
 			url: "delete_member.inc",
+			type: "post",
+			data: param,
+			dataType: "json"
+		}).done(function(data){
+			$("#adcon_div").load("memList.inc");
+		});
+    	
+    }
+    
+    function memRestore(m_idx){
+    	var param = "m_idx="+encodeURIComponent(m_idx);
+    	$.ajax({
+			url: "restore_member.inc",
 			type: "post",
 			data: param,
 			dataType: "json"

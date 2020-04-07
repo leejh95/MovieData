@@ -78,13 +78,13 @@ public class PagingMemList {
 		this.sb = new StringBuffer("");
 
 		if(this.isPrePage) {
-			sb.append("<li><a href='memList.inc?nowPage=");
+			sb.append("<li><a href=\"javascript:memList('");
 			if (this.nowPage - this.blockPage < 1) {
 				sb.append("1");
 			} else {
 				sb.append(this.nowPage - this.blockPage);
 			}
-			sb.append("'>이전</a></li>");
+			sb.append("')\">이전</a></li>");
 		} else {
 			sb.append("<li><a href = '#'>이전</a></li>");
 		}
@@ -95,23 +95,23 @@ public class PagingMemList {
 				sb.append(i);
 				sb.append("</a></li>");
 			} else {
-				sb.append("<li><a href='memList.inc?nowPage=");
+				sb.append("<li><a href=\"javascript:memList('");
 				sb.append(i);
-				sb.append("'>");
+				sb.append("')\">");
 				sb.append(i);
 				sb.append("</a></li>");
 			}
 		}
 
 		if(this.isNextPage) {
-			sb.append("<li><a href='memList.inc?nowPage=");
+			sb.append("<li><a href=\"javascript:memList('");
 			if(this.nowPage + this.blockPage > this.totalPage) {
 				sb.append(this.totalPage);
 			} else {
 				sb.append(this.nowPage + this.blockPage);
 			}
 			
-			sb.append("'>다음</a></li>");
+			sb.append("')\">다음</a></li>");
 		} else { 
 			sb.append("<li><a href='#'>다음</a></li>");
 		}
