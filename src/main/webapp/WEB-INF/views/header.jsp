@@ -53,7 +53,7 @@
                             <a href="javascript:location.href='signUp.inc'" data-toggle="tooltip" data-placement="bottom" title="Registry"><i class="fas fa-registered"></i></a>
 						</c:if>
 						<c:if test="${sessionScope.memVO ne null and sessionScope.memVO.status eq 2}">
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Admin"><i class="fas fa-user-cog"></i></a>
+                            <a href="javascript:location.href='adminPage.inc'" data-toggle="tooltip" data-placement="bottom" title="Admin"><i class="fas fa-user-cog"></i></a>
 						</c:if>	
                         </div>
                     </div>
