@@ -1,6 +1,7 @@
 package com.test.movie;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView; 
 
 import mybatis.dao.MovieDAO;
+import mybatis.vo.MovieBoardVO;
 import mybatis.vo.MovieCommentVO;
 
 @Controller
@@ -76,5 +78,19 @@ public class CommController {
 		map.put("mar", mar);
 		return map;
 	}
+	
+	@RequestMapping(value="/boardCommDel.inc", method = RequestMethod.POST)
+	public ModelAndView boardCommDel(String c_idx){
+		ModelAndView mv = new ModelAndView();
+		
+		boolean chk = m_dao.deleteComment(c_idx);
+		
+		mv.addObject("chk", chk);
+		mv.setViewName("boardview");
+		
+		return mv;
+		
+	}
+	
 	
 }

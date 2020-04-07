@@ -19,6 +19,13 @@
 
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/style.css">
+    
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    
 </head>
 <body>
 
@@ -43,21 +50,32 @@
                         <div class="single-blog-content">
                             <div class="line"></div>
                             <h4><a href="#" class="post-headline mb-0">${vo.subject }</a></h4>
-                            <div class="post-meta mb-50">
-                                <p>By <a href="#">${vo.mvo.name }</a></p>
-                                <p>${vo.write_date }</p>
+                            <div>
+                                <p>작성자: ${vo.mvo.name }</p>
+                                <p>작성일: ${vo.write_date }</p>
                             </div>
+                            <hr/>
                             <p>${vo.content }</p>
                         </div>
                     </div>
                     <c:if test="${sessionScope.memVO.m_idx eq vo.m_idx}">
                     	<div class="single-blog-content">
-                    		<input type="button" value="삭제" onclick="javascript:goDel()"/>
-                    		<input type="button" value="수정"/>
-                    		<input type="button" value="목록" onclick="javascript:goBoard('${vo.category}', '${nowPage }')"/>
+                    	<div class="btn-toolbar">
+					    	<button class="btn" onclick="">삭제</button>
+					    	<button class="btn" onClick="">수정</button>
+					    	<button class="btn" onClick="javascript:goBoard('${vo.category}', '${nowPage }')">목록</button>
+						</div>
                         </div>
                     </c:if>
                     <hr/>
+                    <!-- 자유게시판 답글 -->
+                    <c:if test="${vo.category eq 'free'}">
+                    <div class="col-12">
+                       <button onclick="commSave()" class="btn original-btn">답글</button>
+                    </div>
+                    <!-- 리뷰게시판 댓글 -->
+                    </c:if>
+                    <c:if test="${vo.category eq 'review'}">
                     <!-- Comment Area Start -->
                     <div class="comment_area clearfix mt-70">
                         <h5 class="title">Comments</h5>
@@ -83,7 +101,8 @@
 	                                    <div class="comment-meta">
 	                                        <p class="post-date">작성일 : ${cvo.write_date }</p>
 	                                        <p>작성자 : ${cvo.mvo.id }</p>
-	                                        <p>댓글내용 : ${cvo.content }</p>
+	                                        <p>${cvo.content }</p>
+	                                        <button class='btn' onclick="javascript:boardCommDel('${cvo.c_idx}')">삭제</button>
 	                                    </div>
 	                                </div>
 	                            </li>
@@ -110,10 +129,15 @@
 	                            </div>
 	                    </div>
                     </c:if>
+                    </c:if>
                 </div>
             </div>
         </div>
     </div>
+    <form action="boardCommDel.inc" method="post" name="comm_form">
+    	<input type="hidden" id="comm_idx" name="c_idx"/>
+    </form>
+    
     <!-- ##### Single Blog Area End ##### -->
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
 	<!-- Popper js -->
@@ -144,7 +168,7 @@
     		}).done(function(data){
     			
     			if(data.chk){
-    				alert("댓글달기 성공");
+    				alert("작성 완료");
     				if(data.mar != undefined){
     					var code = "";
     					for(var i = 0; i<data.mar.length; i++){
@@ -157,13 +181,16 @@
     						code += "<p>작성자 :"; 
     						code += data.mar[i].mvo.id; 
     						code += "</p>"; 
-    						code += "<p>댓글내용 :"; 
+    						code += "<p>"; 
     						code += data.mar[i].content;
     						code += "</p>"; 
     						if(data.mar[i].m_idx == m_idx){
-    							code += "<p><input type=\"button\" value=\"삭제\" onclick=\"commDel("+data.mar[i].c_idx+")\"/></p>";
-    						}else
+    							code += "<p>";
+    					    	code += "<button class='btn' onclick='boardCommDel('"+data.mar[i].c_idx+"')'>삭제</button>";
+    							code += "</p>";
+    						}else{
     							code += "<p></p>"
+    						}
     						
     						code += "</div></div></li>"; 
     					}
@@ -171,13 +198,18 @@
     					$("#commOl").html(code);
     				}
     			}else{
-    				alert("댓글달기 실패");
+    				alert("작성 실패");
     			}
     			
     			$("#message").val("");	
     		}).fail(function(err){
     			
     		});
+    	}
+    	
+    	function boardCommDel(c_idx){
+    		$("#comm_idx").attr("value",c_idx);
+    		comm_form.submit();
     	}
     
     </script>
