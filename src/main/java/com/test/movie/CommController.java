@@ -26,10 +26,23 @@ public class CommController {
 	@Autowired
 	HttpServletRequest requset;
 	
+	// 페이징 기법 상수
+	public final int BLOCK_LIST = 10;	// 한 페이지당 보여질 게시물 수
+	public final int BLOCK_PAGE = 4;	// 한 블럭당 보여질 페이지 수
+	int nowPage, rowTotal;
+	String pageCode;
+	
 	@RequestMapping("/commList.inc")
 	@ResponseBody
-	public MovieCommentVO[] postCommList(String movieCd) {
+	public MovieCommentVO[] postCommList(String nowPage, String movieCd) {
+		
+		if(nowPage == null) { this.nowPage = 1; }
+		else { this.nowPage = Integer.parseInt(nowPage); }
+		
+		this.rowTotal = m_dao.
+		
 		MovieCommentVO[] ar = m_dao.getCommList(movieCd);
+		
 		return ar;
 	}
 	

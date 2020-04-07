@@ -91,6 +91,19 @@ public class MovieDAO {
 		return chk;
 	}
 	
+	// 회원 정보 보기
+	public MovieMemberVO[] getMemberList() {
+		List<MovieMemberVO> list = ss.selectList("movie.getMemberList");
+		MovieMemberVO[] ar = null;
+		
+		if(!list.isEmpty()) {
+			ar = new MovieMemberVO[list.size()];
+			list.toArray(ar);
+		}
+		
+		return ar;
+	}
+	
 	// 회원 정보 수정
 	public boolean updateMember(MovieMemberVO vo) {
 		boolean chk = false;
@@ -156,6 +169,15 @@ public class MovieDAO {
 		int total = 0;
 		
 		total = ss.selectOne("movie.totalCount", category);
+		
+		return total;
+	}
+	
+	//영화 하나의 댓글 수
+	public int totalCommCount(String movieCd) {
+		int total = 0;
+		
+		total = ss.selectOne("movie.totalCount", movieCd);
 		
 		return total;
 	}

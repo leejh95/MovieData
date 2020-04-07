@@ -537,8 +537,20 @@
 			
 			if(ar != undefined){
 				for(var i=0; i<ar.length; i++){
-					msg
+					msg += "<tr><td>"+ar[i].name+"</td>";
+					msg += "<td>"+ar[i].content+"</td>";
+					msg += "<td><img src='resources/images/star"+ar[i].rate+".png' width='90px'>&nbsp;"+ar[i].rate+" 점</td>";
+					msg += "<td>${cvo.write_date.substring(5, 19) }&nbsp";
+					
+					if(ar.m_idx == "${sessionScope.memVO.m_idx}"){
+						msg += "<a>[삭제]</a>&nbsp;<a>[수정]</a>";
+					}
+					
+					msg += "</td></tr>";
 				}
+				//위에서 작업된 html코드를 tbody에 html로 적용한다.
+				$("#commTable tbody").html(msg);
+				
 			}else{
 				msg += "<tr><td>이 영화는 아직 평가가 없습니다...</td></tr>"
 			}
@@ -583,15 +595,16 @@
 						msg += "<tr><td>"+ar[i].name+"</td>";
 						msg += "<td>"+ar[i].content+"</td>";
 						msg += "<td><img src='resources/images/star"+ar[i].rate+".png' width='90px'>&nbsp;"+ar[i].rate+" 점</td>";
-						msg += "<td>${cvo.write_date.substring(5, 19) }&nbsp;
-							
-								
-							
-						</td>
-					</tr>
+						msg += "<td>${cvo.write_date.substring(5, 19) }&nbsp";
+						
+						if(ar.m_idx == "${sessionScope.memVO.m_idx}"){
+							msg += "<a>[삭제]</a>&nbsp;<a>[수정]</a>";
+						}
+						
+						msg += "</td></tr>";
 					}
 					//위에서 작업된 html코드를 tbody에 html로 적용한다.
-					$("#commTable tbody").html(code);
+					$("#commTable tbody").html(msg);
 				}
 			}else{
 				alert("댓글달기 실패");

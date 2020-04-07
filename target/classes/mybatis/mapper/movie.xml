@@ -25,6 +25,16 @@
 		select count(*) from movie_board where category = #{category} and status = 0 or status = 2
 	</select>
 	
+	<!-- 페이징 기법에 사용될 영화 포스트의 댓글 수를 반환하는 기능 -->
+	<select id="totalPostCommCount" resultType="int" parameterType="String">
+		select count(*) from Movie_Comm where movieCd = #{movieCd} and status = 0
+	</select>
+	
+	<!-- 페이징 기법에 사용될 게시물의 댓글 수를 반환하는 기능 -->
+	<select id="totalBoardCommCount" resultType="int" parameterType="String">
+		select count(*) from Movie_Comm where b_idx = #{b_idx} and status = 0
+	</select>
+	
 	<!-- 원글 쓰기 기능 -->
 	<insert id="writeBoard" parameterType="mybatis.vo.MovieBoardVO">
 		insert into movie_board(b_idx, subject, content, file_name, ori_name, write_date, ip, hit, ref, step, sunbun, status, category, m_idx)
@@ -47,6 +57,11 @@
 		insert into Movie_Comm(c_idx, content, write_date, ip, status <if test="movieCd != null">, movieCd </if> <if test="m_idx != null">, m_idx </if> <if test="rate != null">, rate </if> <if test="b_idx != null">, b_idx </if>) 
 		values(Movie_Comm_seq.nextval, #{content}, sysdate, #{ip}, 0 <if test="movieCd != null">, #{movieCd} </if> <if test="m_idx != null">, #{m_idx} </if> <if test="rate != null">, #{rate} </if> <if test="b_idx != null">, #{b_idx} </if> )
 	</insert>
+	
+	<!-- 회원 목록 보기 기능 -->
+	<select id="getMemberList" resultType="mybatis.vo.MovieMemberVO" parameterType="String">
+		select * from Movie_Mem where status != 2
+	</select>
 	
 	<!-- 하나의 영화 포스트에 대한 댓글 모음 -->
 	<!-- 시작 -->
