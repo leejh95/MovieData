@@ -25,15 +25,15 @@
         <div class="hero-slides owl-carousel"  style="width: 1400px; margin: 0 auto;">
             <!-- Single Slide -->
             <c:forEach var="vo" items="${dar }">
-            <div class="single-hero-slide bg-img" style="background-image: url(${vo.image }); width: 300px; height:500px; margin:70px auto;" >
+            <div class="single-hero-slide bg-img" style="background-image: url(${vo.image }); width: 200px; height:300px; margin:70px auto;" >
                 <div class="container h-100">
                     <div class="row h-100 align-items-center">
                         <div class="col-12">
                             <div class="slide-content text-center">
-                                <div class="post-tag">
-                                    <a href="javascript:goView('${vo.movieCd }')" data-animation="fadeInUp">${vo.rank}위</a>
+                                <div class="post-tag" style="opacity: 0.9; border-radius: 7px;">
+                                    <a href="javascript:goView('${vo.movieCd }')" data-animation="fadeInUp" style="opacity: 0.9; border-radius: 7px;">${vo.rank}위</a>
                                 </div>
-                                <h2 data-animation="fadeInUp" data-delay="250ms"><a href="javascript:goView('${vo.movieCd }','${yesterday}' )">${vo.movieNm }</a></h2>
+                                <h2 data-animation="fadeInUp" data-delay="250ms" style="font-size: 15px; opacity: 0.9; border-radius: 7px;"><a href="javascript:goView('${vo.movieCd }','${yesterday}' )" style="font-size: 15px; opacity: 0.9; border-radius: 7px;">${vo.movieNm }</a></h2>
                             </div>
                         </div>
                     </div>

@@ -80,7 +80,8 @@
                     <nav class="classy-navbar justify-content-between">
 
                         <!-- Subscribe btn -->
-                        
+                        <div class="subscribe-btn">
+                        </div>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
