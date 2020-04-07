@@ -58,15 +58,15 @@
                             <p>${vo.content }</p>
                         </div>
                     </div>
+                    <div class="single-blog-content">
+                    <div class="btn-toolbar">
                     <c:if test="${sessionScope.memVO.m_idx eq vo.m_idx}">
-                    	<div class="single-blog-content">
-                    	<div class="btn-toolbar">
 					    	<button class="btn" onclick="">삭제</button>
 					    	<button class="btn" onClick="">수정</button>
-					    	<button class="btn" onClick="javascript:goBoard('${vo.category}', '${nowPage }')">목록</button>
+                    </c:if>
+                    	<button class="btn" onClick="javascript:goBoard('${vo.category}', '${nowPage }')">목록</button>
 						</div>
                         </div>
-                    </c:if>
                     <hr/>
                     <!-- 자유게시판 답글 -->
                     <c:if test="${vo.category eq 'free'}">
