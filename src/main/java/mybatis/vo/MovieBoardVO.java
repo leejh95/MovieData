@@ -23,7 +23,6 @@ public class MovieBoardVO {
 	private MultipartFile upload; //첨부파일
 	private int nowPage;
 	
-	private List<MovieCommentVO> c_list;
 	private MovieMemberVO mvo;
 	
 	public MultipartFile getUpload() {
@@ -160,14 +159,6 @@ public class MovieBoardVO {
 
 	public void setM_idx(String m_idx) {
 		this.m_idx = m_idx;
-	}
-
-	public List<MovieCommentVO> getC_list() {
-		return c_list;
-	}
-
-	public void setC_list(List<MovieCommentVO> c_list) {
-		this.c_list = c_list;
 	}
 	
 	

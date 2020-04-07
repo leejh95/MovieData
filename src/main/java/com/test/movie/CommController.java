@@ -11,7 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView; 
+import org.springframework.web.servlet.ModelAndView;
+
+import com.test.util.PagingPostComm;
 
 import mybatis.dao.MovieDAO;
 import mybatis.vo.MovieBoardVO;
@@ -30,18 +32,22 @@ public class CommController {
 	public final int BLOCK_LIST = 10;	// 한 페이지당 보여질 게시물 수
 	public final int BLOCK_PAGE = 4;	// 한 블럭당 보여질 페이지 수
 	int nowPage, rowTotal;
-	String pageCode;
+	String pageCode, movieCd;
 	
-	@RequestMapping("/commList.inc")
+	@RequestMapping("/postCommList.inc")
 	@ResponseBody
-	public MovieCommentVO[] postCommList(String nowPage, String movieCd) {
-		
+	public MovieCommentVO[] postCommList(String nowPage, String movieCd) throws Exception {
+		System.out.println(nowPage + "/" + movieCd);
 		if(nowPage == null) { this.nowPage = 1; }
 		else { this.nowPage = Integer.parseInt(nowPage); }
 		
-		this.rowTotal = m_dao.
+		this.rowTotal = m_dao.totalPostCommCount(movieCd);
+		PagingPostComm page = new PagingPostComm(this.nowPage, rowTotal, BLOCK_LIST, BLOCK_PAGE, this.movieCd);
 		
-		MovieCommentVO[] ar = m_dao.getCommList(movieCd);
+		// 페이지 기법의 HTML코드
+		pageCode = page.getSb().toString();
+		
+		MovieCommentVO[] ar = m_dao.getPostCommList(movieCd, page.getBegin(), page.getEnd());
 		
 		return ar;
 	}
@@ -59,10 +65,10 @@ public class CommController {
 		
 		boolean chk = m_dao.writeComment(vo);
 		
-		MovieCommentVO[] mar = m_dao.getCommList(vo.getMovieCd());
+		//MovieCommentVO[] mar = m_dao.getCommList(vo.getMovieCd());
 		
 		map.put("chk", chk);
-		map.put("mar", mar);
+		//map.put("mar", mar);
 		return map;
 	}
 	
@@ -78,10 +84,10 @@ public class CommController {
 		
 		boolean chk = m_dao.writeComment(vo);
 		
-		MovieCommentVO[] mar = m_dao.getBoardCommList(vo.getB_idx());
+		//MovieCommentVO[] mar = m_dao.getBoardCommList(vo.getB_idx());
 		
 		map.put("chk", chk);
-		map.put("mar", mar);
+		//map.put("mar", mar);
 		return map;
 	}
 	
@@ -92,10 +98,10 @@ public class CommController {
 	
 		boolean chk = m_dao.deleteComment(c_idx);
 		
-		MovieCommentVO[] mar = m_dao.getCommList(movieCd);
+		//MovieCommentVO[] mar = m_dao.getCommList(movieCd);
 		
 		map.put("chk", chk);
-		map.put("mar", mar);
+		//map.put("mar", mar);
 		return map;
 	}
 	

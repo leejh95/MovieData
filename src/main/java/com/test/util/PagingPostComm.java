@@ -1,6 +1,6 @@
 package com.test.util;
 
-public class PagingComm {
+public class PagingPostComm {
 
 	private int nowPage,
 				rowTotal,	// 총 게시물 수
@@ -13,7 +13,7 @@ public class PagingComm {
 	private StringBuffer sb;
 	
 	// Constructor ------------------------------------------------------------------------
-	public PagingComm(int nowPage, int rowTotal, int blockList, int blockPage, String movieCd) {
+	public PagingPostComm(int nowPage, int rowTotal, int blockList, int blockPage, String movieCd) {
 		this.nowPage = nowPage;
 		this.rowTotal = rowTotal;
 		this.blockList = blockList;

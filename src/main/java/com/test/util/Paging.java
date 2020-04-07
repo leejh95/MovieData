@@ -11,6 +11,8 @@ public class Paging {
 	private String category;
 	private boolean isPrePage, isNextPage;
 	private StringBuffer sb;
+	private StringBuffer post_sb;
+	private StringBuffer board_sb;
 	
 	// Constructor ------------------------------------------------------------------------
 	public Paging(int nowPage, int rowTotal, int blockList, int blockPage, String category) {

@@ -57,9 +57,34 @@ public class MovieDAO {
 		return chk;
 	}
 	
-	// 댓글 리스트 보기
-	public MovieCommentVO[] getCommList(String movieCd) {
-		List<MovieCommentVO> list = ss.selectList("movie.commList", movieCd);
+	// 하나의 영화에 대한 댓글 리스트 보기
+	public MovieCommentVO[] getPostCommList(String movieCd, int begin, int end) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("movieCd", movieCd);
+		map.put("begin", begin);
+		map.put("end", end);
+		
+		List<MovieCommentVO> list = ss.selectList("movie.postCommList", map);
+		MovieCommentVO[] ar = null;
+		
+		if(!list.isEmpty()) {
+			ar = new MovieCommentVO[list.size()];
+			list.toArray(ar);
+		}
+			
+		return ar;
+	}
+	
+	// 하나의 게시물에 대한 댓글 리스트 보기
+	public MovieCommentVO[] getBoardCommList(String b_idx, int begin, int end) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("b_idx", b_idx);
+		map.put("begin", begin);
+		map.put("end", end);
+		
+		List<MovieCommentVO> list = ss.selectList("movie.boardCommList", map);
 		MovieCommentVO[] ar = null;
 		
 		if(!list.isEmpty()) {
@@ -91,7 +116,7 @@ public class MovieDAO {
 		return chk;
 	}
 	
-	// 회원 정보 보기
+	// 회원 목록 보기
 	public MovieMemberVO[] getMemberList() {
 		List<MovieMemberVO> list = ss.selectList("movie.getMemberList");
 		MovieMemberVO[] ar = null;
@@ -174,10 +199,28 @@ public class MovieDAO {
 	}
 	
 	//영화 하나의 댓글 수
-	public int totalCommCount(String movieCd) {
+	public int totalPostCommCount(String movieCd) {
 		int total = 0;
 		
-		total = ss.selectOne("movie.totalCount", movieCd);
+		total = ss.selectOne("movie.totalPostCommCount", movieCd);
+		
+		return total;
+	}
+	
+	//게시물 하나의 댓글 수
+	public int totalBoardCommCount(String b_idx) {
+		int total = 0;
+		
+		total = ss.selectOne("movie.totalBoardCommCount", b_idx);
+		
+		return total;
+	}
+	
+	//게시물 하나의 댓글 수
+	public int totalMemberCount() {
+		int total = 0;
+		
+		total = ss.selectOne("movie.totalMemberCount");
 		
 		return total;
 	}
@@ -302,18 +345,6 @@ public class MovieDAO {
 			chk = true;
 			
 		return chk;
-	}
-	
-	public MovieCommentVO[] getBoardCommList(String b_idx) {
-		List<MovieCommentVO> list = ss.selectList("movie.getBoard_commList", b_idx);
-		MovieCommentVO[] ar = null;
-		
-		if(!list.isEmpty()) {
-			ar = new MovieCommentVO[list.size()];
-			list.toArray(ar);
-		}
-			
-		return ar;
 	}
 }
 

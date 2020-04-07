@@ -237,7 +237,7 @@
 					<col width="220px"/>
 				</colgroup>
 				<tbody>
-					 
+					 <!-- 
 					<c:forEach var="cvo" items="${vo.comms }">
 					<tr>
 						<td>
@@ -267,7 +267,7 @@
 						</td>
 					</tr>
 					</c:if>
-					
+					-->
 				</tbody>	
 			</table>
 		</div>
@@ -284,6 +284,8 @@
     <script src="resources/js/active.js"></script>
 <script>
 	$(function(){
+		
+		setCommList(1);
 		
 		$.ajax({
 			url: "http://192.168.0.117:5000/viewGraph.inc?movieCd=${movieCd}&dTime=${dTime}",
@@ -526,16 +528,18 @@
 		
 	}
 
-	function initCommList(){
+	function setCommList(nowPage){
+		
 		$.ajax({
-			url: "commList.inc",
+			url: "postCommList.inc",
 			type: "post",
-			data: "${vo.movieCd}",
+			data: "movieCd=${movieCd}&nowPage="+nowPage,
 			dataType: "json"
 		}).done(function(ar){
 			var msg = "";
-			
+
 			if(ar != undefined){
+				
 				for(var i=0; i<ar.length; i++){
 					msg += "<tr><td>"+ar[i].name+"</td>";
 					msg += "<td>"+ar[i].content+"</td>";

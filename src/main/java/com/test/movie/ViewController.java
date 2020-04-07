@@ -128,12 +128,6 @@ public class ViewController {
 			// TODO: handle exception
 		}
 		
-		
-		MovieCommentVO[] mcar = m_dao.getCommList(movieCd);
-		if(mcar != null)
-			vo.setComms(mcar);
-		//System.out.println(mcar.length);
-		
 		mv.addObject("vo", vo);
 		mv.addObject("movieCd", movieCd);
 		mv.addObject("dTime", dTime);

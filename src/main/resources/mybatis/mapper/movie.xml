@@ -35,6 +35,11 @@
 		select count(*) from Movie_Comm where b_idx = #{b_idx} and status = 0
 	</select>
 	
+	<!-- 페이징 기법에 사용될 전체 회원 수를 반환하는 기능 -->
+	<select id="totalMemberCount" resultType="int">
+		select count(*) from Movie_Mem where status != 2
+	</select>
+	
 	<!-- 원글 쓰기 기능 -->
 	<insert id="writeBoard" parameterType="mybatis.vo.MovieBoardVO">
 		insert into movie_board(b_idx, subject, content, file_name, ori_name, write_date, ip, hit, ref, step, sunbun, status, category, m_idx)
@@ -63,10 +68,20 @@
 		select * from Movie_Mem where status != 2
 	</select>
 	
-	<!-- 하나의 영화 포스트에 대한 댓글 모음 -->
+	<!-- 하나의 영화 포스트 또는 하나의 게시물에 대한 댓글 모음 -->
 	<!-- 시작 -->
-	<select id="commList" resultMap="map1" parameterType="String">
-		select * from Movie_Comm where movieCd = #{movieCd} and status = 0 order by c_idx desc
+	<select id="postCommList" resultMap="map1" parameterType="java.util.Map">
+		select * from(
+			select rownum as r_num, a.* from
+			(select * from Movie_Comm where movieCd = #{movieCd} and status = 0 order by c_idx desc) a
+		) where r_num between #{begin} and #{end}
+	</select>
+	
+	<select id="boardCommList" resultMap="map1" parameterType="java.util.Map">
+		select * from(
+			select rownum as r_num, a.* from
+			(select * from Movie_Comm where b_idx = #{b_idx} and status = 0 order by c_idx desc) a
+		) where r_num between #{begin} and #{end}
 	</select>
 	
 	<resultMap type="mybatis.vo.MovieCommentVO" id="map1">
@@ -105,15 +120,9 @@
 	</select>
 	
 	<resultMap type="mybatis.vo.MovieBoardVO" id="map3">
-		<id column="b_idx" property="b_idx"/>
 		<result column="m_idx" property="m_idx"/>
 		<association property="mvo" javaType="mybatis.vo.MovieMemberVO" select="getMember" column="m_idx"/>
-		<collection property="c_list" ofType="mybatis.vo.MovieCommentVO" select="getBoard_commList" column="b_idx"/>
 	</resultMap>
-	
-	<select id="getBoard_commList" resultMap="map1" parameterType="String">
-		select * from Movie_Comm where b_idx = #{b_idx} and status = 0 order by c_idx asc
-	</select>
 	<!-- 끝 -->
 	
 	<!-- 게시물 하나 보기 -->
