@@ -37,7 +37,6 @@ if(obj != null){
                 <!-- Contact Form Area -->
                 <div class="col-12 col-md-10 col-lg-9">
                     <div class="contact-form" >
-                        <h5>게시글 작성</h5>
                         <!-- Contact Form -->
                         <form action="write.inc" method="post" enctype="multipart/form-data">
 	                        <input type="hidden" name="category" value="${param.category }"/>
