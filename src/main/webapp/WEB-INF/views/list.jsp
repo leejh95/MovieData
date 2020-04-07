@@ -226,7 +226,7 @@
     <!-- 페이징 -->
     <div class="pagination">
        <ul>
-           ${pageCode }
+           ${pageCode } 
        </ul>
    </div>
    
