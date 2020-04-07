@@ -174,12 +174,12 @@
 	                <div class="cell">
 	                <c:if test="${vo.status eq 0 && vo.sns_id eq null}">
 	                    <div class="description">
-	                        <input type="button" value="정지" onclick="memStop('${vo.m_idx }','${vo.pw }')" />
+	                        <input type="button" value="정지" onclick="memStop('${vo.m_idx }','${vo.pw }','${nowPage }')" />
 	                    </div>
 	                </c:if>
 	                <c:if test="${vo.status eq 1 && vo.sns_id eq null}">
 	                    <div class="description">
-	                        <input type="button" value="복구" onclick="memRestore('${vo.m_idx }')"/>
+	                        <input type="button" value="복구" onclick="memRestore('${vo.m_idx }','${nowPage }')"/>
 	                    </div>
 	                </c:if>      
 	                </div>

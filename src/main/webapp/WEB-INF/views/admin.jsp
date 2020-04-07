@@ -120,7 +120,7 @@
     function memList(nowPage){
     	$("#adcon_div").load("memList.inc?nowPage="+nowPage);
     }
-    function memStop(m_idx, pw){
+    function memStop(m_idx, pw, nowPage){
     	var param = "m_idx="+encodeURIComponent(m_idx)+"&pw="+encodeURIComponent(pw);
     	$.ajax({
 			url: "delete_member.inc",
@@ -128,12 +128,12 @@
 			data: param,
 			dataType: "json"
 		}).done(function(data){
-			$("#adcon_div").load("memList.inc");
+			$("#adcon_div").load("memList.inc?nowPage="+nowPage);
 		});
     	
     }
     
-    function memRestore(m_idx){
+    function memRestore(m_idx, nowPage){
     	var param = "m_idx="+encodeURIComponent(m_idx);
     	$.ajax({
 			url: "restore_member.inc",
@@ -141,7 +141,7 @@
 			data: param,
 			dataType: "json"
 		}).done(function(data){
-			$("#adcon_div").load("memList.inc");
+			$("#adcon_div").load("memList.inc?nowPage="+nowPage);
 		});
     	
     }
