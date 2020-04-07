@@ -127,9 +127,13 @@
 </c:if>
 <c:if test="${sessionScope.memVO eq null or sessionScope.memVO.status ne 2}">
 	<body>
-		
 		<script type="text/javascript">
-			alert("잘못된 접근입니다. 새캬");
+			
+		    $(function(){
+		    	alert("잘못된 접근입니다.");
+		    	document.location.href="index.inc";
+		   	 })
+			
 		</script>
 	</body>
 </c:if>
