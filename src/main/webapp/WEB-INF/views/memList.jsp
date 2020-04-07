@@ -127,7 +127,7 @@
             <div class="col-md-2"><div class="header">No</div></div>
             <div class="col-md-2"><div class="header">ID</div></div>
             <div class="col-md-2"><div class="header">이름</div></div>
-            <div class="col-md-3"><div class="header">가입날짜</div></div>
+            <div class="col-md-3"><div class="header">가입일</div></div>
             <div class="col-md-3"><div class="header">관리</div></div>
         </div>
         <!-- 리스트 내용 -->

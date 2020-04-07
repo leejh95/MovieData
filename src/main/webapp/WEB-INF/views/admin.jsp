@@ -18,6 +18,7 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
+<c:if test="${sessionScope.memVO ne null and sessionScope.memVO.status eq 2}">
 <body>
 <div class="admin_container" style=" margin: 100px 50px;  ">
     <div class="row"  style="width: 1500px;" >
@@ -108,12 +109,14 @@
     <script type="text/javascript">
     $(function(){
     	
+    	
     	  var sBtn = $("ul > li");    //  ul > li 이를 sBtn으로 칭한다. (클릭이벤트는 li에 적용 된다.)
     	  sBtn.find("a").click(function(){   // sBtn에 속해 있는  a 찾아 클릭 하면.
     	   sBtn.removeClass("active");     // sBtn 속에 (active) 클래스를 삭제 한다.
     	   $(this).parent().addClass("active"); // 클릭한 a에 (active)클래스를 넣는다.
     	  })
-    	 })
+    	  
+   	 })
 
     function memList(){
     	$("#adcon_div").load("memList.inc");
@@ -121,4 +124,13 @@
     
     </script>
 </body>
+</c:if>
+<c:if test="${sessionScope.memVO eq null or sessionScope.memVO.status ne 2}">
+	<body>
+		
+		<script type="text/javascript">
+			alert("잘못된 접근입니다. 새캬");
+		</script>
+	</body>
+</c:if>
 </html>
