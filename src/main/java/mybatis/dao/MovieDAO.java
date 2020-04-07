@@ -118,7 +118,7 @@ public class MovieDAO {
 	
 	// 회원 목록 보기
 	public MovieMemberVO[] getMemberList(int begin, int end) {
-		
+		System.out.println(begin+"/"+end);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("begin", begin);
 		map.put("end", end);
