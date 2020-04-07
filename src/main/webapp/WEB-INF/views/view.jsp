@@ -77,12 +77,18 @@
 	#commTable{
 		border-collapse: collapse;
 		width: 1000px;
-		
+		border-bottom: 2px solid #373737;
+		border-top: 2px solid #373737;
 	}
 	#commTable tr{
-		border-bottom: 1px solid black;
-		height: 20px;
+		border-bottom: 1px solid #dedede;
+		height: 40px;
+		padding: 10px;
 		margin-bottom: 5px;
+	}
+	#commTable td{
+		padding: 5px;
+		font-size: 14px;
 	}
 	.star-rating{position: relative;}
 	.star-rating,.star-rating span{width:152px; height:28px; overflow:hidden; background:url(resources/images/star.png)no-repeat; }
@@ -185,10 +191,10 @@
 	<div id="view_audi_chart_div" style="width: 1000px; height:550px; margin: 0 auto; padding: 5px;"></div>
 		
 	<div id="comment_div">
-		<c:if test="${sessionScope.memVO ne null}"> 
-			<div id="comment">
-				<h4>내 평점 등록하기</h4>
-				<hr>
+		<div id="comment">
+			<h4>내 평점 등록하기</h4>
+			<hr>
+			<c:if test="${sessionScope.memVO ne null}"> 
 				<form action="commSave.inc" method="post">
 					<input type="hidden" name="m_idx" id="m_idx" value="${sessionScope.memVO.m_idx }">
 					<%-- <input type="hidden" name="m_idx" id="m_idx" value="1"> --%>
@@ -215,50 +221,53 @@
 					</div>
 					<button type="button" class="btn original-btn" onclick="commSave(this.form)">등록하기</button>
 				</form>
-				<hr>
-			</div><br><br>
-		</c:if> 
+			</c:if>
+			<c:if test="${sessionScope.memVO eq null}">
+				<h6>로그인 정보가 필요합니다...</h6>
+			</c:if> 
+			<hr>
+		</div><br><br>
 
 		<div id="commentList">
 			<table id="commTable">
+				<colgroup>
+					<col width="100px"/>
+					<col width="*"/>
+					<col width="170px"/>
+					<col width="220px"/>
+				</colgroup>
 				<tbody>
-					<c:if test="${vo.comms eq null }">
-						<tr>
-							<td>
-								이 영화는 아직 평가가 없습니다...
-							</td>
-						</tr>
-					</c:if> 
+					 
 					<c:forEach var="cvo" items="${vo.comms }">
 					<tr>
-						<td style="width: 70px">
+						<td>
 							${cvo.mvo.name }
 						</td>
-						<td class="comment">
+						<td>
 							${cvo.content } 
 						</td>
-						<c:if test="${cvo.rate ne null}">
 						<td>
-							평점 ${cvo.rate } 점
+							<img src="resources/images/star${cvo.rate }.png" width="90px">&nbsp;
+							${cvo.rate } 점
 						</td>
-						</c:if>
-						<c:if test="${cvo.rate eq null}">
 						<td>
-							평가하지 않았습니다.
+							${cvo.write_date.substring(5, 19) }&nbsp;
+							<c:if test="${cvo.m_idx eq sessionScope.memVO.m_idx}">
+								<a>[삭제]</a>&nbsp;
+								<a>[수정]</a>
+							</c:if>
 						</td>
-						</c:if>
-						<c:if test="${cvo.m_idx eq sessionScope.memVO.m_idx}">
-						<td>
-							<input type="button" value="삭제" onclick="commDel('${cvo.c_idx}')"/>
-						</td>
-						</c:if>
-						<c:if test="${cvo.m_idx ne sessionScope.memVO.m_idx}">
-						<td>
-							
-						</td>
-						 </c:if>
 					</tr>
 					</c:forEach>
+					
+					<c:if test="${vo.comms eq null }">
+					<tr>
+						<td>
+							이 영화는 아직 평가가 없습니다...
+						</td>
+					</tr>
+					</c:if>
+					
 				</tbody>	
 			</table>
 		</div>
@@ -517,6 +526,27 @@
 		
 	}
 
+	function initCommList(){
+		$.ajax({
+			url: "commList.inc",
+			type: "post",
+			data: "${vo.movieCd}",
+			dataType: "json"
+		}).done(function(ar){
+			var msg = "";
+			
+			if(ar != undefined){
+				for(var i=0; i<ar.length; i++){
+					msg
+				}
+			}else{
+				msg += "<tr><td>이 영화는 아직 평가가 없습니다...</td></tr>"
+			}
+			
+			$("#commTable tbody").html(msg);
+		});
+	}
+	
 	function commSave(frm) {
 		var content = $("#content").val();
 		var m_idx = $("#m_idx").val();
@@ -550,23 +580,15 @@
 				if(data.mar != undefined){
 					var code = "";
 					for(var i = 0; i<data.mar.length; i++){
-						code += "<tr><td style='width: 70px'>";
-						code += data.mar[i].mvo.name;
-						code += "</td><td class='comment'>";
-						code += data.mar[i].content;
-						code += "</td>";
-						if(data.mar[i].rate != null){
-							code += "<td>평점 ";
-							code += data.mar[i].rate;
-							code += " 점</td>";
-						}else{
-							code += "<td>평가하지 않았습니다. </td>";
-						}
-						if(data.mar[i].m_idx == m_idx){
-							code += "<td><input type=\"button\" value=\"삭제\" onclick=\"commDel("+data.mar[i].c_idx+")\"/></td>";
-						}else
-							code += "<td></td>"
-						code += "</tr>";
+						msg += "<tr><td>"+ar[i].name+"</td>";
+						msg += "<td>"+ar[i].content+"</td>";
+						msg += "<td><img src='resources/images/star"+ar[i].rate+".png' width='90px'>&nbsp;"+ar[i].rate+" 점</td>";
+						msg += "<td>${cvo.write_date.substring(5, 19) }&nbsp;
+							
+								
+							
+						</td>
+					</tr>
 					}
 					//위에서 작업된 html코드를 tbody에 html로 적용한다.
 					$("#commTable tbody").html(code);
@@ -599,23 +621,7 @@
 				if(data.mar != undefined){
 					var code = "";
 					for(var i = 0; i<data.mar.length; i++){
-						code += "<tr><td style='width: 70px'>";
-						code += data.mar[i].mvo.name;
-						code += "</td><td class='comment'>";
-						code += data.mar[i].content;
-						code += "</td>";
-						if(data.mar[i].rate != null){
-							code += "<td>평점 ";
-							code += data.mar[i].rate;
-							code += " 점</td>";
-						}else{
-							code += "<td>평가하지 않았습니다. </td>";
-						}
-						if(data.mar[i].m_idx == m_idx){
-							code += "<td><input type=\"button\" value=\"삭제\" onclick=\"commDel("+data.mar[i].c_idx+")\"/></td>";
-						}else
-							code += "<td></td>"
-						code += "</tr>";
+						
 					}
 					//위에서 작업된 html코드를 tbody에 html로 적용한다.
 					$("#commTable tbody").html(code);
@@ -630,109 +636,22 @@
 	}
 	
 	function rate(val){
-		if(val == 1){
-			$(".star-rating span").css("width", "10%");
-			$("#star-value").text("1");
-		}else if(val == 2){
-			$(".star-rating span").css("width", "20%");
-			$("#star-value").text("2");
-		}else if(val == 3){
-			$(".star-rating span").css("width", "30%");
-			$("#star-value").text("3");
-		}else if(val == 4){
-			$(".star-rating span").css("width", "40%");
-			$("#star-value").text("4");
-		}else if(val == 5){
-			$(".star-rating span").css("width", "50%");
-			$("#star-value").text("5");
-		}else if(val == 6){
-			$(".star-rating span").css("width", "60%");
-			$("#star-value").text("6");
-		}else if(val == 7){
-			$(".star-rating span").css("width", "70%");
-			$("#star-value").text("7");
-		}else if(val == 8){
-			$(".star-rating span").css("width", "80%");
-			$("#star-value").text("8");
-		}else if(val == 9){
-			$(".star-rating span").css("width", "90%");
-			$("#star-value").text("9");
-		}else if(val == 10){
-			$(".star-rating span").css("width", "100%");
-			$("#star-value").text("10");
-		}
+		var val2 = val + "0%";
+		$(".star-rating span").css("width", val2);
+		$("#star-value").text(val);
 	}
 	
 	function changeStars(val){
-		if(val == 1){
-			$(".star-rating span").css("width", "10%");
-			$("#star-label").text("1");
-		}else if(val == 2){
-			$(".star-rating span").css("width", "20%");
-			$("#star-label").text("2");
-		}else if(val == 3){
-			$(".star-rating span").css("width", "30%");
-			$("#star-label").text("3");
-		}else if(val == 4){
-			$(".star-rating span").css("width", "40%");
-			$("#star-label").text("4");
-		}else if(val == 5){
-			$(".star-rating span").css("width", "50%");
-			$("#star-label").text("5");
-		}else if(val == 6){
-			$(".star-rating span").css("width", "60%");
-			$("#star-label").text("6");
-		}else if(val == 7){
-			$(".star-rating span").css("width", "70%");
-			$("#star-label").text("7");
-		}else if(val == 8){
-			$(".star-rating span").css("width", "80%");
-			$("#star-label").text("8");
-		}else if(val == 9){
-			$(".star-rating span").css("width", "90%");
-			$("#star-label").text("9");
-		}else if(val == 10){
-			$(".star-rating span").css("width", "100%");
-			$("#star-label").text("10");
-		}
+		var val2 = val + "0%";
+		$(".star-rating span").css("width", val2);
+		$("#star-label").text(val);
 	}
 	
 	function resetStars(){
 		var val = $("#star-value").text();
-		if(val == 0){
-			$(".star-rating span").css("width", "0%");
-			$("#star-label").text("0");
-		}else if(val == 1){
-			$(".star-rating span").css("width", "10%");
-			$("#star-label").text("1");
-		}else if(val == 2){
-			$(".star-rating span").css("width", "20%");
-			$("#star-label").text("2");
-		}else if(val == 3){
-			$(".star-rating span").css("width", "30%");
-			$("#star-label").text("3");
-		}else if(val == 4){
-			$(".star-rating span").css("width", "40%");
-			$("#star-label").text("4");
-		}else if(val == 5){
-			$(".star-rating span").css("width", "50%");
-			$("#star-label").text("5");
-		}else if(val == 6){
-			$(".star-rating span").css("width", "60%");
-			$("#star-label").text("6");
-		}else if(val == 7){
-			$(".star-rating span").css("width", "70%");
-			$("#star-label").text("7");
-		}else if(val == 8){
-			$(".star-rating span").css("width", "80%");
-			$("#star-label").text("8");
-		}else if(val == 9){
-			$(".star-rating span").css("width", "90%");
-			$("#star-label").text("9");
-		}else if(val == 10){
-			$(".star-rating span").css("width", "100%");
-			$("#star-label").text("10");
-		}
+		var val2 = val + "0%";
+		$(".star-rating span").css("width", val2);
+		$("#star-label").text(val);
 	}
 </script>	
 </body>

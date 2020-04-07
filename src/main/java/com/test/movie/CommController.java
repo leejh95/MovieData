@@ -26,6 +26,13 @@ public class CommController {
 	@Autowired
 	HttpServletRequest requset;
 	
+	@RequestMapping("/commList.inc")
+	@ResponseBody
+	public MovieCommentVO[] postCommList(String movieCd) {
+		MovieCommentVO[] ar = m_dao.getCommList(movieCd);
+		return ar;
+	}
+	
 	@RequestMapping(value = "/commSave.inc", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> postCommSave(MovieCommentVO vo) {
@@ -67,7 +74,7 @@ public class CommController {
 	
 	@RequestMapping(value = "/commDel.inc", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> commDel(String c_idx, String movieCd) {
+	public Map<String, Object> postCommDel(String c_idx, String movieCd) {
 		Map<String, Object> map = new HashMap<String, Object>(); 
 	
 		boolean chk = m_dao.deleteComment(c_idx);

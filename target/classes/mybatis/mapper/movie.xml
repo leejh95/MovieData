@@ -51,7 +51,7 @@
 	<!-- 하나의 영화 포스트에 대한 댓글 모음 -->
 	<!-- 시작 -->
 	<select id="commList" resultMap="map1" parameterType="String">
-		select * from Movie_Comm where movieCd = #{movieCd} and status = 0 order by c_idx asc
+		select * from Movie_Comm where movieCd = #{movieCd} and status = 0 order by c_idx desc
 	</select>
 	
 	<resultMap type="mybatis.vo.MovieCommentVO" id="map1">
