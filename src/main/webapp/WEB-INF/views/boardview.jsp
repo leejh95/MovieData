@@ -71,7 +71,9 @@
                     <!-- 자유게시판 답글 -->
                     <c:if test="${vo.category eq 'free'}">
                     <div class="col-12">
-                       <button onclick="commSave()" class="btn original-btn">답글</button>
+                       <button class="btn original-btn"
+                       onClick="JavaScript:location.href='answer.inc?b_idx=${b_idx}&ref=${vo.ref }&step=${vo.step }&sunbun=${vo.sunbun }&nowPage=${nowPage }'"
+                       >답글</button>
                     </div>
                     <!-- 리뷰게시판 댓글 -->
                     </c:if>
@@ -126,7 +128,7 @@
 	                                    </div>
 	                                </div>
 	                                <div class="col-12">
-	                                    <button onclick="commSave()" class="btn original-btn">등록</button>
+	                                    <button onclick="commSave()" class="btn original-btn" >등록</button>
 	                                </div>
 	                            </div>
 	                    </div>

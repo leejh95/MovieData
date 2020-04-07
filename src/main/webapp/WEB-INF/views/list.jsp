@@ -160,14 +160,14 @@
 	                <div class="cell">
 	                    <div class="type">
 	                        <div class="propertyname">
-	                        <c:if test="${category == free }">
+	                        <c:if test="${category == 'free' }">
 	                        <%-- 들여쓰기 반복문 --%>
 								<c:forEach begin="1" end="${vo.step }">
 									<c:out value="&nbsp;&nbsp;" escapeXml="flase"/>
 								</c:forEach>
 								<%-- step이 0이 아닐때 화살표 이미지 출력 --%>
 								<c:if test="${vo.step ne 0 }">
-									<img src="resources/images/arrow.JPG"/>
+									<img src="resources/images/hsp.png"/>
 								</c:if>
 							</c:if>
 							<c:if test="${vo.status == 1 }">
