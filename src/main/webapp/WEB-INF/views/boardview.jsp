@@ -100,9 +100,11 @@
 	                                    <!-- Comment Meta -->
 	                                    <div class="comment-meta">
 	                                        <p class="post-date">작성일 : ${cvo.write_date }</p>
-	                                        <p>작성자 : ${cvo.mvo.id }</p>
+	                                        <p>작성자 : ${cvo.mvo.name }</p>
 	                                        <p>${cvo.content }</p>
+	                                        <c:if test="${cvo.mvo.m_idx eq sessionScope.memVO.m_idx}">
 	                                        <button class='btn' onclick="javascript:boardCommDel('${cvo.c_idx}')">삭제</button>
+	                                        </c:if>
 	                                    </div>
 	                                </div>
 	                            </li>
@@ -179,7 +181,7 @@
     						code += data.mar[i].write_date; 
     						code += "</p>"; 
     						code += "<p>작성자 :"; 
-    						code += data.mar[i].mvo.id; 
+    						code += data.mar[i].mvo.name; 
     						code += "</p>"; 
     						code += "<p>"; 
     						code += data.mar[i].content;
