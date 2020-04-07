@@ -6,7 +6,7 @@
 
 	<!-- 회원 로그인 -->
 	<select id="sign_in" resultType="mybatis.vo.MovieMemberVO" parameterType="java.util.Map">
-		select * from Movie_Mem where id = #{id} and pw = #{pw} and status = 0 or status = 2
+		select * from Movie_Mem where id = #{id} and pw = #{pw} and status = 0 or status = 2 and id is not null
 	</select>
 	
 	<!-- sns 로그인 -->
@@ -204,6 +204,11 @@
 	<!-- 회원 탈퇴 -->
 	<update id="delMember" parameterType="java.util.Map">
 		update Movie_Mem set status = 1 where m_idx = #{m_idx} and pw = #{pw}
+	</update>
+	
+	<!-- 회원 복구 -->
+	<update id="restoreMember" parameterType="String">
+		update Movie_Mem set status = 0 where m_idx = #{m_idx}
 	</update>
 	
 	<!-- 댓글 삭제 -->

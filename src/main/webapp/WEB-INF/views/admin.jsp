@@ -97,7 +97,7 @@
 	Copyright &copy;2020 All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 	<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
     </footer>
-
+	<script src="resources/js/jquery-3.4.1.min.js"></script>
     <!-- Popper js -->
     <script src="resources/js/popper.min.js"></script>
     <!-- Bootstrap js -->
@@ -108,7 +108,6 @@
     <script src="resources/js/active.js"></script>
     <script type="text/javascript">
     $(function(){
-    	
     	
     	  var sBtn = $("ul > li");    //  ul > li 이를 sBtn으로 칭한다. (클릭이벤트는 li에 적용 된다.)
     	  sBtn.find("a").click(function(){   // sBtn에 속해 있는  a 찾아 클릭 하면.
@@ -121,7 +120,18 @@
     function memList(){
     	$("#adcon_div").load("memList.inc");
     }
-    
+    function memStop(m_idx, pw){
+    	var param = "m_idx="+encodeURIComponent(m_idx)+"&pw="+encodeURIComponent(pw);
+    	$.ajax({
+			url: "delete_member.inc",
+			type: "post",
+			data: param,
+			dataType: "json"
+		}).done(function(data){
+			$("#adcon_div").load("memList.inc");
+		});
+    	
+    }
     </script>
 </body>
 </c:if>

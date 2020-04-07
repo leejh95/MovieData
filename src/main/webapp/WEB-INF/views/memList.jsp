@@ -165,16 +165,14 @@
 	            </div>
 	            <div class="col-md-3">
 	                <div class="cell">
-	                <c:if test="${vo.status eq 0}">
+	                <c:if test="${vo.status eq 0 && vo.sns_id eq null}">
 	                    <div class="description">
-	                        <input type="button" value="회원정지" onclick="memStop()" />
-	                        <input type="hidden" value="${vo.m_idx }" id="m_idx" />
-	                        <input type="hidden" value="${vo.pw }" id="pw"/>
+	                        <input type="button" value="정지" onclick="memStop('${vo.m_idx }','${vo.pw }')" />
 	                    </div>
 	                </c:if>
-	                <c:if test="${vo.status eq 1}">
+	                <c:if test="${vo.status eq 1 && vo.sns_id eq null}">
 	                    <div class="description">
-	                        <input type="button" value="회원복구" />
+	                        <input type="button" value="복구" />
 	                    </div>
 	                </c:if>      
 	                </div>
@@ -201,10 +199,5 @@
    </div>
    
 </div>
-<script src="resources/js/jquery-3.4.1.min.js"></script>
-<script type="text/javascript">
-
-
-</script>
 </body>
 </html>

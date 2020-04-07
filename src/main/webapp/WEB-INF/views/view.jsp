@@ -74,11 +74,13 @@
 		width: 1000px;
 		margin: 100px auto;
 	}
+	#commentList{
+		border-bottom: 2px solid #373737;
+		border-top: 2px solid #373737;
+	}
 	#commTable{
 		border-collapse: collapse;
 		width: 1000px;
-		border-bottom: 2px solid #373737;
-		border-top: 2px solid #373737;
 	}
 	#commTable tr{
 		border-bottom: 1px solid #dedede;
@@ -195,32 +197,29 @@
 			<h4>내 평점 등록하기</h4>
 			<hr>
 			<c:if test="${sessionScope.memVO ne null}"> 
-				<form action="commSave.inc" method="post">
-					<input type="hidden" name="m_idx" id="m_idx" value="${sessionScope.memVO.m_idx }">
-					<%-- <input type="hidden" name="m_idx" id="m_idx" value="1"> --%>
-					<input type="hidden" name="movieCd" id="movieCd" value="${movieCd }">
-					<textarea rows="3" cols="120" name="content" id="content" placeholder="내용을 입력해주세요..."></textarea>
-					<div class="wrap-star">
-	    				<div class='star-rating' width="200px" height="40px" style="float: left;">
-	        				<span style ="width:0px;"></span>
-	        				<div onclick="rate(1)" onmouseover="changeStars(1)" onmouseout="resetStars()"></div>
-	        				<div style="left:10%;" onclick="rate(2)" onmouseover="changeStars(2)" onmouseout="resetStars()"></div>
-	        				<div style="left:20%;" onclick="rate(3)" onmouseover="changeStars(3)" onmouseout="resetStars()"></div>
-	        				<div style="left:30%;" onclick="rate(4)" onmouseover="changeStars(4)" onmouseout="resetStars()"></div>
-	        				<div style="left:40%;" onclick="rate(5)" onmouseover="changeStars(5)" onmouseout="resetStars()"></div>
-	        				<div style="left:50%;" onclick="rate(6)" onmouseover="changeStars(6)" onmouseout="resetStars()"></div>
-	        				<div style="left:60%;" onclick="rate(7)" onmouseover="changeStars(7)" onmouseout="resetStars()"></div>
-	        				<div style="left:70%;" onclick="rate(8)" onmouseover="changeStars(8)" onmouseout="resetStars()"></div>
-	        				<div style="left:80%;" onclick="rate(9)" onmouseover="changeStars(9)" onmouseout="resetStars()"></div>
-	        				<div style="left:90%;" onclick="rate(10)" onmouseover="changeStars(10)" onmouseout="resetStars()"></div>
-					    </div>
-					    <div id="star-label" style="float: left; margin-left: 10px; padding: 5px;"><h6>0</h6></div>
-					    <br><br>
-					    <h5>나의 평가 : <b id="star-value">0</b>점</h5>
-					    <br>
-					</div>
-					<button type="button" class="btn original-btn" onclick="commSave(this.form)">등록하기</button>
-				</form>
+				
+				<textarea rows="3" cols="120" id="comm_content" placeholder="내용을 입력해주세요..."></textarea>
+				<div class="wrap-star">
+    				<div class='star-rating' width="200px" height="40px" style="float: left;">
+        				<span style ="width:0px;"></span>
+        				<div onclick="rate(1)" onmouseover="changeStars(1)" onmouseout="resetStars()"></div>
+        				<div style="left:10%;" onclick="rate(2)" onmouseover="changeStars(2)" onmouseout="resetStars()"></div>
+        				<div style="left:20%;" onclick="rate(3)" onmouseover="changeStars(3)" onmouseout="resetStars()"></div>
+        				<div style="left:30%;" onclick="rate(4)" onmouseover="changeStars(4)" onmouseout="resetStars()"></div>
+        				<div style="left:40%;" onclick="rate(5)" onmouseover="changeStars(5)" onmouseout="resetStars()"></div>
+        				<div style="left:50%;" onclick="rate(6)" onmouseover="changeStars(6)" onmouseout="resetStars()"></div>
+        				<div style="left:60%;" onclick="rate(7)" onmouseover="changeStars(7)" onmouseout="resetStars()"></div>
+        				<div style="left:70%;" onclick="rate(8)" onmouseover="changeStars(8)" onmouseout="resetStars()"></div>
+        				<div style="left:80%;" onclick="rate(9)" onmouseover="changeStars(9)" onmouseout="resetStars()"></div>
+        				<div style="left:90%;" onclick="rate(10)" onmouseover="changeStars(10)" onmouseout="resetStars()"></div>
+				    </div>
+				    <div id="star-label" style="float: left; margin-left: 10px; padding: 5px;"><h6>0</h6></div>
+				    <br><br>
+				    <h5>나의 평가 : <b id="star-value">0</b>점</h5>
+				    <br>
+				</div>
+				<button type="button" class="btn original-btn" onclick="commSave(this.form)">등록하기</button>
+				
 			</c:if>
 			<c:if test="${sessionScope.memVO eq null}">
 				<h6>로그인 정보가 필요합니다...</h6>
@@ -236,40 +235,9 @@
 					<col width="170px"/>
 					<col width="220px"/>
 				</colgroup>
-				<tbody>
-					 <!-- 
-					<c:forEach var="cvo" items="${vo.comms }">
-					<tr>
-						<td>
-							${cvo.mvo.name }
-						</td>
-						<td>
-							${cvo.content } 
-						</td>
-						<td>
-							<img src="resources/images/star${cvo.rate }.png" width="90px">&nbsp;
-							${cvo.rate } 점
-						</td>
-						<td>
-							${cvo.write_date.substring(5, 19) }&nbsp;
-							<c:if test="${cvo.m_idx eq sessionScope.memVO.m_idx}">
-								<a>[삭제]</a>&nbsp;
-								<a>[수정]</a>
-							</c:if>
-						</td>
-					</tr>
-					</c:forEach>
-					
-					<c:if test="${vo.comms eq null }">
-					<tr>
-						<td>
-							이 영화는 아직 평가가 없습니다...
-						</td>
-					</tr>
-					</c:if>
-					-->
-				</tbody>	
+				<tbody></tbody>	
 			</table>
+			<ul></ul>
 		</div>
 	</div>
 	
@@ -535,25 +503,28 @@
 			type: "post",
 			data: "movieCd=${movieCd}&nowPage="+nowPage,
 			dataType: "json"
-		}).done(function(ar){
+		}).done(function(data){
 			var msg = "";
-
-			if(ar != undefined){
+			
+			if(data.ar != undefined){
 				
-				for(var i=0; i<ar.length; i++){
-					msg += "<tr><td>"+ar[i].name+"</td>";
-					msg += "<td>"+ar[i].content+"</td>";
-					msg += "<td><img src='resources/images/star"+ar[i].rate+".png' width='90px'>&nbsp;"+ar[i].rate+" 점</td>";
-					msg += "<td>${cvo.write_date.substring(5, 19) }&nbsp";
+				for(var i=0; i<data.ar.length; i++){
+					msg += "<tr><td>"+data.ar[i].mvo.name+"</td>";
+					msg += "<td>"+data.ar[i].content+"</td>";
+					msg += "<td><img src='resources/images/star"+data.ar[i].rate+".png' width='90px'>&nbsp;"+data.ar[i].rate+" 점</td>";
+					msg += "<td>"+data.ar[i].write_date.substring(5, 19)+"&nbsp";
 					
-					if(ar.m_idx == "${sessionScope.memVO.m_idx}"){
-						msg += "<a>[삭제]</a>&nbsp;<a>[수정]</a>";
+					if(data.ar[i].m_idx == "${sessionScope.memVO.m_idx}"){
+						msg += "<a href='javascript:commDel("+nowPage+","+data.ar[i].c_idx+")'>[삭제]</a>&nbsp;";
+						msg += "<a>[수정]</a>";
 					}
 					
 					msg += "</td></tr>";
 				}
 				//위에서 작업된 html코드를 tbody에 html로 적용한다.
 				$("#commTable tbody").html(msg);
+				$("#commentList ul").html("");
+				$("#commentList ul").append(data.pageCode);
 				
 			}else{
 				msg += "<tr><td>이 영화는 아직 평가가 없습니다...</td></tr>"
@@ -563,26 +534,21 @@
 		});
 	}
 	
-	function commSave(frm) {
-		var content = $("#content").val();
+	function commSave() {
+		var content = $("#comm_content").val();
+		var rate = $('#star-value').text();
 		var m_idx = $("#m_idx").val();
 		var movieCd = $("#movieCd").val();
-		var rate = $('input[name="rate"]:checked').val();
-		
-		if(rate == null){
-			alert("평가를 매겨주세요");
-			return;
-		}
 		
 		if(content.length < 1){
-			alert("내용을 매겨주세요");
+			alert("내용을 입력해주세요");
+			$("#comm_content").focus();
 			return;
 		}
 		
 		var param = "content="+encodeURIComponent(content)+
-		"&m_idx="+encodeURIComponent(m_idx)+
-		"&movieCd="+encodeURIComponent(movieCd)+
-		"&rate="+encodeURIComponent(rate);
+		"&m_idx=${sessionScope.memVO.m_idx}&movieCd=${movieCd}&rate="+
+		encodeURIComponent(rate);
 		
 		$.ajax({
 			url: "commSave.inc",
@@ -590,66 +556,29 @@
 			data: param,
 			dataType: "json"
 		}).done(function(data){
-			
-			if(data.chk){
-				alert("댓글달기 성공");
-				if(data.mar != undefined){
-					var code = "";
-					for(var i = 0; i<data.mar.length; i++){
-						msg += "<tr><td>"+ar[i].name+"</td>";
-						msg += "<td>"+ar[i].content+"</td>";
-						msg += "<td><img src='resources/images/star"+ar[i].rate+".png' width='90px'>&nbsp;"+ar[i].rate+" 점</td>";
-						msg += "<td>${cvo.write_date.substring(5, 19) }&nbsp";
-						
-						if(ar.m_idx == "${sessionScope.memVO.m_idx}"){
-							msg += "<a>[삭제]</a>&nbsp;<a>[수정]</a>";
-						}
-						
-						msg += "</td></tr>";
-					}
-					//위에서 작업된 html코드를 tbody에 html로 적용한다.
-					$("#commTable tbody").html(msg);
-				}
-			}else{
-				alert("댓글달기 실패");
-			}
-			
-			$("#content").val("");	
-		}).fail(function(err){
-			
+			setCommList(1);
+			$("#comm_content").val("");
+			$(".star-rating span").css("width", 0);
+			$("#star-label").text(0);
+			$("#star-value").text(0);
 		});
+		
 	}
     
-	function commDel(c_idx) {
-		var movieCd = $("#movieCd").val();
-		var m_idx = $("#m_idx").val();
-		var param = "c_idx="+encodeURIComponent(c_idx)+
-		"&movieCd="+encodeURIComponent(movieCd);
+	function commDel(nowPage, c_idx) {
+		
+		var b = confirm("삭제하시겠습니까?");
+		if(!b)
+			return;
 		
 		$.ajax({
 			url: "commDel.inc",
 			type: "post",
-			data: param,
+			data: "c_idx="+encodeURIComponent(c_idx),
 			dataType: "json"
-		}).done(function(data){
-			
-			if(data.chk){
-				alert("삭제 성공");
-				if(data.mar != undefined){
-					var code = "";
-					for(var i = 0; i<data.mar.length; i++){
-						
-					}
-					//위에서 작업된 html코드를 tbody에 html로 적용한다.
-					$("#commTable tbody").html(code);
-				}
-			}else{
-				alert("삭제 실패");
-			}
-			
-		}).fail(function(err){
-			
-		});
+		}).done(function(){
+			setCommList(nowPage);
+		})
 	}
 	
 	function rate(val){

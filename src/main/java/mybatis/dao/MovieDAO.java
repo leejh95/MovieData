@@ -156,6 +156,18 @@ public class MovieDAO {
 		return chk;
 	}
 	
+	// 회원 복구
+		public boolean restoreMember(String m_idx) {
+			boolean chk = false;
+			
+			int cnt = ss.update("movie.restoreMember", m_idx);
+			
+			if(cnt > 0)
+				chk = true;
+			
+			return chk;
+		}
+	
 	// 댓글 삭제
 	public boolean deleteComment(String c_idx) {
 		boolean chk = false;

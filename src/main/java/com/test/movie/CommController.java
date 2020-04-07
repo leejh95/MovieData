@@ -32,43 +32,41 @@ public class CommController {
 	public final int BLOCK_LIST = 10;	// 한 페이지당 보여질 게시물 수
 	public final int BLOCK_PAGE = 4;	// 한 블럭당 보여질 페이지 수
 	int nowPage, rowTotal;
-	String pageCode, movieCd;
+	String pageCode;
 	
 	@RequestMapping("/postCommList.inc")
 	@ResponseBody
-	public MovieCommentVO[] postCommList(String nowPage, String movieCd) throws Exception {
-		System.out.println(nowPage + "/" + movieCd);
+	public Map<String, Object> postCommList(String nowPage, String movieCd) throws Exception {
+		
 		if(nowPage == null) { this.nowPage = 1; }
 		else { this.nowPage = Integer.parseInt(nowPage); }
 		
 		this.rowTotal = m_dao.totalPostCommCount(movieCd);
-		PagingPostComm page = new PagingPostComm(this.nowPage, rowTotal, BLOCK_LIST, BLOCK_PAGE, this.movieCd);
+		PagingPostComm page = new PagingPostComm(this.nowPage, rowTotal, BLOCK_LIST, BLOCK_PAGE);
 		
 		// 페이지 기법의 HTML코드
-		pageCode = page.getSb().toString();
+		this.pageCode = page.getSb().toString();
 		
 		MovieCommentVO[] ar = m_dao.getPostCommList(movieCd, page.getBegin(), page.getEnd());
 		
-		return ar;
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("ar", ar);
+		map.put("pageCode", this.pageCode);
+		
+		return map;
 	}
 	
 	@RequestMapping(value = "/commSave.inc", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> postCommSave(MovieCommentVO vo) {
 		Map<String, Object> map = new HashMap<String, Object>(); 
-		System.out.println(vo.getContent());
-		System.out.println(vo.getM_idx());
-		System.out.println(vo.getMovieCd());
-		System.out.println(vo.getRate());
 		
 		vo.setIp(requset.getRemoteAddr());
 		
 		boolean chk = m_dao.writeComment(vo);
 		
-		//MovieCommentVO[] mar = m_dao.getCommList(vo.getMovieCd());
-		
 		map.put("chk", chk);
-		//map.put("mar", mar);
 		return map;
 	}
 	

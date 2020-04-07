@@ -8,17 +8,15 @@ public class PagingPostComm {
 				blockPage,	// 한 블럭당 표현할 페이지 수
 				totalPage, startPage, endPage,
 				begin, end;
-	private String movieCd;
 	private boolean isPrePage, isNextPage;
 	private StringBuffer sb;
 	
 	// Constructor ------------------------------------------------------------------------
-	public PagingPostComm(int nowPage, int rowTotal, int blockList, int blockPage, String movieCd) {
+	public PagingPostComm(int nowPage, int rowTotal, int blockList, int blockPage) {
 		this.nowPage = nowPage;
 		this.rowTotal = rowTotal;
 		this.blockList = blockList;
 		this.blockPage = blockPage;
-		this.movieCd = movieCd;
 		this.isPrePage = false;
 		this.isNextPage = false;
 		
@@ -50,8 +48,6 @@ public class PagingPostComm {
 	public void setNextPage(boolean isNextPage) { this.isNextPage = isNextPage; }
 	public StringBuffer getSb() { return sb; }
 	public void setSb(StringBuffer sb) { this.sb = sb; }
-	public String getMovieCd() {return movieCd;}
-	public void setMovieCd(String movieCd) {this.movieCd = movieCd;}
 
 	// Method ------------------------------------------------------------------------------
 	public void makeHTML() {
@@ -77,13 +73,13 @@ public class PagingPostComm {
 		this.sb = new StringBuffer("");
 
 		if(this.isPrePage) {
-			sb.append("<li><a href='javascript:goCommPage(");
+			sb.append("<li><a href='javascript:setCommList(");
 			if (this.nowPage - this.blockPage < 1) {
 				sb.append("1");
 			} else {
 				sb.append(this.nowPage - this.blockPage);
 			}
-			sb.append(","+ this.movieCd +")'>이전</a></li>");
+			sb.append(")'>이전</a></li>");
 		} else {
 			sb.append("<li><a>이전</a></li>");
 		}
@@ -94,23 +90,23 @@ public class PagingPostComm {
 				sb.append(i);
 				sb.append("</a></li>");
 			} else {
-				sb.append("<li><a href='javascript:goCommPage(");
+				sb.append("<li><a href='javascript:setCommList(");
 				sb.append(i);
-				sb.append(","+ this.movieCd+")'>");
+				sb.append(")'>");
 				sb.append(i);
 				sb.append("</a></li>");
 			}
 		}
 
 		if(this.isNextPage) {
-			sb.append("<li><a href='javascript:goCommPage(");
+			sb.append("<li><a href='javascript:setCommList(");
 			if(this.nowPage + this.blockPage > this.totalPage) {
 				sb.append(this.totalPage);
 			} else {
 				sb.append(this.nowPage + this.blockPage);
 			}
 			
-			sb.append(","+ this.movieCd +")'>다음</a></li>");
+			sb.append(")'>다음</a></li>");
 		} else { 
 			sb.append("<li><a>다음</a></li>");
 		}
