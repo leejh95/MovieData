@@ -255,6 +255,10 @@
 		
 		setCommList(1);
 		
+		$(".editBtn").click(function(){
+			$(this).after('fjdskalfjdskla');
+		});
+		
 		$.ajax({
 			url: "http://192.168.0.117:5000/viewGraph.inc?movieCd=${movieCd}&dTime=${dTime}",
 			type: 'post',
@@ -516,7 +520,7 @@
 					
 					if(data.ar[i].m_idx == "${sessionScope.memVO.m_idx}"){
 						msg += "<a href='javascript:commDel("+nowPage+","+data.ar[i].c_idx+")'>[삭제]</a>&nbsp;";
-						msg += "<a>[수정]</a>";
+						msg += "<a class='editBtn'>[수정]</a>";
 					}
 					
 					msg += "</td></tr>";
@@ -579,6 +583,10 @@
 		}).done(function(){
 			setCommList(nowPage);
 		})
+	}
+	
+	function commEdit(nowPage, c_idx, e){
+		e.parentNode.append("<div>fkdshafdsahfdsa</div>");
 	}
 	
 	function rate(val){

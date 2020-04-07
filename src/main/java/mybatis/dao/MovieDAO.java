@@ -117,8 +117,13 @@ public class MovieDAO {
 	}
 	
 	// 회원 목록 보기
-	public MovieMemberVO[] getMemberList() {
-		List<MovieMemberVO> list = ss.selectList("movie.getMemberList");
+	public MovieMemberVO[] getMemberList(int begin, int end) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("begin", begin);
+		map.put("end", end);
+		
+		List<MovieMemberVO> list = ss.selectList("movie.getMemberList", map);
 		MovieMemberVO[] ar = null;
 		
 		if(!list.isEmpty()) {
@@ -228,7 +233,7 @@ public class MovieDAO {
 		return total;
 	}
 	
-	//게시물 하나의 댓글 수
+	//전체 멤버의 수
 	public int totalMemberCount() {
 		int total = 0;
 		
