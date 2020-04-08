@@ -103,6 +103,17 @@ public class CommController {
 		return map;
 	}
 	
+	@RequestMapping(value = "/commEdit.inc", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> postCommEdit(MovieCommentVO vo) {
+		Map<String, Object> map = new HashMap<String, Object>(); 
+	
+		boolean chk = m_dao.updateComment(vo);
+		
+		map.put("chk", chk);
+		return map;
+	}
+	
 	@RequestMapping(value="/boardCommDel.inc", method = RequestMethod.POST)
 	public ModelAndView boardCommDel(String c_idx){
 		ModelAndView mv = new ModelAndView();

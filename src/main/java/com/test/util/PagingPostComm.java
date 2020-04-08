@@ -73,7 +73,7 @@ public class PagingPostComm {
 		this.sb = new StringBuffer("");
 
 		if(this.isPrePage) {
-			sb.append("<li><a href='javascript:setCommList(");
+			sb.append("<li><a href='javascript:goCommListPage(");
 			if (this.nowPage - this.blockPage < 1) {
 				sb.append("1");
 			} else {
@@ -90,7 +90,7 @@ public class PagingPostComm {
 				sb.append(i);
 				sb.append("</a></li>");
 			} else {
-				sb.append("<li><a href='javascript:setCommList(");
+				sb.append("<li><a href='javascript:goCommListPage(");
 				sb.append(i);
 				sb.append(")'>");
 				sb.append(i);
@@ -99,7 +99,7 @@ public class PagingPostComm {
 		}
 
 		if(this.isNextPage) {
-			sb.append("<li><a href='javascript:setCommList(");
+			sb.append("<li><a href='javascript:goCommListPage(");
 			if(this.nowPage + this.blockPage > this.totalPage) {
 				sb.append(this.totalPage);
 			} else {

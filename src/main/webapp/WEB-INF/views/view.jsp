@@ -92,12 +92,24 @@
 		padding: 5px;
 		font-size: 14px;
 	}
+	#comment_div ul{
+		height: 50px;
+		padding: 10px;
+		text-align: center;
+		margin: 0 auto;
+	}
+	#comment_div li{
+		margin: 0 10px 0 10px;
+		display: inline-block;
+	}
 	.star-rating{position: relative;}
 	.star-rating,.star-rating span{width:152px; height:28px; overflow:hidden; background:url(resources/images/star.png)no-repeat; }
 	.star-rating span{background-position:left bottom; line-height:0; vertical-align:top; position: absolute; top: 0px; left: 0px;}
 	.star-rating div{width:10%; height:28px; position: absolute; top: 0px; left: 0px;}
 	.star-rating div:hover{cursor: pointer;}
 /* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
+
+
 </style>
 	 <%-- <jsp:include page="header.jsp"/>  --%>   
 	 
@@ -251,12 +263,22 @@
     <!-- Active js -->
     <script src="resources/js/active.js"></script>
 <script>
+	var cPage = 1;
+	var isClicked = false;
+	var clicked_index = -1;
+	
 	$(function(){
 		
 		setCommList(1);
 		
-		$(".editBtn").click(function(){
-			$(this).after('fjdskalfjdskla');
+		$(document).on("click", "#editBtn", function(){
+			var i = $(this).parent().parent().index();
+			if(i > clicked_index && isClicked){
+				clicked_index = i-1;
+			}else
+				clicked_index = i;
+			isClicked = true;
+			setCommList(cPage);
 		});
 		
 		$.ajax({
@@ -373,7 +395,6 @@
 	        var slide = $(Parent).attr("data-slide");
 	        ResCarousel(ell, Parent, slide);
 	    }
-		
 	});
 	
 	function viewAudiChart(data){
@@ -502,6 +523,8 @@
 
 	function setCommList(nowPage){
 		
+		cPage = nowPage;
+		
 		$.ajax({
 			url: "postCommList.inc",
 			type: "post",
@@ -513,14 +536,15 @@
 			if(data.ar != undefined){
 				
 				for(var i=0; i<data.ar.length; i++){
-					msg += "<tr><td>"+data.ar[i].mvo.name+"</td>";
+					msg += "<tr><input type='hidden' value='"+data.ar[i].c_idx+"'/>"
+					msg += "<td>"+data.ar[i].mvo.name+"</td>";
 					msg += "<td>"+data.ar[i].content+"</td>";
 					msg += "<td><img src='resources/images/star"+data.ar[i].rate+".png' width='90px'>&nbsp;"+data.ar[i].rate+" 점</td>";
-					msg += "<td>"+data.ar[i].write_date.substring(5, 19)+"&nbsp";
+					msg += "<td align='right'>"+data.ar[i].write_date.substring(5, 19)+"&nbsp";
 					
 					if(data.ar[i].m_idx == "${sessionScope.memVO.m_idx}"){
-						msg += "<a href='javascript:commDel("+nowPage+","+data.ar[i].c_idx+")'>[삭제]</a>&nbsp;";
-						msg += "<a class='editBtn'>[수정]</a>";
+						msg += "<a href='javascript:commDel("+data.ar[i].c_idx+")'>[삭제]</a>&nbsp;";
+						msg += "<a href='javascript:' id='editBtn'>[수정]</a>";
 					}
 					
 					msg += "</td></tr>";
@@ -530,12 +554,18 @@
 				$("#commentList ul").html("");
 				$("#commentList ul").append(data.pageCode);
 				
+				
+				if(isClicked){
+					commEdit();
+				}
+				
 			}else{
 				msg += "<tr><td>이 영화는 아직 평가가 없습니다...</td></tr>"
 			}
 			
-			$("#commTable tbody").html(msg);
 		});
+		
+		
 	}
 	
 	function commSave() {
@@ -569,7 +599,7 @@
 		
 	}
     
-	function commDel(nowPage, c_idx) {
+	function commDel(c_idx) {
 		
 		var b = confirm("삭제하시겠습니까?");
 		if(!b)
@@ -581,12 +611,70 @@
 			data: "c_idx="+encodeURIComponent(c_idx),
 			dataType: "json"
 		}).done(function(){
-			setCommList(nowPage);
-		})
+			setCommList(cPage);
+		});
 	}
 	
-	function commEdit(nowPage, c_idx, e){
-		e.parentNode.append("<div>fkdshafdsahfdsa</div>");
+	function commEdit(){
+		var msg = "";
+		msg += '<tr style="background-color:#efefef;">';
+		msg += '<td>└</td><td><textarea rows="2" cols="60"></textarea></td>';
+		msg += '<td><select>';
+		msg += '<option value="0" selected>0</option>'
+		msg += '<option value="1">1</option>'
+		msg += '<option value="2">2</option>'
+		msg += '<option value="3">3</option>'
+		msg += '<option value="4">4</option>'
+		msg += '<option value="5">5</option>'
+		msg += '<option value="6">6</option>'
+		msg += '<option value="7">7</option>'
+		msg += '<option value="8">8</option>'
+		msg += '<option value="9">9</option>'
+		msg += '<option value="10">10</option>'
+		msg += '</select>평점</td>';
+		msg += '<td align="right"><a href="javascript:commEdit_ok()">[저장]</a>&nbsp;'
+		msg += '<a href="javascript:resetCommList('+cPage+')">[취소]</a></td>'
+		msg += '</tr>'
+		
+		$("#commTable>tbody>tr:nth-child("+(clicked_index+1)+")").after(msg);
+	}
+	
+	function commEdit_ok(){
+		var c_idx = $("#commTable>tbody>tr:nth-child("+(clicked_index+1)+") input").val();
+		var content = $("#commTable>tbody>tr:nth-child("+(clicked_index+2)+") textarea").val();
+		var rate = $("#commTable>tbody>tr:nth-child("+(clicked_index+2)+") select").val();
+		
+		if(content.length < 1){
+			alert("내용을 입력해주세요");
+			$("#commTable>tbody>tr:nth-child("+(clicked_index+1)+") input").focus();
+			return
+		}
+		
+		var b = confirm("수정하시겠습니까?");
+		if(!b)
+			return;
+		
+		$.ajax({
+			url: "commEdit.inc",
+			type: "post",
+			data: "c_idx="+encodeURIComponent(c_idx)+
+				  "&content="+encodeURIComponent(content)+
+				  "&rate="+encodeURIComponent(rate),
+			dataType: "json"
+		}).done(function(){
+			setCommList(cPage);
+		});
+	}
+	
+	function resetCommList(page){
+		isClicked = false;
+		setCommList(page);
+	}
+	
+	function goCommListPage(page){
+		isClicked = false;
+		clicked_index = -1;
+		setCommList(page);
 	}
 	
 	function rate(val){
