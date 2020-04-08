@@ -110,7 +110,6 @@ public class PagingMemList {
 			} else {
 				sb.append(this.nowPage + this.blockPage);
 			}
-			
 			sb.append("')\">다음</a></li>");
 		} else { 
 			sb.append("<li><a href='#'>다음</a></li>");

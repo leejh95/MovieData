@@ -13,6 +13,8 @@
     <link rel="icon" href="resources/img/core-img/favicon.ico">
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/style.css">
+    <link rel="stylesheet" href="resources/css/jquery-ui.min.css">
+    <script src="resources/js/jquery-ui.js"></script>
     <style type="text/css">
     #list_tr:hover{
     	background-color: #ededed;
@@ -137,6 +139,10 @@
     
     <div id="chart_div" style="width: 1600px; height:500px; margin: 50px auto; padding: 5px; color:white;"></div>
      
+     <!-- 다이아로그 팝업창 -->
+    <div id="d1" title="공지사항">
+    	<p id="ppp">뿌웅</p>
+	</div>	
 	<!-- Popper js -->
     <script src="resources/js/popper.min.js"></script>
     <!-- Bootstrap js -->
@@ -146,7 +152,10 @@
     <!-- Active js -->
     <script src="resources/js/active.js"></script>
 <script type="text/javascript">
+
 $(document).ready(function () {
+	
+	$("#d1").dialog();	
 	
 	$.ajax({
         url: "http://192.168.0.117:5000/dailyGraph.inc?dTime=${yesterday}",
@@ -258,6 +267,7 @@ $(document).ready(function () {
         var slide = $(Parent).attr("data-slide");
         ResCarousel(ell, Parent, slide);
     }
+    
 
 });
 

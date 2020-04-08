@@ -49,7 +49,7 @@ public class AdminController {
 		
 		// 게시물 목록
 //		MovieBoardVO[] ar = m_dao.getBoardList(category, page.getBegin(), page.getEnd());
-		
+		System.out.println(page.getBegin()+"/"+page.getEnd());
 		//회원 목록
 		MovieMemberVO[] ar = m_dao.getMemberList(page.getBegin(), page.getEnd());
 		
