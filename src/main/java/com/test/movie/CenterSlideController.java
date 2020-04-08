@@ -128,4 +128,11 @@ public class CenterSlideController {
           
           return image_s;
      }
+	
+	
+	@RequestMapping("/testUi.inc")
+	public String testUI(){
+		return "testUi";
+		
+	}
 }

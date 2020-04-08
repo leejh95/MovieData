@@ -67,7 +67,7 @@
 	<select id="getMemberList" resultType="mybatis.vo.MovieMemberVO" parameterType="java.util.Map">
 		select * from(
 			select rownum as r_num, a.* from
-			(select * from Movie_Mem where and status != 2) a
+			(select * from Movie_Mem where status != 2) a
 		) where r_num between #{begin} and #{end}
 	</select>
 	
