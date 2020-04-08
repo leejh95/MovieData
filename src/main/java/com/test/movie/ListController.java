@@ -17,10 +17,10 @@ public class ListController {
 	MovieDAO m_dao;
 	
 	// 페이징 기법 상수
-		public final int BLOCK_LIST = 10;	// 한 페이지당 보여질 게시물 수
-		public final int BLOCK_PAGE = 4;	// 한 블럭당 보여질 페이지 수
-		int nowPage, rowTotal;
-		String pageCode, category; 
+	public final int BLOCK_LIST = 10;	// 한 페이지당 보여질 게시물 수
+	public final int BLOCK_PAGE = 4;	// 한 블럭당 보여질 페이지 수
+	int nowPage, rowTotal;
+	String pageCode, category; 
 
 	@RequestMapping("/list.inc")
 	public ModelAndView list(String nowPage, String category) throws Exception {
