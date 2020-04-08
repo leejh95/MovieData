@@ -1,6 +1,6 @@
 package com.test.util;
 
-public class Paging {
+public class PagingBoardComm {
 
 	private int nowPage,
 				rowTotal,	// 총 게시물 수
@@ -8,27 +8,34 @@ public class Paging {
 				blockPage,	// 한 블럭당 표현할 페이지 수
 				totalPage, startPage, endPage,
 				begin, end;
-	private String category;
 	private boolean isPrePage, isNextPage;
 	private StringBuffer sb;
-	private StringBuffer post_sb;
-	private StringBuffer board_sb;
+	private String b_idx;
 	
 	// Constructor ------------------------------------------------------------------------
-	public Paging(int nowPage, int rowTotal, int blockList, int blockPage, String category) {
+	public PagingBoardComm(int nowPage, int rowTotal, int blockList, int blockPage, String b_idx) {
 		this.nowPage = nowPage;
 		this.rowTotal = rowTotal;
 		this.blockList = blockList;
 		this.blockPage = blockPage;
-		this.category = category;
 		this.isPrePage = false;
 		this.isNextPage = false;
+		this.b_idx = b_idx;
 		
 		makeHTML();
 	}
 	
 	// Getter Setter -----------------------------------------------------------------------
+	
 	public int getNowPage() { return nowPage; }
+	public String getB_idx() {
+		return b_idx;
+	}
+
+	public void setB_idx(String b_idx) {
+		this.b_idx = b_idx;
+	}
+
 	public void setNowPage(int nowPage) { this.nowPage = nowPage; }
 	public int getRowTotal() { return rowTotal; }
 	public void setRowTotal(int rowTotal) { 	this.rowTotal = rowTotal; }
@@ -52,8 +59,6 @@ public class Paging {
 	public void setNextPage(boolean isNextPage) { this.isNextPage = isNextPage; }
 	public StringBuffer getSb() { return sb; }
 	public void setSb(StringBuffer sb) { this.sb = sb; }
-	public String getCategory() {return category;}
-	public void setCategory(String category) {this.category = category;}
 
 	// Method ------------------------------------------------------------------------------
 	public void makeHTML() {
@@ -79,42 +84,42 @@ public class Paging {
 		this.sb = new StringBuffer("");
 
 		if(this.isPrePage) {
-			sb.append("<li><a href='javascript:goBoardPage(");
+			sb.append("<li><a href='javascript:goCommListPage(");
 			if (this.nowPage - this.blockPage < 1) {
 				sb.append("1");
 			} else {
 				sb.append(this.nowPage - this.blockPage);
 			}
-			sb.append(",\'"+ this.category +"\')'>이전</a></li>");
+			sb.append(")'>이전</a></li>");
 		} else {
-			sb.append("<li><a href = '#'>이전</a></li>");
+			sb.append("<li><a>이전</a></li>");
 		}
 
 		for(int i = this.startPage ; i <= endPage ; i++) {
 			if(i == this.nowPage) {
-				sb.append("<li class='now'><a href='#'>");
+				sb.append("<li class='now'><a>");
 				sb.append(i);
 				sb.append("</a></li>");
 			} else {
-				sb.append("<li><a href='javascript:goBoardPage(");
+				sb.append("<li><a href='javascript:goCommListPage(");
 				sb.append(i);
-				sb.append(",\'"+ this.category +"\')'>");
+				sb.append(")'>");
 				sb.append(i);
 				sb.append("</a></li>");
 			}
 		}
 
 		if(this.isNextPage) {
-			sb.append("<li><a href='javascript:goBoardPage(");
+			sb.append("<li><a href='javascript:goCommListPage(");
 			if(this.nowPage + this.blockPage > this.totalPage) {
 				sb.append(this.totalPage);
 			} else {
 				sb.append(this.nowPage + this.blockPage);
 			}
 			
-			sb.append(",\'"+ this.category +"\')'>다음</a></li>");
+			sb.append(")'>다음</a></li>");
 		} else { 
-			sb.append("<li><a href='#'>다음</a></li>");
+			sb.append("<li><a>다음</a></li>");
 		}
 	}
 

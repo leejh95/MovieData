@@ -79,60 +79,20 @@
                     </c:if>
                     <c:if test="${vo.category eq 'review'}">
                     <!-- Comment Area Start -->
-                    <div class="comment_area clearfix mt-70">
-                        <h5 class="title">Comments</h5>
-
-                        <ol id="commOl">
-                            <!-- Single Comment Area -->
-                            <c:if test="${vo.c_list eq null }">
-                            	<li class="single_comment_area">
-                                <!-- Comment Content -->
-                                <div class="comment-content d-flex">
-                                    <!-- Comment Meta -->
-                                    <div class="comment-meta">
-                                        <p>댓글이 없습니다.</p>
-                                    </div>
-                                </div>
-                            </li>
-                            </c:if>
-                            <c:forEach var="cvo" items="${vo.c_list }">
-	                            <li class="single_comment_area">
-	                                <!-- Comment Content -->
-	                                <div class="comment-content d-flex">
-	                                    <!-- Comment Meta -->
-	                                    <div class="comment-meta">
-	                                        <p class="post-date">작성일 : ${cvo.write_date }</p>
-	                                        <p>작성자 : ${cvo.mvo.name }</p>
-	                                        <p>${cvo.content }</p>
-	                                        <c:if test="${cvo.mvo.m_idx eq sessionScope.memVO.m_idx}">
-	                                        <button class='btn' onclick="javascript:boardCommDel('${cvo.c_idx}')">삭제</button>
-	                                        </c:if>
-	                                    </div>
-	                                </div>
-	                            </li>
-	                       </c:forEach>     
-                        </ol>
+                    <div id="boardCommText">
+	                    <textarea id="comm_content"></textarea>
+	                    <input type="button" onclick="commSave()" value="등록">
                     </div>
-					<c:if test="${sessionScope.memVO ne null}"> 
-	                    <div class="post-a-comment-area mt-70">
-	                        <!-- Reply Form -->
-	                            <div class="row">
-	                                <div class="col-12">
-	                                    <div class="group">
-	                                        <textarea name="message" id="message" required></textarea>
-	                                        <span class="highlight"></span>
-	                                        <span class="bar"></span>
-	                                        <label>댓글</label>
-	                                        <input type="hidden" name="m_idx" id="m_idx" value="${sessionScope.memVO.m_idx }">
-	                                        <input type="hidden" name="b_idx" id="b_idx" value="${vo.b_idx }">
-	                                    </div>
-	                                </div>
-	                                <div class="col-12">
-	                                    <button onclick="commSave()" class="btn original-btn" >등록</button>
-	                                </div>
-	                            </div>
-	                    </div>
-                    </c:if>
+                    
+                    <div id="boardCommDiv">
+                        <table id="boardCommTable">
+                        	<colgroup>
+                        	</colgroup>
+                        	<tbody>
+                        	</tbody>
+                        </table>
+                        <ul></ul>
+					</div>
                     </c:if>
                 </div>
             </div>
@@ -154,68 +114,161 @@
     <script src="resources/js/active.js"></script>
     
     <script>
-    	function commSave(){
-    		var content = $("#message").val();
-    		var m_idx = $("#m_idx").val();
-    		var b_idx = $("#b_idx").val();
-    		console.log(content);
-    		
-    		var param = "content="+encodeURIComponent(content)+
-    		"&m_idx="+encodeURIComponent(m_idx)+
-    		"&b_idx="+encodeURIComponent(b_idx);
-    		
-    		$.ajax({
-    			url: "boardCommSave.inc",
-    			type: "post",
-    			data: param,
-    			dataType: "json"
-    		}).done(function(data){
-    			
-    			if(data.chk){
-    				alert("작성 완료");
-    				if(data.mar != undefined){
-    					var code = "";
-    					for(var i = 0; i<data.mar.length; i++){
-    						code += "<li class='single_comment_area'>";
-    						code += "<div class='comment-content d-flex'>";
-    						code += "<div class='comment-meta'>";
-    						code += "<p class='post-date'>작성일 :"; 
-    						code += data.mar[i].write_date; 
-    						code += "</p>"; 
-    						code += "<p>작성자 :"; 
-    						code += data.mar[i].mvo.name; 
-    						code += "</p>"; 
-    						code += "<p>"; 
-    						code += data.mar[i].content;
-    						code += "</p>"; 
-    						if(data.mar[i].m_idx == m_idx){
-    							code += "<p>";
-    					    	code += "<button class='btn' onclick='boardCommDel('"+data.mar[i].c_idx+"')'>삭제</button>";
-    							code += "</p>";
-    						}else{
-    							code += "<p></p>"
-    						}
-    						
-    						code += "</div></div></li>"; 
-    					}
-    					//위에서 작업된 html코드를 tbody에 html로 적용한다.
-    					$("#commOl").html(code);
-    				}
-    			}else{
-    				alert("작성 실패");
-    			}
-    			
-    			$("#message").val("");	
-    		}).fail(function(err){
-    			
-    		});
-    	}
+    var cPage = 1;
+	var isClicked = false;
+	var clicked_index = -1;
+	
+    $(function(){
+    	setCommList(1);
     	
-    	function boardCommDel(c_idx){
-    		$("#comm_idx").attr("value",c_idx);
-    		comm_form.submit();
-    	}
+    	$(document).on("click", "#editBtn", function(){
+			var i = $(this).parent().parent().index();
+			if(i > clicked_index && isClicked){
+				clicked_index = i-1;
+			}else
+				clicked_index = i;
+			isClicked = true;
+			setCommList(cPage);
+		});
+    });
     
+	function setCommList(nowPage){
+		
+		cPage = nowPage;
+		
+		$.ajax({
+			url: "boardCommList.inc",
+			type: "post",
+			data: "b_idx=${b_idx}&nowPage="+nowPage,
+			dataType: "json"
+		}).done(function(data){
+			var msg = "";
+			if(data.ar != undefined){
+				
+				for(var i=0; i<data.ar.length; i++){
+					msg += "<tr><input type='hidden' value='"+data.ar[i].c_idx+"'/>"
+					msg += "<td>"+data.ar[i].mvo.name+"</td>";
+					msg += "<td>"+data.ar[i].content+"</td>";
+					msg += "<td align='right'>"+data.ar[i].write_date.substring(5, 19)+"&nbsp";
+					
+					if(data.ar[i].m_idx == "${sessionScope.memVO.m_idx}"){
+						msg += "<a href='javascript:commDel("+data.ar[i].c_idx+")'>[삭제]</a>&nbsp;";
+						msg += "<a href='javascript:' id='editBtn'>[수정]</a>";
+					}
+					
+					msg += "</td></tr>";
+				}
+				//위에서 작업된 html코드를 tbody에 html로 적용한다.
+				$("#boardCommTable tbody").html(msg);
+				$("#boardCommDiv ul").html("");
+				$("#boardCommDiv ul").append(data.pageCode);
+				
+				
+				if(isClicked){
+					commEdit();
+				}
+				
+			}else{
+				msg += "<tr><td>이 영화는 아직 평가가 없습니다...</td></tr>"
+			}
+			
+		});
+		
+		
+	}
+   
+	function commSave() {
+		var content = $("#comm_content").val();
+		var m_idx = $("#m_idx").val();
+		
+		if(content.length < 1){
+			alert("내용을 입력해주세요");
+			$("#comm_content").focus();
+			return;
+		}
+		
+		var param = "content="+encodeURIComponent(content)+
+		"&m_idx=${sessionScope.memVO.m_idx}&b_idx=${b_idx}";
+		
+		$.ajax({
+			url: "boardCommSave.inc",
+			type: "post",
+			data: param,
+			dataType: "json"
+		}).done(function(data){
+			setCommList(1);
+			$("#comm_content").val("");
+		});
+		
+	}
+   	
+	function commDel(c_idx) {
+		
+		var b = confirm("삭제하시겠습니까?");
+		if(!b)
+			return;
+		
+		$.ajax({
+			url: "boardCommDel.inc",
+			type: "post",
+			data: "c_idx="+encodeURIComponent(c_idx),
+			dataType: "json"
+		}).done(function(){
+			console.log("도착함")
+			setCommList(cPage);
+		});
+	}
+	
+	function commEdit(){
+		var msg = "";
+		msg += '<tr style="background-color:#efefef;">';
+		msg += '<td>└</td><td><textarea rows="2" cols="60"></textarea></td>';
+		msg += '<td align="right"><a href="javascript:commEdit_ok()">[저장]</a>&nbsp;'
+		msg += '<a href="javascript:resetCommList('+cPage+')">[취소]</a></td>'
+		msg += '</tr>'
+		
+		$("#boardCommTable>tbody>tr:nth-child("+(clicked_index+1)+")").after(msg);
+	}
+	
+	function commEdit_ok(){
+		
+		var c_idx = $("#boardCommTable>tbody>tr:nth-child("+(clicked_index+1)+") input").val();
+		var content = $("#boardCommTable>tbody>tr:nth-child("+(clicked_index+2)+") textarea").val();
+		var rate = $("#boardCommTable>tbody>tr:nth-child("+(clicked_index+2)+") select").val();
+		
+		if(content.length < 1){
+			alert("내용을 입력해주세요");
+			$("#boardCommTable>tbody>tr:nth-child("+(clicked_index+1)+") input").focus();
+			return
+		}
+		
+		var b = confirm("수정하시겠습니까?");
+		
+		if(!b)
+			return;
+		
+		$.ajax({
+			url: "commEdit.inc",
+			type: "post",
+			data: "c_idx="+encodeURIComponent(c_idx)+
+				  "&content="+encodeURIComponent(content),
+			dataType: "json"
+		}).done(function(){
+			setCommList(cPage);
+		});
+	}
+	
+	function resetCommList(page){
+		isClicked = false;
+		setCommList(page);
+	}
+	
+	function goCommListPage(page){
+		isClicked = false;
+		clicked_index = -1;
+		setCommList(page);
+	}
+   
     </script>
 </body>
 </html>

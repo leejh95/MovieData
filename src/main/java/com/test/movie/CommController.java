@@ -96,10 +96,8 @@ public class CommController {
 	
 		boolean chk = m_dao.deleteComment(c_idx);
 		
-		//MovieCommentVO[] mar = m_dao.getCommList(movieCd);
-		
 		map.put("chk", chk);
-		//map.put("mar", mar);
+		
 		return map;
 	}
 	
@@ -115,15 +113,15 @@ public class CommController {
 	}
 	
 	@RequestMapping(value="/boardCommDel.inc", method = RequestMethod.POST)
-	public ModelAndView boardCommDel(String c_idx){
-		ModelAndView mv = new ModelAndView();
+	@ResponseBody
+	public Map<String, Object> boardCommDel(String c_idx){
+		Map<String, Object> map = new HashMap<String, Object>(); 
 		
 		boolean chk = m_dao.deleteComment(c_idx);
 		
-		mv.addObject("chk", chk);
-		mv.setViewName("boardview");
+		map.put("chk", chk);
 		
-		return mv;
+		return map;
 		
 	}
 	

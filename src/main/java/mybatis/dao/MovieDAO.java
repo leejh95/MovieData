@@ -229,7 +229,6 @@ public class MovieDAO {
 		int total = 0;
 		
 		total = ss.selectOne("movie.totalBoardCommCount", b_idx);
-		
 		return total;
 	}
 	

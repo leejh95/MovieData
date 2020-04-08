@@ -1,7 +1,9 @@
 package com.test.movie;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -10,10 +12,15 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.test.util.PagingBoardComm;
+import com.test.util.PagingPostComm;
 
 import mybatis.dao.MovieDAO;
 import mybatis.vo.MovieBoardVO;
+import mybatis.vo.MovieCommentVO;
 
 @Controller
 public class BoardviewController {
@@ -30,6 +37,12 @@ public class BoardviewController {
 	@Autowired
 	private HttpSession session;
 	
+	// 페이징 기법 상수
+	public final int BLOCK_LIST = 10;	// 한 페이지당 보여질 게시물 수
+	public final int BLOCK_PAGE = 4;	// 한 블럭당 보여질 페이지 수
+	int nowPage, rowTotal;
+	String pageCode, b_idx;
+
 	@RequestMapping("/boardview.inc")
 	public ModelAndView boardView(String b_idx, String nowPage) {
 		ModelAndView mv = new ModelAndView();
@@ -68,7 +81,34 @@ public class BoardviewController {
 		mv.setViewName("boardview");	
 		
 		return mv;
-}
+	}
+	
+	@RequestMapping("/boardCommList.inc")
+	@ResponseBody
+	public Map<String, Object> boardCommList(String nowPage, String b_idx) throws Exception{
+		this.b_idx = b_idx;
+		if(nowPage == null) { this.nowPage = 1; }
+		else { this.nowPage = Integer.parseInt(nowPage); }
+		
+		this.rowTotal = m_dao.totalBoardCommCount(b_idx);
+		
+		PagingBoardComm page = new PagingBoardComm(this.nowPage, this.rowTotal, BLOCK_LIST, BLOCK_PAGE, this.b_idx);
+		
+		// 페이지 기법의 HTML코드
+		this.pageCode = page.getSb().toString();
+		
+		
+		MovieCommentVO[] ar = m_dao.getBoardCommList(this.b_idx, page.getBegin(), page.getEnd());
+	
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("ar", ar);
+		
+		map.put("pageCode", this.pageCode);
+		
+		return map;
+	
+	}
 	
 	
 }
