@@ -26,6 +26,14 @@
 	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
 	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
     
+    <style type="text/css">
+    	#boardCommTable tbody tr td:nth-child(3) div{
+    		
+    		word-break:break-all;
+    	}
+    	#boardCommTable {
+    	}
+    </style>
 </head>
 <body>
 
@@ -87,6 +95,9 @@
                     <div id="boardCommDiv">
                         <table id="boardCommTable">
                         	<colgroup>
+                        		<col width="80px"/>
+                        		<col width="*"/>
+                        		<col width="200px"/>
                         	</colgroup>
                         	<tbody>
                         	</tbody>
@@ -148,10 +159,10 @@
 				for(var i=0; i<data.ar.length; i++){
 					msg += "<tr><input type='hidden' value='"+data.ar[i].c_idx+"'/>"
 					msg += "<td>"+data.ar[i].mvo.name+"</td>";
-					msg += "<td>"+data.ar[i].content+"</td>";
+					msg += "<td><div>"+data.ar[i].content+"</div></td>";
 					msg += "<td align='right'>"+data.ar[i].write_date.substring(5, 19)+"&nbsp";
 					
-					if(data.ar[i].m_idx == "${sessionScope.memVO.m_idx}"){
+					if(data.ar[i].m_idx == "${sessionScope.memVO.m_idx}" || "${sessionScope.memVO.status}" == "2"){
 						msg += "<a href='javascript:commDel("+data.ar[i].c_idx+")'>[삭제]</a>&nbsp;";
 						msg += "<a href='javascript:' id='editBtn'>[수정]</a>";
 					}
@@ -254,6 +265,7 @@
 				  "&content="+encodeURIComponent(content),
 			dataType: "json"
 		}).done(function(){
+			setCommList(cPage);
 			setCommList(cPage);
 		});
 	}

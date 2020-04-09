@@ -139,10 +139,12 @@
     
     <div id="chart_div" style="width: 1600px; height:500px; margin: 50px auto; padding: 5px; color:white;"></div>
      
-     <!-- 다이아로그 팝업창 -->
+     <!-- 다이아로그 팝업창 
     <div id="d1" title="공지사항">
     	<p id="ppp">뿌웅</p>
 	</div>	
+	
+	-->
 	<!-- Popper js -->
     <script src="resources/js/popper.min.js"></script>
     <!-- Bootstrap js -->
@@ -331,7 +333,7 @@ $(document).ready(function () {
 		
 		series.columns.template.tooltipText = 
 			"[bold]{valueY}[/]";
-		series.columns.template.fill = am4core.color('#0489B1');
+		series.columns.template.fill = am4core.color('#0B0B3B');
 		series.columns.template.fillOpacity = 0.7;
 		series.columns.template.stroke = am4core.color('black');
 		

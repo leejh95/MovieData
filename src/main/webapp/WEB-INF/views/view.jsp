@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <meta name="description" content="">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 <title>Insert title here</title>
     <!-- Favicon -->
     <link rel="icon" href="resources/img/core-img/favicon.ico">
@@ -92,6 +92,10 @@
 		padding: 5px;
 		font-size: 14px;
 	}
+	#commTable tr td:nth-child(3){
+		word-break:break-all;
+	}
+	
 	#comment_div ul{
 		height: 50px;
 		padding: 10px;
@@ -102,6 +106,7 @@
 		margin: 0 10px 0 10px;
 		display: inline-block;
 	}
+	
 	.star-rating{position: relative;}
 	.star-rating,.star-rating span{width:152px; height:28px; overflow:hidden; background:url(resources/images/star.png)no-repeat; }
 	.star-rating span{background-position:left bottom; line-height:0; vertical-align:top; position: absolute; top: 0px; left: 0px;}
@@ -549,7 +554,7 @@
 					msg += "<td><img src='resources/images/star"+data.ar[i].rate+".png' width='90px'>&nbsp;"+data.ar[i].rate+" 점</td>";
 					msg += "<td align='right'>"+data.ar[i].write_date.substring(5, 19)+"&nbsp";
 					
-					if(data.ar[i].m_idx == "${sessionScope.memVO.m_idx}"){
+					if(data.ar[i].m_idx == "${sessionScope.memVO.m_idx}" || "${sessionScope.memVO.status}" == "2"){
 						msg += "<a href='javascript:commDel("+data.ar[i].c_idx+")'>[삭제]</a>&nbsp;";
 						msg += "<a href='javascript:' id='editBtn'>[수정]</a>";
 					}
