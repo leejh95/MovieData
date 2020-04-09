@@ -31,7 +31,7 @@
                 <ul class="nav nav-pills nav-stacked" style="display: inline-block; width: 250px;">
                     <li class="active"><a href="index.inc">Home</a></li>
                     <li><a href="javascript:memList('1')">List</a></li>
-                    <li><a href="#">mijung</a></li>
+                    <li><a href="javascript:searchMember()">searchMember</a></li>
                 </ul>
             </div>
         </div>
@@ -41,62 +41,9 @@
     </div>
 </div>
 
- <!-- ##### Footer Area Start ##### -->
-	<div style="width: 100%; height: 1px; background-color: #d2d2d2"></div>
-    <footer class="footer-area text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                   
-                    <!-- Footer Nav Area -->
-                    <div class="classy-nav-container breakpoint-off">
-                        <!-- Classy Menu -->
-                        <nav class="classy-navbar justify-content-center">
-
-                            <!-- Navbar Toggler -->
-                            <div class="classy-navbar-toggler">
-                                <span class="navbarToggler"><span></span><span></span><span></span></span>
-                            </div>
-
-                            <!-- Menu -->
-                            <div class="classy-menu">
-
-                                <!-- close btn -->
-                                <div class="classycloseIcon">
-                                    <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-                                </div>
-
-                                <!-- Nav Start -->
-                                <div class="classynav">
-                                    <ul>
-                                        <li><a href="#">여기</a></li>
-                                        <li><a href="#">뭐라고</a></li>
-                                        <li><a href="#">써둘까</a></li>
-                                        <li><a href="#">얘들아?</a></li>
-                                        <li><a href="#">의견좀</a></li>
-                                        <li><a href="#">주세요 ㅎㅎ</a></li>
-                                    </ul>
-                                </div>
-                                <!-- Nav End -->
-                            </div>
-                        </nav>
-                    </div>
-                    
-                    <!-- Footer Social Area -->
-                    <div class="footer-social-area mt-30">
-                        <a href="https://www.facebook.com/" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                        <a href="https://twitter.com/?lang=ko" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                        <a href="https://www.instagram.com/?hl=ko" data-toggle="tooltip" data-placement="top" title="Instargram"><i class="fab fa-instagram"></i></i></a>
-                        <a href="https://www.google.co.kr/" data-toggle="tooltip" data-placement="top" title="Google"><i class="fab fa-google"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-   	<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-	Copyright &copy;2020 All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-	<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-    </footer>
+ 
+<div id="include_footer"></div>
+   
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
     <!-- Popper js -->
     <script src="resources/js/popper.min.js"></script>
@@ -109,6 +56,8 @@
     <script type="text/javascript">
     $(function(){
     	
+    	$("#include_footer").load("footer.inc");
+    	
     	  var sBtn = $("ul > li");    //  ul > li 이를 sBtn으로 칭한다. (클릭이벤트는 li에 적용 된다.)
     	  sBtn.find("a").click(function(){   // sBtn에 속해 있는  a 찾아 클릭 하면.
     	   sBtn.removeClass("active");     // sBtn 속에 (active) 클래스를 삭제 한다.
@@ -119,6 +68,21 @@
 
     function memList(nowPage){
     	$("#adcon_div").load("memList.inc?nowPage="+nowPage);
+    }
+    function searchMember(){
+    	$("#adcon_div").load("searchMem.inc");
+    }
+    function searchMem(nowPage){
+    	var searchType = $("#searchDiv select").val();
+    	var searchValue = $("#searchDiv input").val();
+    	
+    	if(searchValue.length < 1){
+    		alert("내용을 입력해주세요");
+    		$("#searchDiv input").focus();
+    		return;
+    	}
+    	
+    	$("#adcon_div").load("searchMember.inc?nowPage="+nowPage+"&searchType="+searchType+"&searchValue="+searchValue);
     }
     function memStop(m_idx, pw, nowPage){
     	var param = "m_idx="+encodeURIComponent(m_idx)+"&pw="+encodeURIComponent(pw);

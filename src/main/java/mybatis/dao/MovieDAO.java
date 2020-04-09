@@ -362,6 +362,40 @@ public class MovieDAO {
 			
 		return chk;
 	}
+	
+	// 회원 아이디, 이름 검색
+	public MovieMemberVO[] searchMember(String searchType, String searchValue, int begin, int end) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchType", searchType);
+		map.put("searchValue", searchValue);
+		map.put("begin", begin);
+		map.put("end", end);
+		
+		List<MovieMemberVO> mlist = ss.selectList("movie.searchMember", map);   
+		
+		MovieMemberVO[] mar = null;
+		
+		if(!mlist.isEmpty()) {
+			mar = new MovieMemberVO[mlist.size()];
+			
+			mlist.toArray(mar);
+			
+		}
+		
+		return mar;
+	}
+	
+	// 회원 아이디, 이름 검색
+	public int searchMemberCount(String searchType, String searchValue) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("searchType", searchType);
+		map.put("searchValue", searchValue);
+		
+		int cnt = ss.selectOne("movie.searchMemberCount", map);
+		
+		return cnt;
+	}
+	
 }
 
 

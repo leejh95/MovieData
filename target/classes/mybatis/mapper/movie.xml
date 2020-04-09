@@ -113,6 +113,47 @@
 	</select>
 	<!-- 끝 -->
 	
+	<!-- 관리자 회원 검색 기능 -->
+	<select id="searchMember" resultType="mybatis.vo.MovieMemberVO" parameterType="java.util.Map">
+		select * from(
+			select rownum as r_num, a.* from
+			(select * from Movie_Mem  
+
+		<if test="searchType != null and searchValue != null">
+	 		<trim prefix="where">
+	 			<choose>
+	 				<when test="searchType == 0"> <!-- 이름검색 -->
+	 					LOWER(name) LIKE LOWER('%' || #{searchValue} || '%')
+	 				</when>
+	 				<when test="searchType == 1"> <!-- 아이디검색 -->
+	 					id LIKE '%' || #{searchValue} || '%'
+	 				</when>
+	 			</choose>
+	 			and status != 2
+	 		</trim>
+		</if>
+		
+		) a
+		) where r_num between #{begin} and #{end}
+	</select>
+	
+	<!-- 관리자 회원 검색한 결과의 수 반환 -->
+	<select id="searchMemberCount" resultType="int" parameterType="java.util.Map">
+		select count(*) from Movie_Mem  
+		<if test="searchType != null and searchValue != null">
+	 		<trim prefix="where">
+	 			<choose>
+	 				<when test="searchType == 0"> <!-- 이름검색 -->
+	 					LOWER(name) LIKE LOWER('%' || #{searchValue} || '%')
+	 				</when>
+	 				<when test="searchType == 1"> <!-- 아이디검색 -->
+	 					id LIKE '%' || #{searchValue} || '%'
+	 				</when>
+	 			</choose>	
+	 		</trim>
+		</if>
+	</select>
+	
 	<!-- 해당 페이지마다 보여질 게시물 목록 -->
 	<!-- 시작 -->
 	<select id="getBoardList" resultMap="map3" parameterType="java.util.Map">

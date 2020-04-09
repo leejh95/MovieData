@@ -47,7 +47,7 @@
                 <c:forEach var="vo" items="${ar }">
                <!-- Single Blog Area -->
                 <div class="col-12 col-lg-4">
-                    <div class="single-blog-area clearfix mb-100" id="box_card" onclick="goView('${vo.movieCd }', '${dTime }')">
+                    <div class="single-blog-area clearfix mb-100" id="box_card" onclick="location.href='view.inc?movieCd=${vo.movieCd }&dTime=${dTime }'">
                         <!-- Blog Content -->
                         <div class="single-blog-content" style="text-align:center;">
                         	<h4><a class="post-headline" >${vo.rank}위</a></h4>
@@ -109,7 +109,10 @@
     </table>
     <!-- 컨텐츠 구분선 끝 -->
     
-    <div id="weekly_audi_chart_div" style="width: 1600px; height:500px; margin: 0 auto; padding: 5px; display: block;"></div>
+    <div id="weekly_audi_chart_div" style="width: 1600px; height:500px; margin: 0 auto; padding: 5px; display: block;" align="center">
+    	<h4>불러오는 중입니다...</h4><br>
+		<img src="resources/images/loading.gif"/>
+    </div>
 	
 	<!-- 컨텐츠 구분선 -->
     <table style="width:1600px; margin:200px auto 50px auto;">
@@ -127,7 +130,10 @@
     </table>
     <!-- 컨텐츠 구분선 끝 -->
     
-    <div id="weekly_sales_chart_div" style="width: 1600px; height:500px; margin: 0 auto; padding: 5px;"></div>
+    <div id="weekly_sales_chart_div" style="width: 1600px; height:500px; margin: 0 auto; padding: 5px;" align="center">
+    	<h4>불러오는 중입니다...</h4><br>
+		<img src="resources/images/loading.gif"/>
+    </div>
 	
     <!-- Popper js -->
     <script src="resources/js/popper.min.js"></script>

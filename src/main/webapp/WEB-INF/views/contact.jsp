@@ -26,6 +26,7 @@
 </head>
 <body>
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<div id="include_header" ></div>
 	<div class="container">
 		<div class="panel panel-default">
 	        <div class="panel-heading">
@@ -141,7 +142,12 @@
 				- 김포공항에서 김해공항 국내선, 50분 소요<br/>
 				- 김해공항 리무진에서 센텀신세계백화점까지 50분 소요
 		</div>
+		<br/>
+	<br/>
+	<br/>
 	</div>
+	
+	<div id="include_footer"></div>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a079f1d5c767f5ae2c08726bfaeb62d9"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a079f1d5c767f5ae2c08726bfaeb62d9&libraries=LIBRARY"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a079f1d5c767f5ae2c08726bfaeb62d9&libraries=drawing"></script>
@@ -153,9 +159,16 @@
     <script src="resources/js/plugins.js"></script>
     <!-- Active js -->
     <script src="resources/js/active.js"></script>
+    
+    <script src="resources/js/jquery-3.4.1.min.js"></script>
 	
 <script>
 	$(document).ready(function() {
+		
+		$("#include_header").load("header.inc");
+		$("#include_footer").load("footer.inc");
+		
+		
 	    $('[id^=detail-]').hide();
 	    $('.toggle').click(function() {
 	        $input = $( this );

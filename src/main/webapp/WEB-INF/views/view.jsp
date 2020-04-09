@@ -120,6 +120,8 @@
 	 
 </head>
 <body>
+	<div id="include_header" ></div>
+	
 	<div id="view_wrap">
 		<div id="left">
 			<c:if test="${vo.image ne null }">
@@ -222,7 +224,7 @@
 			<hr>
 			<c:if test="${sessionScope.memVO ne null}"> 
 				
-				<textarea rows="3" cols="120" id="comm_content" placeholder="내용을 입력해주세요..."></textarea>
+				<textarea rows="3" cols="108" id="comm_content" placeholder="내용을 입력해주세요..."></textarea>
 				<div class="wrap-star">
     				<div class='star-rating' width="200px" height="40px" style="float: left;">
         				<span style ="width:0px;"></span>
@@ -264,8 +266,9 @@
 			<ul></ul>
 		</div>
 	</div>
-	
+	<div id="include_footer"></div>
 		
+	<script src="resources/js/jquery-3.4.1.min.js"></script>
     <!-- Popper js -->
     <script src="resources/js/popper.min.js"></script>
     <!-- Bootstrap js -->
@@ -274,12 +277,18 @@
     <script src="resources/js/plugins.js"></script>
     <!-- Active js -->
     <script src="resources/js/active.js"></script>
+    <script src="//www.amcharts.com/lib/4/core.js"></script>
+	<script src="//www.amcharts.com/lib/4/charts.js"></script>
+	<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 <script>
 	var cPage = 1;
 	var isClicked = false;
 	var clicked_index = -1;
 	
 	$(function(){
+		
+		$("#include_header").load("header.inc");
+		$("#include_footer").load("footer.inc");
 		
 		setCommList(1);
 		
@@ -675,7 +684,7 @@
 				  "&rate="+encodeURIComponent(rate),
 			dataType: "json"
 		}).done(function(){
-			setCommList(cPage);
+			resetCommList(cPage);
 		});
 	}
 	

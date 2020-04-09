@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="resources/style.css">
 </head>
 <body>
+		<div id="include_header" ></div>
 	    <div class="blog-wrapper section-padding-100 clearfix">
         <div class="container">
             <div class="row align-items-end">
@@ -36,6 +37,7 @@
             </div>
     </div>
     </div>
+    <div id="include_footer"></div>
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<script src="resources/js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
@@ -46,5 +48,11 @@
     <script src="resources/js/plugins.js"></script>
     <!-- Active js -->
     <script src="resources/js/active.js"></script>
+    <script type="text/javascript">
+		$(document).ready(function(){
+			$("#include_header").load("header.inc");
+			$("#include_footer").load("footer.inc");
+		});
+    </script>
 </body>
 </html>

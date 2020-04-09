@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -118,34 +118,26 @@
 </style>
 </head>
 <body>
-
-<div id="include_header" ></div>
-
-<div class="container">
 	
-	<c:if test="${category=='free' }">
-    <h2>자유게시판</h2>
-    <hr />
-    </c:if>
-    
-    <c:if test="${category=='review'}">
-    <h2>리뷰게시판</h2>
-    <hr />
-    </c:if>
-
-    <div class="method">
-    <!-- 글쓰기 버튼 -->
-    <c:if test="${sessionScope.memVO ne null}"> 
-    <div class="btn-toolbar">
-    	<button class="btn" onClick="goWrite('${nowPage}', '${category }')">글쓰기</button>
+<div class="container" style="width: 1000px; margin-left: 0; box-shadow: 0px 5px 5px 1px gray; ">
+	<div>
+		<div id="searchDiv">
+			<select name="searchType">
+				<option value="0" >이름</option>
+				<option value="1">아이디</option>
+			</select>
+			<input type="text" name="searchValue"/>
+			<button onclick="searchMem('1')">검색</button>
+		</div>
 	</div>
-    </c:if>
-        <div class="row margin-0 list-header hidden-sm hidden-xs">
+	<c:if test="${list ne null }">
+    <div class="method">
+        <div class="row margin-0 list-header hidden-sm hidden-xs" style="margin-top: 20px;">
             <div class="col-md-2"><div class="header">No</div></div>
-            <div class="col-md-4"><div class="header">제목</div></div>
-            <div class="col-md-3"><div class="header">작성자</div></div>
-            <div class="col-md-2"><div class="header">작성일</div></div>
-            <div class="col-md-1"><div class="header">조회수</div></div>
+            <div class="col-md-2"><div class="header">ID</div></div>
+            <div class="col-md-2"><div class="header">이름</div></div>
+            <div class="col-md-3"><div class="header">가입일</div></div>
+            <div class="col-md-3"><div class="header">관리</div></div>
         </div>
         <!-- 리스트 내용 -->
         <c:forEach var="vo" items="${list}" varStatus="st">
@@ -153,91 +145,75 @@
 	            <div class="col-md-2">
 	                <div class="cell">
 	                    <div class="propertyname">
-						${rowTotal - ((nowPage-1) * blockList + st.index) }
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-md-4">
-	                <div class="cell">
-	                    <div class="type">
-	                        <div class="propertyname">
-	                        <c:if test="${category == 'free' }">
-	                        <%-- 들여쓰기 반복문 --%>
-								<c:forEach begin="1" end="${vo.step }">
-									<c:out value="&nbsp;&nbsp;" escapeXml="flase"/>
-								</c:forEach>
-								<%-- step이 0이 아닐때 화살표 이미지 출력 --%>
-								<c:if test="${vo.step ne 0 }">
-									<img src="resources/images/hsp.png"/>
-								</c:if>
-							</c:if>
-							<c:if test="${vo.status == 1 }">
-								삭제된 게시글
-							</c:if>
-							<c:if test="${vo.status == 0 }">
-								<a href="javascript:location.href='boardview.inc?b_idx=${vo.b_idx }&nowPage=${nowPage}'">${vo.subject }
-								<c:if test="${vo.category == 'review' }">
-									
-								</c:if>
-								</a>
-							</c:if>
-	                    	</div>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-md-3">
-	                <div class="cell">
-	                    <div class="propertyname">
-							<c:if test="${vo.status == 0 }">
-								${vo.mvo.name }
-							</c:if>	
+						  ${rowTotal - ((nowPage-1) * blockList + st.index) }
 	                    </div>
 	                </div>
 	            </div>
 	            <div class="col-md-2">
 	                <div class="cell">
-	                   <div class="propertyname">
-	                        ${fn:substring(vo.write_date, 0, 10) }
+	                    <div class="type">
+	                    <c:if test="${vo.id eq null}">
+	                        <div class="propertyname">
+	                        	${vo.email }
+	                    	</div>
+	                    </c:if>
+	                    <c:if test="${vo.id ne null}">
+	                        <div class="propertyname">
+	                        	${vo.id }
+	                    	</div>
+	                    </c:if>		
 	                    </div>
 	                </div>
 	            </div>
-	            <div class="col-md-1">
+	            <div class="col-md-2">
 	                <div class="cell">
-	                    <div class="description">
-	                        ${vo.hit }
+	                    <div class="propertyname">
+							${vo.name }
 	                    </div>
 	                </div>
 	            </div>
+	            <div class="col-md-3">
+	                <div class="cell">
+	                   <div class="propertyname">
+	                        ${vo.reg_date.substring(0, 10) }
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="col-md-3">
+	                <div class="cell">
+	                <c:if test="${vo.status eq 0 && vo.sns_id eq null}">
+	                    <div class="description">
+	                        <input type="button" value="정지" onclick="memStop('${vo.m_idx }','${vo.pw }','${nowPage }')" />
+	                    </div>
+	                </c:if>
+	                <c:if test="${vo.status eq 1 && vo.sns_id eq null}">
+	                    <div class="description">
+	                        <input type="button" value="복구" onclick="memRestore('${vo.m_idx }','${nowPage }')"/>
+	                    </div>
+	                </c:if>      
+	                </div>
+	            </div>
+	             <c:if test="${empty list }">
 	             <div class="col-md-2">
 	                <div class="cell">
 	                    <div class="propertyname">
-	                    <c:if test="${empty list }">
-									등록된 게시물이 없습니다.
-						</c:if>
+								가입된 회원이 없습니다.
 	                    </div>
-	                </div>
+                	</div>
 	             </div>
+	             </c:if>
 	        </div>
 	    </c:forEach>
         <!-- 리스트 내용 끝 -->
     </div>
     
-    <!-- 페이징 -->
+    
     <div class="pagination">
        <ul>
            ${pageCode }  
        </ul>
    </div>
-   
+   </c:if>
 </div>
-
-<div id="include_footer"></div>
-<script src="resources/js/jquery-3.4.1.min.js"></script>
-<script type="text/javascript">
-$(function(){
-	$("#include_header").load("header.inc");
-	$("#include_footer").load("footer.inc");
-});
-</script>
 </body>
 </html>

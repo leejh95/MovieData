@@ -37,6 +37,8 @@
 </head>
 <body>
 
+	<div id="include_header" ></div>
+
     <!-- ##### Single Blog Area Start ##### -->
     <div class="single-blog-wrapper section-padding-0-100">
 
@@ -87,11 +89,17 @@
                     </c:if>
                     <c:if test="${vo.category eq 'review'}">
                     <!-- Comment Area Start -->
-                    <div id="boardCommText">
-	                    <textarea id="comm_content"></textarea>
-	                    <input type="button" onclick="commSave()" value="등록">
-                    </div>
-                    
+                    <c:if test="${sessionScope.memVO ne null }">
+	                    <div id="boardCommText">
+		                    <textarea id="comm_content"></textarea>
+		                    <input type="button" onclick="commSave()" value="등록">
+	                    </div>
+                    </c:if>
+                    <c:if test="${sessionScope.memVO eq null }">
+	                    <div id="boardCommText">
+		                    [댓글] 로그인이 필요합니다.
+	                    </div>
+                    </c:if>
                     <div id="boardCommDiv">
                         <table id="boardCommTable">
                         	<colgroup>
@@ -113,7 +121,11 @@
     	<input type="hidden" id="comm_idx" name="c_idx"/>
     </form>
     
+    <div id="include_footer"></div>
+    
     <!-- ##### Single Blog Area End ##### -->
+    
+    <script src="resources/js/jquery-3.4.1.min.js"></script>
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
 	<!-- Popper js -->
     <script src="resources/js/popper.min.js"></script>
@@ -130,6 +142,9 @@
 	var clicked_index = -1;
 	
     $(function(){
+    	$("#include_header").load("header.inc");
+		$("#include_footer").load("footer.inc");
+    	
     	setCommList(1);
     	
     	$(document).on("click", "#editBtn", function(){
@@ -265,8 +280,7 @@
 				  "&content="+encodeURIComponent(content),
 			dataType: "json"
 		}).done(function(){
-			setCommList(cPage);
-			setCommList(cPage);
+			resetCommList(cPage);
 		});
 	}
 	

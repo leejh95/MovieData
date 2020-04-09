@@ -11,7 +11,8 @@
 </head>
 <body>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<div id="include_header" ></div>
 
 <div class="container">
    <div class="row">
@@ -119,8 +120,17 @@
     </div>
 </div>
 </div>
+
+<div id="include_footer"></div>
+
 <script src="resources/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
+
+	$(function(){
+		$("#include_header").load("header.inc");
+		$("#include_footer").load("footer.inc");
+	});
+
 	function updateProfile(frm){
 		//유효성 검사 필요없
 		var b = confirm("수정하시겠습니까?");

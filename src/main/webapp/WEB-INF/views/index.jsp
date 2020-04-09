@@ -6,63 +6,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a079f1d5c767f5ae2c08726bfaeb62d9"></script>
-
-<style type="text/css">
-#include_center{
-	width: 100%;
-	
-	margin-top: 50px;
-}
-#include_footer{
-}
-#include_header{
-}
-.tab_ul{
-  width: 100%;
-  list-style:none;
-  margin: 0 auto; 
-  padding: 0;
-  position:relative; 
-}
-.tabmenu{ 
-  max-width:100%; 
-  margin: 0 auto; 
-  padding: 0;
-}
-#div_li{
-  width: 1000px;
-  margin: 0 auto;
-}
-.tabmenu>ul li{
-  display:  inline-block;
-  width:499px; 
-  float:left;  
-  text-align:center; 
-  background :#f1f1f1;
-}
-.tabmenu ul li a{
-  display:block;
-  line-height:45px;
-  height:60px;
-  text-decoration:none; 
-  color: #000;
-}
-.tabCon{
-  display:none; 
-  width: 100%;
-  text-align:left; 
-  position:absolute; 
-  top:60px; 
-  left:0;
-  box-sizing: border-box;
-}
-.btnCon:target  {
-  background : #ccc;
-}
-.btnCon:target .tabCon{
-  display: block;
-}
-</style>
 </head>
 <body bgcolor="#343434">
 

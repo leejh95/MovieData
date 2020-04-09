@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +23,7 @@
     </style>
 </head>
 <body>
+	<div id="include_header"></div>    
 	<div class="hero-area" style="width: 100%; margin: 0 auto; background-color: #151515;">
         <!-- Hero Slides Area -->
         <div class="hero-slides owl-carousel"  style="width: 1400px; margin: 0 auto;">
@@ -33,9 +35,9 @@
                         <div class="col-12">
                             <div class="slide-content text-center">
                                 <div class="post-tag" style="opacity: 0.9; border-radius: 7px;">
-                                    <a href="javascript:goView('${vo.movieCd }')" data-animation="fadeInUp" style="opacity: 0.9; border-radius: 7px;">${vo.rank}위</a>
+                                    <a href="javascript:location.href='view.inc?movieCd=${vo.movieCd }&dTime=${yesterday }'" data-animation="fadeInUp" style="opacity: 0.9; border-radius: 7px;">${vo.rank}위</a>
                                 </div>
-                                <h2 data-animation="fadeInUp" data-delay="250ms" style="font-size: 15px; opacity: 0.9; border-radius: 7px;"><a href="javascript:goView('${vo.movieCd }','${yesterday}' )" style="font-size: 15px; opacity: 0.9; border-radius: 7px;">${vo.movieNm }</a></h2>
+                                <h2 data-animation="fadeInUp" data-delay="250ms" style="font-size: 15px; opacity: 0.9; border-radius: 7px;"><a href="javascript:location.href='view.inc?movieCd=${vo.movieCd }&dTime=${yesterday }'" style="font-size: 15px; opacity: 0.9; border-radius: 7px;">${vo.movieNm }</a></h2>
                             </div>
                         </div>
                     </div>
@@ -45,6 +47,7 @@
         </div>
     </div>
     <div style="bmargin-bottom: 10px; margin-top: 150px;">
+    <!--  <div> ${fn:length(dar) }</div>-->
     
     <!-- 컨텐츠 구분선 -->
     <table style="width:1100px; margin:20px auto;">
@@ -87,7 +90,7 @@
 			    </td>
 			    <td style="padding: 5px;">    
 			        <div class="author-info">
-			            <a href="javascript:goView('${rvo.movieCd }','${yesterday }')" style="font-size: 18px; font-weight: bold;">${rvo.movieNm }</a>
+			            <a href="javascript:location.href='view.inc?movieCd=${rvo.movieCd }&dTime=${yesterday }'" style="font-size: 18px; font-weight: bold;">${rvo.movieNm }</a>
 			        </div>
 			    </td>
 			    <td style="padding: 5px; text-align: center;">
@@ -137,14 +140,18 @@
     </table>
     <!-- 컨텐츠 구분선 끝 -->
     
-    <div id="chart_div" style="width: 1600px; height:500px; margin: 50px auto; padding: 5px; color:white;"></div>
-     
+    <div id="chart_div" style="width: 1600px; height:500px; margin: 50px auto; padding: 5px; color:white;" align="center">
+    	<h4>불러오는 중입니다...</h4><br>
+		<img src="resources/images/loading.gif"/>
+    </div>
+
+	<div id="include_footer"></div>     
      <!-- 다이아로그 팝업창 
     <div id="d1" title="공지사항">
     	<p id="ppp">뿌웅</p>
 	</div>	
-	
 	-->
+	<script src="resources/js/jquery-3.4.1.min.js"></script>
 	<!-- Popper js -->
     <script src="resources/js/popper.min.js"></script>
     <!-- Bootstrap js -->
@@ -153,11 +160,18 @@
     <script src="resources/js/plugins.js"></script>
     <!-- Active js -->
     <script src="resources/js/active.js"></script>
+    <script src="//www.amcharts.com/lib/4/core.js"></script>
+	<script src="//www.amcharts.com/lib/4/charts.js"></script>
+	<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 <script type="text/javascript">
 
 $(document).ready(function () {
 	
-	$("#d1").dialog();	
+	$("#include_header").load("header.inc");
+	$("#include_footer").load("footer.inc");
+	
+	
+	//$("#d1").dialog();	
 	
 	$.ajax({
         url: "http://192.168.0.117:5000/dailyGraph.inc?dTime=${yesterday}",

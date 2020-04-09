@@ -45,7 +45,7 @@
                         <div class="top-social-area">
                         <c:if test="${sessionScope.memVO ne null}">
 							  <span>${sessionScope.memVO.name }님 환영합니다!</span>
-					          <a href="javascript:goMypage('${sessionScope.memVO.m_idx }')" data-toggle="tooltip" data-placement="bottom" title="MyPage"><i class="fas fa-user-circle" ></i></a>
+					          <a href="javascript:location.href='profile.inc?m_idx=${sessionScope.memVO.m_idx }'" data-toggle="tooltip" data-placement="bottom" title="MyPage"><i class="fas fa-user-circle" ></i></a>
 					          <a href="javascript:location.href='signout.inc'" data-toggle="tooltip" data-placement="bottom" title="SignOut"><i class="fas fa-sign-out-alt"></i></a>
 						</c:if>	
 						<c:if test="${sessionScope.memVO eq null}">
@@ -66,7 +66,7 @@
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
-                        <a href="index.inc" class="original-logo"><img src="resources/images/boxoffice (1).png" alt=""></a>
+                        <a href="centerSlide.inc" class="original-logo"><img src="resources/images/boxoffice (1).png" alt=""></a>
                     </div>
                 </div>
             </div>
@@ -98,17 +98,17 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="index.inc">Home</a></li>
+                                    <li><a href="centerSlide.inc">Home</a></li>
                                    
-                                    <li><a href="javascript:goBoxOffice()">박스오피스</a></li>
+                                    <li><a href="javascript:location.href='boxofficeRank.inc'">박스오피스</a></li>
                                     <li><a href="#">게시판</a>
                                         <ul class="dropdown">
-                                            <li><a href="javascript:goBoard('free')">자유게시판</a></li>
-                                            <li><a href="javascript:goBoard('review')">리뷰게시판</a></li>
+                                            <li><a href="javascript:location.href='list.inc?category=free'">자유게시판</a></li>
+                                            <li><a href="javascript:location.href='list.inc?category=review'">리뷰게시판</a></li>
                                         </ul>
                                     </li>
                                    
-                                    <li><a href="javascript:goContact()">Contact</a></li>
+                                    <li><a href="javascript:location.href='contact.inc'">Contact</a></li>
                                 </ul>
 
                     		<!-- Search Form  -->
@@ -149,11 +149,13 @@
 			
 			$("#search").keydown(function(key) {
 				if (key.keyCode == 13) {
-					goSearch();
+					var type = document.getElementById("select_type").value;
+					var value = document.getElementById("search").value;
+					location.href="search.inc?type="+type+"&value="+value;
 				}
 			});
 			
-		})
+		});
 		
 	</script>
 </body>
