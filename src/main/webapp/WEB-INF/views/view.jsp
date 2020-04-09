@@ -164,7 +164,11 @@
 					<td class="kategorie">배우 및 배역</td>
 					<td class="content">
 					<c:forEach var="avo" items="${vo.actors }">
-						${avo.actorNm }(${avo.castNm }) /
+						${avo.actorNm }
+						<c:if test="${avo.castNm.length() > 0}">
+							(${avo.castNm })
+						</c:if>
+						 /
 					</c:forEach>
 					</td>
 				</tr>
@@ -202,7 +206,10 @@
     </table>
     <!-- 컨텐츠 구분선 끝 -->
 	
-	<div id="view_audi_chart_div" style="width: 1000px; height:550px; margin: 0 auto; padding: 5px;"></div>
+	<div id="view_audi_chart_div" style="width: 1000px; height:550px; margin: 0 auto; padding: 5px;" align="center">
+		<h4>불러오는 중입니다...</h4><br>
+		<img src="resources/images/loading.gif"/>
+	</div>
 		
 	<div id="comment_div">
 		<div id="comment">
@@ -561,6 +568,7 @@
 				
 			}else{
 				msg += "<tr><td>이 영화는 아직 평가가 없습니다...</td></tr>"
+				$("#commTable tbody").html(msg);
 			}
 			
 		});
