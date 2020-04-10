@@ -12,8 +12,6 @@
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/style.css">
 <title>Insert title here</title>
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <style>
 	.kmap{
 		width: 100%;
@@ -25,7 +23,6 @@
 </style>
 </head>
 <body>
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 	<div id="include_header" ></div>
 	<div class="container">
 		<div class="panel panel-default">
@@ -33,16 +30,16 @@
 	            <h3 class="panel-title">자주 질문하는 FAQ입니다.</h3>
 	        </div>   
 	        <ul class="list-group">
-	            <li class="list-group-item">
-	                <div class="row toggle" id="dropdown-detail-1" data-toggle="detail-1">
+	            <li class="list-group-item" style="background-color:#ededed;">
+	                <div class="row toggle" id="dropdown-detail-1" data-toggle="detail-1" >
 	                    <div class="col-xs-10">
-	                        Q. 회원 정보 수정 절차
+	                       &nbsp;&nbsp;&nbsp;Q. 회원 정보 수정 절차
 	                    </div>
 	                    <div class="col-xs-2"><i class="fa fa-chevron-down pull-right"></i></div>
 	                </div>
-	                <div id="detail-1">
+	                <div id="detail-1" >
 	                    <hr></hr>
-	                    <div class="container">
+	                    <div class="container" style="background-color:#fff;">
 	                        <div class="fluid-row">
 	                            <div class="col-xs-1">
 	                                A.
@@ -50,18 +47,20 @@
 	                            <div class="col-xs-10">
 									로그인 사용자는 마이페이지 > 회원 프로필 메뉴에서 관련 정보를 수정할 수 있습니다.
 	                            </div>
+	                        </div>
+	                	</div>
 	                </div>
 	            </li>
-	            <li class="list-group-item">
+	            <li class="list-group-item" style="background-color:#ededed;">
 	                <div class="row toggle" id="dropdown-detail-2" data-toggle="detail-2">
 	                    <div class="col-xs-10">
-	                        Q. 권장 브라우저에 대한 안내
+	                        &nbsp;&nbsp;&nbsp;Q. 권장 브라우저에 대한 안내
 	                    </div>
 	                    <div class="col-xs-2"><i class="fa fa-chevron-down pull-right"></i></div>
 	                </div>
 	                <div id="detail-2">
 	                    <hr></hr>
-	                    <div class="container">
+	                    <div class="container" style="background-color:#fff;">
 	                        <div class="fluid-row">
 	                            <div class="col-xs-1">
 	                                A.
@@ -74,16 +73,16 @@
 	                    </div>
 	                </div>
 	            </li>
-	            <li class="list-group-item">
+	            <li class="list-group-item" style="background-color:#ededed;">
 	                <div class="row toggle" id="dropdown-detail-3" data-toggle="detail-3">
 	                    <div class="col-xs-10">
-	                        Q. 개봉작과 상영작의 정의와 집계기준
+	                       &nbsp;&nbsp;&nbsp; Q. 개봉작과 상영작의 정의와 집계기준
 	                    </div>
 	                    <div class="col-xs-2"><i class="fa fa-chevron-down pull-right"></i></div>
 	                </div>
 	                <div id="detail-3">
 	                    <hr></hr>
-	                    <div class="container">
+	                    <div class="container" style="background-color:#fff;">
 	                        <div class="fluid-row">
 	                            <div class="col-xs-1">
 	                                A.
@@ -98,16 +97,16 @@
 	                    </div>
 	                </div>
 	            </li>
-	            <li class="list-group-item">
+	            <li class="list-group-item" style="background-color:#ededed;">
 	                <div class="row toggle" id="dropdown-detail-4" data-toggle="detail-4">
 	                    <div class="col-xs-10">
-	                        Q. 공식 통계와 자료의 차이에 대한 설명
+	                        &nbsp;&nbsp;&nbsp;Q. 공식 통계와 자료의 차이에 대한 설명
 	                    </div>
 	                    <div class="col-xs-2"><i class="fa fa-chevron-down pull-right"></i></div>
 	                </div>
 	                <div id="detail-4">
 	                    <hr></hr>
-	                    <div class="container">
+	                    <div class="container" style="background-color:#fff;">
 	                        <div class="fluid-row">
 	                            <div class="col-xs-1">
 	                                A.
@@ -123,6 +122,7 @@
 	        </ul>
 		</div>
 	</div>
+	<br/>
 	<div class="kmap">
 		<div class="kmap2">
 			<h4><strong>오시는 길</strong></h4>

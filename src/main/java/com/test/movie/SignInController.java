@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import mybatis.dao.MovieDAO;
@@ -25,6 +26,7 @@ public class SignInController {
 	
 	@Autowired
 	HttpSession session;
+	
 	
 	@RequestMapping("/signIn.inc")
 	public ModelAndView signIn() throws Exception {
@@ -46,19 +48,22 @@ public class SignInController {
 	}
 	
 	@RequestMapping("/signInForm.inc")
-	public ModelAndView signInForm(String id, String pw) {
-		ModelAndView mv = new ModelAndView();
-		
+	@ResponseBody
+	public Map<String, Object> signInForm(String id, String pw) {
 		MovieMemberVO vo = m_dao.signIn(id, pw);
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		boolean chk = false;
 		
 		if(vo != null) {
-			mv.setViewName("index");
+			chk = true;
 			session.setAttribute("memVO", vo);
-		}else {
-			mv.setViewName("signin");
-			mv.addObject("isFailed", true);
 		}
 		
-		return mv;
+		map.put("chk", chk);
+		
+		return map;
 	}
+	
+	
 }

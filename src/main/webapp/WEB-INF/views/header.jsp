@@ -45,8 +45,16 @@
                         <div class="top-social-area">
                         <c:if test="${sessionScope.memVO ne null}">
 							  <span>${sessionScope.memVO.name }님 환영합니다!</span>
-					          <a href="javascript:location.href='profile.inc?m_idx=${sessionScope.memVO.m_idx }'" data-toggle="tooltip" data-placement="bottom" title="MyPage"><i class="fas fa-user-circle" ></i></a>
-					          <a href="javascript:location.href='signout.inc'" data-toggle="tooltip" data-placement="bottom" title="SignOut"><i class="fas fa-sign-out-alt"></i></a>
+							  <c:if test="${sessionScope.memVO.sns_type eq null}">
+					          	<a href="javascript:location.href='profile.inc?m_idx=${sessionScope.memVO.m_idx }'" data-toggle="tooltip" data-placement="bottom" title="MyPage"><i class="fas fa-user-circle" ></i></a>
+					          </c:if>
+					          <c:if test="${sessionScope.memVO.sns_type eq 'naver'}">
+					          	<a href="http://naver.com" data-toggle="tooltip" data-placement="bottom" title="NAVER"><i class="fas fa-user-circle" ></i></a>
+					          </c:if>
+					          <c:if test="${sessionScope.memVO.sns_type eq 'google'}">
+					          	<a href="http://google.com" data-toggle="tooltip" data-placement="bottom" title="GOOGLE"><i class="fas fa-user-circle" ></i></a>
+					          </c:if>			
+					          <a href="javascript:signOut()" data-toggle="tooltip" data-placement="bottom" title="SignOut"><i class="fas fa-sign-out-alt"></i></a>
 						</c:if>	
 						<c:if test="${sessionScope.memVO eq null}">
                             <a href="javascript:location.href='signIn.inc'" data-toggle="tooltip" data-placement="bottom" title="Login"><i class="fas fa-sign-in-alt"></i></a>
@@ -54,7 +62,8 @@
 						</c:if>
 						<c:if test="${sessionScope.memVO ne null and sessionScope.memVO.status eq 2}">
                             <a href="javascript:location.href='adminPage.inc'" data-toggle="tooltip" data-placement="bottom" title="Admin"><i class="fas fa-user-cog"></i></a>
-						</c:if>	
+						</c:if>
+						
                         </div>
                     </div>
                 </div>
@@ -66,7 +75,7 @@
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
-                        <a href="centerSlide.inc" class="original-logo"><img src="resources/images/boxoffice (1).png" alt=""></a>
+                        <a href="index.inc" class="original-logo"><img src="resources/images/boxoffice (1).png" alt=""></a>
                     </div>
                 </div>
             </div>
@@ -98,7 +107,7 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="centerSlide.inc">Home</a></li>
+                                    <li><a href="index.inc">Home</a></li>
                                    
                                     <li><a href="javascript:location.href='boxofficeRank.inc'">박스오피스</a></li>
                                     <li><a href="#">게시판</a>
@@ -157,6 +166,17 @@
 			
 		});
 		
+		function signOut(){
+			
+			$.ajax({
+				url: "signout.inc",
+				type: "post",
+			}).done(function(){
+					location.href="index.inc";
+			}).fail(function(err){
+				console.log(err);
+			});
+		}
 	</script>
 </body>
 </html>

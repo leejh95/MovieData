@@ -6,7 +6,7 @@
 
 	<!-- 회원 로그인 -->
 	<select id="sign_in" resultType="mybatis.vo.MovieMemberVO" parameterType="java.util.Map">
-		select * from Movie_Mem where id = #{id} and pw = #{pw} and status = 0 or status = 2 and id is not null
+		select * from Movie_Mem where id = #{id} and pw = #{pw} and (status = 0 or status = 2) and id is not null
 	</select>
 	
 	<!-- sns 로그인 -->

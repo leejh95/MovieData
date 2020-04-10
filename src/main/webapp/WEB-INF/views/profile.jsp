@@ -7,10 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<style>
+.bt{
+	margin-left: 17px;
+}
+</style>
 </head>
 <body>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
 <div id="include_header" ></div>
 
@@ -51,7 +54,7 @@
         </div>
         <div class="form-group">
           <div class="col-xs-offset-3 col-xs-10">
-            <input type="button" value="수정완료" onclick="updateProfile(this.form)" class="btn btn-primary">
+            <input type="button" value="수정완료" onclick="updateProfile(this.form)" class="btn btn-primary bt">
           </div>
         </div>
       </form>
@@ -75,7 +78,7 @@
         </div>
         
         <div class="form-group">
-          <label class="control-label col-sm-3">새로운 비밀번호 확인 <span class="text-danger">*</span></label>
+          <label class="control-label col-sm-4">새로운 비밀번호 확인 <span class="text-danger">*</span></label>
           <div class="col-md-5 col-sm-8">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
@@ -85,7 +88,7 @@
         </div>
         <div class="form-group">
           <div class="col-xs-offset-3 col-xs-10">
-            <input type="button" value="변경하기" onclick="updatePW(this.form)" class="btn btn-primary">
+            <input type="button" value="변경하기" onclick="updatePW(this.form)" class="btn btn-primary bt">
           </div>
         </div>
         </c:if>
@@ -112,7 +115,7 @@
         
         <div class="form-group">
           <div class="col-xs-offset-3 col-xs-10">
-            <input type="button" value="탈퇴" onclick="deleteMem(this.form)" class="btn btn-primary">
+            <input type="button" value="탈퇴" onclick="deleteMem(this.form)" class="btn btn-primary bt">
           </div>
         </div>
       </form>

@@ -36,38 +36,36 @@
                 <div class="col-12 col-md-10 col-lg-9">
                     <div class="contact-form">
                         <p align="center"><font size="5" color="#2f2f2f">로그인</font></p>
+                        
                         <!-- Contact Form -->
-                        <form action="signInForm.inc" method="post">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="group">
-                                        <input type="text" name="id" id="id" required>
-                                        <span class="highlight"></span>
-                                        <span class="bar"></span>
-                                        <label>ID</label>
-                                    </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="group">
+                                    <input type="text" name="id" id="sign_id" required>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label>ID</label>
                                 </div>
-                                <div class="col-12">
-                                    <div class="group">
-                                        <input type="password" name="pw" id="pw" required>
-                                        <span class="highlight"></span>
-                                        <span class="bar"></span>
-                                        <label>Password</label>
-                                    </div>
-                                </div><br><br><br><br>
-                                <div style="width: 175px; margin:auto;">
-                                    <button type="submit" class="btn original-btn">로그인</button>
-                                </div>
-                                <br>
-		                        
                             </div>
-                        </form>
-                        <c:if test="${isFailed }">
-                        	<br/><br/>
-                        	<div align="center">
-                        		<font color="#ff6363">ID 또는 비밀번호가 맞지 않습니다.</font>
-                        	</div>
-                        </c:if>
+                            <div class="col-12">
+                                <div class="group">
+                                    <input type="password" name="pw" id="sign_pw" required>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label>Password</label>
+                                </div>
+                            </div><br><br><br><br>
+                            <div style="width: 175px; margin:auto;">
+                                <button onclick="signData()" class="btn original-btn">로그인</button>
+                            </div>
+                            <br>
+                      
+                        </div>
+                        
+                       	<br/><br/>
+                       	<div align="center" id="noSignIn">
+                       		
+                       	</div>
                         <br><br>
 						<div align="center">
                         	<a href="index.inc" style="color: #2f2f2f; font-weight: bold; margin: 10px;">홈으로가기</a>
@@ -120,12 +118,49 @@
     <script type="text/javascript">
 	    $(function(){
 	    	$("#include_footer").load("footer.inc");
+
 	    });
+	    
+	    function signData(){
+	    	var id = $("#sign_id").val();
+	    	var pw = $("#sign_pw").val();
+	    	
+	    	if(id.length < 1){
+	    		alert("아이디를 입력해주세요");
+	    		$("#sign_id").focus();
+	    		return;
+	    	}
+	    	if(pw.length < 1){
+	    		alert("패스워드를 입력해주세요");
+	    		$("#sign_pw").focus();
+	    		return;
+	    	}
+	    	
+	    	$.ajax({
+				url: "signInForm.inc",
+				type: "post",
+				data: "id="+encodeURIComponent(id)+
+					  "&pw="+encodeURIComponent(pw),
+				dataType: "json"
+			}).done(function(data){
+				
+				if(data.chk){
+					location.href="index.inc";
+				}else{
+					$("#noSignIn").html("<font color=\"#ff6363\">ID 또는 비밀번호가 맞지 않습니다.</font>");
+				}
+				
+			}).fail(function(err){
+				console.log(err);
+			});
+	    }
+	    
 	    
 	    var isButtonClicked = false;
 		document.querySelector('.g-signin2').addEventListener('click', function(){
 			isButtonClicked = true;
 		});
+		
 		function onSignIn(googleUser) {
 			if(isButtonClicked){
 		

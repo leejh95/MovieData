@@ -30,8 +30,8 @@ public class ListController {
 		if(nowPage == null) { this.nowPage = 1; }
 		else { this.nowPage = Integer.parseInt(nowPage); }
 		
-		if(category =="free") { this.category = "free"; }
-		else if(category =="review") { this.category = "review"; }
+		if(category.equals("free")) { this.category = "free"; }
+		else if(category.equals("review")) { this.category = "review"; }
 		
 		this.rowTotal = m_dao.totalCount(category);
 		Paging page = new Paging(this.nowPage, rowTotal, BLOCK_LIST, BLOCK_PAGE, this.category);

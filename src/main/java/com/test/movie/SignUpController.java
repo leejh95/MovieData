@@ -54,6 +54,6 @@ public class SignUpController {
 		vo.setEmail(email);
 		vo.setPhone(ph);
 		boolean chk = m_dao.signUp(vo);
-		return "index";
+		return "trans";
 	}
 }

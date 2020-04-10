@@ -20,6 +20,7 @@
 </head>
 <c:if test="${sessionScope.memVO ne null and sessionScope.memVO.status eq 2}">
 <body>
+<div id="include_header"></div>
 <div class="admin_container" style=" margin: 100px 50px;  ">
     <div class="row"  style="width: 1500px;" >
         <div class="col-md-4" style="width: 300px; display: inline;">
@@ -29,7 +30,7 @@
                     <small><b>MANAGEMENT</b></small>
                 </h5>
                 <ul class="nav nav-pills nav-stacked" style="display: inline-block; width: 250px;">
-                    <li class="active"><a href="index.inc">Home</a></li>
+                    <li class="active"><a href="admin.inc">Home</a></li>
                     <li><a href="javascript:memList('1')">List</a></li>
                     <li><a href="javascript:searchMember()">searchMember</a></li>
                 </ul>
@@ -55,6 +56,8 @@
     <script src="resources/js/active.js"></script>
     <script type="text/javascript">
     $(function(){
+    	
+    	$("#include_header").load("header.inc");
     	
     	$("#include_footer").load("footer.inc");
     	
