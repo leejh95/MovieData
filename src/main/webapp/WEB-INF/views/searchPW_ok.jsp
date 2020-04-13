@@ -29,22 +29,19 @@
                             <div class="row">
                             
 								<c:if test="${chk }">
-                                	<div class="col-12" style="background-color: #e0ffd4; padding: 10px; margin-bottom: 50px;">
-                                    	<h3>아이디는 "${id }" 입니다.</h3>
+                                	<div class="col-12">
+                                    	<h3></h3>
                                     </div>
                                 </c:if>
                                 <c:if test="${chk }">
                                     <div class="col-12" style="background-color: #ffd4d4; padding: 10px; margin-bottom: 50px;">
-                                    	<h3>일치하는 이메일이 없습니다.</h3>
+                                    	<h3>일치하는 아이디 또는 이메일이 없습니다.</h3>
                                     </div>
                                 </c:if>
                                 
                                 <br><br>
                                 <div align="center">
-                        			<a href="searchID.inc" style="color: #2f2f2f; font-weight: bold; margin: 10px;">다시찾기</a>
-                        		</div><br>
-                        		<div align="center">
-                        			<a href="searchPW.inc" style="color: #2f2f2f; font-weight: bold; margin: 10px;">비밀번호찾기</a>
+                        			<a href="searchPW.inc" style="color: #2f2f2f; font-weight: bold; margin: 10px;">다시찾기</a>
                         		</div><br>
 								<div align="center">
                         			<a href="index.inc" style="color: #2f2f2f; font-weight: bold; margin: 10px;">홈으로가기</a>
