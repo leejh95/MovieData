@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="resources/css/summernote-lite.css"/>
 </head>
 <body>
+<div id="include_header" ></div>
 <%
  Object obj = session.getAttribute("memVO");
 MovieMemberVO vo = null;
@@ -70,8 +71,8 @@ if(obj != null){
             </div>
         </div>
     </section>
+	<div id="include_footer"></div>
     <!-- ##### Contact Area End ##### -->
-
 	<!-- Popper js -->
     <script src="resources/js/popper.min.js"></script>
     <!-- Bootstrap js -->
@@ -85,7 +86,11 @@ if(obj != null){
 <script src="resources/js/summernote-lite.js"></script>
     
     <script>
+    
     $(function(){
+    	$("#include_header").load("header.inc");
+    	$("#include_footer").load("footer.inc");
+    	
 		$("#content").summernote({
 			height: 300,
 			width: 850,

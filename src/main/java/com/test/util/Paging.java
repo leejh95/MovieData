@@ -87,7 +87,7 @@ public class Paging {
 			}
 			sb.append("&category="+ this.category +"'>이전</a></li>");
 		} else {
-			sb.append("<li><a href = '#'>이전</a></li>");
+			sb.append("<li><a href='list.inc?nowPage="+1+"&category="+this.category+"'>이전</a></li>");
 		}
 
 		for(int i = this.startPage ; i <= endPage ; i++) {
@@ -106,15 +106,14 @@ public class Paging {
 
 		if(this.isNextPage) {
 			sb.append("<li><a href='list.inc?nowPage=");
-			if(this.nowPage + this.blockPage > this.totalPage) {
-				sb.append(this.totalPage);
-			} else {
-				sb.append(this.nowPage + this.blockPage);
-			}
-			
+				if(this.nowPage + this.blockPage > this.totalPage) {
+					sb.append(this.totalPage);
+				} else {
+					sb.append(this.nowPage + this.blockPage);
+				}
 			sb.append("&category="+ this.category +"'>다음</a></li>");
-		} else { 
-			sb.append("<li><a href='#'>다음</a></li>");
+			} else { 
+			sb.append("<li><a href='list.inc?nowPage="+this.totalPage+"&category="+this.category+"'>다음</a></li>");
 		}
 	}
 

@@ -81,7 +81,7 @@ public class WriteController {
 		
 		m_dao.writeBoard(vo);
 		
-		mv.setViewName("redirect:/goListIndex.inc?category="+vo.getCategory());
+		mv.setViewName("redirect:/list.inc?category="+vo.getCategory()+"&nowPage="+1);
 		
 		return mv;
 	}

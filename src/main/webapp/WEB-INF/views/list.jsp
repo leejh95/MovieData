@@ -225,7 +225,7 @@
     <!-- 페이징 -->
     <div class="pagination">
        <ul>
-           ${pageCode }  
+           ${pageCode }
        </ul>
    </div>
    
@@ -238,6 +238,10 @@ $(function(){
 	$("#include_header").load("header.inc");
 	$("#include_footer").load("footer.inc");
 });
+
+function goWrite(nowPage, category) {
+	location.href="writeForm.inc?nowPage=" + nowPage + "&category=" + category;
+}
 </script>
 </body>
 </html>

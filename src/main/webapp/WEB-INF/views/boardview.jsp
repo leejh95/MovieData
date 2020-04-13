@@ -31,7 +31,15 @@
     		
     		word-break:break-all;
     	}
-    	#boardCommTable {
+    	ul{
+    		display: inline-block;
+    		float: left;
+    		margin-right: 3px;
+    	}
+    	li{
+    		display: inline-block;
+    		float: left;
+    		margin-right: 3px;
     	}
     </style>
 </head>
@@ -91,21 +99,36 @@
                     <c:if test="${vo.category eq 'review'}">
                     <!-- Comment Area Start -->
                     <c:if test="${sessionScope.memVO ne null }">
-	                    <div id="boardCommText">
-		                    <textarea id="comm_content"></textarea>
-		                    <input type="button" onclick="commSave()" value="등록">
-	                    </div>
+                    
+                    <div class="col-12" style="margin-top: 10px;">
+                        <div class="group" id="boardCommText">
+                            <textarea name="message" id="comm_content" required style="font-size: 15px;"></textarea>
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label style="font-size: 15px;">댓글</label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="button" class="btn original-btn" onclick="commSave()">등록</button>
+                    </div>
+
                     </c:if>
                     <c:if test="${sessionScope.memVO eq null }">
-	                    <div id="boardCommText">
-		                    [댓글] 로그인이 필요합니다.
+	                    <div class="col-12" style="margin-top: 10px;">
+                        	<div class="group" id="boardCommText">
+			                    <textarea name="message" id="comm_content" placeholder="로그인 후 작성 가능합니다." style="font-size: 15px;">
+			                    </textarea>
+	                            <span class="highlight"></span>
+	                            <span class="bar"></span>
+	                    	</div>
 	                    </div>
                     </c:if>
                     <div id="boardCommDiv">
                         <table id="boardCommTable">
                         	<colgroup>
-                        		<col width="80px"/>
+                        		<col width="100px"/>
                         		<col width="*"/>
+                        		<col width="200px"/>
                         		<col width="200px"/>
                         	</colgroup>
                         	<tbody>
