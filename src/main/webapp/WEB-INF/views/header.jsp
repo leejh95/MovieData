@@ -80,7 +80,16 @@
                 </div>
             </div>
         </div>
-
+        <!-- 광고 영역 -->
+        
+	        <div class="container h-100" style="text-align: center; border: 1px black solid; height: 100px;">
+	            <div class="row h-100 align-items-center">
+	                <div class="col-12" style="height: 100px;">
+	                    <h1><a href="index.inc" class="original-logo">광고</a></h1>
+	                </div>
+	            </div>
+	        </div>
+	        
         <!-- Nav Area -->
         <div class="original-nav-area" id="stickyNav">
             <div class="classy-nav-container breakpoint-off">

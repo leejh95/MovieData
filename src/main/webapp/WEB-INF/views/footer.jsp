@@ -15,6 +15,16 @@
 </head>
 <body>
 <!-- ##### Footer Area Start ##### -->
+ <!-- 광고 영역 -->
+        
+	        <div class="container h-100" style="text-align: center; border: 1px black solid; height: 100px;">
+	            <div class="row h-100 align-items-center">
+	                <div class="col-12" style="height: 100px;">
+	                    <h1><a href="index.inc" class="original-logo">광고</a></h1>
+	                </div>
+	            </div>
+	        </div>
+	        
 <div style="width: 100%; height: 1px; background-color: #d2d2d2"></div>
     <footer class="footer-area text-center">
         <div class="container">
