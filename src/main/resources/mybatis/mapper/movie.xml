@@ -349,4 +349,14 @@
 		</set>
 		where a_idx = #{a_idx} 
 	</update>
+	
+	<!-- 이메일로 아이디 찾기 -->
+	<select id="searchIdByEmail" resultType="String" parameterType="String">
+		select id from movie_mem where email = #{email}
+	</select>
+	
+	<!-- 아이디랑 이메일로 비밀번호 찾기 -->
+	<select id="searchPwByIdAndEmail" resultType="String" parameterType="mybatis.vo.MovieMemberVO">
+		select pw from movie_mem where email = #{email} and id = #{id}
+	</select>
 </mapper>

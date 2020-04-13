@@ -66,14 +66,19 @@
                        	<div align="center" id="noSignIn">
                        		
                        	</div>
-                        <br><br>
+                        <br>
+                        <div align="center">
+                       		<a href="searchID.inc" style="color: #757575; font-weight: bold; margin: 10px;">아이디찾기</a>
+                       		<a href="searchPW.inc" style="color: #757575; font-weight: bold; margin: 10px;">비밀번호찾기</a>
+                       	</div>
+                       	<br><br>
 						<div align="center">
                         	<a href="index.inc" style="color: #2f2f2f; font-weight: bold; margin: 10px;">홈으로가기</a>
                         </div>
                     </div>
                     
                     <br><br><br><br><br>
-                    
+                    <hr><br>
                     <div>
                         <p align="center"><font size="5px" color="#2f2f2f">외부 계정으로 로그인</font></p>
                         <br><br>

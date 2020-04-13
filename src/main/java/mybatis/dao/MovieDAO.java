@@ -454,6 +454,23 @@ public class MovieDAO {
 		return chk;
 	}
 	
+	//이메일로 아이디 찾기
+	public String searchIdByEmail(String email) {
+		String id = null;
+		id = ss.selectOne("movie.searchIdByEmail", email);
+		return id;
+	}
+	
+	//아이디랑 이메일로 비밀번호 검사
+	public boolean isExistPw(MovieMemberVO vo) {
+		boolean chk = false;
+		String pw = ss.selectOne("movie.searchPwByIdAndEmail", vo);
+		if(pw != null) {
+			chk = true;
+		}
+		return chk;
+	}
+	
 }
 
 
