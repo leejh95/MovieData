@@ -117,6 +117,15 @@ public class MovieDAO {
 		return chk;
 	}
 	
+	// 회원가입시 이미 이메일이 존재하는지 검사
+	public boolean isExistEmail(String email) {
+		boolean chk = false;
+		String vo_email = ss.selectOne("movie.searchEmail", email);
+		if(vo_email != null)
+			chk = true;
+		return chk;
+	}
+	
 	// 회원 목록 보기
 	public MovieMemberVO[] getMemberList(int begin, int end) {
 		System.out.println(begin+"/"+end);

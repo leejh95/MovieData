@@ -223,6 +223,11 @@
 		select id from Movie_Mem where id = #{id}
 	</select>
 	
+	<!-- 회원 가입시 이메일 일치 -->
+	<select id="searchEmail" resultType="String" parameterType="String">
+		select email from Movie_Mem where email = #{email}
+	</select>
+	
 	<!-- 회원 정보 수정 -->
 	<update id="updateMember" parameterType="mybatis.vo.MovieMemberVO">
 		update Movie_Mem

@@ -55,10 +55,10 @@
                                 <div class="col-12">
                                     <div class="group">
                                     	<br>
-                                        <input type="email" name="email" id="signup_email">
+                                        <input type="email" name="email" id="signup_email" required>
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
-                                        <label id="label_email">Email <font></font></label>
+                                        <label id="label_email">Email * <font></font></label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-3">
@@ -179,20 +179,35 @@
 				var email = $("#signup_email").val().trim();
 
 				if (email.length > 0) {
-
-					var param = "email=" + encodeURIComponent(id);
-
+					
+					var i = email.indexOf("@");
+					
+					if(i < 0){
+						$("#label_email").html("Email * <font color='#ff5656'>이메일 형식이 올바르지 않습니다.</font>");
+						return;
+					}
+					
+					var fe = email.substring(0, i);
+					var be = email.substring(i+1);
+					
+					if(fe.length < 1 || be.length < 1){
+						$("#label_email").html("Email * <font color='#ff5656'>이메일 형식이 올바르지 않습니다.</font>");
+						return;
+					}
+					
+					var param = "email=" + encodeURIComponent(email);
+					
 					$.ajax({
-						url : "signUpKey.inc",
+						url : "signUpKeyEmail.inc",
 						type : "post",
 						data : param,
 						dataType : "json"
 						
 					}).done(function(data) {
 						if (data.chk) {
-							$("#label_id").html("ID * <font color='#ff5656'>이미 사용중인 아이디입니다.</font>");
+							$("#label_email").html("Email * <font color='#ff5656'>이미 사용중인 이메일입니다.</font>");
 						} else {
-							$("#label_id").html("ID * <font color='green'>사용하실 수 있는 아이디입니다.</font>");
+							$("#label_email").html("Email * <font color='green'>사용하실 수 있는 이메일입니다.</font>");
 						}
 						
 					}).fail(function(err) {
@@ -200,7 +215,7 @@
 					});
 					
 				} else {
-					$("#label_id").html("ID * <font></font>");
+					$("#label_email").html("Email * <font></font>");
 				}
 
 			});
@@ -209,6 +224,7 @@
 		function signUp(frm) {
 			var id = $("#label_id>font").text();
 			var pw = $("#label_pw>font").text();
+			var email = $("#label_email>font").text();
 			var name = $("#signup_name");
 			var phone1 = $("#signup_phone1").val();
 			var phone2 = $("#signup_phone2").val();
@@ -222,6 +238,11 @@
 
 			if (pw != "사용하실 수 있는 패스워드입니다.") {
 				frm.pw.focus();
+				return;
+			}
+			
+			if (email != "사용하실 수 있는 이메일입니다.") {
+				frm.email.focus();
 				return;
 			}
 			
