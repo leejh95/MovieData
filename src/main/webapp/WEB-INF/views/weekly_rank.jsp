@@ -54,12 +54,13 @@
                             <a style="height: 300px; width: 187px; margin: 0 auto;" class="thumb">
                             	<img src="${vo.image }" border="0" alt="" style="height: 300px; width: 187px;">
                            	</a>
-                           	<h5><a class="post-headline">${vo.movieNm }</a></h5>
+                           	<br>
+                           	<h5><b>${vo.movieNm }</b></h5>
                            	<c:if test="${fn:length(vo.openDt) <= 9 }">
-                           		<h5>개봉일 정보 없음</h5>
+                           		<h5><a>개봉일 정보 없음</a></h5>
                            	</c:if>
                            	<c:if test="${fn:length(vo.openDt) > 9  }">
-                           		<h5>개봉일 ${vo.openDt.substring(0,4) }년 ${vo.openDt.substring(5,7)}월 ${vo.openDt.substring(8)}일</h5>                           		
+                           		<h5><a>개봉일 ${vo.openDt.substring(0,4) }년 ${vo.openDt.substring(5,7)}월 ${vo.openDt.substring(8)}일</a></h5>                           		
                            	</c:if>
                            	<div class="author-info">
 					        <c:if test="${vo.rankOldAndNew eq 'NEW'}">
