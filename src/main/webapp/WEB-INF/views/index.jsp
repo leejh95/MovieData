@@ -23,7 +23,7 @@
     
   #slide_ul,#slide_ul li{list-style:none;}
   #slide{position:relative;overflow:hidden;}
-  #slide ul{width:400%;height:100%;transition:1s;}
+  #slide ul{width:400%;height:100%;transition:2s;}
   #slide ul:after{content:"";display:block;clear:both;}
   #slide li{float:left;width:25%;height:100%;}
   #slide li:nth-child(1){}
@@ -152,7 +152,12 @@
 					    	</colgroup>
 					    	<tr>
 					    		<td style="border-bottom:1px solid #b2b2b2; height:13px"></td>
-					    		<td rowspan="2" align="center"><h3><font color="#2d2d2d">지난 주 박스오피스 순위 (${date })</font></h3></td>
+					    		<td rowspan="2" align="center">
+					    		<h3><font color="#2d2d2d">
+					    		지난 주 박스오피스 순위<br>
+					    		(${beginWeekDay } ~ ${endWeekDay })
+					    		</font></h3>
+					    		</td>
 					    		<td style="border-bottom:1px solid #b2b2b2"></td>
 					    	</tr>
 					    	<tr><td></td><td></td></tr>
@@ -503,7 +508,7 @@ $(document).ready(function () {
 			$("#pos1").prop("checked", true);
 		}
 	
-	}, 6000);
+	},8000);
 </script>
 </body>
 </html>

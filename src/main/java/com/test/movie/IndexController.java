@@ -23,6 +23,9 @@ import com.test.vo.WeeklyRankVO;
 
 @Controller
 public class IndexController {
+	
+	String beginWeekDay = null;
+	String endWeekDay = null;
 
 	@RequestMapping("/index.inc")
 	public ModelAndView center() throws Exception {
@@ -55,6 +58,8 @@ public class IndexController {
 		mv.addObject("date", date);
 		mv.addObject("dar", dar);
 		mv.addObject("war", war);
+		mv.addObject("beginWeekDay", beginWeekDay);
+		mv.addObject("endWeekDay", endWeekDay);
 		mv.setViewName("index");
 		
 		return mv;
@@ -126,6 +131,20 @@ public class IndexController {
 		Document doc = builder.build(conn.getInputStream());
 		
 		Element root = doc.getRootElement();
+
+		String showRange = root.getChildText("showRange");
+		
+		String begin = showRange.split("~")[0];
+		String year = begin.substring(0, 4);
+		String month = begin.substring(4, 6);
+		String day = begin.substring(6, 8);
+		beginWeekDay = year+"년 "+month+"월 "+day+"일";
+		
+		String end = showRange.split("~")[1];
+		year = end.substring(0, 4);
+		month = end.substring(4, 6);
+		day = end.substring(6, 8);
+		endWeekDay = year+"년 "+month+"월 "+day+"일";
 		
 		Element weeklyBoxOfficeList = root.getChild("weeklyBoxOfficeList");
 		

@@ -29,14 +29,15 @@
 			    <table style="width:1100px; margin:100px auto;">
 			    	<colgroup>
 			    		<col width="*"/>
-			    		<col width="350px"/>
+			    		<col width="550px"/>
 			    		<col width="*"/>
 			    	</colgroup>
 			    	<tr>
 			    		<td style="border-bottom:1px solid #b2b2b2; height:13px"></td>
 			    		<td rowspan="2" align="center">
 			    		<h3><font color="#2d2d2d">
-			    		${dTime.substring(0,4) }년 ${dTime.substring(4,6)}월 ${dTime.substring(6)}일
+			    		${beginWeekDay.substring(0,4) }년 ${beginWeekDay.substring(4,6)}월 ${beginWeekDay.substring(6)}일 ~ 
+			    		${endWeekDay.substring(0,4) }년 ${endWeekDay.substring(4,6)}월 ${endWeekDay.substring(6)}일
 			    		</font></h3>
 			    		</td>
 			    		<td style="border-bottom:1px solid #b2b2b2"></td>

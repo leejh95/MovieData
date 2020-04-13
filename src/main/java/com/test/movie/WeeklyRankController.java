@@ -54,6 +54,11 @@ public class WeeklyRankController {
 		
 		Element root = doc.getRootElement();
 		
+		String showRange = root.getChildText("showRange");
+		
+		String beginWeekDay = showRange.split("~")[0];
+		String endWeekDay = showRange.split("~")[1];
+		
 		Element weeklyBoxOfficeList = root.getChild("weeklyBoxOfficeList");
 		
 		List<Element> weekly = weeklyBoxOfficeList.getChildren("weeklyBoxOffice");
@@ -91,6 +96,8 @@ public class WeeklyRankController {
 		mv.addObject("cDate", cDate);
 		mv.addObject("dTime", dTime);
 		mv.addObject("ar", ar);
+		mv.addObject("beginWeekDay", beginWeekDay);
+		mv.addObject("endWeekDay", endWeekDay);
 		mv.setViewName("weekly_rank");
 		
 		return mv;
