@@ -20,35 +20,50 @@
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/style.css">
     
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-	<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
-	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
     
     <style type="text/css">
     	#boardCommTable tbody tr td:nth-child(3) div{
     		
     		word-break:break-all;
     	}
+    	
+    	#boardCommTable{
+    		font-size: 13px;
+    	}
+    	
+    	.btn{
+    		font-size: 15px;
+    		margin-right: 5px;
+    	}
+    	
+    	#boardCommDiv{
+    		margin-top: 20px;
+    		margin-bottom: 20px;
+    	}
+    	
     	ul{
     		display: inline-block;
     		float: left;
-    		margin-right: 3px;
+			margin-right: 5px;
+			font-size: 13px;
     	}
+    	
     	li{
     		display: inline-block;
     		float: left;
-    		margin-right: 3px;
+			margin-right: 5px;
+			font-size: 13px;
     	}
     </style>
 </head>
 <body>
 
-	<div id="include_header" ></div>
+	<div id="include_header" style="border: 1px solid black;"></div>
 
     <!-- ##### Single Blog Area Start ##### -->
-    <div class="single-blog-wrapper section-padding-0-100">
+    <div class="single-blog-wrapper" style="width: 1000px; margin-top: 50px; margin-bottom: 50px; margin: auto; border: 1px solid red;">
 
         <!-- Single Blog Area
         <div class="single-blog-area blog-style-2 mb-50">
@@ -96,6 +111,7 @@
                     </div>
                     <!-- 리뷰게시판 댓글 -->
                     </c:if>
+                    <div id="comment_div">
                     <c:if test="${vo.category eq 'review'}">
                     <!-- Comment Area Start -->
                     <c:if test="${sessionScope.memVO ne null }">
@@ -140,6 +156,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <form action="boardCommDel.inc" method="post" name="comm_form">
     	<input type="hidden" id="comm_idx" name="c_idx"/>
@@ -280,7 +297,7 @@
 		msg += '<td>└</td><td><textarea rows="2" cols="60"></textarea></td>';
 		msg += '<td align="right"><a href="javascript:commEdit_ok()">[저장]</a>&nbsp;'
 		msg += '<a href="javascript:resetCommList('+cPage+')">[취소]</a></td>'
-		msg += '</tr>'
+		msg += '</tr><hr/>'
 		
 		$("#boardCommTable>tbody>tr:nth-child("+(clicked_index+1)+")").after(msg);
 	}
