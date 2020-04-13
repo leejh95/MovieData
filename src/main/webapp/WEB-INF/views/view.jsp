@@ -14,12 +14,8 @@
 <title>Insert title here</title>
     <!-- Favicon -->
     <link rel="icon" href="resources/img/core-img/favicon.ico">
-    <!-- Style CSS -->
-    <link rel="stylesheet" href="resources/style.css">
+    
 <style type="text/css">
-	
-	body{
-	}
 
 	#view_wrap{
 		width: 1000px;
@@ -28,7 +24,6 @@
 	#left {
 		margin-right: 100px;
 		margin-left: 20px;
-		margin-top: 50px;
 		float: left;
 		height:300px;
 		width:187px;
@@ -116,8 +111,6 @@
 
 
 </style>
-	 <%-- <jsp:include page="header.jsp"/>  --%>   
-	 
 </head>
 <body>
 	<div id="include_header" ></div>
@@ -125,10 +118,10 @@
 	<div id="view_wrap">
 		<div id="left">
 			<c:if test="${vo.image ne null }">
-           		<img src="${vo.image }" border="0" alt="" width="250px" />
+           		<img src="${vo.image }" border="0" alt="" style="width:350px; height:502px; max-width: none;"/>
            	</c:if>
            	<c:if test="${vo.image eq null }">
-           		<img src="resources/images/no-image-png-7.png" border="0" alt="" width="250px"/>
+           		<img src="resources/images/no-image-png-7.png" border="0" alt="" style="width:350px; height:502px; max-width: none;"/>
            	</c:if>
 		</div>
 		<div id="right">
