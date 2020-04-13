@@ -121,7 +121,7 @@ public class NaverLoginContlloer {
 		      System.out.println(e);
 		    }
 		
-		return "index";
+		return "redirect:index.inc";
 	}
 	
 	private static String get(String apiUrl, Map<String, String> requestHeaders){

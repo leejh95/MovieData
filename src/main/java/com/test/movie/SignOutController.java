@@ -16,8 +16,8 @@ public class SignOutController {
 	HttpSession session;
 	
 	@RequestMapping("/signout.inc")
-	@ResponseBody
-	public void session() {
+	public String session() {
 		session.removeAttribute("memVO");
+		return "redirect:index.inc";
 	}
 }

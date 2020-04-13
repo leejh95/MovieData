@@ -28,8 +28,6 @@ public class GoogleController {
 	@RequestMapping("/googlelogin.inc")
 	public String googlelogin(MovieMemberVO mvo) {
 		
-		System.out.println("fdsafdsa");
-		
 		MovieMemberVO vo = m_dao.signInSns(mvo.getSns_id(), mvo.getSns_type());
 		
 		if(vo != null) {
@@ -42,7 +40,7 @@ public class GoogleController {
     		session.setAttribute("memVO", vo);
     	}
 
-		return "index";
+		return "redirect:index.inc";
 	}
 	
 }

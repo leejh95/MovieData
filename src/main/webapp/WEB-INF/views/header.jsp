@@ -54,7 +54,7 @@
 					          <c:if test="${sessionScope.memVO.sns_type eq 'google'}">
 					          	<a href="http://google.com" data-toggle="tooltip" data-placement="bottom" title="GOOGLE"><i class="fas fa-user-circle" ></i></a>
 					          </c:if>			
-					          <a href="javascript:signOut()" data-toggle="tooltip" data-placement="bottom" title="SignOut"><i class="fas fa-sign-out-alt"></i></a>
+					          <a href="javascript:location.href='signout.inc'" data-toggle="tooltip" data-placement="bottom" title="SignOut"><i class="fas fa-sign-out-alt"></i></a>
 						</c:if>	
 						<c:if test="${sessionScope.memVO eq null}">
                             <a href="javascript:location.href='signIn.inc'" data-toggle="tooltip" data-placement="bottom" title="Login"><i class="fas fa-sign-in-alt"></i></a>
@@ -166,17 +166,6 @@
 			
 		});
 		
-		function signOut(){
-			
-			$.ajax({
-				url: "signout.inc",
-				type: "post",
-			}).done(function(){
-					location.href="index.inc";
-			}).fail(function(err){
-				console.log(err);
-			});
-		}
 	</script>
 </body>
 </html>
