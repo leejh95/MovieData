@@ -13,26 +13,23 @@
     <link rel="icon" href="resources/img/core-img/favicon.ico">
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 <c:if test="${sessionScope.memVO ne null and sessionScope.memVO.status eq 2}">
 <body>
 <div id="include_header"></div>
-<div class="admin_container" style=" margin: 100px 50px;  ">
+<div class="admin_container" style=" margin: 100px 50px; height: 1000px; ">
     <div class="row"  style="width: 1500px;" >
         <div class="col-md-4" style="width: 300px; display: inline;">
             <!-- It can be fixed with bootstrap affix http://getbootstrap.com/javascript/#affix-->
-            <div id="sidebar" class="well sidebar-nav" style="width: 300px; height: 400px; margin: 0;">
-                <h5><i class="glyphicon glyphicon-user"></i>
-                    <small><b>MANAGEMENT</b></small>
+            <div style="width: 300px; height: 400px; margin: 0;">
+                <h5>
+                    <b>MANAGEMENT</b>
                 </h5>
-                <ul class="nav nav-pills nav-stacked" style="display: inline-block; width: 250px;">
-                    <li class="active"><a href="admin.inc">Home</a></li>
-                    <li><a href="javascript:memList('1')">List</a></li>
-                    <li><a href="javascript:searchMember()">searchMember</a></li>
+                <ul style="display: inline-block; width: 250px;">
+                    <li style=" height: 20px; "><a href="index.inc">Home</a></li>
+                    <li style=" height: 20px; "><a href="javascript:memList('1')">List</a></li>
+                    <li style=" height: 20px; "><a href="javascript:searchMember()">SearchMember</a></li>
+                    <li style=" height: 20px; "><a href="javascript:uploadAd()">UploadAd</a></li>
                 </ul>
             </div>
         </div>
@@ -49,11 +46,8 @@
     <!-- Popper js -->
     <script src="resources/js/popper.min.js"></script>
     <!-- Bootstrap js -->
-    <script src="resources/js/bootstrap.min.js"></script>
     <!-- Plugins js -->
-    <script src="resources/js/plugins.js"></script>
     <!-- Active js -->
-    <script src="resources/js/active.js"></script>
     <script type="text/javascript">
     $(function(){
     	
@@ -61,12 +55,6 @@
     	
     	$("#include_footer").load("footer.inc");
     	
-    	  var sBtn = $("ul > li");    //  ul > li 이를 sBtn으로 칭한다. (클릭이벤트는 li에 적용 된다.)
-    	  sBtn.find("a").click(function(){   // sBtn에 속해 있는  a 찾아 클릭 하면.
-    	   sBtn.removeClass("active");     // sBtn 속에 (active) 클래스를 삭제 한다.
-    	   $(this).parent().addClass("active"); // 클릭한 a에 (active)클래스를 넣는다.
-    	  })
-    	  
    	 })
 
     function memList(nowPage){
@@ -75,6 +63,11 @@
     function searchMember(){
     	$("#adcon_div").load("searchMem.inc");
     }
+    function uploadAd(){
+    	$("#adcon_div").load("uploadAd.inc");
+    	
+    }
+    
     function searchMem(nowPage){
     	var searchType = $("#searchDiv select").val();
     	var searchValue = $("#searchDiv input").val();
