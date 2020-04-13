@@ -1,10 +1,11 @@
 package mybatis.vo;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class MovieBoardVO {
+public class MovieBoardVO implements Serializable {
 	private String b_idx,
 				subject,
 				content,

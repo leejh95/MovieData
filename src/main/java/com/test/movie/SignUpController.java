@@ -36,7 +36,7 @@ public class SignUpController {
 	@RequestMapping("/signUpKeyEmail.inc")
 	@ResponseBody
 	public Map<String, Object> signUpKeyEmail(String email){
-		boolean chk = m_dao.isExistID(email);
+		boolean chk = m_dao.isExistEmail(email);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("chk", chk);

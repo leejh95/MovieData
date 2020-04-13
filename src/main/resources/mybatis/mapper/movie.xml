@@ -223,6 +223,11 @@
 		select id from Movie_Mem where id = #{id}
 	</select>
 	
+	<!-- 회원 가입시 이메일 일치 -->
+	<select id="searchEmail" resultType="String" parameterType="String">
+		select email from Movie_Mem where email = #{email}
+	</select>
+	
 	<!-- 회원 정보 수정 -->
 	<update id="updateMember" parameterType="mybatis.vo.MovieMemberVO">
 		update Movie_Mem
@@ -273,7 +278,7 @@
 					ip = #{ip},
 				</if>
 				<if test="rate != null">
-					rate = #{rate}
+					rate = #{rate},
 				</if>
 			</trim>
 		</set>
@@ -292,4 +297,56 @@
 		update movie_board set hit = hit+1 where b_idx = #{b_idx}
 	</update>
 	
+	<!-- 광고 등록하는 기능 -->
+	<insert id="uploadAd" parameterType="mybatis.vo.MovieAdVO">
+		insert into movie_ad(a_idx, image, status, href, ad_name, host_name, host_phone, email, slotNum, begin_dt, end_dt) 
+		values(Movie_ad_seq.nextval, #{image}, 0, #{href}, #{ad_name}, #{host_name}, #{host_phone}, #{email}, #{slotNum}, #{begin_dt}, #{end_dt})
+	</insert>
+
+	<!-- 광고 가져오는 기능 -->
+	<select id="getAdList" resultType="mybatis.vo.MovieAdVO">
+		select * from movie_ad where status = 0
+	</select>
+	
+	<!-- 광고를 삭제하는 기능 -->
+	<update id="delAd" parameterType="String">
+		update movie_ad set status = 1 where a_idx = #{a_idx}
+	</update>
+	
+	<!-- 광고를 수정하는 기능 -->
+	<update id="updateAd" parameterType="mybatis.vo.MovieAdVO">
+		update movie_ad
+		<set>
+			<trim suffixOverrides=",">
+				<if test="image != null">
+					image = #{image},
+				</if>
+				<if test="href != null">
+					href = #{href},
+				</if>
+				<if test="ad_name != null">
+					ad_name = #{ad_name},
+				</if>
+				<if test="host_name != null">
+					host_name = #{host_name},
+				</if>
+				<if test="host_phone != null">
+					host_phone = #{host_phone},
+				</if>
+				<if test="email != null">
+					email = #{email},
+				</if>
+				<if test="slotNum != null">
+					slotNum = #{slotNum},
+				</if>
+				<if test="begin_dt != null">
+					begin_dt = #{begin_dt},
+				</if>
+				<if test="end_dt != null">
+					end_dt = #{end_dt},
+				</if>
+			</trim>
+		</set>
+		where a_idx = #{a_idx} 
+	</update>
 </mapper>
