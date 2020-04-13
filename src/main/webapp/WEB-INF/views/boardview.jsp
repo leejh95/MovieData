@@ -74,16 +74,17 @@
 					    	<button class="btn" onclick="">삭제</button>
 					    	<button class="btn" onClick="">수정</button>
                     </c:if>
-                    	<button class="btn" onClick="javascript:goBoard('${vo.category}', '${nowPage }')">목록</button>
+                    	<button class="btn" onClick="javascript:location.href='list.inc?category=${vo.category}&nowPage=${nowPage }'">목록</button>
 						</div>
                         </div>
                     <hr/>
                     <!-- 자유게시판 답글 -->
-                    <c:if test="${vo.category eq 'free'}">
+                    <c:if test="${vo.category eq 'free' and sessionScope.memVO ne null}">
                     <div class="col-12">
                        <button class="btn original-btn"
-                       onClick="JavaScript:location.href='answer.inc?b_idx=${b_idx}&ref=${vo.ref }&step=${vo.step }&sunbun=${vo.sunbun }&nowPage=${nowPage }'"
-                       >답글</button>
+                       onClick="JavaScript:location.href='answer.inc?b_idx=${b_idx}&ref=${vo.ref }&step=${vo.step }&sunbun=${vo.sunbun }&nowPage=${nowPage }'">
+                       답글
+                       </button>
                     </div>
                     <!-- 리뷰게시판 댓글 -->
                     </c:if>
@@ -140,6 +141,7 @@
     var cPage = 1;
 	var isClicked = false;
 	var clicked_index = -1;
+	var count = 0;
 	
     $(function(){
     	$("#include_header").load("header.inc");
@@ -171,6 +173,9 @@
 			var msg = "";
 			if(data.ar != undefined){
 				
+				count = data.ar.length;
+				console.log(count);
+				
 				for(var i=0; i<data.ar.length; i++){
 					msg += "<tr><input type='hidden' value='"+data.ar[i].c_idx+"'/>"
 					msg += "<td>"+data.ar[i].mvo.name+"</td>";
@@ -193,9 +198,10 @@
 				if(isClicked){
 					commEdit();
 				}
-				
 			}else{
-				msg += "<tr><td>이 영화는 아직 평가가 없습니다...</td></tr>"
+				
+				msg += "<tr><td>작성된 댓글이 없습니다.</td></tr>"
+				$("#boardCommTable tbody").html(msg);
 			}
 			
 		});
@@ -234,14 +240,14 @@
 		if(!b)
 			return;
 		
+		
 		$.ajax({
 			url: "boardCommDel.inc",
 			type: "post",
 			data: "c_idx="+encodeURIComponent(c_idx),
 			dataType: "json"
 		}).done(function(){
-			console.log("도착함")
-			setCommList(cPage);
+			setCommList(1);
 		});
 	}
 	
