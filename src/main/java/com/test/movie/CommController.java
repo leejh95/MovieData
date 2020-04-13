@@ -122,8 +122,6 @@ public class CommController {
 		map.put("chk", chk);
 		
 		return map;
-		
 	}
-	
 	
 }
