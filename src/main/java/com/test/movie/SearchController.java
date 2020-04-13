@@ -83,6 +83,8 @@ public class SearchController {
 		
 		
 		mv.addObject("ar", ar);
+		mv.addObject("searchType", type);
+		mv.addObject("searchValue", value);
 		mv.setViewName("searchView");
 		
 		

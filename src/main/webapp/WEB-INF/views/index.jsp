@@ -151,7 +151,7 @@
 					    		<col width="*"/>
 					    	</colgroup>
 					    	<tr>
-					    		<td style="border-bottom:1px solid #b2b2b2; height:13px"></td>
+					    		<td style="border-bottom:1px solid #b2b2b2; height:25px"></td>
 					    		<td rowspan="2" align="center">
 					    		<h3><font color="#2d2d2d">
 					    		지난 주 박스오피스 순위<br>
