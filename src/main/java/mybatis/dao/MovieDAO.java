@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import mybatis.vo.MovieAdVO;
 import mybatis.vo.MovieBoardVO;
 import mybatis.vo.MovieCommentVO;
 import mybatis.vo.MovieMemberVO;
@@ -394,6 +395,54 @@ public class MovieDAO {
 		int cnt = ss.selectOne("movie.searchMemberCount", map);
 		
 		return cnt;
+	}
+	
+	//광고 등록
+	public boolean uploadAd(MovieAdVO vo) {
+		boolean chk = false;
+		
+		int cnt = ss.insert("movie.uploadAd", vo);
+		
+		if(cnt > 0)
+			chk = true;
+		
+		return chk;
+	}
+	
+	//광고 가져오기
+	public MovieAdVO[] getAdList() {
+		MovieAdVO[] ar = null;
+		List<MovieAdVO> list = ss.selectList("movie.getAdList");
+		
+		if(!list.isEmpty()) {
+			ar = new MovieAdVO[list.size()];
+			list.toArray(ar);
+		}
+		
+		return ar;
+	}
+	
+	//광고 수정하기
+	public boolean updateAd(MovieAdVO vo) {
+		boolean chk = false;
+		
+		int cnt = ss.update("movie.updateAd", vo);
+		if(cnt > 0)
+			chk = true;
+		
+		return chk;
+	}
+	
+	//광고 삭제하기
+	public boolean delAd(String a_idx) {
+		boolean chk = false;
+		
+		int cnt = ss.update("movie.delAd", a_idx);
+		
+		if(cnt > 0)
+			chk = true;
+		
+		return chk;
 	}
 	
 }
