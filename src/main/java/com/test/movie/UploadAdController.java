@@ -46,14 +46,12 @@ public class UploadAdController {
 		if(mf != null && mf.getSize()>0) {
 			String path = application.getRealPath(uploadPath);
 			File f = new File(path);
-			if(f.exists())
+			if(!f.exists())
 				f.mkdir();
-			vo.setFile_name(FileRenameUtil.CheckFileName(path, mf.getOriginalFilename()));
-			vo.setOri_name(mf.getOriginalFilename());
-			mf.transferTo(new File(path, vo.getFile_name()));
-		}else {
-			vo.setFile_name("");
-			vo.setOri_name("");
+			
+			vo.setImage(FileRenameUtil.CheckFileName(path, mf.getOriginalFilename()));
+			
+			mf.transferTo(new File(path, vo.getImage()));
 		}
 		
 		m_dao.uploadAd(vo);
