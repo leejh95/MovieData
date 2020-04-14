@@ -1,5 +1,7 @@
 package mybatis.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class MovieAdVO {
 	private String a_idx,
 					image,
@@ -13,6 +15,16 @@ public class MovieAdVO {
 					end_dt,
 					status;
 
+	private MultipartFile upload;
+	
+	public MultipartFile getUpload() {
+		return upload;
+	}
+	
+	public void setUpload(MultipartFile upload) {
+		this.upload = upload;
+	}
+	
 	public String getA_idx() {
 		return a_idx;
 	}
