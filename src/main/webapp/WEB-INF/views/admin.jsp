@@ -13,24 +13,29 @@
     <link rel="icon" href="resources/img/core-img/favicon.ico">
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/style.css">
+<style type="text/css">
+#admin_body{
+background-color: #ededed;
+}
+</style>
 </head>
 <c:if test="${sessionScope.memVO ne null and sessionScope.memVO.status eq 2}">
 <body>
-<div id="include_header"></div>
+<div id="admin_body" style="padding-top: 1px;">
 <div class="admin_container" style=" margin: 100px 50px; height: 1000px; ">
     <div class="row"  style="width: 1500px;" >
         <div class="col-md-4" style="width: 300px; display: inline;">
             <!-- It can be fixed with bootstrap affix http://getbootstrap.com/javascript/#affix-->
-            <div style="width: 300px; height: 400px; margin: 0;">
-                <h5>
+            <div style="width: 300px; height: 400px; margin-left: 150px;">
+                <h3>
                     <b>MANAGEMENT</b>
-                </h5>
-                <ul style="display: inline-block; width: 250px;">
-                    <li style=" height: 20px; "><a href="index.inc">Home</a></li>
-                    <li style=" height: 20px; "><a href="javascript:memList('1')">List</a></li>
-                    <li style=" height: 20px; "><a href="javascript:searchMember()">SearchMember</a></li>
-                    <li style=" height: 20px; "><a href="javascript:uploadAd()">UploadAd</a></li>
-                </ul>
+                </h3>
+	            <ul style="display: inline-block; width: 250px;"><br>
+                    <li style=" height: 20px; "><a href="index.inc"><h5>Home</h5></a></li><br>
+                    <li style=" height: 20px; "><a href="javascript:memList('1')"><h5>List</h5></a></li><br>
+                    <li style=" height: 20px; "><a href="javascript:searchMember()"><h5>SearchMember</h5></a></li><br>
+                    <li style=" height: 20px; "><a href="javascript:uploadAd()"><h5>UploadAd</h5></a></li>
+	            </ul>
             </div>
         </div>
         <div id="adcon_div" class="col-md-8" style=" width:1200px; height:500px; ">
@@ -38,7 +43,7 @@
         </div>
     </div>
 </div>
-
+</div>
  
 <div id="include_footer"></div>
    
@@ -51,7 +56,6 @@
     <script type="text/javascript">
     $(function(){
     	
-    	$("#include_header").load("header.inc");
     	
     	$("#include_footer").load("footer.inc");
     	

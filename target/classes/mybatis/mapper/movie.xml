@@ -304,8 +304,8 @@
 	</insert>
 
 	<!-- 광고 가져오는 기능 -->
-	<select id="getAdList" resultType="mybatis.vo.MovieAdVO">
-		select * from movie_ad where status = 0
+	<select id="getAdList" resultType="mybatis.vo.MovieAdVO" parameterType="String">
+		select * from movie_ad where status = 0 and slotNum = #{slotNum}
 	</select>
 	
 	<!-- 광고를 삭제하는 기능 -->

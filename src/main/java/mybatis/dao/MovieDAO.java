@@ -419,9 +419,9 @@ public class MovieDAO {
 	}
 	
 	//광고 가져오기
-	public MovieAdVO[] getAdList() {
+	public MovieAdVO[] getAdList(String slotNum) {
 		MovieAdVO[] ar = null;
-		List<MovieAdVO> list = ss.selectList("movie.getAdList");
+		List<MovieAdVO> list = ss.selectList("movie.getAdList", slotNum);
 		
 		if(!list.isEmpty()) {
 			ar = new MovieAdVO[list.size()];

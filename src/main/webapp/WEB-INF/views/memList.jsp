@@ -120,7 +120,7 @@
 <body>
 
 
-<div class="container" style="width: 1000px; margin-left: 0; box-shadow: 0px 5px 5px 1px gray; ">
+<div class="container" style="width: 1000px; margin-left: 0; box-shadow: 0px 5px 5px 1px gray; background-color: white;">
 	
     <div class="method">
         <div class="row margin-0 list-header hidden-sm hidden-xs" style="margin-top: 20px;">

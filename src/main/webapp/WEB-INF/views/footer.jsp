@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,17 +17,24 @@
 </head>
 <body>
 <!-- ##### Footer Area Start ##### -->
- <!-- 광고 영역 -->
-        
-	        <div class="container h-100" style="text-align: center; border: 1px black solid; height: 100px;">
-	            <div class="row h-100 align-items-center">
-	                <div class="col-12" style="height: 100px;">
-	                    <h1><a href="index.inc" class="original-logo">광고</a></h1>
-	                </div>
-	            </div>
-	        </div>
 	        
 <div style="width: 100%; height: 1px; background-color: #d2d2d2"></div>
+ 		<!-- 광고 영역 -->
+        <c:if test="${fn:length(header_ad) < 1 }">
+        <div style="text-align: center; border: 1px black solid;  width:1080px; height: 211px; margin:auto;">
+            <div style="height: 211px;">
+                <h1><a href="" class="original-logo">광고구함</a></h1>
+            </div>
+        </div>
+        </c:if>
+        <c:if test="${fn:length(header_ad) > 0 }">
+        <div style="text-align: center;  width:1080px; height: 211px; margin:auto;">
+            <div style="height: 211px; background-image: url('resources/upload/${header_ad[0].image}'); background-repeat: no-repeat;">
+                <a href="${header_ad[0].href }" class="original-logo" style="display: block; width: 100%; height: 100%;"></a>
+            </div>
+        </div>
+        </c:if>
+        
     <footer class="footer-area text-center">
         <div class="container">
             <div class="row">
