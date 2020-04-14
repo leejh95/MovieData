@@ -170,16 +170,16 @@
 								<c:if test="${vo.step ne 0 }">
 									<img src="resources/images/hsp.png"/>
 								</c:if>
-							</c:if>
-							<c:if test="${vo.status == 1 }">
-								삭제된 게시글
+								
+							<c:if test="${vo.status ne 0 }">
+								삭제된 게시글입니다.
 							</c:if>
 							<c:if test="${vo.status == 0 }">
-								<a href="javascript:location.href='boardview.inc?b_idx=${vo.b_idx }&nowPage=${nowPage}'">${vo.subject }
-								<c:if test="${vo.category == 'review' }">
-									
-								</c:if>
-								</a>
+								<a href="javascript:location.href='boardview.inc?b_idx=${vo.b_idx }&nowPage=${nowPage}'">${vo.subject }</a>
+							</c:if>
+							</c:if>
+							<c:if test="${category == 'review' }">
+								<a href="javascript:location.href='boardview.inc?b_idx=${vo.b_idx }&nowPage=${nowPage}'">${vo.subject }</a>
 							</c:if>
 	                    	</div>
 	                    </div>
@@ -188,9 +188,7 @@
 	            <div class="col-md-3">
 	                <div class="cell">
 	                    <div class="propertyname">
-							<c:if test="${vo.status == 0 }">
 								${vo.mvo.name }
-							</c:if>	
 	                    </div>
 	                </div>
 	            </div>
@@ -212,7 +210,7 @@
 	                <div class="cell">
 	                    <div class="propertyname">
 	                    <c:if test="${empty list }">
-									등록된 게시물이 없습니다.
+							등록된 게시물이 없습니다.
 						</c:if>
 	                    </div>
 	                </div>

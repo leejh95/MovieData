@@ -90,9 +90,9 @@ public class PagingBoardComm {
 			} else {
 				sb.append(this.nowPage - this.blockPage);
 			}
-			sb.append(")'>이전</a></li>");
+			sb.append(")'>[이전]</a></li>");
 		} else {
-			sb.append("<li><a>이전</a></li>");
+			sb.append("<li><a>[이전]</a></li>");
 		}
 
 		for(int i = this.startPage ; i <= endPage ; i++) {
@@ -117,9 +117,9 @@ public class PagingBoardComm {
 				sb.append(this.nowPage + this.blockPage);
 			}
 			
-			sb.append(")'>다음</a></li>");
+			sb.append(")'>[다음]</a></li>");
 		} else { 
-			sb.append("<li><a>다음</a></li>");
+			sb.append("<li><a>[다음]</a></li>");
 		}
 	}
 

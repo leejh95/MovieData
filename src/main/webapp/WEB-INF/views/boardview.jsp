@@ -60,10 +60,10 @@
 </head>
 <body>
 
-	<div id="include_header" style="border: 1px solid black;"></div>
+	<div id="include_header" ></div>
 
     <!-- ##### Single Blog Area Start ##### -->
-    <div class="single-blog-wrapper" style="width: 1000px; margin-top: 50px; margin-bottom: 50px; margin: auto; border: 1px solid red;">
+    <div class="single-blog-wrapper" style="width: 1000px; margin-top: 50px; margin-bottom: 50px; margin: auto;">
 
         <!-- Single Blog Area
         <div class="single-blog-area blog-style-2 mb-50">
@@ -81,7 +81,6 @@
                     <div class="single-blog-area blog-style-2 mb-50">
                         <!-- Blog Content -->
                         <div class="single-blog-content">
-                            <div class="line"></div>
                             <h4><a href="#" class="post-headline mb-0">${vo.subject }</a></h4>
                             <div>
                                 <p>작성자: ${vo.mvo.name }</p>
@@ -94,8 +93,8 @@
                     <div class="single-blog-content">
                     <div class="btn-toolbar">
                     <c:if test="${sessionScope.memVO.m_idx eq vo.m_idx}">
-					    	<button class="btn" onclick="">삭제</button>
-					    	<button class="btn" onClick="">수정</button>
+					    	<button class="btn" onclick="goDel()">삭제</button>
+					    	<button class="btn" onClick="goEdit()">수정</button>
                     </c:if>
                     	<button class="btn" onClick="javascript:location.href='list.inc?category=${vo.category}&nowPage=${nowPage }'">목록</button>
 						</div>
@@ -121,7 +120,7 @@
                             <textarea name="message" id="comm_content" required style="font-size: 15px;"></textarea>
                             <span class="highlight"></span>
                             <span class="bar"></span>
-                            <label style="font-size: 15px;">댓글</label>
+                            <label style="font-size: 12px;">댓글</label>
                         </div>
                     </div>
                     <div class="col-12">
@@ -150,6 +149,7 @@
                         	<tbody>
                         	</tbody>
                         </table>
+                        <hr/>
                         <ul></ul>
 					</div>
                     </c:if>
@@ -185,7 +185,7 @@
 	
     $(function(){
     	$("#include_header").load("header.inc");
-		$("#include_footer").load("footer.inc");
+    	$("#include_footer").load("footer.inc");
     	
     	setCommList(1);
     	
@@ -240,7 +240,7 @@
 				}
 			}else{
 				
-				msg += "<tr><td>작성된 댓글이 없습니다.</td></tr>"
+				msg += "<tr><td style='width:200px;'>작성된 댓글이 없습니다.</td></tr>"
 				$("#boardCommTable tbody").html(msg);
 			}
 			
@@ -339,8 +339,25 @@
 		isClicked = false;
 		clicked_index = -1;
 		setCommList(page);
+	};
+	
+	function goDel(){
+	
+	var b = confirm("삭제하시겠습니까?");
+	if(!b)
+		return;
+
+	location.href='boardDel.inc?b_idx=${b_idx}&category=${vo.category}&nowPage=${nowPage }';
 	}
-   
+	
+	function goEdit(){
+		
+		var b = confirm("수정하시겠습니까?");
+		if(!b)
+			return;
+
+		location.href='boardEdit.inc?b_idx=${b_idx}&category=${vo.category}&nowPage=${nowPage }';
+		}
     </script>
 </body>
 </html>

@@ -24,13 +24,7 @@
 </head>
 <body>
 <div id="include_header" ></div>
-<%
- Object obj = session.getAttribute("memVO");
-MovieMemberVO vo = null;
-if(obj != null){
-	vo = (MovieMemberVO)obj;
-}
-%>
+
 <!-- ##### Contact Area Start ##### -->
     <section class="contact-area section-padding-100">
         <div class="container">
@@ -39,13 +33,15 @@ if(obj != null){
                 <div class="col-12 col-md-10 col-lg-9">
                     <div class="contact-form" >
                         <!-- Contact Form -->
-                        <form action="write.inc" method="post" enctype="multipart/form-data">
-	                        <input type="hidden" name="category" value="${param.category }"/>
-	                        <input type="hidden" name="m_idx" value="<%=vo.getM_idx() %>"/>
+                        <form action="Edit.inc" name="edit_frm" method="post" enctype="multipart/form-data">
+	                        <input type="hidden" name="category" value="${vo.category }"/>
+	                        <input type="hidden" name="m_idx" value="${vo.m_idx }"/>
+	                        <input type="hidden" name="b_idx" value="${vo.b_idx }"/>
+	                        <input type="hidden" name="nowPage" value="${param.nowPage }"/>
 	                            <div class="row">
 	                                <div class="col-12 col-md-6">
 	                                    <div class="group" style="margin-top: 15px;">
-	                                        <input type="text" name="subject" id="subject" required>
+	                                        <input type="text" name="subject" id="subject" value="${vo.subject }" required>
 	                                        <span class="highlight"></span>
 	                                        <span class="bar"></span>
 	                                        <label>제목</label>
@@ -53,16 +49,16 @@ if(obj != null){
 	                                </div>
 	                                <div class="col-12 col-md-6">
 	                                    <div class="group" style="margin-top: 15px;">
-	                                        <input type="file" name="upload" id="upload">
+	                                        <input type="file" name="upload" id="upload" value="${vo.upload }">
 	                                        <span class="highlight"></span>
 	                                        <span class="bar"></span>
 	                                    </div>
 	                                </div>
 	                                <div>
-	                                <textarea name="content" id="content" style="margin-left:20px;"></textarea>
+	                                <textarea name="content" id="content" style="margin-left:20px;">${vo.content }</textarea>
 	                                </div>
 	                                <div class="col-12">
-	                                    <button type="submit" class="btn original-btn" style="margin-top:10px; margin-bottom: 20px;">등록</button>
+	                                    <button type="button" onclick="Edit_ok()" class="btn original-btn" style="margin-top:10px; margin-bottom: 20px;">수정</button>
 	                                </div>
 	                            </div>
                         </form>
@@ -142,6 +138,15 @@ if(obj != null){
 		}).fail(function(err){
 			console.log(err);
 		});
+	}
+	
+	function Edit_ok(){
+		var b = confirm("수정하시겠습니까?");
+		if(!b)
+			return;
+
+		edit_frm.submit();
+		
 	}
     </script>
 </body>

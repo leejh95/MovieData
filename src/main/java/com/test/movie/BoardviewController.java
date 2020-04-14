@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -110,5 +111,36 @@ public class BoardviewController {
 	
 	}
 	
+	@RequestMapping("/boardEdit.inc")
+	public ModelAndView boardEdit(String b_idx, String nowPage) {
+		
+		ModelAndView mv = new ModelAndView();
+		
+		MovieBoardVO vo = m_dao.getBoard(b_idx);
+		
+		mv.addObject("vo", vo);
+		mv.setViewName("edit");
+		
+		return mv;
+	}
+	
+	@RequestMapping("/Edit.inc")
+	public ModelAndView Edit(MovieBoardVO vo) {
+		ModelAndView mv = new ModelAndView();
+	
+		boolean chk = m_dao.updateBoard(vo);
+		
+		String b_idx=vo.getB_idx();
+		int nowPage=vo.getNowPage();
+		String category=vo.getCategory();
+		
+		mv.addObject("vo", vo);
+		mv.addObject("b_idx", b_idx);
+		mv.addObject("nowPage", nowPage);
+		mv.addObject("category", category);
+		mv.setViewName("redirect:boardview.inc");
+		
+		return mv;
+	}
 	
 }
