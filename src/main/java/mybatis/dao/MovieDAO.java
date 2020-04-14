@@ -431,6 +431,28 @@ public class MovieDAO {
 		return ar;
 	}
 	
+	//광고 전부 가져오기
+	public MovieAdVO[] getAllAdList() {
+		MovieAdVO[] ar = null;
+		List<MovieAdVO> list = ss.selectList("movie.getAllAdList");
+		
+		if(!list.isEmpty()) {
+			ar = new MovieAdVO[list.size()];
+			list.toArray(ar);
+		}
+		
+		return ar;
+	}
+	
+	// 특정 광고 가져오기
+	public MovieAdVO getAd(String a_idx) {
+		MovieAdVO advo = null;
+		
+		advo = ss.selectOne("movie.getAd", a_idx);
+		
+		return advo;
+	}
+	
 	//광고 수정하기
 	public boolean updateAd(MovieAdVO vo) {
 		boolean chk = false;

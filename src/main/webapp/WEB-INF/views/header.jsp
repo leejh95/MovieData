@@ -88,7 +88,7 @@
                 <h1><a href="" class="original-logo">광고구함</a></h1>
             </div>
         </div>
-        </c:if>
+        </c:if> 
         <c:if test="${fn:length(header_ad) > 0 }">
         <div style="text-align: center;  width:1080px; height: 211px; margin:auto;">
             <div style="height: 211px; background-image: url('resources/upload/${header_ad[0].image}'); background-repeat: no-repeat;">

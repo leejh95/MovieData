@@ -308,6 +308,16 @@
 		select * from movie_ad where status = 0 and slotNum = #{slotNum}
 	</select>
 	
+	<!-- 광고 전부 가져오는 기능 -->
+	<select id="getAllAdList" resultType="mybatis.vo.MovieAdVO">
+		select * from movie_ad
+	</select>
+	
+	<!-- 특정 광고를 가져오는 기능 -->
+	<select id="getAd" resultType="mybatis.vo.MovieAdVO" parameterType="String">
+		select * from movie_ad where a_idx = #{a_idx}
+	</select>
+	
 	<!-- 광고를 삭제하는 기능 -->
 	<update id="delAd" parameterType="String">
 		update movie_ad set status = 1 where a_idx = #{a_idx}
@@ -344,6 +354,9 @@
 				</if>
 				<if test="end_dt != null">
 					end_dt = #{end_dt},
+				</if>
+				<if test="status != null">
+					status = #{status},
 				</if>
 			</trim>
 		</set>
