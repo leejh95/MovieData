@@ -461,14 +461,11 @@ public class MovieDAO {
 		return id;
 	}
 	
-	//아이디랑 이메일로 비밀번호 검사
-	public boolean isExistPw(MovieMemberVO vo) {
-		boolean chk = false;
-		String pw = ss.selectOne("movie.searchPwByIdAndEmail", vo);
-		if(pw != null) {
-			chk = true;
-		}
-		return chk;
+	//아이디랑 이메일로 회원있는지 검사
+	public String searchByIdAndEmail(MovieMemberVO vo) {
+		String m_idx = null;
+		m_idx = ss.selectOne("movie.searchByIdAndEmail", vo);
+		return m_idx;
 	}
 	
 }

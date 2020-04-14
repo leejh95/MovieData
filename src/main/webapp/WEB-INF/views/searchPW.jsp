@@ -122,8 +122,8 @@
 				$("#searchPW_email").focus();
 				return;
 			}
-		
-			location.href="searchPwForm.inc?email="+$("#searchID_email").val()+"&id="+id;
+			
+			location.href="searchPwForm.inc?email="+$("#searchPW_email").val()+"&id="+id;
 			
 		}
 	</script>

@@ -355,8 +355,8 @@
 		select id from movie_mem where email = #{email}
 	</select>
 	
-	<!-- 아이디랑 이메일로 비밀번호 찾기 -->
-	<select id="searchPwByIdAndEmail" resultType="String" parameterType="mybatis.vo.MovieMemberVO">
-		select pw from movie_mem where email = #{email} and id = #{id}
+	<!-- 아이디랑 이메일로 회원 찾기 -->
+	<select id="searchByIdAndEmail" resultType="String" parameterType="mybatis.vo.MovieMemberVO">
+		select m_idx from movie_mem where email = #{email} and id = #{id}
 	</select>
 </mapper>

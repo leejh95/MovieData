@@ -1,5 +1,8 @@
 package com.test.movie;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,12 +41,28 @@ public class SearchIdAndPwController {
 	
 	@RequestMapping("/searchPwForm.inc")
 	public ModelAndView searchPwForm(MovieMemberVO vo) {
-		boolean chk = m_dao.isExistPw(vo);
+		boolean chk = false;
+		System.out.println(vo.getEmail() + "/" + vo.getId());
+		String m_idx = m_dao.searchByIdAndEmail(vo);
+		if(m_idx != null)
+			chk = true;
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("chk", chk);
-		mv.setViewName("searchPW_ok");
+		mv.addObject("m_idx", m_idx);
+		mv.setViewName("searchPW_change");
 		
 		return mv;
+	}
+	
+	@RequestMapping("/searchPwOk.inc")
+	@ResponseBody
+	public Map<String, Object> searchPwOk(MovieMemberVO vo) {
+		
+		boolean chk = m_dao.updateMember(vo);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("chk", chk);
+		
+		return map;
 	}
 }

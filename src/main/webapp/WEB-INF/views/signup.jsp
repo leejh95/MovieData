@@ -38,7 +38,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="group">
-                                        <input type="text" name="pw" id="signup_pw" required>
+                                        <input type="password" name="pw" id="signup_pw" required>
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                         <label id="label_pw">Password * <font></font></label>
