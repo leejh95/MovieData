@@ -19,9 +19,8 @@ public class FileDownload extends HttpServlet {
 
     // FileDownload?dir=upload&filename=" + fname;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String dir = request.getParameter("dir");
 		String filename = request.getParameter("filename");
-		String path = getServletContext().getRealPath("/resources/" + dir);
+		String path = getServletContext().getRealPath("resources/upload");
 		
 		// 절대경로를 파일명과 연결
 		String fullPath = path + System.getProperty("file.separator") + filename;

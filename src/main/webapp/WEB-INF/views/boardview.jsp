@@ -85,6 +85,7 @@
                             <div>
                                 <p>작성자: ${vo.mvo.name }</p>
                                 <p>작성일: ${vo.write_date }</p>
+                                <p>첨부파일: <a href="javascript:Download()">${vo.file_name }</a></p>
                             </div>
                             <hr/>
                             <p>${vo.content }</p>
@@ -158,6 +159,9 @@
         </div>
     </div>
     </div>
+    <form action="FileDownload" method="post" name="down_form">
+    	<input type="hidden" name="filename" value="${vo.file_name }">
+    </form>
     <form action="boardCommDel.inc" method="post" name="comm_form">
     	<input type="hidden" id="comm_idx" name="c_idx"/>
     </form>
@@ -357,7 +361,11 @@
 			return;
 
 		location.href='boardEdit.inc?b_idx=${b_idx}&category=${vo.category}&nowPage=${nowPage }';
-		}
+	}
+	
+	function Download(){
+		down_form.submit();
+	}
     </script>
 </body>
 </html>

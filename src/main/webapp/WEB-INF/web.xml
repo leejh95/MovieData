@@ -45,5 +45,16 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
+	<!-- 파일 다운로드 서블릿 등록 -->
+   <servlet>
+      <servlet-name>fileDown</servlet-name>
+      <servlet-class>com.test.util.FileDownload</servlet-class>
+   </servlet>
+      
+   <servlet-mapping>
+      <servlet-name>fileDown</servlet-name>
+      <url-pattern>/FileDownload</url-pattern>
+   </servlet-mapping>
 
 </web-app>
