@@ -328,6 +328,36 @@ $(document).ready(function () {
 
 		var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
 
+		var axisBreak = valueAxis.axisBreaks.create();
+		axisBreak.startValue = 1550000;
+		axisBreak.endValue = 16000000;
+		axisBreak.breakSize = 0.005;
+		
+		// make break expand on hover
+		var hoverState = axisBreak.states.create("hover");
+		hoverState.properties.breakSize = 1;
+		hoverState.properties.opacity = 0.1;
+		hoverState.transitionDuration = 1500;
+
+		axisBreak.defaultState.transitionDuration = 1000;
+		
+		// this is exactly the same, but with events
+		axisBreak.events.on("over", () => { 
+		  axisBreak.animate(
+		    [{ property: "breakSize", to: 1 }, { property: "opacity", to: 0.1 }],
+		    1500,
+		    am4core.ease.sinOut
+		  );
+		});
+		axisBreak.events.on("out", () => {
+		  axisBreak.animate(
+		    [{ property: "breakSize", to: 0.005 }, { property: "opacity", to: 1 }],
+		    1000,
+		    am4core.ease.quadOut
+		  );
+		});
+		
+		
 		// Create series
 		var series = chart.series.push(new am4charts.ColumnSeries());
 		series.dataFields.valueY = "audiAcc";
