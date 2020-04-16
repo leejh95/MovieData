@@ -31,6 +31,7 @@
     	
     	#boardCommTable{
     		font-size: 13px;
+    		width: 720px;
     	}
     	
     	.btn{
@@ -43,14 +44,14 @@
     		margin-bottom: 20px;
     	}
     	
-    	ul{
+    	#boardCommDiv ul{
     		display: inline-block;
     		float: left;
 			margin-right: 5px;
 			font-size: 13px;
     	}
     	
-    	li{
+    	#boardCommDiv li{
     		display: inline-block;
     		float: left;
 			margin-right: 5px;
@@ -100,7 +101,7 @@
                     	<button class="btn" onClick="javascript:location.href='list.inc?category=${vo.category}&nowPage=${nowPage }'">목록</button>
 						</div>
                         </div>
-                    <hr/>
+                    <hr/><br><br>
                     <!-- 자유게시판 답글 -->
                     <c:if test="${vo.category eq 'free' and sessionScope.memVO ne null}">
                     <div class="col-12">
@@ -111,7 +112,7 @@
                     </div>
                     <!-- 리뷰게시판 댓글 -->
                     </c:if>
-                    <div id="comment_div">
+                <div id="comment_div">
                     <c:if test="${vo.category eq 'review'}">
                     <!-- Comment Area Start -->
                     <c:if test="${sessionScope.memVO ne null }">
@@ -126,14 +127,14 @@
                     </div>
                     <div class="col-12">
                         <button type="button" class="btn original-btn" onclick="commSave()">등록</button>
-                    </div>
-
+                    </div><br><br>
+                    <hr>
+					
                     </c:if>
                     <c:if test="${sessionScope.memVO eq null }">
 	                    <div class="col-12" style="margin-top: 10px;">
                         	<div class="group" id="boardCommText">
-			                    <textarea name="message" id="comm_content" placeholder="로그인 후 작성 가능합니다." style="font-size: 15px;">
-			                    </textarea>
+			                    <textarea name="message" id="comm_content" placeholder="로그인 후 작성 가능합니다." style="font-size: 15px;"></textarea>
 	                            <span class="highlight"></span>
 	                            <span class="bar"></span>
 	                    	</div>
@@ -145,7 +146,6 @@
                         		<col width="100px"/>
                         		<col width="*"/>
                         		<col width="200px"/>
-                        		<col width="200px"/>
                         	</colgroup>
                         	<tbody>
                         	</tbody>
@@ -154,7 +154,7 @@
                         <ul></ul>
 					</div>
                     </c:if>
-                </div>
+                </div><br><br>
             </div>
         </div>
     </div>
@@ -298,7 +298,7 @@
 	function commEdit(){
 		var msg = "";
 		msg += '<tr style="background-color:#efefef;">';
-		msg += '<td>└</td><td><textarea rows="2" cols="60"></textarea></td>';
+		msg += '<td>└</td><td><textarea rows="2" cols="50"></textarea></td>';
 		msg += '<td align="right"><a href="javascript:commEdit_ok()">[저장]</a>&nbsp;'
 		msg += '<a href="javascript:resetCommList('+cPage+')">[취소]</a></td>'
 		msg += '</tr><hr/>'
