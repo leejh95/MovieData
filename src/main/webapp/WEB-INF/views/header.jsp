@@ -76,7 +76,7 @@
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
-                        <a href="index.inc" class="original-logo"><img src="resources/images/boxoffice (1).png" alt=""></a>
+                        <a href="index.inc" class="original-logo"><img src="resources/images/header_klogo (1).png" alt=""></a>
                     </div>
                 </div>
             </div>
