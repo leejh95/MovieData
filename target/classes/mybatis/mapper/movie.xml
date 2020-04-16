@@ -165,8 +165,14 @@
 	
 	<resultMap type="mybatis.vo.MovieBoardVO" id="map3">
 		<result column="m_idx" property="m_idx"/>
+		<result column="b_idx" property="b_idx"/>
 		<association property="mvo" javaType="mybatis.vo.MovieMemberVO" select="getMember" column="m_idx"/>
+		<association property="c_count" javaType="String" select="getBoard_commCount" column="b_idx"/>
 	</resultMap>
+	
+	<select id="getBoard_commCount" resultType="String" parameterType="String">
+		select count(*) from movie_comm where b_idx = #{b_idx}
+	</select>
 	<!-- 끝 -->
 	
 	<!-- 게시물 하나 보기 -->

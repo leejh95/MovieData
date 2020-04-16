@@ -25,6 +25,7 @@ public class MovieBoardVO implements Serializable {
 	private int nowPage;
 	
 	private MovieMemberVO mvo;
+	private String c_count; //댓글 개수
 	
 	public MultipartFile getUpload() {
 		return upload;
