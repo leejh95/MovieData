@@ -94,7 +94,7 @@
                     </div>
                     <div class="single-blog-content">
                     <div class="btn-toolbar">
-                    <c:if test="${sessionScope.memVO.m_idx eq vo.m_idx}">
+                    <c:if test="${sessionScope.memVO.m_idx eq vo.m_idx || sessionScope.memVO.id eq 'admin'}">
 					    	<button class="btn" onclick="goDel()">삭제</button>
 					    	<button class="btn" onClick="goEdit()">수정</button>
                     </c:if>
@@ -134,7 +134,7 @@
                     <c:if test="${sessionScope.memVO eq null }">
 	                    <div class="col-12" style="margin-top: 10px;">
                         	<div class="group" id="boardCommText">
-			                    <textarea name="message" id="comm_content" placeholder="로그인 후 작성 가능합니다." style="font-size: 15px;"></textarea>
+			                    <textarea name="message" id="comm_content" placeholder="로그인 후 작성 가능합니다." style="font-size: 15px;" readonly="readonly"></textarea>
 	                            <span class="highlight"></span>
 	                            <span class="bar"></span>
 	                    	</div>
@@ -347,11 +347,11 @@
 	
 	function goDel(){
 	
-	var b = confirm("삭제하시겠습니까?");
-	if(!b)
-		return;
-
-	location.href='boardDel.inc?b_idx=${b_idx}&category=${vo.category}&nowPage=${nowPage }';
+		var b = confirm("삭제하시겠습니까?");
+		if(!b)
+			return;
+	
+		location.href='boardDel.inc?b_idx=${b_idx}&category=${vo.category}&nowPage=${nowPage }&ref=${vo.ref}';
 	}
 	
 	function goEdit(){

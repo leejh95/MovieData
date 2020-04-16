@@ -25,7 +25,15 @@ public class MovieBoardVO implements Serializable {
 	private int nowPage;
 	
 	private MovieMemberVO mvo;
-	private String c_count; //댓글 개수
+	private int c_count; //댓글 개수
+	
+	public int getC_count() {
+		return c_count;
+	}
+	
+	public void setC_count(int c_count) {
+		this.c_count = c_count;
+	}
 	
 	public MultipartFile getUpload() {
 		return upload;

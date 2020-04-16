@@ -6,11 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 
 <style>
 .method .header, .method .cell {
@@ -115,6 +111,21 @@
   [class*=' form-group'].margin-0 [class*=' form-group'] {
     margin-left: 0;
     margin-right: 0; }
+  .commPage{
+  margin: 20px 0 20px 0;
+  }
+  .commPage li{
+  display: inline-block;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-left:1px solid #c2c2c2;
+  }
+  .commPage li:nth-child(1){
+  border: none;
+  }
+  .commPage .now{
+  background-color: #e2e2e2;
+  }
 </style>
 </head>
 <body>
@@ -138,7 +149,7 @@
     <c:if test="${sessionScope.memVO ne null}"> 
     <div class="btn-toolbar">
     	<button class="btn" onClick="goWrite('${nowPage}', '${category }')">글쓰기</button>
-	</div>
+	</div><br>
     </c:if>
         <div class="row margin-0 list-header hidden-sm hidden-xs">
             <div class="col-md-2"><div class="header">No</div></div>
@@ -162,24 +173,30 @@
 	                    <div class="type">
 	                        <div class="propertyname">
 	                        <c:if test="${category == 'free' }">
-	                        <%-- 들여쓰기 반복문 --%>
-								<c:forEach begin="1" end="${vo.step }">
-									<c:out value="&nbsp;&nbsp;" escapeXml="flase"/>
-								</c:forEach>
-								<%-- step이 0이 아닐때 화살표 이미지 출력 --%>
-								<c:if test="${vo.step ne 0 }">
-									<img src="resources/images/hsp.png"/>
+		                        <%-- 들여쓰기 반복문 --%>
+									<c:forEach begin="1" end="${vo.step }">
+										<c:out value="&nbsp;&nbsp;" escapeXml="flase"/>
+									</c:forEach>
+									<%-- step이 0이 아닐때 화살표 이미지 출력 --%>
+									<c:if test="${vo.step ne 0 }">
+										<img src="resources/images/hsp.png"/>
+									</c:if>
+									
+								<c:if test="${vo.status == 2 }">
+									삭제된 게시글입니다.
 								</c:if>
-								
-							<c:if test="${vo.status ne 0 }">
-								삭제된 게시글입니다.
+								<c:if test="${vo.status == 0 }">
+									<a href="javascript:location.href='boardview.inc?b_idx=${vo.b_idx }&nowPage=${nowPage}'">${vo.subject }</a>
+								</c:if>
 							</c:if>
-							<c:if test="${vo.status == 0 }">
-								<a href="javascript:location.href='boardview.inc?b_idx=${vo.b_idx }&nowPage=${nowPage}'">${vo.subject }</a>
-							</c:if>
-							</c:if>
+							
 							<c:if test="${category == 'review' }">
-								<a href="javascript:location.href='boardview.inc?b_idx=${vo.b_idx }&nowPage=${nowPage}'">${vo.subject }</a>
+								<a href="javascript:location.href='boardview.inc?b_idx=${vo.b_idx }&nowPage=${nowPage}'">
+								${vo.subject }
+								<c:if test="${vo.c_count > 0}">
+									&nbsp;(${vo.c_count })
+								</c:if>	
+								</a>
 							</c:if>
 	                    	</div>
 	                    </div>
@@ -221,12 +238,12 @@
     </div>
     
     <!-- 페이징 -->
-    <div class="pagination">
+    <div class="commPage">
        <ul>
            ${pageCode }
        </ul>
    </div>
-   
+   <br><br>
 </div>
 
 <div id="include_footer"></div>

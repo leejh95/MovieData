@@ -53,17 +53,4 @@ public class ListController {
 		return mv;
 	}
 	
-	@RequestMapping("/boardDel.inc")
-	public ModelAndView boardDel(String b_idx, String nowPage, String category) {
-		
-		ModelAndView mv = new ModelAndView();
-		
-		boolean chk = m_dao.deleteBoard(b_idx);
-		
-		mv.addObject("nowPage", nowPage);
-		mv.addObject("category", category);
-		
-		mv.setViewName("redirect:list.inc");
-		return mv;
-	}
 }

@@ -87,12 +87,12 @@ public class Paging {
 			}
 			sb.append("&category="+ this.category +"'>이전</a></li>");
 		} else {
-			sb.append("<li><a href='list.inc?nowPage="+1+"&category="+this.category+"'>이전</a></li>");
+			sb.append("<li><a>이전</a></li>");
 		}
 
 		for(int i = this.startPage ; i <= endPage ; i++) {
 			if(i == this.nowPage) {
-				sb.append("<li class='now'><a href='#'>");
+				sb.append("<li class='now'><a>");
 				sb.append(i);
 				sb.append("</a></li>");
 			} else {
@@ -113,7 +113,7 @@ public class Paging {
 				}
 			sb.append("&category="+ this.category +"'>다음</a></li>");
 			} else { 
-			sb.append("<li><a href='list.inc?nowPage="+this.totalPage+"&category="+this.category+"'>다음</a></li>");
+			sb.append("<li><a>다음</a></li>");
 		}
 	}
 

@@ -22,7 +22,7 @@
 	
 	<!-- 페이징 기법에 사용될 전체 게시물의 수를 반환하는 기능 -->
 	<select id="totalCount" resultType="int" parameterType="String">
-		select count(*) from movie_board where category = #{category} and status = 0 or status = 2
+		select count(*) from movie_board where category = #{category} and (status = 0 or status = 2)
 	</select>
 	
 	<!-- 페이징 기법에 사용될 영화 포스트의 댓글 수를 반환하는 기능 -->
@@ -159,7 +159,7 @@
 	<select id="getBoardList" resultMap="map3" parameterType="java.util.Map">
 		select * from(
 			select rownum as r_num, a.* from
-			(select * from movie_board where category = #{category} and status = 0 or status = 2 order by ref desc, sunbun asc) a
+			(select * from movie_board where category = #{category} and (status = 0 or status = 2) order by ref desc, sunbun asc) a
 		) where r_num between #{begin} and #{end}
 	</select>
 	
@@ -167,10 +167,10 @@
 		<result column="m_idx" property="m_idx"/>
 		<result column="b_idx" property="b_idx"/>
 		<association property="mvo" javaType="mybatis.vo.MovieMemberVO" select="getMember" column="m_idx"/>
-		<association property="c_count" javaType="String" select="getBoard_commCount" column="b_idx"/>
+		<association property="c_count" javaType="int" select="getBoard_commCount" column="b_idx"/>
 	</resultMap>
 	
-	<select id="getBoard_commCount" resultType="String" parameterType="String">
+	<select id="getBoard_commCount" resultType="int" parameterType="String">
 		select count(*) from movie_comm where b_idx = #{b_idx}
 	</select>
 	<!-- 끝 -->

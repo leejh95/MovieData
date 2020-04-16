@@ -143,4 +143,26 @@ public class BoardviewController {
 		return mv;
 	}
 	
+	@RequestMapping("/boardDel.inc")
+	public ModelAndView boardDel(String b_idx, String nowPage, String category, String ref) {
+		
+		ModelAndView mv = new ModelAndView();
+		
+		int r = m_dao.getRefCount(ref);
+		
+		boolean chk = false;
+		
+		if(r > 1) {
+			chk = m_dao.deleteBoard2(b_idx);
+		}else {
+			chk = m_dao.deleteBoard(b_idx);
+		}
+		
+		mv.addObject("nowPage", nowPage);
+		mv.addObject("category", category);
+		
+		mv.setViewName("redirect:list.inc");
+		return mv;
+	}
+	
 }
