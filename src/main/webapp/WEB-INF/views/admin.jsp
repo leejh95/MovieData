@@ -13,6 +13,7 @@
     <link rel="icon" href="resources/img/core-img/favicon.ico">
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <style type="text/css">
 #admin_body{
 background-color: #ededed;
@@ -30,12 +31,12 @@ background-color: #ededed;
                 <h3>
                     <b>MANAGEMENT</b>
                 </h3>
-	            <ul style="display: inline-block; width: 250px;"><br>
+	            <ul style="display: inline-block; width: 250px;" id="menu_ul"><br>
                     <li style=" height: 20px; "><a href="index.inc"><h5>Home</h5></a></li><br>
-                    <li style=" height: 20px; "><a href="javascript:memList('1')"><h5>MemberList</h5></a></li><br>
-                    <li style=" height: 20px; "><a href="javascript:searchMember()"><h5>SearchMember</h5></a></li><br>
-                    <li style=" height: 20px; "><a href="javascript:uploadAd()"><h5>UploadAd</h5></a></li><br>
-                    <li style=" height: 20px; "><a href="javascript:adList()"><h5>AdList</h5></a></li>
+                    <li style=" height: 20px; " id="menu_MemberList"><a href="javascript:memList('1')"><h5><i class="fas fa-caret-right"></i>MemberList</h5></a></li><br>
+                    <li style=" height: 20px; " id="menu_SearchMember"><a href="javascript:searchMember()"><h5>SearchMember</h5></a></li><br>
+                    <li style=" height: 20px; " id="menu_UploadAd"><a href="javascript:uploadAd()"><h5>UploadAd</h5></a></li><br>
+                    <li style=" height: 20px; " id="menu_AdList"><a href="javascript:adList()"><h5>AdList</h5></a></li>
 	            </ul>
             </div>
         </div>
@@ -64,24 +65,33 @@ background-color: #ededed;
     	
     	if(currentPage == "adList"){
     		$("#adcon_div").load("adList.inc");
+    	}else{
+    		$("#adcon_div").load("memList.inc");
     	}
     	
    	 })
 
     function memList(nowPage){
+    	$("i").removeAttr("class");
+    	$("#menu_MemberList h5").html("<i class='fas fa-caret-right'></i>MemberList");
     	$("#adcon_div").load("memList.inc?nowPage="+nowPage);
     }
     function searchMember(){
+    	$("i").removeAttr("class");
+    	$("#menu_SearchMember h5").html("<i class='fas fa-caret-right'></i>SearchMember");
     	$("#adcon_div").load("searchMem.inc");
     }
     function uploadAd(){
+    	$("i").removeAttr("class");
+    	$("#menu_UploadAd h5").html("<i class='fas fa-caret-right'></i>UploadAd");
     	$("#adcon_div").load("uploadAd.inc");
     }
     function adList(){
+    	$("i").removeAttr("class");
+    	$("#menu_AdList h5").html("<i class='fas fa-caret-right'></i>AdList");
     	$("#adcon_div").load("adList.inc");
     }
     function adEdit(a_idx){
-    	
 		$("#adcon_div").load("adOne.inc?a_idx="+a_idx);
 	}
     

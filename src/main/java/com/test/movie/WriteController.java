@@ -43,12 +43,14 @@ public class WriteController {
 	@RequestMapping(value="/saveImage.inc", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, String> saveImage(MovieBoardVO vo) throws Exception{
-		System.out.println("saveImage.inc");
 		Map<String, String> map = new HashMap<String, String>();
 		String f_name ="";
 		
 		if(vo.getUpload() != null && vo.getUpload().getSize() >0) {
 			String path = application.getRealPath(editorPath);
+			File f = new File(path);
+			if(!f.exists())
+				f.mkdir();
 			f_name = (vo.getUpload().getOriginalFilename());
 			f_name = (FileRenameUtil.CheckFileName(path, f_name));
 			

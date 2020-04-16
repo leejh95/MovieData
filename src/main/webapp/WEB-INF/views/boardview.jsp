@@ -94,7 +94,7 @@
                     </div>
                     <div class="single-blog-content">
                     <div class="btn-toolbar">
-                    <c:if test="${sessionScope.memVO.m_idx eq vo.m_idx || sessionScope.memVO.id eq 'admin'}">
+                    <c:if test="${sessionScope.memVO.m_idx eq vo.m_idx || sessionScope.memVO.status eq '2'}">
 					    	<button class="btn" onclick="goDel()">삭제</button>
 					    	<button class="btn" onClick="goEdit()">수정</button>
                     </c:if>

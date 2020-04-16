@@ -122,7 +122,7 @@
 
 <div class="container" style="width: 1000px; margin-left: 0; box-shadow: 0px 5px 5px 1px gray; background-color: white;">
 	
-    <div class="method" style="text-align: center; line-height: 50px;">
+    <div class="method" style="text-align: center; ">
         <div class="row margin-0 list-header hidden-sm hidden-xs" style="margin-top: 20px;">
             <div class="col-md-2"><div class="header">No</div></div>
             <div class="col-md-2"><div class="header">ID</div></div>
@@ -174,12 +174,12 @@
 	                <div class="cell">
 	                <c:if test="${vo.status eq 0 && vo.sns_id eq null}">
 	                    <div class="description">
-	                        <input class="btn" type="button" value="정지" onclick="memStop('${vo.m_idx }','${vo.pw }','${nowPage }')" />
+	                        <input type="button" value="정지" onclick="memStop('${vo.m_idx }','${vo.pw }','${nowPage }')" />
 	                    </div>
 	                </c:if>
 	                <c:if test="${vo.status eq 1 && vo.sns_id eq null}">
 	                    <div class="description">
-	                        <input class="btn" type="button" value="복구" onclick="memRestore('${vo.m_idx }','${nowPage }')"/>
+	                        <input type="button" value="복구" onclick="memRestore('${vo.m_idx }','${nowPage }')"/>
 	                    </div>
 	                </c:if>      
 	                </div>

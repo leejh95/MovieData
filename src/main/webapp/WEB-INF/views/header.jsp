@@ -139,7 +139,6 @@
                     		<!-- Search Form  -->
                                 <div id="search-wrapper" style="float:right;">
                                     	<select name="type" style="width:100px; height: 29px; border-width: 0;" id="select_type">
-											<option>선택하세요.</option>
 											<option value="0">영화이름</option>
 											<option value="1">감독이름</option>
 											<option value="2">개봉년도</option>

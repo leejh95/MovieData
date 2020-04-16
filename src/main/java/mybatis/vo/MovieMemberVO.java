@@ -1,8 +1,9 @@
 package mybatis.vo;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class MovieMemberVO {
+public class MovieMemberVO implements Serializable  {
 
 	private String m_idx, id, pw, name, email, phone, reg_date, status, sns_id, sns_type, rateAvg;
 	

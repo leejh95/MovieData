@@ -134,7 +134,7 @@
 	            <div class="col-md-2">
 	                <div class="cell">
 	                    <div class="propertyname">
-						  ${st.index }
+						  ${st.index+1 }
 	                    </div>
 	                </div>
 	            </div>

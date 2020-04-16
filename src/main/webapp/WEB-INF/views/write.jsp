@@ -23,25 +23,18 @@
     <link rel="stylesheet" href="resources/css/summernote-lite.css"/>
 </head>
 <body>
-<div id="include_header" ></div>
-<%
- Object obj = session.getAttribute("memVO");
-MovieMemberVO vo = null;
-if(obj != null){
-	vo = (MovieMemberVO)obj;
-}
-%>
+<c:if test="${sessionScope.memVO ne null }">
 <!-- ##### Contact Area Start ##### -->
     <section class="contact-area section-padding-100">
         <div class="container">
-            <div class="row justify-content-center" style="box-shadow: 0px 5px 5px 1px gray;">
+            <div class="row justify-content-center" >
                 <!-- Contact Form Area -->
-                <div class="col-12 col-md-10 col-lg-9">
+                <div class="col-12 col-md-10 col-lg-18" style="border: 2px solid #c2c2c2; padding:60px;">
                     <div class="contact-form" >
                         <!-- Contact Form -->
                         <form action="write.inc" method="post" enctype="multipart/form-data">
 	                        <input type="hidden" name="category" value="${param.category }"/>
-	                        <input type="hidden" name="m_idx" value="<%=vo.getM_idx() %>"/>
+	                        <input type="hidden" name="m_idx" value="${sessionScope.memVO.m_idx }"/>
 	                            <div class="row">
 	                                <div class="col-12 col-md-6">
 	                                    <div class="group" style="margin-top: 15px;">
@@ -58,11 +51,14 @@ if(obj != null){
 	                                        <span class="bar"></span>
 	                                    </div>
 	                                </div>
-	                                <div>
+	                                <div id="summernote_div">
 	                                <textarea name="content" id="content" style="margin-left:20px;"></textarea>
 	                                </div>
+	                                <div class="col-12" style="margin-top:50px;">
+	                                    <button type="submit" class="btn original-btn" style="margin-top:10px; margin-bottom: 20px;">글쓰기</button>
+	                                </div>
 	                                <div class="col-12">
-	                                    <button type="submit" class="btn original-btn" style="margin-top:10px; margin-bottom: 20px;">등록</button>
+	                                    <a href="list.inc?category=${param.category }">돌아가기</a>
 	                                </div>
 	                            </div>
                         </form>
@@ -71,8 +67,11 @@ if(obj != null){
             </div>
         </div>
     </section>
+    
 	<div id="include_footer"></div>
-    <!-- ##### Contact Area End ##### -->
+</c:if>
+
+
 	<!-- Popper js -->
     <script src="resources/js/popper.min.js"></script>
     <!-- Bootstrap js -->
@@ -84,11 +83,11 @@ if(obj != null){
     
 <script src="resources/js/jquery-3.4.1.min.js"></script>
 <script src="resources/js/summernote-lite.js"></script>
+<script src="resources/js/lang/summernote-ko-KR.min.js"></script>
     
     <script>
     
     $(function(){
-    	$("#include_header").load("header.inc");
     	$("#include_footer").load("footer.inc");
     	
 		$("#content").summernote({
@@ -119,6 +118,8 @@ if(obj != null){
 		});
 		
 		$("#content").summernote("lineHeight", 1.0);
+		$('#content').summernote('fontName', 'Arial');
+		$('#content').summernote('foreColor', '#000000');
 	});
     
 	function sendFile(file, editor){
@@ -144,5 +145,17 @@ if(obj != null){
 		});
 	}
     </script>
+    
+<c:if test="${sessionScope.memVO eq null }">
+	<script type="text/javascript">
+		
+		$(function(){
+		    alert("잘못된 접근입니다.");
+		    document.location.href="index.inc";
+		})
+			
+	</script>
+</c:if>
+
 </body>
 </html>
