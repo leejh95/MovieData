@@ -126,11 +126,12 @@
 				<option value="0" >이름</option>
 				<option value="1">아이디</option>
 			</select>
-			<input type="text" name="searchValue"/>
-			<button onclick="searchMem('1')">검색</button>
-		</div>
+			<input type="text" name="searchValue" style="height: 30px; margin-top: 10px;"/>
+			
+		<input class="btn" type="button" onclick="searchMem('1')" value="검색">
+
+		</div> 
 	</div>
-	<c:if test="${list ne null }">
     <div class="method">
         <div class="row margin-0 list-header hidden-sm hidden-xs" style="margin-top: 20px;">
             <div class="col-md-2"><div class="header">No</div></div>
@@ -149,6 +150,7 @@
 	                    </div>
 	                </div>
 	            </div>
+	            <c:if test="${list ne null }">
 	            <div class="col-md-2">
 	                <div class="cell">
 	                    <div class="type">
@@ -202,6 +204,7 @@
                 	</div>
 	             </div>
 	             </c:if>
+	               </c:if>
 	        </div>
 	    </c:forEach>
         <!-- 리스트 내용 끝 -->
@@ -213,7 +216,6 @@
            ${pageCode }  
        </ul>
    </div>
-   </c:if>
 </div>
 </body>
 </html>
