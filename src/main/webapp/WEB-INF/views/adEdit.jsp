@@ -28,10 +28,11 @@
                     	
                         <h5 style="margin-top: 50px;">광고 수정 / 삭제</h5>
                         <!-- Contact Form -->
-                        <form method="post" action="uploadAdOk.inc" enctype="multipart/form-data">
+                        <form method="post" action="adEdit.inc" enctype="multipart/form-data">
                             <div class="row">
 	                            <div class="col-12">
                                     <div class="group">
+                                    	<input type="hidden" name="a_idx" value="${advo.a_idx }">
                                         <input type="text" name="ad_name" id="ad_name" value="${advo.ad_name }" required>
                                         <span class="highlight"></span>
                                         <span class="bar"></span>

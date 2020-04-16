@@ -45,7 +45,7 @@ background-color: #ededed;
     </div>
 </div>
 </div>
- 
+<input type="hidden" id="currentPage" value="${currentPage }"/>
 <div id="include_footer"></div>
    
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
@@ -59,6 +59,12 @@ background-color: #ededed;
     	
     	
     	$("#include_footer").load("footer.inc");
+    	
+    	var currentPage = $("#currentPage").val();
+    	
+    	if(currentPage == "adList"){
+    		$("#adcon_div").load("adList.inc");
+    	}
     	
    	 })
 
