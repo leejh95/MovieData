@@ -9,6 +9,7 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -16,6 +17,7 @@ import java.util.Locale;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
+import org.json.simple.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -211,8 +213,22 @@ public class IndexController {
             buff.close();
             
             String content = contents.toString();
-            int search_list = content.indexOf("search_list_1");
-            content = content.substring(search_list);
+            int ul_start = content.indexOf("search_list_1");
+            content = content.substring(ul_start);
+            int ul_end = content.indexOf("/ul");
+            content = content.substring(0, ul_end);
+            
+            String[] li_ar = content.split("<li>");
+            
+            for(String s : li_ar) {
+            	int korea = s.indexOf("nation=KR");
+            	System.out.println(s);
+            	if(korea >= 0) {
+            		content = s;
+            		break;
+            	}
+            }
+            
             int i = content.indexOf("basic.nhn?code=");
             content = content.substring(i);
             int j = content.indexOf(">");
