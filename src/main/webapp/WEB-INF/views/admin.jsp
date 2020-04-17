@@ -23,7 +23,7 @@ background-color: #ededed;
 <c:if test="${sessionScope.memVO ne null and sessionScope.memVO.status eq 2}">
 <body>
 <div id="admin_body" style="padding-top: 1px;">
-<div class="admin_container" style=" margin: 100px 50px; height: 1300px; ">
+<div class="admin_container" style=" margin: 100px 50px 0 50px; height: 1000px; ">
     <div class="row"  style="width: 1500px;" >
         <div class="col-md-4" style="width: 300px; display: inline;">
             <!-- It can be fixed with bootstrap affix http://getbootstrap.com/javascript/#affix-->
@@ -47,19 +47,18 @@ background-color: #ededed;
 </div>
 </div>
 <input type="hidden" id="currentPage" value="${currentPage }"/>
-<div id="include_footer"></div>
    
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
-    <!-- Popper js -->
+	<!-- Popper js -->
     <script src="resources/js/popper.min.js"></script>
     <!-- Bootstrap js -->
+    <script src="resources/js/bootstrap.min.js"></script>
     <!-- Plugins js -->
+    <script src="resources/js/plugins.js"></script>
     <!-- Active js -->
+    <script src="resources/js/active.js"></script>
     <script type="text/javascript">
     $(function(){
-    	
-    	
-    	$("#include_footer").load("footer.inc");
     	
     	var currentPage = $("#currentPage").val();
     	

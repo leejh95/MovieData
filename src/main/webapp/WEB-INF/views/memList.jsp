@@ -11,7 +11,11 @@
 
 <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+	<!-- Favicon -->
+    <link rel="icon" href="resources/img/core-img/favicon.ico">
 
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="resources/style.css">
 <style>
 .method .header, .method .cell {
   padding: 6px 6px 6px 10px; }

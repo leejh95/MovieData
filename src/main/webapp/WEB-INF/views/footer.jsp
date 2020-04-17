@@ -66,7 +66,7 @@
                                         <li><a href="#">써둘까</a></li>
                                         <li><a href="#">얘들아?</a></li>
                                         <li><a href="#">의견좀</a></li>
-                                        <li><a href="#">주세요 ㅎㅎ</a></li>
+                                        <li><a href="#"><img src="resources/images/팝콘맨.jpg" alt=""></a></li>
                                     </ul>
                                 </div>
                                 <!-- Nav End -->
@@ -76,8 +76,8 @@
                     
                     <!-- Footer Social Area -->
                     <div class="footer-social-area mt-30">
-                        <a href="https://www.facebook.com/" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                        <a href="https://twitter.com/?lang=ko" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        <a href="https://www.facebook.com/" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook"></i></a>
+                        <a href="https://twitter.com/?lang=ko" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter"></i></a>
                         <a href="https://www.instagram.com/?hl=ko" data-toggle="tooltip" data-placement="top" title="Instargram"><i class="fab fa-instagram"></i></i></a>
                         <a href="https://www.google.co.kr/" data-toggle="tooltip" data-placement="top" title="Google"><i class="fab fa-google"></i></a>
                     </div>
