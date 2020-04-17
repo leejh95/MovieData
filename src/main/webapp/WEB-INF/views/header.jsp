@@ -149,7 +149,7 @@ color: #343434;
 
                     		<!-- Search Form  -->
                                 <div id="search-wrapper" style="float:right;">
-                                    	<select name="type" style="width:100px; height: 25px; border-radius: 3px; font-size: 13px;" id="select_type">
+                                    	<select name="type" style="width:70px; height: 25px; border-radius: 3px; font-size: 13px;" id="select_type">
 											<option value="0">제목</option>
 											<option value="1">감독명</option>
 											<option value="2">개봉년도</option>
