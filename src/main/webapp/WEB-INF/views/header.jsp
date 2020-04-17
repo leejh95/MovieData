@@ -16,6 +16,15 @@
     <!-- Style CSS -->
     <link rel="stylesheet" href="resources/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<style type="text/css">
+#stickyNav{
+background-color: #a3a3a3;
+}
+#stickyNav *{
+color: white;
+text-shadow:-1px 0 black,0 1px black,1px 0 black,0 -1px black;
+}
+</style>
 </head>
 <body>
     <!--  
