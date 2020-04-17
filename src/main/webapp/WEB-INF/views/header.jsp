@@ -18,12 +18,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <style type="text/css">
 #stickyNav{
-background-color: #a3a3a3;
+background-color: #7D8084;
+height: 60px;
 }
+
 #stickyNav *{
-color: white;
-text-shadow:-1px 0 black,0 1px black,1px 0 black,0 -1px black;
+color: #343434;
 }
+
 </style>
 </head>
 <body>
@@ -111,7 +113,7 @@ text-shadow:-1px 0 black,0 1px black,1px 0 black,0 -1px black;
             <div class="classy-nav-container breakpoint-off">
                 <div class="container">
                     <!-- Classy Menu -->
-                    <nav class="classy-navbar justify-content-between">
+                    <nav class="classy-navbar justify-content-between" style="height: 60px;">
 
                         <!-- Subscribe btn -->
                         <div class="subscribe-btn">
@@ -119,7 +121,7 @@ text-shadow:-1px 0 black,0 1px black,1px 0 black,0 -1px black;
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
-                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                            <span class="navbarToggler"/>
                         </div>
 
                         <!-- Menu -->
@@ -136,7 +138,7 @@ text-shadow:-1px 0 black,0 1px black,1px 0 black,0 -1px black;
                                    
                                     <li><a href="javascript:location.href='boxofficeRank.inc'">박스오피스</a></li>
                                     <li><a href="#">게시판</a>
-                                        <ul class="dropdown">
+                                        <ul class="dropdown" id="dropdown">
                                             <li><a href="javascript:location.href='list.inc?category=free'">자유게시판</a></li>
                                             <li><a href="javascript:location.href='list.inc?category=review'">리뷰게시판</a></li>
                                         </ul>
@@ -147,12 +149,12 @@ text-shadow:-1px 0 black,0 1px black,1px 0 black,0 -1px black;
 
                     		<!-- Search Form  -->
                                 <div id="search-wrapper" style="float:right;">
-                                    	<select name="type" style="width:100px; height: 29px; border-width: 0;" id="select_type">
-											<option value="0">영화이름</option>
-											<option value="1">감독이름</option>
+                                    	<select name="type" style="width:100px; height: 25px; border-radius: 3px; font-size: 13px;" id="select_type">
+											<option value="0">제목</option>
+											<option value="1">감독명</option>
 											<option value="2">개봉년도</option>
 										</select>
-                                        <input type="text" id="search" placeholder="Search something...">
+                                        <input type="text" id="search" placeholder="Search something..." >
                                         <div id="close-icon"></div>
                                         <input class="d-none" type="submit" value="">
                                 </div>
