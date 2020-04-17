@@ -45,7 +45,8 @@
 
 	<div id="include_header"></div>
 
-	<div id="slide">
+	<div id="slide" style="background-image: url('resources/images/spotlight-background.png'); background-repeat: no-repeat; background-size : cover; padding-top:100px;">
+	<div style="width:1600px; margin:auto; position: relative;">
 		<input type="radio" name="pos" id="pos1" checked>
 		<input type="radio" name="pos" id="pos2">
 		<ul id="slide_ul">
@@ -240,6 +241,14 @@
 			<label for="pos1"></label>
 			<label for="pos2"></label> 
 		</p>
+		
+		<a href="javascript:changeSlide(0)" id="left_arrow" style="display: block; position: absolute; top: 270px; left: 110px;">
+			<img alt="left_arrow" src="resources/images/left_arrow.png" width="120px;"/>
+		</a>
+		<a href="javascript:changeSlide(1)" id="right_arrow" style="display: block; position: absolute; top: 270px; right: 110px">
+			<img alt="right_arrow" src="resources/images/right_arrow.png" width="120px;"/>
+		</a>
+	</div>
 	</div>
 
 	
@@ -253,7 +262,7 @@
     	</colgroup>
     	<tr>
     		<td style="border-bottom:1px solid #b2b2b2; height:13px"></td>
-    		<td rowspan="2" align="center"><h3><font color="#2d2d2d">1위부터 10위 누적관객수 (${date })</font></h3></td>
+    		<td rowspan="2" align="center"><h3><font color="#2d2d2d">TOP10 누적관객수 (${date })</font></h3></td>
     		<td style="border-bottom:1px solid #b2b2b2"></td>
     	</tr>
     	<tr><td></td><td></td></tr>
@@ -264,7 +273,7 @@
     	<h4>불러오는 중입니다...</h4><br>
 		<img src="resources/images/loading.gif"/>
     </div>
-
+	<br><br><br><br><br><br>
 	<div id="include_footer"></div>     
      <!-- 다이아로그 팝업창 
     <div id="d1" title="공지사항">
@@ -406,15 +415,40 @@ $(document).ready(function () {
 		var radio2 = $("#pos2").prop("checked");
 
 		if(radio1){
-			$("#pos1").prop('checked', false); 
 			$("#pos2").prop('checked', true);
 		}
 		if(radio2){
-			$("#pos2").prop("checked", false);
 			$("#pos1").prop("checked", true);
 		}
 	
 	},8000);
+	
+	function changeSlide(num){
+		var index = -1;
+		var length = $("input[name=pos]").length;
+		for(var i=0; i<$("input[name=pos]").length; i++){
+			if($("input[name=pos]").eq(i).prop('checked')){
+				index = i;
+				break;
+			}
+		}
+		
+		if(num == 0){
+			if(index < 1){
+				console.log("0,0");
+				$("input[name=pos]").eq(length-1).prop("checked", true);
+			}else{
+				console.log("0,1");
+				$("input[name=pos]").eq(index-1).prop("checked", true);
+			}
+		}else{
+			if(index < length-1){
+				$("input[name=pos]").eq(index+1).prop("checked", true);
+			}else{
+				$("input[name=pos]").eq(0).prop("checked", true);
+			}
+		}
+	}
 </script>
 </body>
 </html>
