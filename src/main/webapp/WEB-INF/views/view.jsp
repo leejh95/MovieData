@@ -114,6 +114,7 @@
 </head>
 <body>
 	<div id="include_header" ></div>
+	<br><br><br><br>
 	
 	<div id="view_wrap">
 		<div id="left">

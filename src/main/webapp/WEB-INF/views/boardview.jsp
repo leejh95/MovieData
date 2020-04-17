@@ -62,6 +62,7 @@
 <body>
 
 	<div id="include_header" ></div>
+<br><br><br><br>
 
     <!-- ##### Single Blog Area Start ##### -->
     <div class="single-blog-wrapper" style="width: 1000px; margin-top: 50px; margin-bottom: 50px; margin: auto;">

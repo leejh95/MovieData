@@ -69,7 +69,6 @@ public class ProfileController {
 		if(m_dao.deleteMember(m_idx, pw)) {
 			chk = "1";
 		} 
-		System.out.println(chk);
 		
 		map.put("chk", chk);
 		

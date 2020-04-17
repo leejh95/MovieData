@@ -1,5 +1,7 @@
 package com.test.movie;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -107,7 +109,7 @@ public class IndexController {
 			//String ddd = e.getChildText("openDt").substring(0, 4);
 			
 			try {
-				vo.setImage(getPost(e.getChildText("movieNm")));
+				vo.setImage(getImage(e.getChildText("movieNm")));
 			} catch (Exception e2) {
 				// TODO: handle exception
 			}
@@ -173,7 +175,7 @@ public class IndexController {
 			wvo.setAudiAcc(ch2);
 			
 			try {
-				wvo.setImage(getPost(e.getChildText("movieNm")));
+				wvo.setImage(getImage(e.getChildText("movieNm")));
 			} catch (Exception ee) {
 				ee.printStackTrace();
 			}
@@ -185,6 +187,83 @@ public class IndexController {
 		return ar;
 	}
 	
+	public String getImage(String movieNm) throws Exception{
+		movieNm = URLEncoder.encode(movieNm, "UTF-8");
+		
+		String urlPath = "https://movie.naver.com/movie/search/result.nhn?query="+movieNm+"&section=all&ie=utf8";
+        String pageContents = "";
+        StringBuilder contents = new StringBuilder();
+        String movieCd = null;
+        try{
+ 
+            URL url = new URL(urlPath);
+            URLConnection con = (URLConnection)url.openConnection();
+            InputStreamReader reader = new InputStreamReader (con.getInputStream(), "utf-8");
+ 
+            BufferedReader buff = new BufferedReader(reader);
+ 
+            while((pageContents = buff.readLine())!=null){
+                //System.out.println(pageContents);             
+                contents.append(pageContents);
+                contents.append("\r\n");
+            }
+ 
+            buff.close();
+            
+            String content = contents.toString();
+            int search_list = content.indexOf("search_list_1");
+            content = content.substring(search_list);
+            int i = content.indexOf("basic.nhn?code=");
+            content = content.substring(i);
+            int j = content.indexOf(">");
+            movieCd = content.substring(15, j-1);
+ 
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+		
+		String imageSrc = getSrc(movieCd);
+		
+		return imageSrc;
+	}
+	
+	public String getSrc(String movieCd) {
+		String urlPath = "https://movie.naver.com/movie/bi/mi/photoViewPopup.nhn?movieCode="+ movieCd;
+        String pageContents = "";
+        StringBuilder contents = new StringBuilder();
+        String imageSrc = null;
+ 
+        try{
+ 
+            URL url = new URL(urlPath);
+            URLConnection con = (URLConnection)url.openConnection();
+            InputStreamReader reader = new InputStreamReader (con.getInputStream(), "utf-8");
+ 
+            BufferedReader buff = new BufferedReader(reader);
+ 
+            while((pageContents = buff.readLine())!=null){
+                //System.out.println(pageContents);             
+                contents.append(pageContents);
+                contents.append("\r\n");
+            }
+ 
+            buff.close();
+            
+            int i = contents.indexOf("page_content");
+            String content = contents.substring(i);
+            i = content.indexOf("targetImage");
+            content = content.substring(i);
+            int j = content.indexOf("alt");
+            imageSrc = content.substring(18, j-2);
+ 
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        return imageSrc;
+	}
+	
+	/*
 	public String getPost(String movieNm) throws Exception{
         // 영화 포스터 가져오기
         //System.out.println(movieNm);
@@ -198,7 +277,7 @@ public class IndexController {
           URLConnection urlConn = url.openConnection(); //openConnection 해당 요청에 대해서 쓸 수 있는 connection 객체 
           
           urlConn.setRequestProperty("X-Naver-Client-ID", clientID);
-          urlConn.setRequestProperty("X-Naver-Client-Secret", clientSecret);
+          urlConn.setRequestProperty("X-Naver-Clienit-Secret", clientSecret);
           
           SAXBuilder builder = new SAXBuilder();
           Document doc = builder.build(urlConn.getInputStream());
@@ -218,6 +297,7 @@ public class IndexController {
           
           return image_s;
      }
+    */
 	
 	
 	@RequestMapping("/testUi.inc")

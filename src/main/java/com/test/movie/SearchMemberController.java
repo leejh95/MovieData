@@ -38,7 +38,6 @@ public class SearchMemberController {
 		else { this.nowPage = Integer.parseInt(nowPage); }
 		
 		this.rowTotal = m_dao.searchMemberCount(searchType, searchValue);
-		System.out.println("갯수:"+this.rowTotal);
 		PagingSearchMember page = new PagingSearchMember(this.nowPage, rowTotal, BLOCK_LIST, BLOCK_PAGE);
 		
 		// 페이지 기법의 HTML코드
@@ -46,7 +45,6 @@ public class SearchMemberController {
 		
 		//회원 목록
 		MovieMemberVO[] ar = m_dao.searchMember(searchType, searchValue, page.getBegin(), page.getEnd());
-		System.out.println("ar:"+ar.length);
 		mv.addObject("list", ar);
 		mv.addObject("pageCode", pageCode);
 		mv.addObject("nowPage", page.getNowPage());

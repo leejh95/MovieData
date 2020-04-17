@@ -23,6 +23,30 @@ height: 60px;
 }
 
 #stickyNav *{
+color: white;
+}
+#stickyNav li{
+width: 150px;
+margin:0;
+text-align: center;
+}
+#stickyNav li span{
+display: none;
+}
+#stickyNav li a{
+font-weight: bold;
+font-size: 18px;
+width: 100%;
+height: 60px;
+line-height: 60px;
+}
+#stickyNav li:hover{
+background-color: white;
+}
+#stickyNav li:hover a{
+color: #343434;
+}
+#search-wrapper *{
 color: #343434;
 }
 
@@ -87,11 +111,13 @@ color: #343434;
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
-                        <a href="index.inc" class="original-logo"><img src="resources/images/header_klogo (1).png" alt=""></a>
+                        <a href="index.inc" class="original-logo"><img src="resources/images/header_klogo (1).png" alt="" style="height: 167px;"></a>
                     </div>
                 </div>
             </div>
         </div>
+        <br>
+        
         <!-- 광고 영역 -->
         <c:if test="${fn:length(header_ad) < 1 }">
         <div style="text-align: center; border: 1px black solid;  width:1080px; height: 211px; margin:auto;">
@@ -107,7 +133,8 @@ color: #343434;
             </div>
         </div>
         </c:if>
-	        
+	    <br>
+	    
         <!-- Nav Area -->
         <div class="original-nav-area" id="stickyNav">
             <div class="classy-nav-container breakpoint-off">
@@ -124,6 +151,7 @@ color: #343434;
                             <span class="navbarToggler"/>
                         </div>
 
+						
                         <!-- Menu -->
                         <div class="classy-menu" id="originalNav" style="float:right; display: inline-block;">
                             <!-- close btn -->
@@ -154,7 +182,7 @@ color: #343434;
 											<option value="1">감독명</option>
 											<option value="2">개봉년도</option>
 										</select>
-                                        <input type="text" id="search" placeholder="Search something..." >
+                                        <input type="text" id="search" placeholder="Search something..." style="background-color: white;">
                                         <div id="close-icon"></div>
                                         <input class="d-none" type="submit" value="">
                                 </div>

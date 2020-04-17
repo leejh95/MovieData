@@ -23,7 +23,7 @@ background-color: #ededed;
 <c:if test="${sessionScope.memVO ne null and sessionScope.memVO.status eq 2}">
 <body>
 <div id="admin_body" style="padding-top: 1px;">
-<div class="admin_container" style=" margin: 100px 50px 0 50px; height: 1000px; ">
+<div class="admin_container" style=" margin: 100px 50px 0 50px; height: 1300px; ">
     <div class="row"  style="width: 1500px;" >
         <div class="col-md-4" style="width: 300px; display: inline;">
             <!-- It can be fixed with bootstrap affix http://getbootstrap.com/javascript/#affix-->
@@ -58,6 +58,10 @@ background-color: #ededed;
     <!-- Active js -->
     <script src="resources/js/active.js"></script>
     <script type="text/javascript">
+    var searchType = null;
+    var searchValue = null;
+    var nowPage = 1;
+    
     $(function(){
     	
     	var currentPage = $("#currentPage").val();
@@ -94,9 +98,16 @@ background-color: #ededed;
 		$("#adcon_div").load("adOne.inc?a_idx="+a_idx);
 	}
     
-    function searchMem(nowPage){
-    	var searchType = $("#searchDiv select").val();
-    	var searchValue = $("#searchDiv input").val();
+    function searchMem(cPage){
+    	
+    	if(searchType == null){
+    		searchType = $("#searchDiv select").val();
+    	}
+    	if(searchValue == null){
+    		searchValue = $("#searchDiv input").val();
+    	}
+    	
+    	nowPage = cPage;
     	
     	if(searchValue.length < 1){
     		alert("내용을 입력해주세요");
@@ -118,6 +129,17 @@ background-color: #ededed;
 		});
     	
     }
+    function memStop2(m_idx, pw, nowPage){
+    	var param = "m_idx="+encodeURIComponent(m_idx)+"&pw="+encodeURIComponent(pw);
+    	$.ajax({
+			url: "delete_member.inc",
+			type: "post",
+			data: param,
+			dataType: "json"
+		}).done(function(data){
+			searchMem(nowPage);
+		});
+    }
     
     function memRestore(m_idx, nowPage){
     	var param = "m_idx="+encodeURIComponent(m_idx);
@@ -129,7 +151,24 @@ background-color: #ededed;
 		}).done(function(data){
 			$("#adcon_div").load("memList.inc?nowPage="+nowPage);
 		});
-    	
+    }
+    
+    function memRestore2(m_idx, nowPage){
+    	var param = "m_idx="+encodeURIComponent(m_idx);
+    	$.ajax({
+			url: "restore_member.inc",
+			type: "post",
+			data: param,
+			dataType: "json"
+		}).done(function(data){
+			searchMem(nowPage);
+		});
+    }
+    function realSearchMem(){
+    	searchType = null;
+        searchValue = null;
+        nowPage = 1;
+    	searchMem(nowPage);
     }
     </script>
 </body>

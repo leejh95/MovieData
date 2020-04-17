@@ -1,5 +1,7 @@
 package com.test.movie;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -123,7 +125,7 @@ public class ViewController {
 		
 		
 		try {
-			vo.setImage(getPost(movieInfo.getChildText("movieNm"), movieInfo.getChildText("prdtYear")));
+			vo.setImage(getImage(movieInfo.getChildText("movieNm")));
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -136,6 +138,83 @@ public class ViewController {
 		return mv;
 	}
 	
+	public String getImage(String movieNm) throws Exception{
+		movieNm = URLEncoder.encode(movieNm, "UTF-8");
+		
+		String urlPath = "https://movie.naver.com/movie/search/result.nhn?query="+movieNm+"&section=all&ie=utf8";
+        String pageContents = "";
+        StringBuilder contents = new StringBuilder();
+        String movieCd = null;
+        try{
+ 
+            URL url = new URL(urlPath);
+            URLConnection con = (URLConnection)url.openConnection();
+            InputStreamReader reader = new InputStreamReader (con.getInputStream(), "utf-8");
+ 
+            BufferedReader buff = new BufferedReader(reader);
+ 
+            while((pageContents = buff.readLine())!=null){
+                //System.out.println(pageContents);             
+                contents.append(pageContents);
+                contents.append("\r\n");
+            }
+ 
+            buff.close();
+            
+            String content = contents.toString();
+            int search_list = content.indexOf("search_list_1");
+            content = content.substring(search_list);
+            int i = content.indexOf("basic.nhn?code=");
+            content = content.substring(i);
+            int j = content.indexOf(">");
+            movieCd = content.substring(15, j-1);
+ 
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+		
+		String imageSrc = getSrc(movieCd);
+		
+		return imageSrc;
+	}
+	
+	public String getSrc(String movieCd) {
+		String urlPath = "https://movie.naver.com/movie/bi/mi/photoViewPopup.nhn?movieCode="+ movieCd;
+        String pageContents = "";
+        StringBuilder contents = new StringBuilder();
+        String imageSrc = null;
+ 
+        try{
+ 
+            URL url = new URL(urlPath);
+            URLConnection con = (URLConnection)url.openConnection();
+            InputStreamReader reader = new InputStreamReader (con.getInputStream(), "utf-8");
+ 
+            BufferedReader buff = new BufferedReader(reader);
+ 
+            while((pageContents = buff.readLine())!=null){
+                //System.out.println(pageContents);             
+                contents.append(pageContents);
+                contents.append("\r\n");
+            }
+ 
+            buff.close();
+            
+            int i = contents.indexOf("page_content");
+            String content = contents.substring(i);
+            i = content.indexOf("targetImage");
+            content = content.substring(i);
+            int j = content.indexOf("alt");
+            imageSrc = content.substring(18, j-2);
+ 
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        return imageSrc;
+	}
+	
+	/*
 	public String getPost(String movieNm, String prdtYear) throws Exception{
         // 영화 포스터 가져오기
         //System.out.println(movieNm);
@@ -169,5 +248,6 @@ public class ViewController {
           
           return image_s;
      }
+	*/
 	
 }
