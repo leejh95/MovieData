@@ -111,7 +111,7 @@
     </table>
     <!-- 컨텐츠 구분선 끝 -->
     
-    <div id="weekly_audi_chart_div" style="width: 1600px; height:500px; margin: 0 auto; padding: 5px; display: block;" align="center">
+    <div id="weekly_audi_chart_div" style="width: 1200px; height:500px; margin: 0 auto; padding: 5px; display: block;" align="center">
     	<h4>불러오는 중입니다...</h4><br>
 		<img src="resources/images/loading.gif"/>
     </div>
@@ -132,7 +132,7 @@
     </table>
     <!-- 컨텐츠 구분선 끝 -->
     
-    <div id="weekly_sales_chart_div" style="width: 1600px; height:500px; margin: 0 auto; padding: 5px;" align="center">
+    <div id="weekly_sales_chart_div" style="width: 1200px; height:500px; margin: 0 auto; padding: 5px;" align="center">
     	<h4>불러오는 중입니다...</h4><br>
 		<img src="resources/images/loading.gif"/>
     </div>
@@ -145,6 +145,10 @@
     <script src="resources/js/plugins.js"></script>
     <!-- Active js -->
     <script src="resources/js/active.js"></script>
+    
+    <script src="//www.amcharts.com/lib/4/core.js"></script>
+	<script src="//www.amcharts.com/lib/4/charts.js"></script>
+	<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
     
     <script>
     $(function(){
@@ -269,25 +273,31 @@
 	
 	function weeklyAudiChart(data){
 		
+		am4core.ready(function() {
+		
 		am4core.useTheme(am4themes_animated);
 		
-		var chart = am4core.create(
-				"weekly_audi_chart_div", am4charts.XYChart);
-		
-		
+		var chart = am4core.create("weekly_audi_chart_div", am4charts.XYChart);
 		
 		chart.data = data;
 		
 		// x축 만들기
-		var categoryAxis = 
-		chart.xAxes.push(new am4charts.CategoryAxis());
+		var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
 		categoryAxis.dataFields.category = "movieNm";
-		
-		categoryAxis.renderer.labels.template.fontSize = 12;
+		categoryAxis.renderer.grid.template.location = 0;
 		categoryAxis.renderer.minGridDistance = 30;
+		categoryAxis.renderer.labels.template.fontSize = 12;
+		
+		categoryAxis.renderer.labels.template.adapter.add("dy", function(dy, target) {
+			  if (target.dataItem && target.dataItem.index & 2 == 2) {
+			    return dy + 25;
+			  }
+			  return dy;
+			});
 		
 		// y축 만들기
 		var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+		
 		valueAxis.renderer.minGridDistance = 10;
 		valueAxis.title.text = "누적 관객수";
 		
@@ -327,33 +337,41 @@
 		series.dataFields.categoryX = "movieNm";
 		series.dataFields.valueY = "audiAcc";
 		
-		series.columns.template.tooltipText = 
-			"[bold]{valueY}[/]";
-		series.columns.template.fill = am4core.color('#0489B1');
-		series.columns.template.fillOpacity = 0.7;
-		series.columns.template.stroke = am4core.color('black');
+		series.columns.template.tooltipText = "[bold]{valueY}[/]";
+		series.columns.template.fillOpacity = .8;
+		series.columns.template.fill = am4core.color('#B4B4DC');
+		series.columns.template.stroke = am4core.color('#B4B4DC');
 		
 		var columnTemplate = series.columns.template;
-		columnTemplate.strokeWidth = 1;
-		columnTemplate.strokeOpacity = 0.7;
+		columnTemplate.strokeWidth = 2;
+		columnTemplate.strokeOpacity = 0;
+		
+		});
 	}
 	
 	function weeklySalesChart(data){
 		
+		am4core.ready(function() {
+		
 		am4core.useTheme(am4themes_animated);
 		
-		var chart = am4core.create(
-				"weekly_sales_chart_div", am4charts.XYChart);
+		var chart = am4core.create("weekly_sales_chart_div", am4charts.XYChart);
 		
 		chart.data = data;
 		
 		// x축 만들기
-		var categoryAxis = 
-		chart.xAxes.push(new am4charts.CategoryAxis());
+		var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
 		categoryAxis.dataFields.category = "movieNm";
-		
-		categoryAxis.renderer.labels.template.fontSize = 12;
+		categoryAxis.renderer.grid.template.location = 0;
 		categoryAxis.renderer.minGridDistance = 30;
+		categoryAxis.renderer.labels.template.fontSize = 12;
+		
+		categoryAxis.renderer.labels.template.adapter.add("dy", function(dy, target) {
+			  if (target.dataItem && target.dataItem.index & 2 == 2) {
+			    return dy + 25;
+			  }
+			  return dy;
+			});
 		
 		// y축 만들기
 		var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
@@ -396,15 +414,16 @@
 		series.dataFields.categoryX = "movieNm";
 		series.dataFields.valueY = "salesAcc";
 		
-		series.columns.template.tooltipText = 
-			"[bold]{valueY}[/]";
-		series.columns.template.fill = am4core.color('#0489B1');
-		series.columns.template.fillOpacity = 0.7;
-		series.columns.template.stroke = am4core.color('black');
+		series.columns.template.tooltipText = "[bold]{valueY}[/]";
+			series.columns.template.fillOpacity = .8;
+			series.columns.template.fill = am4core.color('#B4B4DC');
+			series.columns.template.stroke = am4core.color('#B4B4DC');
 		
 		var columnTemplate = series.columns.template;
-		columnTemplate.strokeWidth = 1;
-		columnTemplate.strokeOpacity = 0.7;
+		columnTemplate.strokeWidth = 2;
+		columnTemplate.strokeOpacity = 0;
+		
+		});
 	}
     </script>
 </body>
