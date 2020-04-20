@@ -7,6 +7,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -65,7 +66,7 @@ public class DailyRankController {
 			//String ddd = e.getChildText("openDt").substring(0, 4);
 			
 			try {
-				vo.setImage(getImage(e.getChildText("movieNm")));
+				vo.setImage(getImage(e.getChildText("movieNm"), e.getChildText("openDt").substring(0, 4)));
 			} catch (Exception e2) {
 				// TODO: handle exception
 			}
@@ -87,7 +88,7 @@ public class DailyRankController {
 		return mv;
 	}
 	
-	public String getImage(String movieNm) throws Exception{
+	public String getImage(String movieNm, String openDt) throws Exception{
 		movieNm = URLEncoder.encode(movieNm, "UTF-8");
 		
 		String urlPath = "https://movie.naver.com/movie/search/result.nhn?query="+movieNm+"&section=all&ie=utf8";
@@ -112,16 +113,32 @@ public class DailyRankController {
             
             String content = contents.toString();
             int ul_start = content.indexOf("search_list_1");
+            
+            if(ul_start == -1)
+            	return null;
+            
             content = content.substring(ul_start);
             int ul_end = content.indexOf("/ul");
             content = content.substring(0, ul_end);
             
             String[] li_ar = content.split("<li>");
+            ArrayList<String> list = new ArrayList<String>();
             
             for(String s : li_ar) {
             	int korea = s.indexOf("nation=KR");
-            	System.out.println(s);
             	if(korea >= 0) {
+            		list.add(s);
+            	}
+            }
+            if(!list.isEmpty()) {
+            	content = "";
+            	for(String s : list)
+            		content += s;
+            }
+            
+            for(String s : list) {
+            	int year = s.indexOf("year="+openDt);
+            	if(year >= 0) {
             		content = s;
             		break;
             	}

@@ -7,6 +7,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.jdom2.Document;
@@ -119,20 +120,34 @@ public class SearchController {
             
             String content = contents.toString();
             int ul_start = content.indexOf("search_list_1");
+            
+            if(ul_start == -1)
+            	return null;
+            
             content = content.substring(ul_start);
             int ul_end = content.indexOf("/ul");
             content = content.substring(0, ul_end);
             
             String[] li_ar = content.split("<li>");
+            ArrayList<String> list = new ArrayList<String>();
             
             for(String s : li_ar) {
             	int korea = s.indexOf("nation=KR");
             	if(korea >= 0) {
-            		int year = s.indexOf("year="+openDt);
-            		if(year >= 0) {
-            			content = s;
-            			break;
-            		}
+            		list.add(s);
+            	}
+            }
+            if(!list.isEmpty()) {
+            	content = "";
+            	for(String s : list)
+            		content += s;
+            }
+            
+            for(String s : list) {
+            	int year = s.indexOf("year="+openDt);
+            	if(year >= 0) {
+            		content = s;
+            		break;
             	}
             }
             
