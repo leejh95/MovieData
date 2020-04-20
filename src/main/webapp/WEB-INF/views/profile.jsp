@@ -5,13 +5,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
-.bt{
-	margin-left: 17px;
-}
-</style>
+	<meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Insert title here</title>
+	<!-- Favicon -->
+    <link rel="icon" href="resources/img/core-img/favicon.ico">
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="resources/style.css">
 </head>
 <body>
 
@@ -19,115 +22,117 @@
 <br><br><br><br>
 
 <div class="container">
-   <div class="row">
-   <input type="hidden" id="m_idx" value="${vo.m_idx }">
-    <div class="col-md-8">
-      <section>     
-        <h1 class="entry-title"><span>${vo.name }님의 프로필</span> </h1>
-        <hr>
-       <form class="form-horizontal" method="post" name="update" id="update">
-       
-       <div class="form-group">
-          <label class="control-label col-sm-3">이름 <span class="text-danger">*</span></label>
-          <div class="col-md-8 col-sm-9">
-            <input type="text" class="form-control" name="name" id="name" placeholder="이름" value="${vo.name }">
-          </div>
-        </div>
-        
-        <div class="form-group">
-          <label class="control-label col-sm-3">Email <span class="text-danger">*</span></label>
-          <div class="col-md-8 col-sm-9">
-              <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-              <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="${vo.email }">
+   <section>     
+        <h1><span>${vo.name }님의 프로필</span> </h1>
+        <br/><br/>
+    <h4>프로필 수정</h4><br/>
+    <form method="post" name="update" id="update">
+    <input type="hidden" id="m_idx" value="${vo.m_idx }"/>
+            <div class="col-12">
+                <div class="group">
+                    <input type="text" name="name" id="name" value="${vo.name }" placeholder="이름">
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>이름</label>
                 </div>
-            </div>
-        </div>
-        
-        <div class="form-group">
-          <label class="control-label col-sm-3">전화번호 <span class="text-danger">*</span></label>
-          <div class="col-md-5 col-sm-8">
-             <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
-            <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone" value="${vo.phone }">
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-xs-offset-3 col-xs-10">
-            <input type="button" value="수정완료" onclick="updateProfile(this.form)" class="btn btn-primary bt">
-          </div>
-        </div>
+			<div class="col-12">
+		            <div class="group">
+		                <input type="text" name="email" id="email" value="${vo.email }" placeholder="e-mail">
+		                <span class="highlight"></span>
+		                <span class="bar"></span>
+		                <label>e-mail</label>
+		            </div>
+			</div>
+			<div class="col-12">
+			        <div class="group">
+			            <input type="text" name="phone" id="phone" value="${vo.phone }" placeholder="phone">
+			            <span class="highlight"></span>
+			            <span class="bar"></span>
+			            <label>Phone</label>
+			        </div>
+			</div>
+			
+					<div class="group">
+						<button onclick="updateProfile(this.form)" class="btn original-btn">수정</button>
+					</div>
+				</div>
       </form>
       </section>
-    </div>
-
-	 
-    <div class="col-md-8">
+	
       <section>     
-      <c:if test="${vo.sns_id eq null }">
-       <hr>
-       <form class="form-horizontal" method="post" name="updatePw" id="updatePw">
-        <div class="form-group">
-          <label class="control-label col-sm-3">새로운 비밀번호 <span class="text-danger">*</span></label>
-          <div class="col-md-5 col-sm-8">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-              <input type="password" class="form-control" name="pw" id="pw" placeholder="비밀번호 (5-20자 이내)" value="">
-           </div>   
-          </div>
-        </div>
-        
-        <div class="form-group">
-          <label class="control-label col-sm-4">새로운 비밀번호 확인 <span class="text-danger">*</span></label>
-          <div class="col-md-5 col-sm-8">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-              <input type="password" class="form-control" name="pw2" id="pw2" placeholder="비밀번호 (5-20자 이내)" value="">
-           </div>   
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-xs-offset-3 col-xs-10">
-            <input type="button" value="변경하기" onclick="updatePW(this.form)" class="btn btn-primary bt">
-          </div>
-        </div>
-        </c:if>
+      
+		<c:if test="${vo.sns_id eq null }">
+       <br/>
+       <h4>비밀번호 변경</h4><br/>
+       <form method="post">
+       <input type="hidden" id="password" value="${vo.pw }"/>
+       <div class="col-12">
+		        <div class="group">
+		            <input type="text" name="pw1" id="pw1" placeholder="비밀번호">
+		            <span class="highlight"></span>
+		            <span class="bar"></span>
+		            <label>기존 비밀번호</label>
+		        </div>
+		</div>
+			<div class="col-12">
+		        <div class="group">
+		            <input type="text" name="pw2" id="pw2" placeholder="비밀번호 (5-20자 이내)">
+		            <span class="highlight"></span>
+		            <span class="bar"></span>
+		            <label>새로운 비밀번호</label>
+		        </div>
+			</div>
+			
+			<div class="col-12">
+		        <div class="group">
+		            <input type="text" name="pw3" id="pw3" placeholder="비밀번호 (5-20자 이내)">
+		            <span class="highlight"></span>
+		            <span class="bar"></span>
+		            <label>새로운 비밀번호 재입력</label>
+		        </div>
+			</div>
+			
+				<div class="group">
+					<button type="button" onclick="updatePW(this.form)" class="btn original-btn">변경</button>
+				</div>
+			</form>
+       	</c:if>
         <c:if test="${vo.sns_id ne null }">
         </c:if>
-      </form>
       </section>
-    </div>
-    
-    <div class="col-md-8">
+
       <section>     
-       <hr>
-       <form class="form-horizontal" method="post" name="delete" id="delete">
+       <br/>
+       <h4>회원탈퇴</h4><br/>
+       <form  method="post" name="delete" id="delete">
        
-       <div class="form-group">
-          <label class="control-label col-sm-3">비밀번호 <span class="text-danger">*</span></label>
-          <div class="col-md-5 col-sm-8">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-              <input type="password" class="form-control" name="pw" id="pw" placeholder="비밀번호 (5-20자 이내)" value="">
-           </div>   
-          </div>
-        </div>
-        
-        <div class="form-group">
-          <div class="col-xs-offset-3 col-xs-10">
-            <input type="button" value="탈퇴" onclick="deleteMem(this.form)" class="btn btn-primary bt">
-          </div>
-        </div>
+       <div class="col-12">
+		        <div class="group">
+		            <input type="text" name="pw4" id="pw4" placeholder="">
+		            <span class="highlight"></span>
+		            <span class="bar"></span>
+		            <label>비밀번호</label>
+		        </div>
+		</div>
+		<div class="group">
+			<button onclick="deleteMem(this.form)" class="btn original-btn">탈퇴</button>
+		</div>
       </form>
       </section>
-    </div>
-</div>
 </div>
 
 <div id="include_footer"></div>
 
-<script src="resources/js/jquery-3.4.1.min.js"></script>
+	<script src="resources/js/jquery-3.4.1.min.js"></script>
+	<!-- Popper js -->
+    <script src="resources/js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="resources/js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="resources/js/plugins.js"></script>
+    <!-- Active js -->
+    <script src="resources/js/active.js"></script>
+    
 <script type="text/javascript">
 
 	$(function(){
@@ -136,7 +141,7 @@
 	});
 
 	function updateProfile(frm){
-		//유효성 검사 필요없
+		
 		var b = confirm("수정하시겠습니까?");
 		
 		if(b){
@@ -154,42 +159,56 @@
 				"&m_idx="+encodeURIComponent(m_idx),
 				dataType: "json"
 			}).done(function(data) {
-				if(data.chk)
-					alert("수정완료");
-				else
-					alert("수정실패!!");
+				if(data.chk) {
+					alert("수정 완료되었습니다.");
+					location.href="profile.inc?m_idx="+m_idx;
+				} else {
+					alert("수정에 실패했습니다.");
+				}
 			}).fail(function(err) {
 				console.log(err);
 			});
 		}
 	}
-	
+
 	function updatePW(frm){
-		if(frm.pw.value.trim().length <= 0){
-			alert("비밀번호를 입력해주세요");
-			frm.pw.value = "";
-			frm.pw.focus();
+		
+		var password = document.getElementById("password").value;
+		
+		if(frm.pw1.value.trim().length <= 0){
+			alert("기존 비밀번호를 입력해주세요");
+			frm.pw1.value = "";
+			frm.pw1.focus();
 			return
 		}
 		if(frm.pw2.value.trim().length <= 0){
-			alert("비밀번호 확인을 입력해주세요");
+			alert("새로운 비밀번호를 입력해주세요.");
 			frm.pw2.value = "";
 			frm.pw2.focus();
 			return
 		}
-		if(!(frm.pw.value==frm.pw2.value)){
-			console.log(frm.pw.value);
-			console.log(frm.pw2.value);
-			alert("두 비밀번호가 일치하지 않습니다!");
+		if(frm.pw3.value.trim().length <= 0){
+			alert("새로운 비밀번호를 재입력해주세요.");
+			frm.pw3.value = "";
+			frm.pw3.focus();
+			return
+		}
+		if(!(frm.pw1.value==password)){
+			alert("기존 비밀번호가 일치하지 않습니다.");
+			frm.pw.focus();
+			return
+		}
+		if(!(frm.pw2.value==frm.pw3.value)){
+			alert("새로운 비밀번호가 일치하지 않습니다.");
 			frm.pw2.focus();
 			return
 		}
 		
-		var b = confirm("변경하시겠습니까?");
+		var b = confirm("변경 하시겠습니까?");	
 		
 		if(b){
-			var pw = frm.pw.value;
-			var m_idx = document.getElementById("m_idx").value;
+			var m_idx = $("#m_idx").val();
+			var pw = $("#pw2").val();
 			
 			$.ajax({
 				url : "edit_pw.inc",
@@ -198,39 +217,38 @@
 				"&m_idx="+encodeURIComponent(m_idx),
 				dataType: "json"
 			}).done(function(data) {
-				if(data.chk)
-					alert("비밀번호 변경완료");
-				else
-					alert("비밀번호 변경실패!!");
+				if(data.chk){
+					alert("비밀번호 변경 완료되었습니다.");
+					location.href="profile.inc?m_idx="+m_idx;
+				}
+				else{
+					alert("비밀번호 변경에 실패했습니다.");
+				}	
 			}).fail(function(err) {
 				console.log(err);
 			});
 		}
 		
-	}
-	
+	}	
 	function deleteMem(frm){
 		
-		if(frm.pw.value.trim().length <= 0){
+		if(frm.pw4.value.trim().length <= 0){
 			alert("비밀번호를 입력해주세요");
 			frm.pw.value = "";
 			frm.pw.focus();
 			return
-		}
+	}
 		
 		var b = confirm("탈퇴하시겠습니까?");
 		
 		if(b){
-			var pw = frm.pw.value;
+			var pw4 = frm.pw4.value;
 			var m_idx = document.getElementById("m_idx").value;
-			
-			console.log(pw);
-			console.log(m_idx);
 			
 			$.ajax({
 				url : "delete_member.inc",
 				type : "post",
-				data : "pw="+encodeURIComponent(pw)+
+				data : "pw="+encodeURIComponent(pw4)+
 					"&m_idx="+encodeURIComponent(m_idx),
 				dataType: "json"
 			}).done(function(data) {

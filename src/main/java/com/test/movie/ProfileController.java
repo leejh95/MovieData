@@ -3,11 +3,14 @@ package com.test.movie;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import mybatis.dao.MovieDAO;
@@ -18,6 +21,9 @@ public class ProfileController {
 
 	@Autowired
 	MovieDAO m_dao;
+	
+	@Autowired
+	HttpSession ss;
 	
 	@RequestMapping("/profile.inc")
 	public ModelAndView profile(String m_idx) {
@@ -44,6 +50,7 @@ public class ProfileController {
 	
 		return map;
 	}
+
 	
 	@RequestMapping(value="/edit_pw.inc", method = RequestMethod.POST)
 	@ResponseBody
@@ -54,7 +61,6 @@ public class ProfileController {
 		boolean chk = m_dao.updateMember(vo);
 		
 		map.put("chk", chk);
-		map.put("vo", vo);
 		
 		return map;
 	
@@ -71,6 +77,8 @@ public class ProfileController {
 		} 
 		
 		map.put("chk", chk);
+		
+		ss.removeAttribute("memVO");
 		
 		return map;
 	}
