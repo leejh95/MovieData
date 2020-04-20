@@ -29,10 +29,92 @@ public class DailyVO {
 					rankInten,
 					salesAcc,
 					audiAcc,
-	 				rankOldAndNew;
+	 				rankOldAndNew,
+	 				salesAmt,
+	 				salesShare,
+	 				salesInten,
+	 				salesChange,
+	 				audiCnt,
+	 				audiInten,
+	 				audiChange,
+	 				scrnCnt,
+	 				showCnt;
 	 
+	
+	
 	 
-	 
+	public String getSalesAmt() {
+		return salesAmt;
+	}
+
+	public void setSalesAmt(String salesAmt) {
+		this.salesAmt = salesAmt;
+	}
+
+	public String getSalesShare() {
+		return salesShare;
+	}
+
+	public void setSalesShare(String salesShare) {
+		this.salesShare = salesShare;
+	}
+
+	public String getSalesInten() {
+		return salesInten;
+	}
+
+	public void setSalesInten(String salesInten) {
+		this.salesInten = salesInten;
+	}
+
+	public String getSalesChange() {
+		return salesChange;
+	}
+
+	public void setSalesChange(String salesChange) {
+		this.salesChange = salesChange;
+	}
+
+	public String getAudiCnt() {
+		return audiCnt;
+	}
+
+	public void setAudiCnt(String audiCnt) {
+		this.audiCnt = audiCnt;
+	}
+
+	public String getAudiInten() {
+		return audiInten;
+	}
+
+	public void setAudiInten(String audiInten) {
+		this.audiInten = audiInten;
+	}
+
+	public String getAudiChange() {
+		return audiChange;
+	}
+
+	public void setAudiChange(String audiChange) {
+		this.audiChange = audiChange;
+	}
+
+	public String getScrnCnt() {
+		return scrnCnt;
+	}
+
+	public void setScrnCnt(String scrnCnt) {
+		this.scrnCnt = scrnCnt;
+	}
+
+	public String getShowCnt() {
+		return showCnt;
+	}
+
+	public void setShowCnt(String showCnt) {
+		this.showCnt = showCnt;
+	}
+
 	public String getRankOldAndNew() {
 		return rankOldAndNew;
 	}

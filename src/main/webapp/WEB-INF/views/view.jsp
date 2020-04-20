@@ -210,6 +210,18 @@
 	<div id="view_audi_chart_div" style="width: 1000px; height:550px; margin: 0 auto; padding: 5px;" align="center">
 		<h4>불러오는 중입니다...</h4><br>
 		<img src="resources/images/loading.gif"/>
+	</div><br><br>
+	
+	<!-- 컨텐츠 구분선 -->
+    <table style="width:1100px; margin:30px auto;">
+    	<tr><td style="border-bottom:1px solid #e2e2e2; height:8px"></td></tr>
+    	<tr><td></td></tr>
+    </table>
+    <!-- 컨텐츠 구분선 끝 -->
+    
+	<div style="width:190px; margin:auto;">
+		<h5><b>다른날짜 조회하기</b></h5>
+		<input id="datepicker" type="date" value="${dTime.substring(0,4)}-${dTime.substring(4,6)}-${dTime.substring(6)}">
 	</div>
 		
 	<div id="comment_div">
@@ -303,13 +315,21 @@
 			type: 'post',
 			dataType: "json"
 		}).done(function(data){
+
 			$("#view_audi_chart_div").css("display", "");
-			$("#view_sales_chart_div").css("display", "");
 			if(data.length <= 0){
-				$("#view_audi_chart_div").css("display", "none");
-				$("#view_sales_chart_div").css("display", "none");
+				$("#view_audi_chart_div").html("<h4>데이터를 불러올 수 없습니다.</h4>");
+			}else{
+				viewAudiChart(data);
 			}
-			viewAudiChart(data);
+			
+		}).fail(function(err){ 
+			
+			$("#view_audi_chart_div").html("<h4>데이터를 불러올 수 없습니다.</h4>");
+		});
+		
+		$("#datepicker").change(function(){
+			loadChart($("#datepicker").val());
 		});
 	
 		
@@ -713,6 +733,35 @@
 		var val2 = val + "0%";
 		$(".star-rating span").css("width", val2);
 		$("#star-label").text(val);
+	}
+	
+	function loadChart(d){
+		
+		var dTime = "";
+		dTime += d.substring(0,4);
+		dTime += d.substring(5,7);
+		dTime += d.substring(8);
+		
+		$("#view_audi_chart_div").html("<h4>불러오는 중입니다...</h4><br><img src='resources/images/loading.gif'/>");
+		
+		$.ajax({
+			url: "http://192.168.0.117:5000/viewGraph.inc?movieCd=${movieCd}&dTime="+dTime,
+			type: 'post',
+			dataType: "json"
+		}).done(function(data){
+
+			$("#view_audi_chart_div").css("display", "");
+			if(data.length <= 0){
+				$("#view_audi_chart_div").html("<h4>데이터를 불러올 수 없습니다.</h4>");
+			}else{
+				viewAudiChart(data);
+			}
+			
+		}).fail(function(err){ 
+			
+			$("#view_audi_chart_div").html("<h4>데이터를 불러올 수 없습니다.</h4>");
+		});
+		
 	}
 </script>	
 </body>

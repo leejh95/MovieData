@@ -26,15 +26,17 @@
   #slide ul{width:400%;height:100%;transition:2s;}
   #slide ul:after{content:"";display:block;clear:both;}
   #slide li{float:left;width:25%;height:100%;}
-  #slide li:nth-child(1){}
-  #slide li:nth-child(2){}
   #slide input{display:none;}
   #slide label{display:inline-block;vertical-align:middle;width:10px;height:10px;border:2px solid #666;background:#fff;transition:0.3s;border-radius:50%;cursor:pointer;}
   #slide .pos{text-align:center;position:absolute;bottom:10px;left:0;width:100%;}
   #pos1:checked~ul{margin-left:0%;}
   #pos2:checked~ul{margin-left:-100%;}
+  #pos3:checked~ul{margin-left:-200%;}
+  #pos4:checked~ul{margin-left:-300%;}
   #pos1:checked~.pos>label:nth-child(1){background:#666;}
   #pos2:checked~.pos>label:nth-child(2){background:#666;}
+  #pos3:checked~.pos>label:nth-child(3){background:#666;}
+  #pos4:checked~.pos>label:nth-child(4){background:#666;}
   #slide_contents{height:600px; width: 1180px; margin: auto; position: relative;}
   #slide_contents>div{display: inline-block;}
   #slide_contents>div:nth-child(1){position: absolute; top: 20px; left: 30px;}
@@ -49,6 +51,8 @@
 	<div style="width:1600px; margin:auto; position: relative;">
 		<input type="radio" name="pos" id="pos1" checked>
 		<input type="radio" name="pos" id="pos2">
+		<input type="radio" name="pos" id="pos3">
+		<input type="radio" name="pos" id="pos4">
 		<ul id="slide_ul">
 			<!-- 일간 랭크 -->
 			<li>
@@ -63,7 +67,7 @@
 				    	</colgroup>
 				    	<tr>
 				    		<td style="border-bottom:1px solid #b2b2b2; height:13px"></td>
-				    		<td rowspan="2" align="center"><h3><font color="#2d2d2d">현재 박스오피스 순위 (${date })</font></h3></td>
+				    		<td rowspan="2" align="center"><h3><font color="#2d2d2d">어제의 박스오피스 순위 (${date })</font></h3></td>
 				    		<td style="border-bottom:1px solid #b2b2b2"></td>
 				    	</tr>
 				    	<tr><td></td><td></td></tr>
@@ -72,7 +76,7 @@
 				    
 				    <div id="slide_contents">
 					    <div>
-							<img id="daily_poster" src="${dar[0].image }" width="350px" height="450px">
+							<img id="poster" src="${dar[0].image }" width="350px" height="450px">
 						</div>
 						
 						<div>
@@ -94,7 +98,7 @@
 						    	
 						    	<c:forEach var="rvo" items="${dar }" varStatus="st">
 						    		
-							    	<tr style="border-bottom:1px solid #b2b2b2; height:45px;" id="list_tr" onmouseover="changeImage1(${st.index})">
+							    	<tr style="border-bottom:1px solid #b2b2b2; height:45px;" id="list_tr" class="list_tr">
 							    		<input type="hidden" value="${rvo.image }" name="imgSrc"/>
 							    		
 							    		<td style="padding: 5px;  text-align: center;">
@@ -141,6 +145,7 @@
 					
 				</div>
 			</li>
+			
 			<!-- 주간 랭크 -->
 			<li>
 				<div>
@@ -167,7 +172,7 @@
 					    
 					    <div id="slide_contents">
 						    <div>
-								<img id="weekly_poster" src="${war[0].image }" width="350px" height="450px">
+								<img id="poster" src="${war[0].image }" width="350px" height="450px">
 							</div>
 							
 							<div>
@@ -189,7 +194,7 @@
 							    	
 							    	<c:forEach var="wvo" items="${war }" varStatus="st">
 							    		
-								    	<tr style="border-bottom:1px solid #b2b2b2; height:45px;" id="list_tr" onmouseover="changeImage2(${st.index})">
+								    	<tr style="border-bottom:1px solid #b2b2b2; height:45px;" id="list_tr" class="list_tr">
 								    		<input type="hidden" value="${wvo.image }" name="imgSrc2"/>
 								    		
 								    		<td style="padding: 5px;  text-align: center;">
@@ -236,10 +241,192 @@
 						
 					</div>
 				</li>
-		</ul>
+				
+				<!-- 전일 대비 매출액 증감률 -->
+				<li>
+					<div>
+					
+						<!-- 컨텐츠 구분선 -->
+					    <table style="width:1100px; margin:20px auto;">
+					    	<colgroup>
+					    		<col width="*"/>
+					    		<col width="570px"/>
+					    		<col width="*"/>
+					    	</colgroup>
+					    	<tr>
+					    		<td style="border-bottom:1px solid #b2b2b2; height:13px"></td>
+					    		<td rowspan="2" align="center">
+					    		<h3><font color="#2d2d2d">
+					    		전일 대비 매출액 증감률(${date })
+					    		</font></h3>
+					    		</td>
+					    		<td style="border-bottom:1px solid #b2b2b2"></td>
+					    	</tr>
+					    	<tr><td></td><td></td></tr>
+					    </table>
+					    <!-- 컨텐츠 구분선 끝 -->
+					    
+					    <div id="slide_contents">
+						    <div>
+								<img id="poster" src="${dar[0].image }" width="350px" height="450px">
+							</div>
+							
+							<div>
+							    <table style="width: 700px; height:50px; padding: 5px;">
+							    	<colgroup>
+							    		<col width="55px;" />
+							    		<col width="*;" />
+							    		<col width="130px;" />
+							    		<col width="150px;" />
+							    		<col width="170px;" />
+							    	</colgroup>
+							    	<tr style="text-align: center; height:50px; color:#2d2d2d; font-size:18px; font-weight: bold; border-bottom: 2px solid #2d2d2d;">
+							    		<td>순위</td>
+							    		<td>제목</td>
+							    		<td>매출액</td>
+							    		<td>전일대비증감분</td>
+							    		<td>누적매출액</td>
+							    	</tr>
+							    	
+							    	<c:forEach var="dvo" items="${dar }" varStatus="st">
+							    		
+								    	<tr style="border-bottom:1px solid #b2b2b2; height:45px;" id="list_tr" class="list_tr">
+								    		<input type="hidden" value="${dvo.image }" name="imgSrc"/>
+								    		
+								    		<td style="padding: 5px;  text-align: center;">
+										        <div class="author-thumbnail">
+										            ${dvo.rank}위
+										        </div>
+										    </td>
+										    <td style="padding: 5px; overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">    
+										        <div class="author-info">
+										            <a href="javascript:location.href='view.inc?movieCd=${dvo.movieCd }&dTime=${yesterday }'" style="font-size: 18px; font-weight: bold;">${dvo.movieNm }</a>
+										        </div>
+										    </td>
+										    <td style="padding: 5px; text-align: center;">
+										        <div class="author-info">
+										            <span class="author-role" style="height:50px;">${dvo.salesAmt }원</span>
+										        </div>
+										    </td>    
+										    <td style="padding: 5px; text-align: center;">    
+										        <div class="author-info">
+										        	<c:if test="${dvo.salesInten.substring(0,1) ne '-'}">
+										            	<span class="author-role" style="color:#6666ff; font-weight:bold; margin: 10px auto;">${dvo.salesInten }원</span>
+										            </c:if>
+										            <c:if test="${dvo.salesInten.substring(0,1) eq '-'}">
+										            	<span class="author-role" style="color:#ff6666; font-weight:bold; margin: 10px auto;">${dvo.salesInten }원</span>
+										            </c:if>
+										        </div>
+										    </td>    
+										    <td style="padding: 5px; text-align: center;">    
+										        <div class="author-info">
+										           <span class="author-role" style="font-size: 15px;">${dvo.salesAcc }원</span>
+										        </div>
+										    </td>    
+								        </tr>
+							    	</c:forEach>
+								</table>
+						    </div>
+						</div>
+					</div>
+				</li>
+				
+				<!-- 전일 대비 관객수 증감률 -->
+				<li>
+					<div>
+					
+						<!-- 컨텐츠 구분선 -->
+					    <table style="width:1100px; margin:20px auto;">
+					    	<colgroup>
+					    		<col width="*"/>
+					    		<col width="570px"/>
+					    		<col width="*"/>
+					    	</colgroup>
+					    	<tr>
+					    		<td style="border-bottom:1px solid #b2b2b2; height:13px"></td>
+					    		<td rowspan="2" align="center">
+					    		<h3><font color="#2d2d2d">
+					    		전일 대비 관객수 증감률(${date })
+					    		</font></h3>
+					    		</td>
+					    		<td style="border-bottom:1px solid #b2b2b2"></td>
+					    	</tr>
+					    	<tr><td></td><td></td></tr>
+					    </table>
+					    <!-- 컨텐츠 구분선 끝 -->
+					    
+					    <div id="slide_contents">
+						    <div>
+								<img id="poster" src="${dar[0].image }" width="350px" height="450px">
+							</div>
+							
+							<div>
+							    <table style="width: 700px; height:50px; padding: 5px;">
+							    	<colgroup>
+							    		<col width="55px;" />
+							    		<col width="*;" />
+							    		<col width="130px;" />
+							    		<col width="150px;" />
+							    		<col width="170px;" />
+							    	</colgroup>
+							    	<tr style="text-align: center; height:50px; color:#2d2d2d; font-size:18px; font-weight: bold; border-bottom: 2px solid #2d2d2d;">
+							    		<td>순위</td>
+							    		<td>제목</td>
+							    		<td>관객수</td>
+							    		<td>전일대비증감분</td>
+							    		<td>누적관객수</td>
+							    	</tr>
+							    	
+							    	<c:forEach var="dvo" items="${dar }" varStatus="st">
+							    		
+								    	<tr style="border-bottom:1px solid #b2b2b2; height:45px;" id="list_tr" class="list_tr">
+								    		<input type="hidden" value="${dvo.image }" name="imgSrc"/>
+								    		
+								    		<td style="padding: 5px;  text-align: center;">
+										        <div class="author-thumbnail">
+										            ${dvo.rank}위
+										        </div>
+										    </td>
+										    <td style="padding: 5px; overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">    
+										        <div class="author-info">
+										            <a href="javascript:location.href='view.inc?movieCd=${dvo.movieCd }&dTime=${yesterday }'" style="font-size: 18px; font-weight: bold;">${dvo.movieNm }</a>
+										        </div>
+										    </td>
+										    <td style="padding: 5px; text-align: center;">
+										        <div class="author-info">
+										            <span class="author-role" style="height:50px;">${dvo.audiCnt }명</span>
+										        </div>
+										    </td>    
+										    <td style="padding: 5px; text-align: center;">    
+										        <div class="author-info">
+										        	<c:if test="${dvo.audiInten.substring(0,1) ne '-'}">
+										            	<span class="author-role" style="color:#6666ff; font-weight:bold; margin: 10px auto;">${dvo.salesInten }명</span>
+										            </c:if>
+										            <c:if test="${dvo.audiInten.substring(0,1) eq '-'}">
+										            	<span class="author-role" style="color:#ff6666; font-weight:bold; margin: 10px auto;">${dvo.salesInten }명</span>
+										            </c:if>
+										        </div>
+										    </td>    
+										    <td style="padding: 5px; text-align: center;">    
+										        <div class="author-info">
+										           <span class="author-role">${dvo.audiAcc }명</span>
+										        </div>
+										    </td>    
+								        </tr>
+							    	</c:forEach>
+								</table>
+						    </div>
+						</div>
+					</div>
+				</li>
+				
+			</ul>
+			
 		<p class="pos">
 			<label for="pos1"></label>
 			<label for="pos2"></label> 
+			<label for="pos3"></label> 
+			<label for="pos4"></label> 
 		</p>
 		
 		<a href="javascript:changeSlide(0)" id="left_arrow" style="display: block; position: absolute; top: 270px; left: 110px;">
@@ -304,7 +491,6 @@
 	-->
 	
 	<script src="resources/js/jquery-3.4.1.min.js"></script>
-
     <script src="//www.amcharts.com/lib/4/core.js"></script>
 	<script src="//www.amcharts.com/lib/4/charts.js"></script>
 	<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
@@ -316,18 +502,19 @@ $(document).ready(function () {
 	$("#include_header").load("header.inc");
 	$("#include_footer").load("footer.inc");
 	
-	
-	//$("#d1").dialog();	
-	
 	$.ajax({
         url: "http://192.168.0.117:5000/dailyGraph.inc?dTime=${yesterday}",
         type: 'post',
         dataType: "json"
      }).done(function(data){
-        //console.log("확인")
         viewChart(data);
        	viewChart2(data);
      });
+	
+	$(".list_tr").mouseover(function(){
+		var imgSrc = $(this).children("input").val();
+		$(this).parent().parent().parent().parent().find("#poster").attr("src", imgSrc);
+	});
 
 });
 
@@ -487,44 +674,6 @@ $(document).ready(function () {
 		}); // end am4core.ready()
 	}
 	
-	function changeImage1(idx){
-		
-		var imgAr = new Array($("input[name=imgSrc]").length);
-		
-		for(var i=0; i<$("input[name=imgSrc]").length; i++){
-			imgAr[i] = $("input[name=imgSrc]").eq(i).val();
-		}
-		
-		var poster = document.getElementById("daily_poster");
-		poster.src = imgAr[idx];
-	}
-	
-	function changeImage2(idx){
-		
-		var imgAr = new Array($("input[name=imgSrc2]").length);
-		
-		for(var i=0; i<$("input[name=imgSrc2]").length; i++){
-			imgAr[i] = $("input[name=imgSrc2]").eq(i).val();
-		}
-		
-		var poster = document.getElementById("weekly_poster");
-		poster.src = imgAr[idx];
-	}
-	
-	setInterval(function() {
-		
-		var radio1 = $("#pos1").prop('checked'); 
-		var radio2 = $("#pos2").prop("checked");
-
-		if(radio1){
-			$("#pos2").prop('checked', true);
-		}
-		if(radio2){
-			$("#pos1").prop("checked", true);
-		}
-	
-	},8000);
-	
 	function changeSlide(num){
 		var index = -1;
 		var length = $("input[name=pos]").length;
@@ -551,6 +700,12 @@ $(document).ready(function () {
 			}
 		}
 	}
+	
+	setInterval(function() {
+		
+		changeSlide(1);
+	
+	},8000);
 </script>
 </body>
 </html>

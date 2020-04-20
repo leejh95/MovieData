@@ -100,15 +100,26 @@ public class IndexController {
 			vo.setRankInten(e.getChildText("rankInten"));
 			vo.setRankOldAndNew(e.getChildText("rankOldAndNew"));
 			
+			vo.setSalesShare(e.getChildText("salesShare"));
+			vo.setSalesChange(e.getChildText("salesChange"));
+			vo.setAudiChange(e.getChildText("audiChange"));
+			vo.setScrnCnt(e.getChildText("scrnCnt"));
+			vo.setShowCnt(e.getChildText("showCnt"));
+			
 			DecimalFormat fm = new DecimalFormat("###,###,###,###");
-			Double dbdb = Double.parseDouble(e.getChildText("salesAcc"));
-			Double dbdb2 = Double.parseDouble(e.getChildText("audiAcc"));
-			String ch = fm.format(dbdb);
-			String ch2 = fm.format(dbdb2);
-			//System.out.println(ch);
-			vo.setSalesAcc(ch);
-			vo.setAudiAcc(ch2);
-			//String ddd = e.getChildText("openDt").substring(0, 4);
+			String salesAcc = fm.format(Double.parseDouble(e.getChildText("salesAcc")));
+			String audiAcc = fm.format(Double.parseDouble(e.getChildText("audiAcc")));
+			String salesAmt = fm.format(Double.parseDouble(e.getChildText("salesAmt")));
+			String salesInten = fm.format(Double.parseDouble(e.getChildText("salesInten")));
+			String audiCnt = fm.format(Double.parseDouble(e.getChildText("audiCnt")));
+			String audiInten = fm.format(Double.parseDouble(e.getChildText("audiInten")));
+			
+			vo.setSalesAcc(salesAcc);
+			vo.setAudiAcc(audiAcc);
+			vo.setSalesAmt(salesAmt);
+			vo.setSalesInten(salesInten);
+			vo.setAudiCnt(audiCnt);
+			vo.setAudiInten(audiInten);
 			
 			try {
 				vo.setImage(getImage(e.getChildText("movieNm"), e.getChildText("openDt").substring(0, 4)));
