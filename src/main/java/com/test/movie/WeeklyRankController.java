@@ -157,9 +157,12 @@ public class WeeklyRankController {
             		content += s;
             }
             
+            String probablyPrdtYear = String.valueOf(Integer.parseInt(openDt)-1);
+            
             for(String s : list) {
             	int year = s.indexOf("year="+openDt);
-            	if(year >= 0) {
+            	int year2 = s.indexOf("year="+probablyPrdtYear);
+            	if(year >= 0 || year2 >= 0) {
             		content = s;
             		break;
             	}
