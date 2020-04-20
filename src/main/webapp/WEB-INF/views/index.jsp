@@ -63,7 +63,7 @@
 				    	</colgroup>
 				    	<tr>
 				    		<td style="border-bottom:1px solid #b2b2b2; height:13px"></td>
-				    		<td rowspan="2" align="center"><h3><font color="#2d2d2d">일별 박스오피스 순위 (${date })</font></h3></td>
+				    		<td rowspan="2" align="center"><h3><font color="#2d2d2d">현재 박스오피스 순위 (${date })</font></h3></td>
 				    		<td style="border-bottom:1px solid #b2b2b2"></td>
 				    	</tr>
 				    	<tr><td></td><td></td></tr>
@@ -269,12 +269,34 @@
     </table>
     <!-- 컨텐츠 구분선 끝 -->
     
-    <div id="chart_div" style="width: 1200px; height:500px; margin: 50px auto; padding: 5px; color:white;" align="center">
+    <div id="chart_div_audi" style="width: 1200px; height:500px; margin: 50px auto; padding: 5px; color:white;" align="center">
+    	<h4>불러오는 중입니다...</h4><br>
+		<img src="resources/images/loading.gif"/>
+    </div>
+    
+    <!-- 컨텐츠 구분선 -->
+    <table style="width:1600px; margin:200px auto 20px auto;">
+    	<colgroup>
+    		<col width="*"/>
+    		<col width="610px"/>
+    		<col width="*"/>
+    	</colgroup>
+    	<tr>
+    		<td style="border-bottom:1px solid #b2b2b2; height:13px"></td>
+    		<td rowspan="2" align="center"><h3><font color="#2d2d2d">TOP10 누적매출액 (${date })</font></h3></td>
+    		<td style="border-bottom:1px solid #b2b2b2"></td>
+    	</tr>
+    	<tr><td></td><td></td></tr>
+    </table>
+    <!-- 컨텐츠 구분선 끝 -->
+	
+	<div id="chart_div_sales" style="width: 1200px; height:500px; margin: 50px auto; padding: 5px; color:white;" align="center">
     	<h4>불러오는 중입니다...</h4><br>
 		<img src="resources/images/loading.gif"/>
     </div>
 	<br><br><br><br><br><br>
-	<div id="include_footer"></div>     
+	<div id="include_footer"></div> 
+	   
      <!-- 다이아로그 팝업창 
     <div id="d1" title="공지사항">
     	<p id="ppp">뿌웅</p>
@@ -286,6 +308,7 @@
     <script src="//www.amcharts.com/lib/4/core.js"></script>
 	<script src="//www.amcharts.com/lib/4/charts.js"></script>
 	<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+	
 <script type="text/javascript">
 
 $(document).ready(function () {
@@ -303,6 +326,7 @@ $(document).ready(function () {
      }).done(function(data){
         //console.log("확인")
         viewChart(data);
+       	viewChart2(data);
      });
 
 });
@@ -315,7 +339,7 @@ $(document).ready(function () {
 		// Themes end
 
 		// Create chart instance
-		var chart = am4core.create("chart_div", am4charts.XYChart);
+		var chart = am4core.create("chart_div_audi", am4charts.XYChart);
 
 		// Add data
 		chart.data = data;
@@ -372,6 +396,84 @@ $(document).ready(function () {
 		series.dataFields.valueY = "audiAcc";
 		series.dataFields.categoryX = "movieNm";
 		series.name = "누적관객수";
+		series.columns.template.tooltipText = "{categoryX}: [bold]{valueY}[/]";
+		series.columns.template.fillOpacity = .8;
+		series.columns.template.fill = am4core.color('#B4B4DC');
+		series.columns.template.stroke = am4core.color('#B4B4DC');
+		
+
+		var columnTemplate = series.columns.template;
+		columnTemplate.strokeWidth = 2;
+		columnTemplate.strokeOpacity = 0;
+
+		}); // end am4core.ready()
+	}
+	
+	function viewChart2(data){
+		
+		am4core.ready(function() {
+		
+		am4core.useTheme(am4themes_animated);
+		// Themes end
+
+		// Create chart instance
+		var chart = am4core.create("chart_div_sales", am4charts.XYChart);
+
+		// Add data
+		chart.data = data;
+
+		// Create axes
+
+		var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+		categoryAxis.dataFields.category = "movieNm";
+		categoryAxis.renderer.grid.template.location = 0;
+		categoryAxis.renderer.minGridDistance = 30;
+		categoryAxis.renderer.labels.template.fontSize = 12;
+
+		categoryAxis.renderer.labels.template.adapter.add("dy", function(dy, target) {
+		  if (target.dataItem && target.dataItem.index & 2 == 2) {
+		    return dy + 25;
+		  }
+		  return dy;
+		});
+
+		var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+		var axisBreak = valueAxis.axisBreaks.create();
+		axisBreak.startValue = 15000000000;
+		axisBreak.endValue = 100000000000;
+		axisBreak.breakSize = 0.005;
+		
+		// make break expand on hover
+		var hoverState = axisBreak.states.create("hover");
+		hoverState.properties.breakSize = 1;
+		hoverState.properties.opacity = 0.1;
+		hoverState.transitionDuration = 1500;
+
+		axisBreak.defaultState.transitionDuration = 1000;
+		
+		// this is exactly the same, but with events
+		axisBreak.events.on("over", () => { 
+		  axisBreak.animate(
+		    [{ property: "breakSize", to: 1 }, { property: "opacity", to: 0.1 }],
+		    1500,
+		    am4core.ease.sinOut
+		  );
+		});
+		axisBreak.events.on("out", () => {
+		  axisBreak.animate(
+		    [{ property: "breakSize", to: 0.005 }, { property: "opacity", to: 1 }],
+		    1000,
+		    am4core.ease.quadOut
+		  );
+		});
+		
+		
+		// Create series
+		var series = chart.series.push(new am4charts.ColumnSeries());
+		series.dataFields.valueY = "salesAcc";
+		series.dataFields.categoryX = "movieNm";
+		series.name = "누적매출액";
 		series.columns.template.tooltipText = "{categoryX}: [bold]{valueY}[/]";
 		series.columns.template.fillOpacity = .8;
 		series.columns.template.fill = am4core.color('#B4B4DC');

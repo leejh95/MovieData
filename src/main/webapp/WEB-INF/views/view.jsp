@@ -296,6 +296,8 @@
 			setCommList(cPage);
 		});
 		
+		
+	
 		$.ajax({
 			url: "http://192.168.0.117:5000/viewGraph.inc?movieCd=${movieCd}&dTime=${dTime}",
 			type: 'post',
@@ -309,6 +311,7 @@
 			}
 			viewAudiChart(data);
 		});
+	
 		
 		var itemsMainDiv = ('.MultiCarousel');
 	    var itemsDiv = ('.MultiCarousel-inner');

@@ -33,13 +33,13 @@ public class SearchController {
 		
 		switch (searchType) {
 		case 0:
-			url = new URL("http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.xml?key=597ea93394fe1b75e69c9cf07a1fc1de&movieNm="+value);
+			url = new URL("http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.xml?key=597ea93394fe1b75e69c9cf07a1fc1de&repNationCd=22041011&movieNm="+value);
 			break;
 		case 1:
-			url = new URL("http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.xml?key=597ea93394fe1b75e69c9cf07a1fc1de&directorNm="+value);
+			url = new URL("http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.xml?key=597ea93394fe1b75e69c9cf07a1fc1de&repNationCd=22041011&directorNm="+value);
 			break;	
 		case 2:
-			url = new URL("http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.xml?key=597ea93394fe1b75e69c9cf07a1fc1de&openStartDt="+value);
+			url = new URL("http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.xml?key=597ea93394fe1b75e69c9cf07a1fc1de&repNationCd=22041011&openStartDt="+value);
 			break;
 		}
 		

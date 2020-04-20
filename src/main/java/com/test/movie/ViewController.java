@@ -7,8 +7,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -34,6 +37,13 @@ public class ViewController {
 	public ModelAndView view(String movieCd, String dTime) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		ViewVO vo = new ViewVO();
+		
+		if(dTime == null) {
+			Date dDate = new Date();
+			dDate = new Date(dDate.getTime()+(1000*60*60*24*-1));
+			SimpleDateFormat dSdf = new SimpleDateFormat("yyyyMMdd", Locale.KOREA);
+			dTime = dSdf.format(dDate);
+		}
 		
 		URL url = new URL("http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.xml?key=597ea93394fe1b75e69c9cf07a1fc1de&movieCd="+movieCd);
 		//URL url = new URL("http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.xml?key=597ea93394fe1b75e69c9cf07a1fc1de&movieCd=20124079");
