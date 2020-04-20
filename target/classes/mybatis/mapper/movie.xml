@@ -171,7 +171,7 @@
 	</resultMap>
 	
 	<select id="getBoard_commCount" resultType="int" parameterType="String">
-		select count(*) from movie_comm where b_idx = #{b_idx}
+		select count(*) from movie_comm where b_idx = #{b_idx} and status = 0
 	</select>
 	<!-- 끝 -->
 	

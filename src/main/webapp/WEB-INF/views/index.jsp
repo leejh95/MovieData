@@ -366,7 +366,7 @@
 							    		<col width="55px;" />
 							    		<col width="*;" />
 							    		<col width="130px;" />
-							    		<col width="150px;" />
+							    		<col width="160px;" />
 							    		<col width="170px;" />
 							    	</colgroup>
 							    	<tr style="text-align: center; height:50px; color:#2d2d2d; font-size:18px; font-weight: bold; border-bottom: 2px solid #2d2d2d;">
@@ -400,10 +400,10 @@
 										    <td style="padding: 5px; text-align: center;">    
 										        <div class="author-info">
 										        	<c:if test="${dvo.audiInten.substring(0,1) ne '-'}">
-										            	<span class="author-role" style="color:#6666ff; font-weight:bold; margin: 10px auto;">${dvo.salesInten }명</span>
+										            	<span class="author-role" style="color:#6666ff; font-weight:bold; margin: 10px auto;">${dvo.audiInten }명</span>
 										            </c:if>
 										            <c:if test="${dvo.audiInten.substring(0,1) eq '-'}">
-										            	<span class="author-role" style="color:#ff6666; font-weight:bold; margin: 10px auto;">${dvo.salesInten }명</span>
+										            	<span class="author-role" style="color:#ff6666; font-weight:bold; margin: 10px auto;">${dvo.audiInten }명</span>
 										            </c:if>
 										        </div>
 										    </td>    
@@ -705,7 +705,7 @@ $(document).ready(function () {
 		
 		changeSlide(1);
 	
-	},8000);
+	},10000);
 </script>
 </body>
 </html>
