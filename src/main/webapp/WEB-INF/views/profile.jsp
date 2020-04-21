@@ -200,7 +200,7 @@
 		}
 		if(!(frm.pw2.value==frm.pw3.value)){
 			alert("새로운 비밀번호가 일치하지 않습니다.");
-			frm.pw2.focus();
+			frm.pw3.focus();
 			return
 		}
 		

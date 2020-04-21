@@ -18,7 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class CalendarController {
 
 	@RequestMapping("/calendar.inc")
-	public ModelAndView calendar(String year, String month) {
+	public ModelAndView calendar(String year, String month, String sDate) {
+		
+		if(sDate == null || sDate.length() < 1)
+			sDate = "1";
 		
 		Calendar cal = Calendar.getInstance();
 
@@ -44,6 +47,7 @@ public class CalendarController {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyMMdd");
 		
 		int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
+		int intSdate = Integer.parseInt(sDate);
 		
 		String msg = "";
 		
@@ -62,18 +66,21 @@ public class CalendarController {
 			else 
 				color = "#4b4b4b";
 
-			String sDate = Integer.toString(i_year);
+			String sd = Integer.toString(i_year);
 
-			sDate += Integer.toString(i_month + 1).length() == 1 ? "0" + Integer.toString(i_month + 1)
+			sd += Integer.toString(i_month + 1).length() == 1 ? "0" + Integer.toString(i_month + 1)
 					: Integer.toString(i_month + 1);
-			sDate += Integer.toString(index).length() == 1 ? "0" + Integer.toString(index)
+			sd += Integer.toString(index).length() == 1 ? "0" + Integer.toString(index)
 					: Integer.toString(index);
 			
 			String isToday = "";
-			if (Integer.parseInt(sDate) == intToday) 
+			if (Integer.parseInt(sd) == intToday) 
 				isToday = "today";
+			String isSdate = "";
+			if (Integer.parseInt(sd) == intSdate) 
+				isSdate = "sDate";
 			
-			msg += "<TD id='" + isToday + "'><a style='display:block; width:100%; height:100%; color:"+ color +";' href='javascript:goDate("+sDate+")'>";
+			msg += "<TD id='" + isToday + "' class='"+isSdate+"'><a style='display:block; width:100%; height:100%; color:"+ color +";' href='javascript:goDate("+sd+")'>";
 			
 			msg += index;
 

@@ -88,6 +88,8 @@
 <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 
 <script type="text/javascript">
+var sDate = "";
+
 $(document).ready(function(){
 	$("#include_header").load("header.inc");
 	$("#include_calendar").load("calendar.inc");
@@ -98,10 +100,22 @@ $(document).ready(function(){
 });
 
 function goCal(year, month){
-	$("#include_calendar").load("calendar.inc?year="+year+"&month="+month);
+	$("#include_calendar").load("calendar.inc?year="+year+"&month="+month+"&sDate="+sDate);
 }
 
-function goDate(sDate){
+function goDate(sd){
+	
+	sDate = sd;
+	
+	var year = String(sd).substring(0,4);
+	var month = String(sd).substring(4,6);
+	
+	if(month == 1)
+		month = 1;
+	
+	month = month - 1;
+	
+	$("#include_calendar").load("calendar.inc?year="+year+"&month="+month+"&sDate="+sDate);
 	$("#include_daily_rank").load("dailyRank.inc?dTime="+sDate);
 	$("#include_weekly_rank").load("weekly_rank.inc?dTime="+sDate);
 }

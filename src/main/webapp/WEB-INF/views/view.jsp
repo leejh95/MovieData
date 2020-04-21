@@ -137,7 +137,7 @@
 				</tr>
 				<tr>
 					<td class="kategorie">제목</td>
-					<td class="content">${vo.movieNm }&nbsp;&nbsp;&nbsp;&nbsp;(${vo.movieNmEn })</td>
+					<td class="content">${vo.movieNm }<c:if test="${vo.movieNmEn.length() > 0}">&nbsp;&nbsp;&nbsp;&nbsp;(${vo.movieNmEn })</c:if></td>
 				</tr>
 				<tr>
 					<td class="kategorie">요약정보</td>

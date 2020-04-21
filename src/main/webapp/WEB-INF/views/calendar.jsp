@@ -67,12 +67,19 @@ line-height: 45px;
 }
 #cal_tab td:hover{
 background: #bbbbbb;
+border-radius: 24px;
 }
 #cal_tab td:active{
 background: #ffffff;
+border-radius: 24px;
 }
 #today{
 background: #dddddd;
+border-radius: 24px;
+}
+.sDate{
+background: #E0E0F8;
+border-radius: 24px;
 }
 </style>
 </HEAD>
