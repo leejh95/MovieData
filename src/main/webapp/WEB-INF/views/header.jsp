@@ -163,16 +163,15 @@ color: #343434;
                             <div class="classynav">
                                 <ul>
                                     <li><a href="index.inc">Home</a></li>
-                                   
                                     <li><a href="javascript:location.href='boxofficeRank.inc'">박스오피스</a></li>
-                                    <li><a href="#">게시판</a>
+                                   
+                                    <li><a href="javascript:location.href='list.inc?category=review'">리뷰게시판</a></li>
+                                     <li><a href="#">Contact</a>
                                         <ul class="dropdown" id="dropdown">
-                                            <li><a href="javascript:location.href='list.inc?category=free'">자유게시판</a></li>
-                                            <li><a href="javascript:location.href='list.inc?category=review'">리뷰게시판</a></li>
+                                            <li><a href="javascript:location.href='list.inc?category=qna'">Q&A</a></li>
+                                            <li><a href="javascript:location.href='contact.inc'">FAQ</a></li>
                                         </ul>
                                     </li>
-                                   
-                                    <li><a href="javascript:location.href='contact.inc'">Contact</a></li>
                                 </ul>
 
                     		<!-- Search Form  -->

@@ -104,7 +104,7 @@
                         </div>
                     <hr/><br><br>
                     <!-- 자유게시판 답글 -->
-                    <c:if test="${vo.category eq 'free' and sessionScope.memVO ne null}">
+                    <c:if test="${vo.category eq 'qna' and sessionScope.memVO ne null}">
                     <div class="col-12">
                        <button class="btn original-btn"
                        onClick="JavaScript:location.href='answer.inc?b_idx=${b_idx}&ref=${vo.ref }&step=${vo.step }&sunbun=${vo.sunbun }&nowPage=${nowPage }'">
