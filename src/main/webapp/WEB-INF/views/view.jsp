@@ -221,7 +221,9 @@
     
 	<div style="width:190px; margin:auto;">
 		<h5><b>다른날짜 조회하기</b></h5>
-		<input id="datepicker" type="date" value="${dTime.substring(0,4)}-${dTime.substring(4,6)}-${dTime.substring(6)}">
+		<input id="datepicker_start" type="date" value=""><br>
+		<h5><b> ~ </b></h5><input id="datepicker_end" type="date" value="${dTime.substring(0,4)}-${dTime.substring(4,6)}-${dTime.substring(6)}"><br><br>
+		<input type="button" value="조회하기" onclick="loadChart()">
 	</div>
 		
 	<div id="comment_div">
@@ -326,10 +328,6 @@
 		}).fail(function(err){ 
 			
 			$("#view_audi_chart_div").html("<h4>데이터를 불러올 수 없습니다.</h4>");
-		});
-		
-		$("#datepicker").change(function(){
-			loadChart($("#datepicker").val());
 		});
 	
 		
@@ -735,17 +733,40 @@
 		$("#star-label").text(val);
 	}
 	
-	function loadChart(d){
+	function loadChart(){
 		
-		var dTime = "";
-		dTime += d.substring(0,4);
-		dTime += d.substring(5,7);
-		dTime += d.substring(8);
+		var start = $("#datepicker_start").val();
+		var end = $("#datepicker_end").val();
+		
+		if(start.length < 1){
+			alert("시작날짜를 입력해주세요");
+			$("#datepicker_start").focus();
+			return;
+		}
+		if(end.length < 1){
+			alert("종료날짜를 입력해주세요");
+			$("#datepicker_end").focus();
+			return;
+		}
+		
+		var sar = start.split("-");
+		var ear = end.split("-");
+		var sda = new Date(sar[0], sar[1], sar[2]);
+		var eda = new Date(ear[0], ear[1], ear[2]);
+		var div = eda - sda;
+		var dateRange = parseInt(div/(24 * 60 * 60 * 1000)) + 1;
+		
+		if(dateRange < 1){
+			alert("종료일이 시작일보다 전입니다.");
+			return;
+		}
 		
 		$("#view_audi_chart_div").html("<h4>불러오는 중입니다...</h4><br><img src='resources/images/loading.gif'/>");
 		
+		var dTime = ear[0]+ear[1]+ear[2];
+		
 		$.ajax({
-			url: "http://192.168.0.117:5000/viewGraph.inc?movieCd=${movieCd}&dTime="+dTime,
+			url: "http://192.168.0.117:5000/viewGraph.inc?movieCd=${movieCd}&dTime="+dTime+"&dateRange="+dateRange,
 			type: 'post',
 			dataType: "json"
 		}).done(function(data){
