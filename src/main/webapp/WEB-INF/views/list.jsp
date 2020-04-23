@@ -135,8 +135,8 @@
 
 <div class="container">
 	
-	<c:if test="${category=='free' }">
-    <h2>자유게시판</h2>
+	<c:if test="${category=='qna' }">
+    <h2>Q&A게시판</h2>
     <hr />
     </c:if>
     
@@ -173,7 +173,7 @@
 	                <div class="cell">
 	                    <div class="type">
 	                        <div class="propertyname">
-	                        <c:if test="${category == 'free' }">
+	                        <c:if test="${category == 'qna' }">
 		                        <%-- 들여쓰기 반복문 --%>
 									<c:forEach begin="1" end="${vo.step }">
 										<c:out value="&nbsp;&nbsp;" escapeXml="flase"/>

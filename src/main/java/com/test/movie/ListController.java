@@ -30,7 +30,7 @@ public class ListController {
 		if(nowPage == null) { this.nowPage = 1; }
 		else { this.nowPage = Integer.parseInt(nowPage); }
 		
-		if(category.equals("free")) { this.category = "free"; }
+		if(category.equals("qna")) { this.category = "qna"; }
 		else if(category.equals("review")) { this.category = "review"; }
 		
 		this.rowTotal = m_dao.totalCount(category);

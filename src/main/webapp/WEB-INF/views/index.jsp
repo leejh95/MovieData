@@ -83,7 +83,7 @@
 						    <table style="width: 700px; height:50px; padding: 5px;">
 						    	<colgroup>
 						    		<col width="50px;" />
-						    		<col width="*;" />
+						    		<col width="210px;" />
 						    		<col width="180px;" />
 						    		<col width="130px;" />
 						    		<col width="130px;" />
@@ -106,9 +106,9 @@
 									            ${rvo.rank}위
 									        </div>
 									    </td>
-									    <td style="padding: 5px; overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">    
+									    <td style="padding: 5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; ">    
 									        <div class="author-info">
-									            <a href="javascript:location.href='view.inc?movieCd=${rvo.movieCd }&dTime=${yesterday }'" style="font-size: 18px; font-weight: bold;">${rvo.movieNm }</a>
+									            <a href="javascript:location.href='view.inc?movieCd=${rvo.movieCd }&dTime=${yesterday }'" style="font-size: 18px; font-weight: bold; ">${rvo.movieNm }</a>
 									        </div>
 									    </td>
 									    <td style="padding: 5px; text-align: center;">
