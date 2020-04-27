@@ -80,10 +80,10 @@
 						</div>
 						
 						<div>
-						    <table style="width: 700px; height:50px; padding: 5px;">
+						    <table style="width: 700px; height:520px; padding: 5px; table-layout:fixed;">
 						    	<colgroup>
 						    		<col width="50px;" />
-						    		<col width="210px;" />
+						    		<col width="*" />
 						    		<col width="180px;" />
 						    		<col width="130px;" />
 						    		<col width="130px;" />
@@ -106,8 +106,8 @@
 									            ${rvo.rank}위
 									        </div>
 									    </td>
-									    <td style="padding: 5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; ">    
-									        <div class="author-info">
+									    <td style="padding: 5px;">    
+									        <div class="author-info " style="overflow:hidden; text-overflow:ellipsis; white-space: nowrap;">
 									            <a href="javascript:location.href='view.inc?movieCd=${rvo.movieCd }&dTime=${yesterday }'" style="font-size: 18px; font-weight: bold; ">${rvo.movieNm }</a>
 									        </div>
 									    </td>
@@ -176,7 +176,7 @@
 							</div>
 							
 							<div>
-							    <table style="width: 700px; height:50px; padding: 5px;">
+							    <table style="width: 700px; height:50px; padding: 5px; table-layout:fixed;">
 							    	<colgroup>
 							    		<col width="50px;" />
 							    		<col width="*;" />
@@ -202,8 +202,8 @@
 										            ${wvo.rank}위
 										        </div>
 										    </td>
-										    <td style="padding: 5px; overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">    
-										        <div class="author-info">
+										    <td style="padding: 5px; ">    
+										        <div class="author-info" style="overflow:hidden; text-overflow:ellipsis; white-space: nowrap;">
 										            <a href="javascript:location.href='view.inc?movieCd=${wvo.movieCd }&dTime=${lastweek }'" style="font-size: 18px; font-weight: bold;">${wvo.movieNm }</a>
 										        </div>
 										    </td>
@@ -272,7 +272,7 @@
 							</div>
 							
 							<div>
-							    <table style="width: 700px; height:50px; padding: 5px;">
+							    <table style="width: 700px; height:50px; padding: 5px; table-layout:fixed;">
 							    	<colgroup>
 							    		<col width="55px;" />
 							    		<col width="*;" />
@@ -298,8 +298,8 @@
 										            ${dvo.rank}위
 										        </div>
 										    </td>
-										    <td style="padding: 5px; overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">    
-										        <div class="author-info">
+										    <td style="padding: 5px; ">    
+										        <div class="author-info" style="overflow:hidden; text-overflow:ellipsis; white-space: nowrap;">
 										            <a href="javascript:location.href='view.inc?movieCd=${dvo.movieCd }&dTime=${yesterday }'" style="font-size: 18px; font-weight: bold;">${dvo.movieNm }</a>
 										        </div>
 										    </td>
@@ -361,7 +361,7 @@
 							</div>
 							
 							<div>
-							    <table style="width: 700px; height:50px; padding: 5px;">
+							    <table style="width: 700px; height:50px; padding: 5px; table-layout:fixed;">
 							    	<colgroup>
 							    		<col width="55px;" />
 							    		<col width="*;" />
@@ -387,8 +387,8 @@
 										            ${dvo.rank}위
 										        </div>
 										    </td>
-										    <td style="padding: 5px; overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">    
-										        <div class="author-info">
+										    <td style="padding: 5px; ">    
+										        <div class="author-info" style="overflow:hidden; text-overflow:ellipsis; white-space: nowrap;">
 										            <a href="javascript:location.href='view.inc?movieCd=${dvo.movieCd }&dTime=${yesterday }'" style="font-size: 18px; font-weight: bold;">${dvo.movieNm }</a>
 										        </div>
 										    </td>
