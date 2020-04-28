@@ -21,7 +21,7 @@ public class SignUpController {
 	public String signUp() {
 		return "signup";
 	}
-	
+		
 	@RequestMapping("/signUpKey.inc")
 	@ResponseBody
 	public Map<String, Object> signUpKey(String id){
