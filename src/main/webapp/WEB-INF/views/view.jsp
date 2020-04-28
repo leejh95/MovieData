@@ -147,6 +147,10 @@
 					<td class="kategorie">제작년도</td>
 					<td class="content">${vo.prdtYear }년</td>
 				</tr>
+				<tr>
+					<td class="kategorie">개봉일</td>
+					<td class="content">${vo.openDt.substring(0,4) }년 ${vo.openDt.substring(4,6) }월 ${vo.openDt.substring(6) }일 </td>
+				</tr>
 			</table>
 			<table class="view_table">
 				<colgroup>
