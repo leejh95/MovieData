@@ -44,12 +44,6 @@
                     <div class="classy-nav-container breakpoint-off">
                         <!-- Classy Menu -->
                         <nav class="classy-navbar justify-content-center">
-
-                            <!-- Navbar Toggler -->
-                            <div class="classy-navbar-toggler">
-                                <span class="navbarToggler"><span></span><span></span><span></span></span>
-                            </div>
-
                             <!-- Menu -->
                             <div class="classy-menu">
 
@@ -57,19 +51,6 @@
                                 <div class="classycloseIcon">
                                     <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
                                 </div>
-
-                                <!-- Nav Start -->
-                                <div class="classynav">
-                                    <ul>
-                                        <li><a href="#">여기</a></li>
-                                        <li><a href="#">뭐라고</a></li>
-                                        <li><a href="#">써둘까</a></li>
-                                        <li><a href="#">얘들아?</a></li>
-                                        <li><a href="#">의견좀</a></li>
-                                        <li><a href="#"><img src="resources/images/팝콘맨.jpg" alt=""></a></li>
-                                    </ul>
-                                </div>
-                                <!-- Nav End -->
                             </div>
                         </nav>
                     </div>

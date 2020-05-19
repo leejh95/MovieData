@@ -66,13 +66,21 @@
 				<li id='tab1' class='btnCon'>
 					<a class='btn first' href='#tab1'>일간박스오피스</a>
 					<div class='tabCon'>
-						<div id='include_daily_rank'></div>
+						<div id='include_daily_rank' align="center">
+							<br><br><br><br><br><br><br><br>
+							<h4>불러오는 중입니다...</h4><br>
+							<img src="resources/images/loading.gif"/>
+						</div>
 					</div>
 				</li>
 				<li id='tab2' class='btnCon'>
 					<a class='btn' href='#tab2'>주간박스오피스</a>
 					<div class='tabCon'>
-						<div id='include_weekly_rank'></div>
+						<div id='include_weekly_rank' align="center">
+							<br><br><br><br><br><br><br><br>
+							<h4>불러오는 중입니다...</h4><br>
+							<img src="resources/images/loading.gif"/>
+						</div>
 					</div>
 				</li>
 			</div>
@@ -116,6 +124,8 @@ function goDate(sd){
 	month = month - 1;
 	
 	$("#include_calendar").load("calendar.inc?year="+year+"&month="+month+"&sDate="+sDate);
+	$("#include_daily_rank").html("<br><br><br><br><br><br><br><br><h4>불러오는 중입니다...</h4><br><img src='resources/images/loading.gif'/>");
+	$("#include_weekly_rank").html("<br><br><br><br><br><br><br><br><h4>불러오는 중입니다...</h4><br><img src='resources/images/loading.gif'/>");
 	$("#include_daily_rank").load("dailyRank.inc?dTime="+sDate);
 	$("#include_weekly_rank").load("weekly_rank.inc?dTime="+sDate);
 }
